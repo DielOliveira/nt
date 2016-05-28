@@ -1,0 +1,21 @@
+<%= form_for(@tipocontum) do |f| %>
+  <% if @tipocontum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tipocontum.errors.count, "error") %> prohibited this tipocontum from being saved:</h2>
+
+      <ul>
+      <% @tipocontum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nometipo %><br>
+    <%= f.text_field :nometipo %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
