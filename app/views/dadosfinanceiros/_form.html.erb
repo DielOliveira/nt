@@ -1,0 +1,57 @@
+<%= form_for(@dadosfinanceiro) do |f| %>
+  <% if @dadosfinanceiro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dadosfinanceiro.errors.count, "error") %> prohibited this dadosfinanceiro from being saved:</h2>
+
+      <ul>
+      <% @dadosfinanceiro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nometitular %><br>
+    <%= f.text_field :nometitular %>
+  </div>
+  <div class="field">
+    <%= f.label :cpftitular %><br>
+    <%= f.text_field :cpftitular %>
+  </div>
+  <div class="field">
+    <%= f.label :banco_id %><br>
+    <%= f.text_field :banco_id %>
+  </div>
+  <div class="field">
+    <%= f.label :agencia %><br>
+    <%= f.text_field :agencia %>
+  </div>
+  <div class="field">
+    <%= f.label :codigo %><br>
+    <%= f.text_field :codigo %>
+  </div>
+  <div class="field">
+    <%= f.label :operacao %><br>
+    <%= f.text_field :operacao %>
+  </div>
+  <div class="field">
+    <%= f.label :contabancariatipo_id %><br>
+    <%= f.text_field :contabancariatipo_id %>
+  </div>
+  <div class="field">
+    <%= f.label :observacao %><br>
+    <%= f.text_field :observacao %>
+  </div>
+  <div class="field">
+    <%= f.label :emailsuperconta %><br>
+    <%= f.text_field :emailsuperconta %>
+  </div>
+  <div class="field">
+    <%= f.label :datainclulsao %><br>
+    <%= f.date_select :datainclulsao %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

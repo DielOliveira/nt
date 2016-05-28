@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Dadosfinanceiros</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nometitular</th>
+      <th>Cpftitular</th>
+      <th>Banco</th>
+      <th>Agencia</th>
+      <th>Codigo</th>
+      <th>Operacao</th>
+      <th>Contabancariatipo</th>
+      <th>Observacao</th>
+      <th>Emailsuperconta</th>
+      <th>Datainclulsao</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dadosfinanceiros.each do |dadosfinanceiro| %>
+      <tr>
+        <td><%= dadosfinanceiro.nometitular %></td>
+        <td><%= dadosfinanceiro.cpftitular %></td>
+        <td><%= dadosfinanceiro.banco %></td>
+        <td><%= dadosfinanceiro.agencia %></td>
+        <td><%= dadosfinanceiro.codigo %></td>
+        <td><%= dadosfinanceiro.operacao %></td>
+        <td><%= dadosfinanceiro.contabancariatipo %></td>
+        <td><%= dadosfinanceiro.observacao %></td>
+        <td><%= dadosfinanceiro.emailsuperconta %></td>
+        <td><%= dadosfinanceiro.datainclulsao %></td>
+        <td><%= link_to 'Show', dadosfinanceiro %></td>
+        <td><%= link_to 'Edit', edit_dadosfinanceiro_path(dadosfinanceiro) %></td>
+        <td><%= link_to 'Destroy', dadosfinanceiro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dadosfinanceiro', new_dadosfinanceiro_path %>

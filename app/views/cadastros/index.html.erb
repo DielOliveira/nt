@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Cadastros</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nomepessoa</th>
+      <th>Masculino</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Operadora</th>
+      <th>Whatsapp</th>
+      <th>Skype</th>
+      <th>Facebook</th>
+      <th>Dadosfinanceiro</th>
+      <th>Dadatainclusao</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cadastros.each do |cadastro| %>
+      <tr>
+        <td><%= cadastro.nomepessoa %></td>
+        <td><%= cadastro.masculino %></td>
+        <td><%= cadastro.email %></td>
+        <td><%= cadastro.telefone %></td>
+        <td><%= cadastro.operadora %></td>
+        <td><%= cadastro.whatsapp %></td>
+        <td><%= cadastro.skype %></td>
+        <td><%= cadastro.facebook %></td>
+        <td><%= cadastro.dadosfinanceiro %></td>
+        <td><%= cadastro.dadatainclusao %></td>
+        <td><%= link_to 'Show', cadastro %></td>
+        <td><%= link_to 'Edit', edit_cadastro_path(cadastro) %></td>
+        <td><%= link_to 'Destroy', cadastro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cadastro', new_cadastro_path %>

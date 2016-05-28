@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Contabancariatipos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nometipo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contabancariatipos.each do |contabancariatipo| %>
+      <tr>
+        <td><%= contabancariatipo.nometipo %></td>
+        <td><%= link_to 'Show', contabancariatipo %></td>
+        <td><%= link_to 'Edit', edit_contabancariatipo_path(contabancariatipo) %></td>
+        <td><%= link_to 'Destroy', contabancariatipo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contabancariatipo', new_contabancariatipo_path %>

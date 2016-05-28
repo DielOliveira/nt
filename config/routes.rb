@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :cadastros
+  resources :dadosfinanceiros
+  resources :contabancariatipos
   resources :bancos
-  resources :tipoconta
   resources :operadoras
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

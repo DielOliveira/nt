@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TipocontumTest < ActiveSupport::TestCase
+class ContabancariatipoTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

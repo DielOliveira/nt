@@ -1,0 +1,57 @@
+<%= form_for(@cadastro) do |f| %>
+  <% if @cadastro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cadastro.errors.count, "error") %> prohibited this cadastro from being saved:</h2>
+
+      <ul>
+      <% @cadastro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nomepessoa %><br>
+    <%= f.text_field :nomepessoa %>
+  </div>
+  <div class="field">
+    <%= f.label :masculino %><br>
+    <%= f.check_box :masculino %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :telefone %><br>
+    <%= f.text_field :telefone %>
+  </div>
+  <div class="field">
+    <%= f.label :operadora_id %><br>
+    <%= f.text_field :operadora_id %>
+  </div>
+  <div class="field">
+    <%= f.label :whatsapp %><br>
+    <%= f.text_field :whatsapp %>
+  </div>
+  <div class="field">
+    <%= f.label :skype %><br>
+    <%= f.text_field :skype %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook %><br>
+    <%= f.text_field :facebook %>
+  </div>
+  <div class="field">
+    <%= f.label :dadosfinanceiro_id %><br>
+    <%= f.text_field :dadosfinanceiro_id %>
+  </div>
+  <div class="field">
+    <%= f.label :dadatainclusao %><br>
+    <%= f.datetime_select :dadatainclusao %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
