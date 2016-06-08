@@ -1,11 +1,8 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Contabancariatipos</h1>
-
-<table>
+<% title "Listando Tipos de Contas" %>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Nometipo</th>
+      <th>Nome do Tipo de Conta</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +11,21 @@
     <% @contabancariatipos.each do |contabancariatipo| %>
       <tr>
         <td><%= contabancariatipo.nometipo %></td>
-        <td><%= link_to 'Show', contabancariatipo %></td>
-        <td><%= link_to 'Edit', edit_contabancariatipo_path(contabancariatipo) %></td>
-        <td><%= link_to 'Destroy', contabancariatipo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+          <td align='right'>
+            <div class="btn-group">
+              <%#= link_to fd_produto, :class => "btn btn-default btn-sm" do %>
+              <!--  <span class="glyphicon glyphicon-list-alt"></span> Exibir -->
+              <%# end %>             
+              <%= link_to edit_contabancariatipo_path(contabancariatipo), :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-pencil"></span> Editar
+              <% end %>             
+              <%= link_to contabancariatipo , :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-trash"></span> Excluir
+              <% end %>            
+            </div>
+          </td>
+
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +33,6 @@
 
 <br>
 
-<%= link_to 'New Contabancariatipo', new_contabancariatipo_path %>
+<%= link_to new_banco_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-file"></span>Novo
+<% end %>

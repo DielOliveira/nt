@@ -1,11 +1,9 @@
-<p id="notice"><%= notice %></p>
+<% title "Listando bancos" %>
 
-<h1>Listing Bancos</h1>
-
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Nomebanco</th>
+      <th>Nome do Banco</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +12,20 @@
     <% @bancos.each do |banco| %>
       <tr>
         <td><%= banco.nomebanco %></td>
-        <td><%= link_to 'Show', banco %></td>
-        <td><%= link_to 'Edit', edit_banco_path(banco) %></td>
-        <td><%= link_to 'Destroy', banco, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+          <td align='right'>
+            <div class="btn-group">
+              <%#= link_to fd_produto, :class => "btn btn-default btn-sm" do %>
+              <!--  <span class="glyphicon glyphicon-list-alt"></span> Exibir -->
+              <%# end %>             
+              <%= link_to edit_banco_path(banco), :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-pencil"></span> Editar
+              <% end %>             
+              <%= link_to banco , :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-trash"></span> Excluir
+              <% end %>            
+            </div>
+          </td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +33,6 @@
 
 <br>
 
-<%= link_to 'New Banco', new_banco_path %>
+<%= link_to new_banco_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-file"></span>Novo
+<% end %>

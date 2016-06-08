@@ -1,11 +1,9 @@
-<p id="notice"><%= notice %></p>
+<% title "Listando Operadoras" %>
 
-<h1>Listing Operadoras</h1>
-
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Nomeoperadora</th>
+      <th>Nome da Operadora</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +12,21 @@
     <% @operadoras.each do |operadora| %>
       <tr>
         <td><%= operadora.nomeoperadora %></td>
-        <td><%= link_to 'Show', operadora %></td>
-        <td><%= link_to 'Edit', edit_operadora_path(operadora) %></td>
-        <td><%= link_to 'Destroy', operadora, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td align='right'>
+          <div class="btn-group">
+            <%#= link_to fd_produto, :class => "btn btn-default btn-sm" do %>
+            <!--  <span class="glyphicon glyphicon-list-alt"></span> Exibir -->
+            <%# end %>             
+            <%= link_to edit_operadora_path(operadora), :class => "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-pencil"></span> Editar
+            <% end %>             
+            <%= link_to operadora , :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-trash"></span> Excluir
+            <% end %>            
+          </div>
+        </td>
+                  
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +34,6 @@
 
 <br>
 
-<%= link_to 'New Operadora', new_operadora_path %>
+<%= link_to new_operadora_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-file"></span>Novo
+<% end %>

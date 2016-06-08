@@ -1,6 +1,13 @@
-<h1>Editing Contabancariatipo</h1>
+<% title "Editando Tipos de Contas" %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @contabancariatipo %> |
-<%= link_to 'Back', contabancariatipos_path %>
+<br>
+  <%= link_to @contabancariatipo , :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-list-alt"></span> Exibir
+  <% end %>
+
+  <%= link_to contabancariatipos_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+  <% end %> 
+ 

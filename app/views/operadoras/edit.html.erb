@@ -1,6 +1,13 @@
-<h1>Editing Operadora</h1>
+<% title "Editando operadora" %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @operadora %> |
-<%= link_to 'Back', operadoras_path %>
+ </br>
+ 
+  <%= link_to @operadora , :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-list-alt"></span> Exibir
+  <% end %>
+
+  <%= link_to operadoras_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+  <% end %> 

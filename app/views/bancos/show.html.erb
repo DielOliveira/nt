@@ -1,9 +1,16 @@
-<p id="notice"><%= notice %></p>
+<% title "Exibindo Banco" %>
 
 <p>
-  <strong>Nomebanco:</strong>
+  <strong>Nome do Banco:</strong>
   <%= @banco.nomebanco %>
 </p>
 
-<%= link_to 'Edit', edit_banco_path(@banco) %> |
-<%= link_to 'Back', bancos_path %>
+ </br>
+ 
+  <%= link_to edit_banco_path(@banco), :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-pencil"></span> Edit
+  <% end %>
+
+  <%= link_to bancos_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+  <% end %> 

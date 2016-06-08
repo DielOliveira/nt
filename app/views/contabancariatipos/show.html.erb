@@ -1,9 +1,17 @@
-<p id="notice"><%= notice %></p>
+<% title "Exibindo Tipo de Conta" %>
 
 <p>
-  <strong>Nometipo:</strong>
+  <strong>Nome do Tipo de Conta:</strong>
   <%= @contabancariatipo.nometipo %>
 </p>
 
-<%= link_to 'Edit', edit_contabancariatipo_path(@contabancariatipo) %> |
-<%= link_to 'Back', contabancariatipos_path %>
+ </br>
+ 
+  <%= link_to edit_contabancariatipo_path(@contabancariatipo), :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-pencil"></span> Edit
+  <% end %>
+
+  <%= link_to contabancariatipos_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+  <% end %> 
+

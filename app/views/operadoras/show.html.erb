@@ -1,9 +1,16 @@
-<p id="notice"><%= notice %></p>
-
+<% title "Exibindo operadora" %>
 <p>
   <strong>Nomeoperadora:</strong>
   <%= @operadora.nomeoperadora %>
 </p>
 
-<%= link_to 'Edit', edit_operadora_path(@operadora) %> |
-<%= link_to 'Back', operadoras_path %>
+ </br>
+ 
+  <%= link_to edit_operadora_path(@operadora), :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-pencil"></span> Edit
+  <% end %>
+
+  <%= link_to operadoras_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+  <% end %> 
+ 

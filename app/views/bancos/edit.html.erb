@@ -1,6 +1,13 @@
-<h1>Editing Banco</h1>
+<% title "Editando Banco" %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @banco %> |
-<%= link_to 'Back', bancos_path %>
+ </br>
+ 
+  <%= link_to @banco , :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-list-alt"></span> Exibir
+  <% end %>
+
+  <%= link_to bancos_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+  <% end %> 
