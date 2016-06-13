@@ -28,7 +28,10 @@ class CadastrosController < ApplicationController
 
     respond_to do |format|
       if @cadastro.save
-        format.html { redirect_to @cadastro, notice: 'Cadastro was successfully created.' }
+
+        session[:cadastro_id] = @cadastro.id
+
+        format.html { redirect_to new_dadosfinanceiro_path, notice: 'Cadastro was successfully created.' }
         format.json { render :show, status: :created, location: @cadastro }
       else
         format.html { render :new }
@@ -69,6 +72,6 @@ class CadastrosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cadastro_params
-      params.require(:cadastro).permit(:nomepessoa, :masculino, :email, :telefone, :operadora_id, :whatsapp, :skype, :facebook, :dadosfinanceiro_id, :dadatainclusao)
+      params.require(:cadastro).permit(:nomepessoa, :masculino, :email, :telefone, :operadora_id, :whatsapp, :skype, :facebook, :dadatainclusao)
     end
 end

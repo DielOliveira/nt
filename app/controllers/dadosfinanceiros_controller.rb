@@ -28,7 +28,7 @@ class DadosfinanceirosController < ApplicationController
 
     respond_to do |format|
       if @dadosfinanceiro.save
-        format.html { redirect_to @dadosfinanceiro, notice: 'Dadosfinanceiro was successfully created.' }
+        format.html { redirect_to new_usuario_path, notice: 'Dadosfinanceiro was successfully created.' }
         format.json { render :show, status: :created, location: @dadosfinanceiro }
       else
         format.html { render :new }
@@ -69,6 +69,6 @@ class DadosfinanceirosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dadosfinanceiro_params
-      params.require(:dadosfinanceiro).permit(:nometitular, :cpftitular, :banco_id, :agencia, :codigo, :operacao, :contabancariatipo_id, :observacao, :emailsuperconta, :datainclulsao)
+      params.require(:dadosfinanceiro).permit(:nometitular, :cpftitular, :banco_id, :agencia, :codigo, :operacao, :contabancariatipo_id, :observacao, :emailsuperconta, :datainclulsao, :cadastro_id)
     end
 end

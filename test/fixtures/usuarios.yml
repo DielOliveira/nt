@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  senha: MyString
+  cadastro_id: 
+  datainclusao: 2016-06-09
+  dataultimologin: 2016-06-09
+  flagativo: false
+
+two:
+  email: MyString
+  senha: MyString
+  cadastro_id: 
+  datainclusao: 2016-06-09
+  dataultimologin: 2016-06-09
+  flagativo: false

@@ -24,3 +24,6 @@ module Nt
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+
+
+ActionView::Base.field_error_proc = Proc.new{ |html_tag, instance| "<div class=\"form-group has-error\">#{html_tag}</div>".html_safe }

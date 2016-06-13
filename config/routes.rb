@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :usuarios
   resources :cadastros
   resources :dadosfinanceiros
   resources :contabancariatipos
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   root  'static_pages#home'
 
   match '/faq', to: 'static_pages#faq', via: 'get'
+  match '/wellcome', to: 'static_pages#wellcome', via: 'get'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

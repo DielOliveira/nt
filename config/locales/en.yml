@@ -21,3 +21,17 @@
 
 en:
   hello: "Hello world"
+
+  activerecord:
+    attributes:
+        cadastro:
+          nomepessoa: "Nome"
+          email: "E-mail"
+          telefone: "Telefone"
+          operadora_id: "Operadora"
+        dadosfinanceiro:
+          nometitular: "Nome do Titular"
+          cpftitular: "CPF"
+          banco_id: "Banco"
+          agencia: "Agencia"
+          contabancariatipo_id: "Tipo de Conta"

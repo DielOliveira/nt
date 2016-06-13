@@ -1,3 +1,10 @@
+<%=session[:cadastro_id]%>
+<div class="progress">
+  <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
+    50%
+  </div>
+</div>
+
 <%= form_for(@dadosfinanceiro) do |f| %>
   <% if @dadosfinanceiro.errors.any? %>
     <div id="error_explanation">
@@ -11,47 +18,60 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nometitular %><br>
-    <%= f.text_field :nometitular %>
+<div class="row mar-bot40">
+  <div class="col-lg-8">
+    <%= f.label :Nome_do_titular %><br>
+    <%= f.text_field :nometitular, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :cpftitular %><br>
-    <%= f.text_field :cpftitular %>
+  <div class="col-lg-4">
+    <%= f.label :CPF %><br>
+    <%= f.text_field :cpftitular, :class => 'form-control' %>
   </div>
-  <div class="field">
+</div>
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-3">
     <%= f.label :banco_id %><br>
-    <%= f.text_field :banco_id %>
+    <%= f.select :banco_id, options_from_collection_for_select(Banco.all, 'id', 'nomebanco'), {:include_blank => true}, {:class => 'form-control' } %>
   </div>
-  <div class="field">
-    <%= f.label :agencia %><br>
-    <%= f.text_field :agencia %>
+  <div class="col-lg-2">
+    <%= f.label :Agencia %><br>
+    <%= f.text_field :agencia, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :codigo %><br>
-    <%= f.text_field :codigo %>
+  <div class="col-lg-2">
+    <%= f.label :Codigo %><br>
+    <%= f.text_field :codigo, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :operacao %><br>
-    <%= f.text_field :operacao %>
+  <div class="col-lg-2">
+    <%= f.label :Operacao %><br>
+    <%= f.text_field :operacao, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="col-lg-3">
     <%= f.label :contabancariatipo_id %><br>
-    <%= f.text_field :contabancariatipo_id %>
+    <%= f.select :contabancariatipo_id, options_from_collection_for_select(Contabancariatipo.all, 'id', 'nometipo'), {:include_blank => true}, {:class => 'form-control' } %>
   </div>
-  <div class="field">
+</div>
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-9">
     <%= f.label :observacao %><br>
-    <%= f.text_field :observacao %>
+    <%= f.text_field :observacao, :class => 'form-control' %>
   </div>
+  <div class="col-lg-3">
+    <%= f.label :Email_superconta %><br>
+    <%= f.text_field :emailsuperconta, :class => 'form-control' %>
+  </div>
+</div>
   <div class="field">
-    <%= f.label :emailsuperconta %><br>
-    <%= f.text_field :emailsuperconta %>
-  </div>
+    <%= f.hidden_field :datainclulsao, :value => Time.now%>
+  </div>  
   <div class="field">
-    <%= f.label :datainclulsao %><br>
-    <%= f.date_select :datainclulsao %>
+    <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br>
+  <div align="right">
+    <button type="submit" class="btn btn-success btn-bg">
+      <span class="glyphicon glyphicon-arrow-right"></span> Salvar
+    </button>
   </div>
 <% end %>

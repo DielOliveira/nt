@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160528145024) do
+ActiveRecord::Schema.define(version: 20160609141330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,13 +31,11 @@ ActiveRecord::Schema.define(version: 20160528145024) do
     t.string   "whatsapp"
     t.string   "skype"
     t.string   "facebook"
-    t.integer  "dadosfinanceiro_id"
     t.datetime "dadatainclusao"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  add_index "cadastros", ["dadosfinanceiro_id"], name: "index_cadastros_on_dadosfinanceiro_id", using: :btree
   add_index "cadastros", ["operadora_id"], name: "index_cadastros_on_operadora_id", using: :btree
 
   create_table "contabancariatipos", force: :cascade do |t|
@@ -59,9 +57,11 @@ ActiveRecord::Schema.define(version: 20160528145024) do
     t.date     "datainclulsao"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "cadastro_id"
   end
 
   add_index "dadosfinanceiros", ["banco_id"], name: "index_dadosfinanceiros_on_banco_id", using: :btree
+  add_index "dadosfinanceiros", ["cadastro_id"], name: "index_dadosfinanceiros_on_cadastro_id", using: :btree
   add_index "dadosfinanceiros", ["contabancariatipo_id"], name: "index_dadosfinanceiros_on_contabancariatipo_id", using: :btree
 
   create_table "operadoras", force: :cascade do |t|
@@ -70,8 +70,22 @@ ActiveRecord::Schema.define(version: 20160528145024) do
     t.datetime "updated_at",    null: false
   end
 
-  add_foreign_key "cadastros", "dadosfinanceiros"
+  create_table "usuarios", force: :cascade do |t|
+    t.string   "email"
+    t.string   "senha"
+    t.integer  "cadastro_id"
+    t.date     "datainclusao"
+    t.date     "dataultimologin"
+    t.boolean  "flagativo"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "usuarios", ["cadastro_id"], name: "index_usuarios_on_cadastro_id", using: :btree
+
   add_foreign_key "cadastros", "operadoras"
   add_foreign_key "dadosfinanceiros", "bancos"
+  add_foreign_key "dadosfinanceiros", "cadastros"
   add_foreign_key "dadosfinanceiros", "contabancariatipos"
+  add_foreign_key "usuarios", "cadastros"
 end

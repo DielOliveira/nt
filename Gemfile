@@ -14,6 +14,8 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'nokogiri'
+
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 
