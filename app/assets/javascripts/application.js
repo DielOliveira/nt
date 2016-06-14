@@ -14,5 +14,4 @@
 //= require jquery_ujs
 //= require maskedinput
 //= require turbolinks
-//= require bootstrap
-//= require bootstrap/dropdown
+//= require bootstrap-sprockets
