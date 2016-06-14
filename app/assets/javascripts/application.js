@@ -15,3 +15,4 @@
 //= require maskedinput
 //= require turbolinks
 //= require_tree .
+//= require bootstrap-sprockets
