@@ -1,3 +1,4 @@
+#encoding: utf-8
 class DadosfinanceirosController < ApplicationController
   before_action :set_dadosfinanceiro, only: [:show, :edit, :update, :destroy]
 
@@ -28,11 +29,9 @@ class DadosfinanceirosController < ApplicationController
 
     respond_to do |format|
       if @dadosfinanceiro.save
-        format.html { redirect_to new_usuario_path, notice: 'Dadosfinanceiro was successfully created.' }
-        format.json { render :show, status: :created, location: @dadosfinanceiro }
+        format.html { redirect_to new_usuario_path, notice: 'Dados financeiros criados com sucesso.' }
       else
         format.html { render :new }
-        format.json { render json: @dadosfinanceiro.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +41,16 @@ class DadosfinanceirosController < ApplicationController
   def update
     respond_to do |format|
       if @dadosfinanceiro.update(dadosfinanceiro_params)
-        format.html { redirect_to @dadosfinanceiro, notice: 'Dadosfinanceiro was successfully updated.' }
-        format.json { render :show, status: :ok, location: @dadosfinanceiro }
+
+        @usuario = Usuario.find_by_cadastro_id(@dadosfinanceiro.cadastro_id)
+
+        if @usuario == nil
+          format.html { redirect_to new_usuario_path, notice: 'Dados financeiros alterados com sucesso.' }
+        else
+          format.html { redirect_to edit_usuario_path(@usuario.id), notice: 'Dados financeiroas alterados com sucesso.' }
+        end
       else
         format.html { render :edit }
-        format.json { render json: @dadosfinanceiro.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +60,7 @@ class DadosfinanceirosController < ApplicationController
   def destroy
     @dadosfinanceiro.destroy
     respond_to do |format|
-      format.html { redirect_to dadosfinanceiros_url, notice: 'Dadosfinanceiro was successfully destroyed.' }
+      format.html { redirect_to dadosfinanceiros_url, notice: 'Dados financeiros excluídos com sucesso.' }
       format.json { head :no_content }
     end
   end

@@ -1,20 +1,13 @@
-<p id="notice"><%= notice %></p>
+<% title "Listando Cadastros" %>
 
-<h1>Listing Cadastros</h1>
-
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Nomepessoa</th>
-      <th>Masculino</th>
-      <th>Email</th>
+      <th>Nome</th>
+      <th>Sexo</th>
+      <th>E-mail</th>
       <th>Telefone</th>
-      <th>Operadora</th>
-      <th>Whatsapp</th>
-      <th>Skype</th>
-      <th>Facebook</th>
-      <th>Dadosfinanceiro</th>
-      <th>Dadatainclusao</th>
+      <th>Dadata de Inclusao</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,23 +16,31 @@
     <% @cadastros.each do |cadastro| %>
       <tr>
         <td><%= cadastro.nomepessoa %></td>
-        <td><%= cadastro.masculino %></td>
+            <% if cadastro.masculino %>
+              <td>Masculino</td>
+            <%else%>
+              <td>Feminino</td>
+            <%end%>
         <td><%= cadastro.email %></td>
         <td><%= cadastro.telefone %></td>
-        <td><%= cadastro.operadora %></td>
-        <td><%= cadastro.whatsapp %></td>
-        <td><%= cadastro.skype %></td>
-        <td><%= cadastro.facebook %></td>
-        <td><%= cadastro.dadosfinanceiro %></td>
-        <td><%= cadastro.dadatainclusao %></td>
-        <td><%= link_to 'Show', cadastro %></td>
-        <td><%= link_to 'Edit', edit_cadastro_path(cadastro) %></td>
-        <td><%= link_to 'Destroy', cadastro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= cadastro.dadatainclusao.blank? ? '' : cadastro.dadatainclusao.strftime("%d/%m/%Y - %H:%M")%></td>
+
+          <td align='right'>
+            <div class="btn-group">
+              <%= link_to cadastro, :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-list-alt"></span> Exibir
+              <% end %>             
+              <%= link_to edit_cadastro_path(cadastro), :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-pencil"></span> Editar
+              <% end %>             
+              <%= link_to cadastro , :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-trash"></span> Excluir
+              <% end %>            
+            </div>
+          </td>                  
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
-<%= link_to 'New Cadastro', new_cadastro_path %>

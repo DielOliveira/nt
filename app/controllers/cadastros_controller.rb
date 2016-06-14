@@ -1,3 +1,4 @@
+#encoding: utf-8
 class CadastrosController < ApplicationController
   before_action :set_cadastro, only: [:show, :edit, :update, :destroy]
 
@@ -29,13 +30,13 @@ class CadastrosController < ApplicationController
     respond_to do |format|
       if @cadastro.save
 
-        session[:cadastro_id] = @cadastro.id
+          session[:cadastro_id] = @cadastro.id
 
-        format.html { redirect_to new_dadosfinanceiro_path, notice: 'Cadastro was successfully created.' }
-        format.json { render :show, status: :created, location: @cadastro }
+          format.html { redirect_to new_dadosfinanceiro_path, notice: 'Cadastro criado com sucesso.' }
+
+
       else
         format.html { render :new }
-        format.json { render json: @cadastro.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,11 +46,15 @@ class CadastrosController < ApplicationController
   def update
     respond_to do |format|
       if @cadastro.update(cadastro_params)
-        format.html { redirect_to @cadastro, notice: 'Cadastro was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cadastro }
+
+        session[:cadastro_id] = @cadastro.id
+
+        @dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@cadastro.id)
+        
+        format.html { redirect_to edit_dadosfinanceiro_path(@dadosfinanceiros.id), notice: 'Cadastro criado com sucesso.' }
+        
       else
         format.html { render :edit }
-        format.json { render json: @cadastro.errors, status: :unprocessable_entity }
       end
     end
   end

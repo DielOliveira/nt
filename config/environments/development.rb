@@ -38,4 +38,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+
+    #Configurações de local
+  config.i18n.default_locale = "pt-BR"
+  config.time_zone = 'Brasilia'
+  config.encoding = "utf-8"  
+
+  
 end
