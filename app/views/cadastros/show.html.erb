@@ -1,13 +1,15 @@
-<p id="notice"><%= notice %></p>
+<% title "Exibindo cadastro de: " + @cadastro.nomepessoa %>
 
+<h3> Dados Pessoais </h3>
+<br>
 <p>
-  <strong>Nomepessoa:</strong>
+  <strong>Nome da Pessoa:</strong>
   <%= @cadastro.nomepessoa %>
 </p>
 
 <p>
-  <strong>Masculino:</strong>
-  <%= @cadastro.masculino %>
+  <strong>Sexo:</strong>
+  <%=@cadastro.masculino == true ? 'Masculino' : 'Feminino'%>
 </p>
 
 <p>
@@ -22,7 +24,7 @@
 
 <p>
   <strong>Operadora:</strong>
-  <%= @cadastro.operadora %>
+  <%= @cadastro.operadora.nomeoperadora %>
 </p>
 
 <p>
@@ -41,14 +43,58 @@
 </p>
 
 <p>
-  <strong>Dadosfinanceiro:</strong>
-  <%= @cadastro.dadosfinanceiro %>
+  <strong>Dadatainclusao:</strong>
+  <%= @cadastro.dadatainclusao.blank? ? '' : @cadastro.dadatainclusao.strftime("%d/%m/%Y - %H:%M")%>
+</p>
+
+<h3>Dados Financeiros</h3>
+
+<p>
+  <strong>Nomedo Titular:</strong>
+  <%= @dadosfinanceiro.nometitular %>
 </p>
 
 <p>
-  <strong>Dadatainclusao:</strong>
-  <%= @cadastro.dadatainclusao %>
+  <strong>CPF:</strong>
+  <%= @dadosfinanceiro.cpftitular %>
 </p>
 
-<%= link_to 'Edit', edit_cadastro_path(@cadastro) %> |
-<%= link_to 'Back', cadastros_path %>
+<p>
+  <strong>Banco:</strong>
+  <%= @dadosfinanceiro.banco.nomebanco %>
+</p>
+
+<p>
+  <strong>Agência:</strong>
+  <%= @dadosfinanceiro.agencia %>
+</p>
+
+<p>
+  <strong>Código:</strong>
+  <%= @dadosfinanceiro.codigo %>
+</p>
+
+<p>
+  <strong>Operação:</strong>
+  <%= @dadosfinanceiro.operacao %>
+</p>
+
+<p>
+  <strong>Tipo de Conta:</strong>
+  <%= @dadosfinanceiro.contabancariatipo.nometipo %>
+</p>
+
+<p>
+  <strong>Observacao:</strong>
+  <%= @dadosfinanceiro.observacao %>
+</p>
+
+<p>
+  <strong>Emailsuperconta:</strong>
+  <%= @dadosfinanceiro.emailsuperconta %>
+</p>
+
+<p>
+  <strong>Datainclulsao:</strong>
+  <%= @dadosfinanceiro.datainclulsao.blank? ? '' : @dadosfinanceiro.datainclulsao.strftime("%d/%m/%Y - %H:%M")%>
+</p>

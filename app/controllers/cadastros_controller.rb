@@ -11,6 +11,7 @@ class CadastrosController < ApplicationController
   # GET /cadastros/1
   # GET /cadastros/1.json
   def show
+    @dadosfinanceiro =  Dadosfinanceiro.find_by_cadastro_id(@cadastro.id)
   end
 
   # GET /cadastros/new
