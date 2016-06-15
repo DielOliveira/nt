@@ -10,4 +10,7 @@ class StaticPagesController < ApplicationController
 	def wellcome
 	end	
 	
+	def configu
+	end
+	
 end

@@ -1,5 +1,37 @@
-<% title "Olá, Fulano de Tal" %>
+<% title "Olá, [Usuário]" %>
 
 
-<h4>A New Time é uma empresa?</h4>
-<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+<%= link_to cadastros_path, :class => "btn btn-default btn-lg" do %>
+  <span class="glyphicon glyphicon glyphicon-user" aria-hidden="true" style="color:blue"></span> Rede
+<% end %> 
+
+<%= link_to new_cadastro_path, :class => "btn btn-default btn-lg" do %>
+  <span class="glyphicon glyphicon glyphicon glyphicon-pencil" aria-hidden="true" style="color:black"></span> Cadastro
+<% end %> 
+<button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon glyphicon-piggy-bank" aria-hidden="true" style="color:green"></span> Doações Pendentes
+</button>
+<button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon glyphicon-envelope" aria-hidden="true" style="color:brown"></span> Mensagens
+</button>
+<%= link_to configu_path, :class => "btn btn-default btn-lg" do %>
+  <span class="glyphicon glyphicon glyphicon-scale" aria-hidden="true" style="color:gray"></span> Configurações
+<% end %> 
+
+
+<br>
+<br>
+<br>
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
