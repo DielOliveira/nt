@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609141330) do
+ActiveRecord::Schema.define(version: 20160623020300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160609141330) do
     t.datetime "dadatainclusao"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "cpf"
   end
 
   add_index "cadastros", ["operadora_id"], name: "index_cadastros_on_operadora_id", using: :btree
@@ -70,6 +71,26 @@ ActiveRecord::Schema.define(version: 20160609141330) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "redes", force: :cascade do |t|
+    t.string   "desc"
+    t.integer  "redetipo_id"
+    t.integer  "parent_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "cadastro_id"
+  end
+
+  add_index "redes", ["cadastro_id"], name: "index_redes_on_cadastro_id", using: :btree
+  add_index "redes", ["redetipo_id"], name: "index_redes_on_redetipo_id", using: :btree
+
+  create_table "redetipos", force: :cascade do |t|
+    t.boolean  "reentradaobrigatoria"
+    t.integer  "reentradas"
+    t.boolean  "ordenada"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "usuarios", force: :cascade do |t|
     t.string   "email"
     t.string   "senha"
@@ -87,5 +108,7 @@ ActiveRecord::Schema.define(version: 20160609141330) do
   add_foreign_key "dadosfinanceiros", "bancos"
   add_foreign_key "dadosfinanceiros", "cadastros"
   add_foreign_key "dadosfinanceiros", "contabancariatipos"
+  add_foreign_key "redes", "cadastros"
+  add_foreign_key "redes", "redetipos"
   add_foreign_key "usuarios", "cadastros"
 end

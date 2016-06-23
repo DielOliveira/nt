@@ -1,0 +1,29 @@
+<%= form_for(@redetipo) do |f| %>
+  <% if @redetipo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@redetipo.errors.count, "error") %> prohibited this redetipo from being saved:</h2>
+
+      <ul>
+      <% @redetipo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :reentradaobrigatoria %><br>
+    <%= f.check_box :reentradaobrigatoria %>
+  </div>
+  <div class="field">
+    <%= f.label :reentradas %><br>
+    <%= f.number_field :reentradas %>
+  </div>
+  <div class="field">
+    <%= f.label :ordenada %><br>
+    <%= f.check_box :ordenada %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

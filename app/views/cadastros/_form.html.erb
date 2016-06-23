@@ -21,10 +21,21 @@
 
 
 <div class="row mar-bot40">
-  <div class="col-lg-10">
+  <div class="col-lg-4">
+    <%= f.label :CPF_do_Padrinho %><br>
+    <%= f.text_field :cpfpadrinho,:class => 'form-control' %>
+  </div>
+</div>
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-6">
     <%= f.label :Nome %><br>
     <%= f.text_field :nomepessoa,:class => 'form-control' %>
   </div>
+  <div class="col-lg-4">
+    <%= f.label :CPF %><br>
+    <%= f.text_field :cpf,:class => 'form-control' %>
+  </div>  
   <div class="col-lg-2">
     <%= f.label :Masculino %><br>
     <%= f.check_box :masculino %>

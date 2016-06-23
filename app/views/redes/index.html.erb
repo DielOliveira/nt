@@ -1,0 +1,7 @@
+<% title "Listando Rede" %>
+
+
+<% Rede.walk_tree do |rede, level| %>
+	<%@cadastro = Cadastro.find_by_id(rede.cadastro_id)%>
+  	<%= link_to "#{'---'*level}#{@cadastro.nomepessoa}", rede_path(rede) %><br />
+<% end %>

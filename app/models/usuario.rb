@@ -21,7 +21,6 @@ def descconfirmasenha=(val)
 end 
 
 
-
 def busca_email_existente
 	errors.add(:email, "já está sendo utilizado.") if Usuario.find_by_email(self.email)
 end		

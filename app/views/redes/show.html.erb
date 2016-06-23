@@ -1,0 +1,12 @@
+<% title "Exibindo Nó" %>
+
+
+<% Rede.find_by_id(@rede).walk_tree do |page, level| %>
+  <%= link_to "#{'---'*level}#{page.desc}", rede_path(page) %><br />
+<% end %>
+
+<br>
+<br>
+
+<%= link_to 'Edit', edit_rede_path(@rede) %> |
+<%= link_to 'Back', redes_path %>

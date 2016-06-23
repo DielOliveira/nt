@@ -1,0 +1,2 @@
+module RedetiposHelper
+end

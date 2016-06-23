@@ -33,8 +33,31 @@ class CadastrosController < ApplicationController
 
           session[:cadastro_id] = @cadastro.id
 
-          format.html { redirect_to new_dadosfinanceiro_path, notice: 'Cadastro criado com sucesso.' }
 
+          if @cadastro.cpfpadrinho != ""
+            padrinho = Cadastro.find_by_cpf(@cadastro.cpfpadrinho) rescue nil
+
+            if padrinho
+
+                redepadrinho = Rede.find_by_cadastro_id(padrinho.id) rescue nil
+
+            end
+
+            if redepadrinho 
+              padrinhoid = redepadrinho.id
+            else
+              padrinhoid = nil
+            end
+
+          else
+              padrinhoid = nil
+          end
+
+          #byebug
+
+          Rede.create("desc" => @cadastro.nomepessoa, "cadastro_id" => @cadastro.id, "parent_id" => padrinhoid)
+
+          format.html { redirect_to new_dadosfinanceiro_path, notice: 'Cadastro criado com sucesso.' }
 
       else
         format.html { render :new }
@@ -52,7 +75,13 @@ class CadastrosController < ApplicationController
 
         @dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@cadastro.id)
         
-        format.html { redirect_to edit_dadosfinanceiro_path(@dadosfinanceiros.id), notice: 'Cadastro criado com sucesso.' }
+        if @dadosfinanceiros
+
+          format.html { redirect_to edit_dadosfinanceiro_path(@dadosfinanceiros.id), notice: 'Cadastro criado com sucesso.' }
+        else
+
+          format.html { redirect_to new_dadosfinanceiro_path, notice: 'Cadastro criado com sucesso.' }
+        end
         
       else
         format.html { render :edit }
@@ -78,6 +107,6 @@ class CadastrosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cadastro_params
-      params.require(:cadastro).permit(:nomepessoa, :masculino, :email, :telefone, :operadora_id, :whatsapp, :skype, :facebook, :dadatainclusao)
+      params.require(:cadastro).permit(:nomepessoa, :masculino, :email, :telefone, :operadora_id, :whatsapp, :skype, :facebook, :dadatainclusao, :cpf, :cpfpadrinho)
     end
 end

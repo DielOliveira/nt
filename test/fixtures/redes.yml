@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  desc: MyString
+  redetipo_id: 
+  usuario_id: 
+  parent_id: 1
+
+two:
+  desc: MyString
+  redetipo_id: 
+  usuario_id: 
+  parent_id: 1

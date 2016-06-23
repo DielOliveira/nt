@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :redes
+  resources :redetipos
   resources :usuarios
   resources :cadastros
   resources :dadosfinanceiros
