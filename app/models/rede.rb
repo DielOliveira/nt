@@ -6,7 +6,8 @@ class Rede < ActiveRecord::Base
 	  acts_as_tree
 	
 	  belongs_to :redetipo
-	  belongs_to :usuario
+	  belongs_to :cadastro
+	  
 
 
 end

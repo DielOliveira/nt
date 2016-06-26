@@ -1,4 +1,7 @@
-<% title "Olá, [Usuário]" %>
+
+<% title "Olá, " + user.cadastro.nomepessoa%>
+
+<%#byebug%>
 
 <br>
 <%= link_to cadastros_path, :class => "btn btn-default btn-lg" do %>

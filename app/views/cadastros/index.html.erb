@@ -27,9 +27,12 @@
 
           <td align='right'>
             <div class="btn-group">
+              <%= link_to redeslist_path(cadastro), :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-sort-by-attributes-alt"></span> Rede
+              <% end %>
               <%= link_to cadastro, :class => "btn btn-default btn-sm" do %>
                 <span class="glyphicon glyphicon-list-alt"></span> Exibir
-              <% end %>             
+              <% end %>                              
               <%= link_to edit_cadastro_path(cadastro), :class => "btn btn-default btn-sm" do %>
                 <span class="glyphicon glyphicon-pencil"></span> Editar
               <% end %>             

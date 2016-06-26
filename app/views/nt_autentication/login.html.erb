@@ -1,0 +1,46 @@
+<% painel "True" %>
+<% flash.each do |name, msg| -%>
+  <div class="alert alert-warning alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <%= msg%>
+  </div>      
+<% end -%>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  </head>
+
+  <body>
+
+  <div class="container" style="width:280px;">
+    <%=image_tag ("logo_menor.png")%>
+    <br/>
+    <br/>
+    <br/>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Login</h3>
+      </div>
+      <div class="panel-body">  
+			<%= form_tag login_path, method: 'POST' do %>
+              <div class="row">
+                <div class="col-xs-12">
+					<label >Usuário</label>
+					<input id="desc_login" name="desc_login" type="text" class="form-control" placeholder="Usuario"><br/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+					<label >Senha</label>
+					<input id="desc_senha" name="desc_senha" type="password" class="form-control" placeholder="Senha"><br/>
+                </div>
+              </div>
+              <button class="btn btn-success" type="submit" >Entrar</button>
+              <button class="btn btn-default" type="submit" >Cadastrar-se</button>
+            <%end%>
+        </div>
+      </div> 
+    </div> 
+  </div>

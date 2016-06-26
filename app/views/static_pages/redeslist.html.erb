@@ -1,9 +1,8 @@
 <% title "Listando Rede" %>
+<% painel "True" %>
 
-
-<%@rede = Rede.find_by_id(39)%>
-<%@cadastro = Cadastro.find_by_id(@rede.cadastro_id)%>
-<%#byebug%>
+<%@cadastro = Cadastro.find_by_id(@cadastro_id)%>
+<%@rede = Rede.find_by_cadastro_id(@cadastro_id)%>
   <div style='width:20000px;height:5000px;margin-left:300px;'>
 
   <div class="tree">

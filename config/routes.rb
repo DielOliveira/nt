@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
   match '/configu', to: 'static_pages#configu', via: 'get'
 
+  get '/redeslist/:cadastro_id', to: 'static_pages#redeslist', as: 'redeslist'
+
+
+    match '/login', to: 'nt_autentication#login', via: 'get'
+  match '/login', to: 'nt_autentication#login', via: 'post'
+  match '/logoff', to: 'nt_autentication#logoff', via: 'get'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
