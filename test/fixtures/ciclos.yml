@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nomeciclo: MyString
+  numerociclo: 1
+  valorciclo: 9.99
+  qtdreentradas: 1
+
+two:
+  nomeciclo: MyString
+  numerociclo: 1
+  valorciclo: 9.99
+  qtdreentradas: 1

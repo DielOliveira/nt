@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623020300) do
+ActiveRecord::Schema.define(version: 20160630002625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 20160623020300) do
 
   add_index "cadastros", ["operadora_id"], name: "index_cadastros_on_operadora_id", using: :btree
 
+  create_table "ciclos", force: :cascade do |t|
+    t.string   "nomeciclo"
+    t.integer  "numerociclo"
+    t.decimal  "valorciclo"
+    t.integer  "qtdreentradas"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "contabancariatipos", force: :cascade do |t|
     t.string   "nometipo"
     t.datetime "created_at", null: false
@@ -64,6 +73,18 @@ ActiveRecord::Schema.define(version: 20160623020300) do
   add_index "dadosfinanceiros", ["banco_id"], name: "index_dadosfinanceiros_on_banco_id", using: :btree
   add_index "dadosfinanceiros", ["cadastro_id"], name: "index_dadosfinanceiros_on_cadastro_id", using: :btree
   add_index "dadosfinanceiros", ["contabancariatipo_id"], name: "index_dadosfinanceiros_on_contabancariatipo_id", using: :btree
+
+  create_table "doacaos", force: :cascade do |t|
+    t.integer  "ciclo_id"
+    t.boolean  "flagconfirmada"
+    t.boolean  "flagrejeitada"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "cadastro_1_id"
+    t.integer  "cadastro_2_id"
+  end
+
+  add_index "doacaos", ["ciclo_id"], name: "index_doacaos_on_ciclo_id", using: :btree
 
   create_table "operadoras", force: :cascade do |t|
     t.string   "nomeoperadora"
@@ -108,6 +129,7 @@ ActiveRecord::Schema.define(version: 20160623020300) do
   add_foreign_key "dadosfinanceiros", "bancos"
   add_foreign_key "dadosfinanceiros", "cadastros"
   add_foreign_key "dadosfinanceiros", "contabancariatipos"
+  add_foreign_key "doacaos", "ciclos"
   add_foreign_key "redes", "cadastros"
   add_foreign_key "redes", "redetipos"
   add_foreign_key "usuarios", "cadastros"

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ciclo_id: 
+  flagconfirmada: false
+  flagrejeitada: false
+
+two:
+  ciclo_id: 
+  flagconfirmada: false
+  flagrejeitada: false
