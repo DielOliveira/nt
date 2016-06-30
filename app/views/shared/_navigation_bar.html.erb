@@ -59,7 +59,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -257,15 +257,34 @@ desired effect
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="<%=new_cadastro_path%>"><i class="fa fa-link"></i> <span>Novo Cadastro</span></a></li>
-        <li><a href="<%=cadastros_path%>"><i class="fa fa-link"></i> <span>Listar Cadastros</span></a></li>
+        <!-- <li class="active"><a href="<%=new_cadastro_path%>"><i class="fa fa-link"></i> <span>Novo Cadastro</span></a></li> -->
+        <!-- <li><a href="<%=cadastros_path%>"><i class="fa fa-link"></i> <span>Listar Cadastros</span></a></li> -->
+        <li><a href="<%=root_path%>"><i class="fa fa-home"></i> Início</a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Doações</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <a href="#"><i class="fa fa-money"></i> <span>Doações</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li><a href="#">Pendentes</a></li>
             <li><a href="#">Recebidas</a></li>
+            <li><a href="#">A Receber</a></li>
+            <li><a href="#">Realizadas</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-sitemap"></i> <span>Rede</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="#">Indicados Direto</a></li>
+            <li><a href="<%=redeslist_path(user.cadastro.id)%>">Rede Binária</a></li>
+            <li><a href="#">Fila de Espera</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-edit"></i> <span>Dados Cadastrais</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="#">Dados Bancários</a></li>
+            <li><a href="#">Dados de Contato</a></li>
+            <li><a href="#">Alterar Senha</a></li>
+          </ul>
+        </li>       
+        <li><a href="<%=root_path%>"><i class="fa fa-envelope-o"></i> Mensagens</a></li>          
       </ul>
       <!-- /.sidebar-menu -->
     </section>
