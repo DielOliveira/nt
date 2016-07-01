@@ -1,156 +1,309 @@
-<section class="content">
-      <!-- Small boxes (Stat box) -->
+<%if @cadastro.id != user.cadastro.id%>
+  <div id="container" style="width: 100%; height:40px;" align="right">
 
-<div class="row">
-        <div class="col-lg-5 col-xs-6">
+    <%= link_to redeslist_path(user.cadastro.id), :class => "btn btn-success btn-bg" do %>
+      <span class="glyphicon glyphicon-arrow-up"></span> Voltar ao Topo
+    <% end %>
 
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-2 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>+3</h3>
-
-              <p>JoseAldo</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-5 col-xs-6">
-
-        </div>
-        <!-- ./col -->
-      </div>      
-      <div class="row">
-        <div class="col-lg-2 col-xs-6">
-        </div>
-
-        <div class="col-lg-2 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>+2</h3>
-
-              <p>Firmino</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-xs-6">
-        </div>
-
-        <!-- ./col -->
-        <div class="col-lg-2 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>+2</h3>
-
-              <p>AndoBonaparte</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-      </div>      
-      <div class="row">
-        
-        <!-- ./col -->
-        <div class="col-lg-2 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>+1</h3>
-
-              <p>SantiYoure</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-xs-6">
-        </div>
-
-        <div class="col-lg-2 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>+1</h3>
-
-              <p>SantiYoure</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
+  </div>
+<%end%>
+<div id="container" style="width: 1100px;">
 
 
-        <div class="col-lg-2 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>+1</h3>
 
-              <p>SantiYoure</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-xs-6">
-        </div>
-
-        <div class="col-lg-2 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>+1</h3>
-
-              <p>SantiYoure</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person"></i>
-            </div>
-            <a href="#" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-      </div>
-      <!-- /.row -->
-      <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-12 connectedSortable">
-          <!-- Chat box -->
-
+<!-- Primeiro Nível -->
+<!-- height width -->
+<div style="width:100%; height:120px;" align="center">
+  <div style="height:90px; width:100%;" align="center">
+    <% if @cadastro == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    <div style="height:20px;">
+        <a href="<%= @cadastro == nil ? "#" : redeslist_path(@cadastro.id)%>" class="name">
           
+          <%=@cadastro.nomepessoa%>
+        </a>
+    </div>
+    <div style="height:40px; width:100%;" align="center">
+    <%=image_tag("t_1.png")%>
+    </div>    
+  </div>
+</div>
+<!-- Fim do Primeiro nível -->
 
-        </section>
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
 
-        <!-- right col -->
+<!-- Segundo Nível -->
+<div style="width:100%; height:122px;" align="left">
+  <div style="height:122px; width:510px;  float:left;" align="center">
+    <% if @filho_primeiro == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@filho_primeiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    <div style="height:20px;">
+        <a href="<%= @filho_primeiro == nil ? "#" : redeslist_path(@filho_primeiro.cadastro.id)%>" class="name">
+          
+          <%=@filho_primeiro == nil ? "Ninguém" : @filho_primeiro.cadastro.nomepessoa%>
+        </a>
+    </div>
+    <div style="height:40px; width:100%;" align="center">
+    <%=image_tag("t_2.png")%>
+    </div>    
+  </div>
+  <div style="height:122px; width:510px;  float:left;" align="left">
+    <div style="height:62px; width:345px;" align="right">
+    <% if @filho_segundo == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@filho_segundo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    </div>
+    <div style="height:20px; width:370px;" align="right">
+      <div style="height:20px; width:100px;" align="center">
+        <a href="<%= @filho_segundo == nil ? "#" : redeslist_path(@filho_segundo.cadastro.id)%>" class="name">
+          
+          <%=@filho_segundo == nil ? "Ninguém" : @filho_segundo.cadastro.nomepessoa%>
+        </a>
       </div>
-      <!-- /.row (main row) -->
+    </div>
+    <div style="height:20px; width:455px;" align="right">
+    <%=image_tag("t_2.png")%>
+    </div>    
+  </div>  
+</div>
+<!-- Fim do Segundo nível -->
 
-    </section>
+
+
+<!-- Terceiro Nível -->
+<div style="width:100%; height:122px; " align="left">
+  <div style="height:122px; width:235px;  float:left;" align="center">
+    <% if @neto_primeiro == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@neto_primeiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    <div style="height:20px;">
+        <a href="<%= @neto_primeiro == nil ? "#" : redeslist_path(@neto_primeiro.cadastro.id)%>" class="name">
+          
+          <%=@neto_primeiro == nil ? "Ninguém" : @neto_primeiro.cadastro.nomepessoa%>
+        </a>
+    </div>
+    <div style="height:40px; width:100%;" align="center">
+    <%=image_tag("t_3.png")%>
+    </div>    
+  </div>
+  <div style="height:122px; width:210px;  float:left;" align="left">
+    <div style="height:62px; width:180px;" align="right">
+    <% if @neto_segundo == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@neto_segundo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    </div>
+    <div style="height:20px; width:210px;" align="right">
+      <div style="height:20px; width:100px;" align="center">
+        <a href="<%= @neto_segundo == nil ? "#" : redeslist_path(@neto_segundo.cadastro.id)%>" class="name">
+          
+          <%=@neto_segundo == nil ? "Ninguém" : @neto_segundo.cadastro.nomepessoa%>
+        </a>
+      </div>
+    </div>
+    <div style="height:20px; width:250px;" align="right">
+    <%=image_tag("t_3.png")%>
+    </div>    
+  </div>
+
+  <div style="height:122px; width:210px;  float:left;" align="left">
+    <div style="height:62px; width:270px;" align="right">
+      <% if @neto_terceiro == nil %>
+        <%=image_tag("nobody.png")%>
+      <%else%>
+        <%=@neto_terceiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%end%>
+    </div>
+    <div style="height:20px; width:295px;" align="right">
+      <div style="height:20px; width:100px; " align="center">
+        <a href="<%= @neto_terceiro == nil ? "#" : redeslist_path(@neto_terceiro.cadastro.id)%>" class="name">
+          <%=@neto_terceiro == nil ? "Ninguém" : @neto_terceiro.cadastro.nomepessoa%>
+        </a>
+      </div>
+    </div>
+    <div style="height:20px; width:343px;" align="right">
+      <%=image_tag("t_3.png")%>
+    </div>    
+  </div>
+
+
+  <div style="height:122px; width:210px;  float:left;" align="left">
+    <div style="height:62px; width:330px;" align="right">
+    <% if @neto_quarto == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@neto_quarto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    </div>
+    <div style="height:20px; width:360px;" align="right">
+      <div style="height:20px; width:100px;" align="center">
+        <a href="<%= @neto_quarto == nil ? "#" : redeslist_path(@neto_quarto.cadastro.id)%>" class="name">
+          <%=@neto_quarto == nil ? "Ninguém" : @neto_quarto.cadastro.nomepessoa%>
+        </a>
+      </div>
+    </div>
+    <div style="height:20px; width:405px;" align="right">
+      <%=image_tag("t_3.png")%>
+    </div>    
+  </div>         
+</div>
+<!-- Fim do Terceiro nível -->
+
+
+
+<!-- Quarto Nível -->
+<div style="width:100%; height:122px;" align="left">
+  <div style="height:122px; width:100px;  float:left;" align="left">
+    <% if @bisneto_primeiro == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@bisneto_primeiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    <div style="height:30px; width:37px;" align="right">
+      <div style="height:30px; width:37px;" align="center">
+        <a href="<%= @bisneto_primeiro == nil ? "#" : redeslist_path(@bisneto_primeiro.cadastro.id)%>" class="name">
+          
+          <%=@bisneto_primeiro == nil ? "Ninguém" : @bisneto_primeiro.cadastro.nomepessoa%>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div style="height:122px; width:150px;  float:left;" align="left">
+    <div style="height:62px; width:135px;" align="right">
+    <% if @bisneto_segundo == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@bisneto_segundo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    </div>
+    <div style="height:20px; width:137px;" align="right">
+      <div style="height:20px; width:50px;" align="center">
+        <a href="<%= @bisneto_segundo == nil ? "#" : redeslist_path(@bisneto_segundo.cadastro.id)%>" class="name">
+          
+          <%=@bisneto_segundo == nil ? "Ninguém" : @bisneto_segundo.cadastro.nomepessoa%>
+        </a>
+      </div>   
+    </div>   
+  </div>
+  <div style="height:122px; width:150px;  float:left; " align="left">
+    <div style="height:62px; width:70px;" align="right">
+    <% if @bisneto_terceiro == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@bisneto_terceiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    </div>
+    <div style="height:20px; width:75px;" align="right">
+      <div style="height:20px; width:60px;" align="center">
+        <a href="<%= @bisneto_terceiro == nil ? "#" : redeslist_path(@bisneto_terceiro.cadastro.id)%>" class="name">
+          
+          <%=@bisneto_terceiro == nil ? "Ninguém" : @bisneto_terceiro.cadastro.nomepessoa%>
+        </a>
+      </div>   
+    </div>   
+  </div>
+  <div style="height:122px; width:175px;  float:left;" align="left">
+    <div style="height:62px; width:100px;" align="right">
+    <% if @bisneto_quarto == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@bisneto_quarto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    </div>
+    <div style="height:20px; width:130px;" align="right">
+      <div style="height:20px; width:100px;" align="center">
+        <a href="<%= @bisneto_quarto == nil ? "#" : redeslist_path(@bisneto_quarto.cadastro.id)%>" class="name">
+          
+          <%=@bisneto_quarto == nil ? "Ninguém" : @bisneto_quarto.cadastro.nomepessoa%>
+        </a>
+      </div>   
+    </div>   
+  </div> 
+  <div style="height:122px; width:100px;  float:left;" align="left">
+    <% if @bisneto_quinto == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@bisneto_quinto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    <div style="height:30px; width:40px;" align="center">
+        <a href="<%= @bisneto_quinto == nil ? "#" : redeslist_path(@bisneto_quinto.cadastro.id)%>" class="name">
+          
+          <%=@bisneto_quinto == nil ? "Ninguém" : @bisneto_quinto.cadastro.nomepessoa%>
+        </a>
+    </div>
+  </div>
+  <div style="height:122px; width:150px;  float:left;" align="left">
+    <div style="height:62px; width:135px;" align="right">
+    <% if @bisneto_sexto == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@bisneto_sexto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    </div>
+    <div style="height:20px; width:150px;" align="right">
+      <div style="height:20px; width:80px;" align="center">
+        <a href="<%= @bisneto_sexto == nil ? "#" : redeslist_path(@bisneto_sexto.cadastro.id)%>" class="name">
+          
+          <%=@bisneto_quinto == nil ? "Ninguém" : @bisneto_quinto.cadastro.nomepessoa%>
+        </a>
+      </div>   
+    </div>   
+  </div>
+  <div style="height:122px; width:150px;  float:left; " align="left">
+    <div style="height:62px; width:70px;" align="right">
+    <% if @bisneto_setimo == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@bisneto_setimo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    </div>
+    <div style="height:20px; width:75px;" align="right">
+      <div style="height:20px; width:60px;" align="center">
+        <a href="<%= @bisneto_setimo == nil ? "#" : redeslist_path(@bisneto_setimo.cadastro.id)%>" class="name">
+          
+          <%=@bisneto_setimo == nil ? "Ninguém" : @bisneto_setimo.cadastro.nomepessoa%>
+        </a>
+      </div>   
+    </div>   
+  </div>
+  <div style="height:122px; width:100px;  float:left;" align="left">
+    <div style="height:62px; width:100px;" align="right">
+    <% if @bisneto_oitavo == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@bisneto_oitavo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
+    </div>
+    <div style="height:20px; width:100px;" align="right">
+      <div style="height:20px; width:50px;" align="center">
+        <a href="<%= @bisneto_oitavo == nil ? "#" : redeslist_path(@bisneto_oitavo.cadastro.id)%>" class="name">
+          
+          <%=@bisneto_oitavo == nil ? "Ninguém" : @bisneto_oitavo.cadastro.nomepessoa%>
+        </a>
+      </div>   
+    </div>   
+  </div>           
+</div>
+<!-- Fim do Quarto nível -->
+
+ 
+</div>
+
+<style>
+
+div {
+
+  /*border: solid 1px;*/
+}
+
+</style>
