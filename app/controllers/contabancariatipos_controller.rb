@@ -1,4 +1,5 @@
 class ContabancariatiposController < ApplicationController
+  before_action :requer_logon
   before_action :set_contabancariatipo, only: [:show, :edit, :update, :destroy]
 
   # GET /contabancariatipos

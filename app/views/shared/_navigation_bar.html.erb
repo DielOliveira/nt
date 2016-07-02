@@ -25,6 +25,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   -->
   <link rel="stylesheet" href="/assets/template/dist/css/skins/skin-blue.min.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="/assets/template/plugins/datatables/dataTables.bootstrap.css">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -59,7 +61,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="#" class="logo">
+    <a href="<%=root_path%>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -263,9 +265,9 @@ desired effect
         <li class="treeview">
           <a href="#"><i class="fa fa-money"></i> <span>Doações</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li><a href="#">Recebidas</a></li>
-            <li><a href="#">A Receber</a></li>
-            <li><a href="#">Realizadas</a></li>
+            <li><a href="<%=doacoesareceber_path%>">Pendentes</a></li>
+            <li><a href="<%=doacoesrecebidas_path%>">Recebidas</a></li>
+            <li><a href="<%=doacoesrealizadas_path%>">Realizadas</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -415,6 +417,11 @@ desired effect
 <script src="/assets/template/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
 <script src="/assets/template/plugins/fastclick/fastclick.js"></script>
+
+
+<script src="/assets/template/plugins/datatables/jquery.dataTables.min.js"></script>    
+
+<script src="/assets/template/plugins/datatables/dataTables.bootstrap.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

@@ -20,6 +20,11 @@ Rails.application.routes.draw do
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
   match '/configu', to: 'static_pages#configu', via: 'get'
 
+
+  match '/doacoesrealizadas', to: 'doacaos#doacoesrealizadas', via: 'get'
+  match '/doacoesrecebidas', to: 'doacaos#doacoesrecebidas', via: 'get'
+  match '/doacoesareceber', to: 'doacaos#doacoesareceber', via: 'get'
+
   get '/redeslist/:cadastro_id', to: 'static_pages#redeslist', as: 'redeslist'
 
 

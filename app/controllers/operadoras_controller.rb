@@ -1,4 +1,5 @@
 class OperadorasController < ApplicationController
+  before_action :requer_logon
   before_action :set_operadora, only: [:show, :edit, :update, :destroy]
 
   # GET /operadoras

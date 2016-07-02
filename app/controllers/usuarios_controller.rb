@@ -29,6 +29,9 @@ class UsuariosController < ApplicationController
 
     respond_to do |format|
       if @usuario.save
+
+        Doacao.create(:ciclo_id => 1, :flagconfirmada => false, :flagrejeitada => false, :cadastro_1_id => @usuario.cadastro_id)
+
         format.html { redirect_to wellcome_path, notice: 'Usuário criado com sucesso.' }
         format.json { render :show, status: :created, location: @usuario }
       else

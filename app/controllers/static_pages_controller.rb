@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
 before_action :requer_logon
 
 	def home
+		@doacaospendentes = Doacao.where("cadastro_2_id =" + user.cadastro.id.to_s + "and cadastro_1_id is not null and dataconfirmacao is null")
 	end	
 
 	def faq

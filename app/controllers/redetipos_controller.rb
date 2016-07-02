@@ -1,4 +1,5 @@
 class RedetiposController < ApplicationController
+  before_action :requer_logon
   before_action :set_redetipo, only: [:show, :edit, :update, :destroy]
 
   # GET /redetipos
