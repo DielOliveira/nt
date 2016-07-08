@@ -25,6 +25,13 @@ module Auntentication
 		end
 	end
 
+	def userfinan
+		#redirect_to :root if usuario_logado == false
+		if usuario_logado == true
+			return Dadosfinanceiro.find_by_cadastro_id(user.cadastro_id)
+		end
+	end	
+
 	def encerra_sessao
 		reset_session
 		redirect_to login_path

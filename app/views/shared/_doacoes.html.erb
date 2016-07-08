@@ -1,0 +1,26 @@
+
+      <%@doacaospendentespagar.each do |doacoes| %>
+
+          <div class="box box-warning">
+              <div class="box-header with-border">
+                <h4 class="timeline-header"><a href="#">Você possui uma doação para realizar!</a></h4>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.box-tools -->
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <p><%#= doacoes.created_at.blank? ? '' : doacoes.created_at.strftime("%d/%m/%Y - %H:%M")%></p>
+                <p><b>Titular: </b><%=@dadosfinanceiros.nometitular%></p>
+                <p><b>Tempo Restante: </b><%=@dadosfinanceiros.nometitular%></p>
+                <div class="timeline-footer">
+                  <a class="btn btn-info btn-xs">Ver Dados</a>
+                  <a class="btn btn-success btn-xs">Realizar Doação</a>
+                </div>              
+              </div>
+              <!-- /.box-body -->
+          </div>        
+      <%end%>

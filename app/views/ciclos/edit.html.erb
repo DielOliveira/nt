@@ -1,6 +1,13 @@
-<h1>Editing Ciclo</h1>
+<% title "Editando Ciclo" %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @ciclo %> |
-<%= link_to 'Back', ciclos_path %>
+	  <%= link_to @ciclo, :class => "btn btn-primary btn-bg" do %>
+	    <span class="glyphicon glyphicon-list-alt"></span> Exibir
+	  <% end %>
+
+	  <%= link_to ciclos_path, :class => "btn btn-danger btn-bg" do %>
+	    <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+	  <% end %>	  
+
+</div>  

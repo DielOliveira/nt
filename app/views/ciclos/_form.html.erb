@@ -1,33 +1,42 @@
 <%= form_for(@ciclo) do |f| %>
   <% if @ciclo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ciclo.errors.count, "error") %> prohibited this ciclo from being saved:</h2>
-
-      <ul>
-      <% @ciclo.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  
+  <% if @ciclo.errors.any? %>
+  
+    <% @ciclo.errors.full_messages.each do |msg| %>
+        <%= msg %></br>
       <% end %>
-      </ul>
+     <% end %>
     </div>
-  <% end %>
+  <% end %>   
 
-  <div class="field">
-    <%= f.label :nomeciclo %><br>
-    <%= f.text_field :nomeciclo %>
+
+
+<div class="row mar-bot40">
+  <div class="col-lg-4">
+    <%= f.label :Nome_do_Ciclo %><br>
+    <%= f.text_field :nomeciclo, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :numerociclo %><br>
-    <%= f.number_field :numerociclo %>
+  <div class="col-lg-2">
+    <%= f.label :Numero %><br>
+    <%= f.number_field :numerociclo, :class => 'form-control'  %>
   </div>
-  <div class="field">
-    <%= f.label :valorciclo %><br>
-    <%= f.text_field :valorciclo %>
+  <div class="col-lg-3">
+    <%= f.label :Valor_de_Doação %><br>
+    <%= f.text_field :valorciclo, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :qtdreentradas %><br>
-    <%= f.number_field :qtdreentradas %>
+  <div class="col-lg-3">
+    <%= f.label :Quantidade_de_reentradas %><br>
+    <%= f.number_field :qtdreentradas, :class => 'form-control' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+  <br>
+  <div align="right">
+    <button type="submit" class="btn btn-success btn-bg">
+      <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+    </button>
 <% end %>
+  
+

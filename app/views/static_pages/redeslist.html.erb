@@ -116,43 +116,44 @@
     </div>    
   </div>
 
-  <div style="height:122px; width:210px;  float:left;" align="left">
-    <div style="height:62px; width:270px;" align="right">
-      <% if @neto_terceiro == nil %>
-        <%=image_tag("nobody.png")%>
-      <%else%>
-        <%=@neto_terceiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
-      <%end%>
+  <div style="height:122px; width:310px;  float:left;" align="left">
+    <div style="height:62px; width:272px;" align="right">
+    <% if @neto_segundo == nil %>
+      <%=image_tag("nobody.png")%>
+    <%else%>
+      <%=@neto_terceiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+    <%end%>
     </div>
-    <div style="height:20px; width:295px;" align="right">
-      <div style="height:20px; width:100px; " align="center">
-        <a href="<%= @neto_terceiro == nil ? "#" : redeslist_path(@neto_terceiro.cadastro.id)%>" class="name">
+    <div style="height:20px; width:300px;" align="right">
+      <div style="height:20px; width:100px;" align="center">
+        <a href="<%= @neto_segundo == nil ? "#" : redeslist_path(@neto_terceiro.cadastro.id)%>" class="name">
+          
           <%=@neto_terceiro == nil ? "Ninguém" : @neto_terceiro.cadastro.nomepessoa%>
         </a>
       </div>
     </div>
-    <div style="height:20px; width:343px;" align="right">
-      <%=image_tag("t_3.png")%>
+    <div style="height:20px; width:350px;" align="right">
+    <%=image_tag("t_3.png")%>
     </div>    
   </div>
 
 
-  <div style="height:122px; width:210px;  float:left;" align="left">
-    <div style="height:62px; width:330px;" align="right">
+  <div style="height:122px; width:300px;  float:left;" align="left">
+    <div style="height:62px; width:230px;" align="right">
     <% if @neto_quarto == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
       <%=@neto_quarto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
     <%end%>
     </div>
-    <div style="height:20px; width:360px;" align="right">
+    <div style="height:20px; width:260px;" align="right">
       <div style="height:20px; width:100px;" align="center">
         <a href="<%= @neto_quarto == nil ? "#" : redeslist_path(@neto_quarto.cadastro.id)%>" class="name">
           <%=@neto_quarto == nil ? "Ninguém" : @neto_quarto.cadastro.nomepessoa%>
         </a>
       </div>
     </div>
-    <div style="height:20px; width:405px;" align="right">
+    <div style="height:20px; width:305px;" align="right">
       <%=image_tag("t_3.png")%>
     </div>    
   </div>         

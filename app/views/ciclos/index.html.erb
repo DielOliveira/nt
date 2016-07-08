@@ -1,15 +1,13 @@
-<p id="notice"><%= notice %></p>
+<% title "Listando Ciclos" %>
 
-<h1>Listing Ciclos</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Nomeciclo</th>
-      <th>Numerociclo</th>
-      <th>Valorciclo</th>
-      <th>Qtdreentradas</th>
-      <th colspan="3"></th>
+      <th>Nome do Ciclo</th>
+      <th>Número</th>
+      <th>Valor</th>
+      <th>Quantidade de Reentradas</th>
     </tr>
   </thead>
 
@@ -20,9 +18,22 @@
         <td><%= ciclo.numerociclo %></td>
         <td><%= ciclo.valorciclo %></td>
         <td><%= ciclo.qtdreentradas %></td>
-        <td><%= link_to 'Show', ciclo %></td>
-        <td><%= link_to 'Edit', edit_ciclo_path(ciclo) %></td>
-        <td><%= link_to 'Destroy', ciclo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+          <td align='right'>
+            <div class="btn-group">
+
+              <%= link_to ciclo, :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-list-alt"></span> Exibir
+              <% end %>                              
+              <%= link_to edit_ciclo_path(ciclo), :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-pencil"></span> Editar
+              <% end %>             
+              <%= link_to ciclo , :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-trash"></span> Excluir
+              <% end %>            
+            </div>
+          </td>
+
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +41,8 @@
 
 <br>
 
-<%= link_to 'New Ciclo', new_ciclo_path %>
+<div align="right">
+  <%= link_to new_ciclo_path, :class => "btn btn-success btn-bg" do %>
+    <span class="glyphicon glyphicon-plus"></span> Novo
+  <% end %>
+</div>

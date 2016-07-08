@@ -2,7 +2,13 @@ class StaticPagesController < ApplicationController
 before_action :requer_logon
 
 	def home
-		@doacaospendentes = Doacao.where("cadastro_2_id =" + user.cadastro.id.to_s + "and cadastro_1_id is not null and dataconfirmacao is null")
+		@doacaospendentesreceber = Doacao.where("cadastro_2_id =" + user.cadastro.id.to_s + "and cadastro_1_id is not null and dataconfirmacao is null")
+		@doacaospendentespagar = Doacao.where("cadastro_1_id =" + user.cadastro.id.to_s + "and cadastro_2_id is null and dataconfirmacao is null")
+
+		@rede = Rede.find_by_cadastro_id(user.cadastro_id)
+
+		@dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@rede.parent.parent.id)
+
 	end	
 
 	def faq

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702184337) do
+ActiveRecord::Schema.define(version: 20160707224825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,10 @@ ActiveRecord::Schema.define(version: 20160702184337) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "cpf"
+    t.integer  "ciclo_id"
   end
 
+  add_index "cadastros", ["ciclo_id"], name: "index_cadastros_on_ciclo_id", using: :btree
   add_index "cadastros", ["operadora_id"], name: "index_cadastros_on_operadora_id", using: :btree
 
   create_table "ciclos", force: :cascade do |t|
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(version: 20160702184337) do
 
   add_index "usuarios", ["cadastro_id"], name: "index_usuarios_on_cadastro_id", using: :btree
 
+  add_foreign_key "cadastros", "ciclos"
   add_foreign_key "cadastros", "operadoras"
   add_foreign_key "dadosfinanceiros", "bancos"
   add_foreign_key "dadosfinanceiros", "cadastros"

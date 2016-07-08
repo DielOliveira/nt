@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title>NewTime</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -217,10 +217,11 @@ desired effect
               </li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
+          <!-- Control Sidebar Toggle Button 
           <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
           </li>
+          -->
         </ul>
       </div>
     </nav>
@@ -281,9 +282,9 @@ desired effect
         <li class="treeview">
           <a href="#"><i class="fa fa-edit"></i> <span>Dados Cadastrais</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li><a href="#">Dados Bancários</a></li>
-            <li><a href="#">Dados de Contato</a></li>
-            <li><a href="#">Alterar Senha</a></li>
+            <li><a href="<%=edit_dadosfinanceiro_path(userfinan.id)%>">Dados Bancários</a></li>
+            <li><a href="<%=edit_cadastro_path(user.cadastro_id)%>">Dados de Contato</a></li>
+            <li><a href="<%=edit_usuario_path(user.id)%>">Alterar Senha</a></li>
           </ul>
         </li>       
         <li><a href="<%=root_path%>"><i class="fa fa-envelope-o"></i> Mensagens</a></li>          
