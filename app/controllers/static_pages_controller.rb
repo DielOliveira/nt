@@ -6,12 +6,13 @@ before_action :requer_logon
 		@doacaospendentespagar = Doacao.where("cadastro_1_id =" + user.cadastro.id.to_s + "and cadastro_2_id is null and dataconfirmacao is null")
 
 		@rede = Rede.find_by_cadastro_id(user.cadastro_id)
-
 		if @rede
-
 			@dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@rede.parent.parent.id) rescue nil
-
 		end
+
+		@mensagem = Mensagem.where("cadastro_1_id =" + user.cadastro.id.to_s + "and datarecebimento is null")
+
+		@mensagems = Mensagem.where(:cadastro_1_id => user.cadastro.id)
 
 	end	
 

@@ -5,6 +5,26 @@ class MensagemsController < ApplicationController
   # GET /mensagems.json
   def index
     @mensagems = Mensagem.where(:cadastro_1_id => user.cadastro.id)
+    @mensagemsEnviadas = Mensagem.where(:cadastro_2_id => user.cadastro.id)
+
+    @pessoas = Cadastro.all
+
+    Mensagem.where("cadastro_1_id =" + user.cadastro.id.to_s + "and datarecebimento is null").update_all(datarecebimento: Time.now)
+
+  end
+
+  def grava_mensagem
+
+    mensagems = Mensagem.new
+    mensagems.cadastro_2_id = user.cadastro.id
+    mensagems.cadastro_1_id = params[:cadastro_1_id]
+    mensagems.mensagem = params[:mensagem]
+
+    mensagems.save
+
+    #mensagems_json = mensagems.map {|item| {:id => item.id, :mensagem => item.mensagem, :cadastro_2_id => item.cadastro_2_id}}
+    render :json => mensagems
+
   end
 
   # GET /mensagems/1

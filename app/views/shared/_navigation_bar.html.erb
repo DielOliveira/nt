@@ -1,3 +1,4 @@
+<% @mensagem = Mensagem.where("cadastro_1_id =" + user.cadastro.id.to_s + "and datarecebimento is null")%>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -82,96 +83,50 @@ desired effect
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <%if @mensagem.count > 0 %>
+                <span class="label label-success"><%=@mensagem.count%></span>
+              <%end%>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Você possui 4 Mensagens</li>
+              <li class="header">Você possui <%=@mensagem.count%> Mensagens</li>
               <li>
                 <!-- inner menu: contains the messages -->
                 <ul class="menu">
+
+              <% @mensagem.each do |mensagem| %>
                   <li><!-- start message -->
-                    <a href="#">
+                    <a href="<%=mensagems_path%>">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <%=image_tag("user2-160x160.jpg", class: "img-circle")%>
+                        <%if mensagem.cadastro_2.masculino%>
+                          <%=image_tag("avatar04.png", class: "user image")%>
+                        <%else%>
+                          <%=image_tag("avatar2.png", class: "user image")%>
+                        <%end%>
+
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
-                        Carlos Eduardo
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                        <%= mensagem.cadastro_2.nomepessoa %>
+                        <small><i class="fa fa-clock-o"></i> <%=mensagem.created_at.blank? ? '' : mensagem.created_at.strftime("%d/%m/%Y - %H:%M")%></small>
+                      
                       </h4>
                       <!-- The message -->
-                      <p>Poderia me passar o número de sua conta?</p>
+                      <p><%= mensagem.mensagem %></p>
                     </a>
                   </li>
+              <% end %>
+
                   <!-- end message -->
                 </ul>
                 <!-- /.menu -->
               </li>
-              <li class="footer"><a href="#">Ver todas mensagens</a></li>
+              <li class="footer"><a href="<%=mensagems_path%>">Ver todas mensagens</a></li>
             </ul>
           </li>
           <!-- /.messages-menu -->
 
-          <!-- Notifications Menu -->
-          <li class="dropdown notifications-menu">
-            <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">Você possui 10 notificações</li>
-              <li>
-                <!-- Inner Menu: contains the notifications -->
-                <ul class="menu">
-                  <li><!-- start notification -->
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 novos membros cadastrados
-                    </a>
-                  </li>
-                  <!-- end notification -->
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks Menu -->
-          <li class="dropdown tasks-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">Você possui 9 doaçoes pendentes</li>
-              <li>
-                <!-- Inner menu: contains the tasks -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <!-- Task title and progress text -->
-                      <h3>
-                        Doações restantes
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">Ver todas doações</a>
-              </li>
-            </ul>
-          </li>
+          
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->

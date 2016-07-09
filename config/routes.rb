@@ -33,6 +33,12 @@ Rails.application.routes.draw do
   match '/login', to: 'nt_autentication#login', via: 'post'
   match '/logoff', to: 'nt_autentication#logoff', via: 'get'
 
+
+
+match '/grava_mensagem', to: 'mensagems#grava_mensagem', via: 'get'
+
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
