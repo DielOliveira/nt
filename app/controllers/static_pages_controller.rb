@@ -7,7 +7,11 @@ before_action :requer_logon
 
 		@rede = Rede.find_by_cadastro_id(user.cadastro_id)
 
-		@dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@rede.parent.parent.id)
+		if @rede
+
+			@dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@rede.parent.parent.id) rescue nil
+
+		end
 
 	end	
 
