@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Datarecebimento:</strong>
+  <%= @mensagem.datarecebimento %>
+</p>
+
+<p>
+  <strong>Mensagem:</strong>
+  <%= @mensagem.mensagem %>
+</p>
+
+<%= link_to 'Edit', edit_mensagem_path(@mensagem) %> |
+<%= link_to 'Back', mensagems_path %>

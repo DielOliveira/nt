@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707224825) do
+ActiveRecord::Schema.define(version: 20160709170418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(version: 20160707224825) do
   end
 
   add_index "doacaos", ["ciclo_id"], name: "index_doacaos_on_ciclo_id", using: :btree
+
+  create_table "mensagems", force: :cascade do |t|
+    t.datetime "datarecebimento"
+    t.string   "mensagem"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "cadastro_1_id"
+    t.integer  "cadastro_2_id"
+  end
 
   create_table "operadoras", force: :cascade do |t|
     t.string   "nomeoperadora"

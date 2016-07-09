@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :mensagems
   resources :doacaos
   resources :ciclos
   resources :redes

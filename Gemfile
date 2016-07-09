@@ -14,6 +14,10 @@ gem 'coffee-rails', '~> 4.1.0'
 
 #gem 'nokogiri'
 
+gem 'validates_cpf_cnpj'
+
+gem 'validates_email_format_of'
+
 gem 'acts_as_tree'
 
 gem 'bootstrap-sass', '~> 3.3.6'
