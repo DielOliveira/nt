@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require bootstrap
+//= maske
+//= require maskedinput
 

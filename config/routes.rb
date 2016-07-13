@@ -15,27 +15,25 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root  'static_pages#home'
 
+  root  'static_pages#home'
   match '/faq', to: 'static_pages#faq', via: 'get'
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
   match '/configu', to: 'static_pages#configu', via: 'get'
-
+  get '/redeslist/:cadastro_id', to: 'static_pages#redeslist', as: 'redeslist'
 
   match '/doacoesrealizadas', to: 'doacaos#doacoesrealizadas', via: 'get'
   match '/doacoesrecebidas', to: 'doacaos#doacoesrecebidas', via: 'get'
   match '/doacoesareceber', to: 'doacaos#doacoesareceber', via: 'get'
-
-  get '/redeslist/:cadastro_id', to: 'static_pages#redeslist', as: 'redeslist'
-
-
-    match '/login', to: 'nt_autentication#login', via: 'get'
+  
+  match '/login', to: 'nt_autentication#login', via: 'get'
   match '/login', to: 'nt_autentication#login', via: 'post'
   match '/logoff', to: 'nt_autentication#logoff', via: 'get'
 
+  match '/gerenciarciclos', to: 'ciclos#gerenciarciclos', via: 'get'
 
 
-match '/grava_mensagem', to: 'mensagems#grava_mensagem', via: 'get'
+  match '/grava_mensagem', to: 'mensagems#grava_mensagem', via: 'get'
 
 
 

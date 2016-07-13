@@ -2,6 +2,12 @@ class CiclosController < ApplicationController
   before_action :requer_logon
   before_action :set_ciclo, only: [:show, :edit, :update, :destroy]
 
+
+  def gerenciarciclos
+
+  end 
+
+  
   # GET /ciclos
   # GET /ciclos.json
   def index
