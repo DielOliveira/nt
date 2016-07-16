@@ -34,7 +34,7 @@
                         <td><%= cadastro.email %></td>
                         <td><%= cadastro.telefone %></td>
                         <td><%= cadastro.dadatainclusao.blank? ? '' : cadastro.dadatainclusao.strftime("%d/%m/%Y - %H:%M")%></td>
-<!-- 
+
                           <td align='right'>
                               <%#= link_to redeslist_path(cadastro), :class => "btn btn-default btn-sm" do %>
                                 <span class="glyphicon glyphicon-sort-by-attributes-alt"></span> Rede
@@ -48,7 +48,7 @@
                               <%#= link_to cadastro , :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
                                 <span class="glyphicon glyphicon-trash"></span> Excluir
                               <%# end %>            
-                          </td>            -->       
+                          </td>                  
                       </tr>
                     <% end %>
                   </tbody>
@@ -65,15 +65,15 @@
 <br>
 
   <script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
+  // $(function () {
+  //   $("#example1").DataTable();
+  //   $('#example2').DataTable({
+  //     "paging": true,
+  //     "lengthChange": false,
+  //     "searching": false,
+  //     "ordering": true,
+  //     "info": true,
+  //     "autoWidth": false
+  //   });
+  // });
 </script>
