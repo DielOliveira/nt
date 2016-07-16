@@ -24,7 +24,7 @@
 
                 <% @doacaos.each do |doacao| %>
                   <tr>
-                    <td><%= doacao.cadastro_1.nomepessoa %></td>
+                    <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_1.nomepessoa %><%end%></td>
                     <td><%= doacao.cadastro_2.nomepessoa %></td>
                     <td><%= doacao.ciclo.numerociclo %></td>
                     <td><%= doacao.ciclo.valorciclo %></td>

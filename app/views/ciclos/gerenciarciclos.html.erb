@@ -1,3 +1,4 @@
+
 <section class="content">
 
       <div class="row">
@@ -6,7 +7,9 @@
           <!-- Profile Image -->
           <div class="box box-warning">
             <div class="box-body box-profile">
+              
               <%=image_tag("ciclo1.jpg", class: "profile-user-img img-responsive img-circle")%>
+
 
               <h3 class="profile-username text-center">Ciclo 1</h3>
 
@@ -14,16 +17,20 @@
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Doações</b> <a class="pull-right">0 / 30</a>
+                  <b>Doações</b> <a class="pull-right"><%=@doacoes1%> / 30</a>
                 </li>
                 <li class="list-group-item">
                   <b>Reentradas</b> <a class="pull-right">0 / 1</a>
                 </li>                
               </ul>
 
+              <%if @doacoes1start == 0.0%>
+                <a href="javascript:start();" class="btn btn-primary btn-block"><b>Start</b></a>
+              <%else%>
                 <div class="icon" align="center">
                   <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
                 </div>
+              <%end%>
             </div>
             <!-- /.box-body -->
           </div>
@@ -35,22 +42,32 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <%=image_tag("ciclo2.jpg", class: "profile-user-img img-responsive img-circle")%>
+
+              <%if user.cadastro.ciclo.numerociclo >= 2%>
+                <%=image_tag("ciclo2.jpg", class: "profile-user-img img-responsive img-circle")%>
+              <%else%>
+                <%=image_tag("ciclo2pb.jpg", class: "profile-user-img img-responsive img-circle")%>
+              <%end%>
 
               <h3 class="profile-username text-center">Ciclo 2</h3>
-
-              
-
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Doações</b> <a class="pull-right">0 / 90</a>
+                  <b>Doações</b> <a class="pull-right"><%=@doacoes2%> / 90</a>
                 </li>
                 <li class="list-group-item">
                   <b>Reentradas</b> <a class="pull-right">0 / 1</a>
                 </li>
               </ul>
 
-              <a href="#" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+              <%if user.cadastro.ciclo.numerociclo >= 2%>
+                <div class="icon" align="center">
+                  <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
+                </div>              
+              <% elsif user.cadastro.ciclo.numerociclo == 1%>
+                <a href="javascript:UpgradeCiclo(2);" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+              <%else%>
+                <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+              <%end%>
             </div>
             <!-- /.box-body -->
           </div>
@@ -62,22 +79,30 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <%=image_tag("ciclo3pb.jpg", class: "profile-user-img img-responsive img-circle")%>
-
+              <%if user.cadastro.ciclo.numerociclo >= 3%>
+                <%=image_tag("ciclo3.jpg", class: "profile-user-img img-responsive img-circle")%>
+              <%else%>
+                <%=image_tag("ciclo3pb.jpg", class: "profile-user-img img-responsive img-circle")%>
+              <%end%>
               <h3 class="profile-username text-center">Ciclo 3</h3>
-
-              
-
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Doações</b> <a class="pull-right">0 / 300</a>
+                  <b>Doações</b> <a class="pull-right"><%=@doacoes3%> / 300</a>
                 </li>
                 <li class="list-group-item">
                   <b>Reentradas</b> <a class="pull-right">0 / 3</a>
                 </li>
               </ul>
 
-              <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+              <%if user.cadastro.ciclo.numerociclo >= 3%>
+                <div class="icon" align="center">
+                  <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
+                </div>              
+              <% elsif user.cadastro.ciclo.numerociclo == 2%>
+                <a href="#" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+              <%else%>
+                <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+              <%end%>
             </div>
             <!-- /.box-body -->
           </div>
@@ -89,22 +114,31 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <%=image_tag("ciclo4pb.jpg", class: "profile-user-img img-responsive img-circle")%>
-
+              <%if user.cadastro.ciclo.numerociclo >= 4%>
+                <%=image_tag("ciclo4.jpg", class: "profile-user-img img-responsive img-circle")%>
+              <%else%>
+                <%=image_tag("ciclo4pb.jpg", class: "profile-user-img img-responsive img-circle")%>
+              <%end%>
               <h3 class="profile-username text-center">Ciclo 4</h3>
-
-              
-
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Doações</b> <a class="pull-right">0 / 900</a>
+                  <b>Doações</b> <a class="pull-right"><%=@doacoes4%> / 900</a>
                 </li>
                 <li class="list-group-item">
                   <b>Reentradas</b> <a class="pull-right">0 / 10</a>
                 </li>
               </ul>
 
-              <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+              <%if user.cadastro.ciclo.numerociclo >= 4%>
+                <div class="icon" align="center">
+                  <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
+                </div>              
+              <% elsif user.cadastro.ciclo.numerociclo == 3%>
+                <a href="#" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+              <%else%>
+                <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+              <%end%>
+
             </div>
             <!-- /.box-body -->
           </div>
@@ -115,22 +149,30 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <%=image_tag("ciclo5pb.jpg", class: "profile-user-img img-responsive img-circle")%>
-
+              <%if user.cadastro.ciclo.numerociclo >= 5%>
+                <%=image_tag("ciclo5.jpg", class: "profile-user-img img-responsive img-circle")%>
+              <%else%>
+                <%=image_tag("ciclo5pb.jpg", class: "profile-user-img img-responsive img-circle")%>
+              <%end%>
               <h3 class="profile-username text-center">Ciclo 5</h3>
-
-              
-
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Doações</b> <a class="pull-right">0 / 1800</a>
+                  <b>Doações</b> <a class="pull-right"><%=@doacoes5%> / 1800</a>
                 </li>
                 <li class="list-group-item">
                   <b>Reentradas</b> <a class="pull-right">0 / 20</a>
                 </li>
               </ul>
 
-              <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+              <%if user.cadastro.ciclo.numerociclo >= 5%>
+                <div class="icon" align="center">
+                  <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
+                </div>              
+              <% elsif user.cadastro.ciclo.numerociclo == 4%>
+                <a href="#" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+              <%else%>
+                <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+              <%end%>
             </div>
             <!-- /.box-body -->
           </div>
@@ -141,22 +183,30 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <%=image_tag("ciclo6pb.jpg", class: "profile-user-img img-responsive img-circle")%>
-
+              <%if user.cadastro.ciclo.numerociclo >= 6%>
+                <%=image_tag("ciclo6.jpg", class: "profile-user-img img-responsive img-circle")%>
+              <%else%>
+                <%=image_tag("ciclo6pb.jpg", class: "profile-user-img img-responsive img-circle")%>
+              <%end%>
               <h3 class="profile-username text-center">Ciclo 6</h3>
-
-              
-
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Doações</b> <a class="pull-right">0 / 3600</a>
+                  <b>Doações</b> <a class="pull-right"><%=@doacoes6%> / 3600</a>
                 </li>
                 <li class="list-group-item">
                   <b>Reentradas</b> <a class="pull-right">0 / 50</a>
                 </li>
               </ul>
 
-              <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+              <%if user.cadastro.ciclo.numerociclo >= 6%>
+                <div class="icon" align="center">
+                  <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
+                </div>              
+              <% elsif user.cadastro.ciclo.numerociclo == 5%>
+                <a href="#" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+              <%else%>
+                <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+              <%end%>
             </div>
             <!-- /.box-body -->
           </div>
@@ -164,4 +214,64 @@
         </div> 
 
       </div>
+
 </section>
+
+
+<div class="modal fade bs-example-modal-sm" id="mensagem">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="h4Ingredientes" class="modal-title">Erro ao realizar Upgrade</h4>
+      </div>
+      <div class="modal-body">
+      <b>Não é possível realizar o Upgrade, pois alguns dos requisítos do ciclo anterior ainda não foram completados.</b>
+      </div>
+      <div class="modal-footer">
+        <button type="button"  class="btn btn-danger" data-dismiss="modal">Sair</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div>
+
+
+<script>
+
+function start() {
+
+  $.ajax({
+    url: '<%= start_ciclo1_path %>',
+    data : 
+    {
+        1 : 1
+    },
+    success: function(data){
+
+          location.reload();
+
+    }
+  })  
+}
+
+
+function UpgradeCiclo(ciclo) {
+
+  $.ajax({
+    url: '<%= upgrade_ciclo_path %>',
+    data : 
+    {
+        ciclo : ciclo
+    },
+    success: function(data){
+
+          if (data == false){
+            $('#mensagem').modal('show')
+          }
+
+    }
+  })
+
+}
+
+
+</script> 

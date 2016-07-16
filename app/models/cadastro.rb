@@ -1,7 +1,10 @@
 #encoding: utf-8
 class Cadastro < ActiveRecord::Base
 
+	mount_uploader :avatar, AvatarUploader
+	
 	belongs_to :operadora
+	belongs_to :ciclo
 	belongs_to :dadosfinanceiro
 	has_many :dadosfinanceiros, dependent: :destroy
 	has_many :usuarios, dependent: :destroy

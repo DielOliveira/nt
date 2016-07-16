@@ -71,6 +71,8 @@ class CadastrosController < ApplicationController
     respond_to do |format|
       if @cadastro.update(cadastro_params)
 
+        #byebug
+
         session[:cadastro_id] = @cadastro.id
 
         @dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@cadastro.id)
@@ -107,6 +109,6 @@ class CadastrosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cadastro_params
-      params.require(:cadastro).permit(:nomepessoa, :masculino, :email, :telefone, :operadora_id, :whatsapp, :skype, :facebook, :dadatainclusao, :cpf, :cpfpadrinho, :ciclo_id)
+      params.require(:cadastro).permit(:nomepessoa, :masculino, :email, :telefone, :operadora_id, :whatsapp, :skype, :facebook, :dadatainclusao, :cpf, :cpfpadrinho, :ciclo_id, :avatar)
     end
 end

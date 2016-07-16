@@ -14,4 +14,3 @@
 //= require bootstrap
 //= maske
 //= require maskedinput
-

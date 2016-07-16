@@ -1,29 +1,77 @@
-<%= form_for(@doacao) do |f| %>
+
+
+<%= form_for @doacao, html: { multipart: true } do |f| %>
+
+<% @doacaoverifica =  Doacao.find_by_id(@doacao.id)%>
+
   <% if @doacao.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@doacao.errors.count, "error") %> prohibited this doacao from being saved:</h2>
-
-      <ul>
-      <% @doacao.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  
+  <% if @doacao.errors.any? %>
+  
+    <% @doacao.errors.full_messages.each do |msg| %>
+        <%= msg %></br>
       <% end %>
-      </ul>
+     <% end %>
     </div>
-  <% end %>
+  <% end %>  
+  
+  
+<%
+      @dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@doacao.cadastro_2.id) rescue nil
+%>
+<div class="box box-warning">
+    <div class="box-header with-border">
 
-  <div class="field">
-    <%= f.label :ciclo_id %><br>
-    <%= f.text_field :ciclo_id %>
-  </div>
-  <div class="field">
-    <%= f.label :flagconfirmada %><br>
-    <%= f.check_box :flagconfirmada %>
-  </div>
-  <div class="field">
-    <%= f.label :flagrejeitada %><br>
-    <%= f.check_box :flagrejeitada %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <% if user.cadastro.id == @doacao.cadastro_1.id%>
+      <h4 class="timeline-header"><a href="#">Doação para: <%=@doacao.cadastro_2.nomepessoa%>!</a></h4>
+    <%else%>
+      <h4 class="timeline-header"><a href="#">Doação de: <%=@doacao.cadastro_1.nomepessoa%>!</a></h4>
+    <%end%>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+    </div>
+    <div class="box-body">
+      <p><b>Banco: </b><%=@dadosfinanceiros.banco.nomebanco%></p>
+      <p><b>Agencia: </b><%=@dadosfinanceiros.agencia%></p>
+      <p><b>Conta: </b><%=@dadosfinanceiros.codigo%></p>
+      <p><b>Titular: </b><%=@dadosfinanceiros.nometitular%></p>
+      <p><b>CPF: </b><%=@dadosfinanceiros.cpftitular%></p>
+      <p><b>Tempo Restante: </b><%=@dadosfinanceiros.nometitular%></p>
+      <br>
+      <% if not @doacao.avatar? %>
+      <p><b>Comprovante </b></p>
+        <%= f.file_field :avatar %>
+      <%else%>
+        <%= f.hidden_field :avatar %>
+      <% end %>
+
+      <%= f.hidden_field :flagenviada, :value => true %>
+
+      <%#= f.hidden_field :whatsapp, :class => 'form-control'%>
+
+      <div class="timeline-footer">
+        <div align="right">
+
+        <% if @doacao.avatar? %>
+          <%= link_to @doacao.avatar_url , :class => "btn btn-info btn-sm", :target => "_blank" do %>
+             Ver Comprovante
+          <% end %>   
+        <% end %>   
+
+        <% if not @doacaoverifica.flagenviada? %>
+          <button type="submit" class="btn btn-success btn-bg">
+            Realizar Doação
+          </button>
+        <%end%>
+      </div>
+
+      </div>              
+    </div>
+</div>        
+            
 <% end %>

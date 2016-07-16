@@ -227,5 +227,7 @@ pt-BR:
           contabancariatipo_id: "Tipo de Conta"
         usuario:
           descconfirmasenha: "Confirmação de Senha"
+        doacao:
+          avatar: "Comprovante"
 
 

@@ -1,0 +1,39 @@
+<%@doacaospendentesreceber.each do |doacoes| %>
+    <div class="box box-warning">
+        <div class="box-header with-border">
+          <h4 class="timeline-header"><a href="#">Você possui uma doação para confirmar!</a></h4>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+          </div>
+          <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <p><%#= doacoes.created_at.blank? ? '' : doacoes.created_at.strftime("%d/%m/%Y - %H:%M")%></p>
+          <p><b>Doação de: </b><%=doacoes.cadastro_1.nomepessoa%></p>
+          <p><b>Valor: </b><%=doacoes.ciclo.valorciclo%></p>
+          <div class="timeline-footer">
+            <%#= form_for @doacao, html: { multipart: true } do |f| %>
+              <%#if not doacoes.avatar? %>
+              <!-- <input id="doacao_avatar" name="doacao[avatar]" size="30" type="file" /> -->
+              <%#end%>
+              <%#= image_tag(doacoes.avatar_url) if doacoes.avatar? %>
+              <%#= f.file_field :avatar, :class => 'btn btn-success btn-sm', :title => 'lol' %>
+            <%# end %>
+
+            <div align="right">
+              <%= link_to doacoes.avatar_url , :class => "btn btn-info btn-sm", :target => "_blank" do %>
+                 Ver Comprovante
+              <% end %>            
+              <%= link_to confirmadoacao_doacao_path(doacoes.id) , :class => "btn btn-success btn-sm" do %>
+                 Confirmar Doação
+              <% end %>
+            </div>
+
+          </div>              
+        </div>
+        <!-- /.box-body -->
+    </div>        
+<%end%>

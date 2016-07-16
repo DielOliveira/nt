@@ -14,6 +14,16 @@ gem 'coffee-rails', '~> 4.1.0'
 
 #gem 'nokogiri'
 
+gem 'carrierwave'
+
+gem 'mini_magick'
+#gem 'RMagick'
+#gem 'ImageMagick'
+#gem 'rmagick'
+#gem 'GraphicsMagick'
+
+gem 'jquery-countdown-rails'
+
 gem 'validates_cpf_cnpj'
 
 gem 'validates_email_format_of'

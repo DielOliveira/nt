@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :mensagems
-  resources :doacaos
+  #resources :doacaos
   resources :ciclos
   resources :redes
   resources :redetipos
@@ -10,6 +10,15 @@ Rails.application.routes.draw do
   resources :contabancariatipos
   resources :bancos
   resources :operadoras
+
+
+  resources :doacaos do
+    member do
+      get :confirmadoacao   
+    end
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -21,6 +30,8 @@ Rails.application.routes.draw do
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
   match '/configu', to: 'static_pages#configu', via: 'get'
   get '/redeslist/:cadastro_id', to: 'static_pages#redeslist', as: 'redeslist'
+  
+  #get '/confirmadoacao/:doacao_id', to: 'doacaos#confirmadoacao', as: 'confirmadoacao'
 
   match '/doacoesrealizadas', to: 'doacaos#doacoesrealizadas', via: 'get'
   match '/doacoesrecebidas', to: 'doacaos#doacoesrecebidas', via: 'get'
@@ -31,6 +42,10 @@ Rails.application.routes.draw do
   match '/logoff', to: 'nt_autentication#logoff', via: 'get'
 
   match '/gerenciarciclos', to: 'ciclos#gerenciarciclos', via: 'get'
+
+  match '/start_ciclo1', to: 'ciclos#start_ciclo1', via: 'get'
+
+  match '/upgrade_ciclo', to: 'ciclos#upgrade_ciclo', via: 'get'
 
 
   match '/grava_mensagem', to: 'mensagems#grava_mensagem', via: 'get'

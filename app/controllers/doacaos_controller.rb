@@ -1,6 +1,6 @@
 class DoacaosController < ApplicationController
   before_action :requer_logon
-  before_action :set_doacao, only: [:show, :edit, :update, :destroy]
+  before_action :set_doacao, only: [:show, :edit, :update, :destroy, :confirmadoacao]
 
   # GET /doacaos
   # GET /doacaos.json
@@ -9,7 +9,7 @@ class DoacaosController < ApplicationController
   end
 
   def doacoesrealizadas  
-    @doacaos = Doacao.where("cadastro_1_id =" + user.cadastro.id.to_s + "and cadastro_2_id is not null")
+    @doacaos = Doacao.where("cadastro_1_id =" + user.cadastro.id.to_s + "and flagenviada = true")
   end
 
   def doacoesrecebidas  
@@ -19,6 +19,20 @@ class DoacaosController < ApplicationController
   def doacoesareceber  
     @doacaos = Doacao.where("cadastro_2_id =" + user.cadastro.id.to_s + "and cadastro_1_id is not null and dataconfirmacao is null")
   end    
+
+  def confirmadoacao
+
+    #teste = Doacao.update(@doacao.id, :flagconfirmada => true, :dataconfirmacao => Time.now)
+
+    teste = Doacao.find_by_id(@doacao.id)
+    teste.flagconfirmada = true
+    teste.dataconfirmacao = Time.now
+    teste.save
+
+    redirect_to  root_path
+
+  end
+
 
   # GET /doacaos/1
   # GET /doacaos/1.json
@@ -55,8 +69,7 @@ class DoacaosController < ApplicationController
   def update
     respond_to do |format|
       if @doacao.update(doacao_params)
-        format.html { redirect_to @doacao, notice: 'Doacao was successfully updated.' }
-        format.json { render :show, status: :ok, location: @doacao }
+        format.html { redirect_to root_path, notice: 'Doacao was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @doacao.errors, status: :unprocessable_entity }
@@ -82,6 +95,6 @@ class DoacaosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doacao_params
-      params.require(:doacao).permit(:ciclo_id, :flagconfirmada, :flagrejeitada, :observacao, :dataconfirmacao)
+      params.require(:doacao).permit(:ciclo_id, :flagconfirmada, :flagrejeitada, :observacao, :dataconfirmacao, :flagenviada, :avatar)
     end
 end

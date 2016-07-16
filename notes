@@ -21,8 +21,10 @@ Sábado
 ok - Ajustar as notificação do topo
 ok - Colocar máscara nos campos (telefone, cpf, etc.)
 ok - Puxar o e-mail do cadastro para sugestão no login
-Criar skema de upgrade de ciclos
-Criar exibição do ciclo
+ok - Criar skema de upgrade de ciclos
+ok - Criar exibição do ciclo
+ok - Criar eskema de anexo
+ok - Criar efetivação da doação
 
 
 Domingo
@@ -31,6 +33,5 @@ Criar o layout incial
 Arrumar o convite do sistema por login e em etapas
 
 
-Criar eskema de anexo
-Criar efetivação da doação
 Colocar contagem regressiva na doação
+fazer o skema de reentradas

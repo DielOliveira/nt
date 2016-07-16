@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709170418) do
+ActiveRecord::Schema.define(version: 20160715024533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160709170418) do
     t.datetime "updated_at",     null: false
     t.string   "cpf"
     t.integer  "ciclo_id"
+    t.string   "avatar"
   end
 
   add_index "cadastros", ["ciclo_id"], name: "index_cadastros_on_ciclo_id", using: :btree
@@ -86,6 +87,8 @@ ActiveRecord::Schema.define(version: 20160709170418) do
     t.integer  "cadastro_2_id"
     t.datetime "dataconfirmacao"
     t.string   "observacao"
+    t.boolean  "flagenviada"
+    t.string   "avatar"
   end
 
   add_index "doacaos", ["ciclo_id"], name: "index_doacaos_on_ciclo_id", using: :btree
