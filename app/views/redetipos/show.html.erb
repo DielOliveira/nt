@@ -15,5 +15,10 @@
   <%= @redetipo.ordenada %>
 </p>
 
-<%= link_to 'Edit', edit_redetipo_path(@redetipo) %> |
-<%= link_to 'Back', redetipos_path %>
+  <%= link_to edit_redetipo_path(@redetipo), :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-pencil"></span> Edit
+  <% end %>
+
+  <%= link_to redetipos_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+  <% end %>

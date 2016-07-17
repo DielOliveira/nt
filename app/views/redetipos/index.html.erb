@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% title "Listando Tipos de Linha" %>
 
-<h1>Listing Redetipos</h1>
+<!-- Main content -->
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Reentradaobrigatoria</th>
@@ -18,9 +18,18 @@
         <td><%= redetipo.reentradaobrigatoria %></td>
         <td><%= redetipo.reentradas %></td>
         <td><%= redetipo.ordenada %></td>
-        <td><%= link_to 'Show', redetipo %></td>
-        <td><%= link_to 'Edit', edit_redetipo_path(redetipo) %></td>
-        <td><%= link_to 'Destroy', redetipo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <td align='right'>
+            <%= link_to redetipo, :class => "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-list-alt"></span> Exibir
+            <% end %>                              
+            <%= link_to edit_redetipo_path(redetipo), :class => "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-pencil"></span> Editar
+            <% end %>             
+            <%= link_to redetipo , :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-trash"></span> Excluir
+            <% end %>            
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +37,6 @@
 
 <br>
 
-<%= link_to 'New Redetipo', new_redetipo_path %>
+<%= link_to new_redetipo_path, :class => "btn btn-default btn-sm" do %>
+     <span class="glyphicon glyphicon-file"></span>Novo
+<% end %>

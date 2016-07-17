@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reentradas
   resources :mensagems
   #resources :doacaos
   resources :ciclos
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   end
 
 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -31,6 +33,9 @@ Rails.application.routes.draw do
   match '/configu', to: 'static_pages#configu', via: 'get'
   get '/redeslist/:cadastro_id', to: 'static_pages#redeslist', as: 'redeslist'
   
+  match '/novareentrada', to: 'reentradas#novareentrada', via: 'get'
+
+
   #get '/confirmadoacao/:doacao_id', to: 'doacaos#confirmadoacao', as: 'confirmadoacao'
 
   match '/doacoesrealizadas', to: 'doacaos#doacoesrealizadas', via: 'get'
@@ -50,6 +55,7 @@ Rails.application.routes.draw do
 
   match '/grava_mensagem', to: 'mensagems#grava_mensagem', via: 'get'
 
+  match '/geralinha', to: 'redes#geralinha', via: 'get'
 
 
   # Example of regular route:

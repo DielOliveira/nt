@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160715024533) do
+ActiveRecord::Schema.define(version: 20160717201904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20160715024533) do
     t.string   "cpf"
     t.integer  "ciclo_id"
     t.string   "avatar"
+    t.boolean  "flagreentrada"
   end
 
   add_index "cadastros", ["ciclo_id"], name: "index_cadastros_on_ciclo_id", using: :btree
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(version: 20160715024533) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "cadastro_id"
+    t.integer  "linha"
   end
 
   add_index "redes", ["cadastro_id"], name: "index_redes_on_cadastro_id", using: :btree
@@ -126,6 +128,13 @@ ActiveRecord::Schema.define(version: 20160715024533) do
     t.boolean  "ordenada"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "reentradas", force: :cascade do |t|
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "cadastro_1_id"
+    t.integer  "cadastro_2_id"
   end
 
   create_table "usuarios", force: :cascade do |t|

@@ -21,7 +21,8 @@
 
     <div class="form-group">
       <label>E-mail</label>
-      <input name="usuario[email]" id="usuario_email" type="text" class="form-control" value="<%=user.cadastro.email%>"  disabled>
+      <%@cadastro = Cadastro.find_by_id(session[:cadastro_id])%>
+      <input name="usuario[email]" id="usuario_email" type="text" class="form-control" value="<%=@cadastro.email%>">
     </div>
 
   </div>

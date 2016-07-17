@@ -20,8 +20,8 @@ class Cadastro < ActiveRecord::Base
 	validates :email, email_format: { message: "não é válido." }
 
 	validates :nomepessoa, :presence => { :message => 'é obrigatório.' }  
-	validates :email, :presence => true, :uniqueness => true
-	validates :cpf, :uniqueness => true
+	#validates :email, :presence => true, :uniqueness => true
+	#validates :cpf, :uniqueness => true
 	validates :telefone, :presence => { :message => 'é obrigatório.' }  
 	validates :operadora_id, :presence => { :message => 'é obrigatório.' } 
 

@@ -1,126 +1,144 @@
-<% title "Listando Rede" %>
+<div class="box box-warning">
+    <div class="box-header with-border">
+      <h4 class="timeline-header"><a href="#">Linhas</a></h4>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+
+      <table class="table table-bordered">
+        <tr>
+          <th style="width: 10px">#</th>
+          <th>Posições Total</th>
+          <th>Posições Preenchidos</th>
+          <th>Preenchimento Linhear</th>
+          <!-- <th style="width: 40px">Label</th> -->
+        </tr>
+        <%if not @linha1.empty? %>
+          <tr>
+            <td>1.</td>
+            <td><span class="badge bg-red"><%=@linha1.count%></span></td>
+            <td><span class="badge bg-green"><%=@linha1Preenchidos.count%></span></td>
+            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+          </tr>
+          <%if not @linha2.empty? %>
+            <tr>
+              <td>2.</td>
+              <td><span class="badge bg-red"><%=@linha2.count%></span></td>
+              <td><span class="badge bg-green"><%=@linha2Preenchidos.count%></span></td>
+              <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            </tr>
+            <%if not @linha3.empty? %>
+              <tr>
+                <td>3.</td>
+                <td><span class="badge bg-red"><%=@linha3.count%></span></td>
+                <td><span class="badge bg-green"><%=@linha3Preenchidos.count%></span></td>
+                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+              </tr>          
+              <%if not @linha4.empty? %>
+                <tr>
+                  <td>4.</td>
+                  <td><span class="badge bg-red"><%=@linha4.count%></span></td>
+                  <td><span class="badge bg-green"><%=@linha4Preenchidos.count%></span></td>
+                  <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                </tr>
+                <%if not @linha5.empty? %>
+                  <tr>
+                    <td>5.</td>
+                    <td><span class="badge bg-red"><%=@linha5.count%></span></td>
+                    <td><span class="badge bg-green"><%=@linha5Preenchidos.count%></span></td>
+                    <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                  </tr>
+                  <%if not @linha6.empty? %>
+                    <tr>
+                      <td>6.</td>
+                      <td><span class="badge bg-red"><%=@linha6.count%></span></td>
+                      <td><span class="badge bg-green"><%=@linha6Preenchidos.count%></span></td>
+                      <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                    </tr>          
+                    <%if not @linha7.empty? %>
+                      <tr>
+                        <td>7.</td>
+                        <td><span class="badge bg-red"><%=@linha7.count%></span></td>
+                        <td><span class="badge bg-green"><%=@linha7Preenchidos.count%></span></td>
+                        <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                      </tr>
+                      <%if not @linha8.empty? %>
+                        <tr>
+                          <td>8.</td>
+                          <td><span class="badge bg-red"><%=@linha8.count%></span></td>
+                          <td><span class="badge bg-green"><%=@linha8Preenchidos.count%></span></td>
+                          <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                        </tr>
+                        <%if not @linha9.empty? %>
+                          <tr>
+                            <td>9.</td>
+                            <td><span class="badge bg-red"><%=@linha9.count%></span></td>
+                            <td><span class="badge bg-green"><%=@linha9Preenchidos.count%></span></td>
+                            <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                          </tr>
+                          <%if not @linha10.empty? %>
+                            <tr>
+                              <td>10.</td>
+                              <td><span class="badge bg-red"><%=@linha10.count%></span></td>
+                              <td><span class="badge bg-green"><%=@linha2Preenchidos.count%></span></td>
+                              <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                            </tr>          
+                          <%end%>                                    
+                        <%end%>                                  
+                      <%end%>
+                    <%end%>
+                  <%end%>                            
+                <%end%>
+              <%end%>                                        
+            <%end%>                      
+          <%end%>
+        <%end%>
+      </table>
+
+      <div class="timeline-footer">
+
+      <br>
+      <br>
+        <div align="left">
+          <div class="col-lg-2">
+            <label for="cadastro_Nome">Número da Linha</label><br>
+            <input type="text" id="numero" name="numero" class="form-control">
+          </div>
+            <label for="cadastro_Nome">.</label><br>
+            <button type="submit" class="btn btn-success btn-sm" onclick="geralinha();">
+              <span class="glyphicon glyphicon-floppy-disk"></span> Gerar Linha
+            </button>            
+        </div>
+
+      </div>              
+    </div>
+    <!-- /.box-body -->
+</div>        
 
 
-<%@rede = Rede.find_by_id(39)%>
-<%@cadastro = Cadastro.find_by_id(@rede.cadastro_id)%>
-<%#byebug%>
-  <div style='width:20000px;height:5000px;margin-left:300px;'>
 
-  <div class="tree">
+<script type="text/javascript">
+  
+function geralinha() {
 
-    <ul>
-      <li><a href="#"><%= @cadastro.nomepessoa%></a><%= BuscaPessoas(@rede.id)%></li>
-    </ul>	
-    
-  </div>
-</div>
+  $.ajax({
+    url: '<%=geralinha_path %>',
+    data : 
+    {
+        numero : $('#numero').val()
+    },
+    success: function(data){
 
+          location.reload();
 
-
-
-
-<style type="text/css">
-
-/*Now the CSS*/
-* {margin: 0; padding: 0;}
-
-.tree ul {
-	padding-top: 20px; position: relative;
-	
-	-transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
+    }
+  })  
 }
 
-.tree li {
-	float: left; text-align: center;
-	list-style-type: none;
-	position: relative;
-	padding: 20px 5px 0 5px;
-	
-	-transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-}
-
-/*We will use ::before and ::after to draw the connectors*/
-
-.tree li::before, .tree li::after{
-	content: '';
-	position: absolute; top: 0; right: 50%;
-	border-top: 1px solid #ccc;
-	width: 50%; height: 20px;
-}
-.tree li::after{
-	right: auto; left: 50%;
-	border-left: 1px solid #ccc;
-}
-
-/*We need to remove left-right connectors from elements without 
-any siblings*/
-.tree li:only-child::after, .tree li:only-child::before {
-	display: none;
-}
-
-/*Remove space from the top of single children*/
-.tree li:only-child{ padding-top: 0;}
-
-/*Remove left connector from first child and 
-right connector from last child*/
-.tree li:first-child::before, .tree li:last-child::after{
-	border: 0 none;
-}
-/*Adding back the vertical connector to the last nodes*/
-.tree li:last-child::before{
-	border-right: 1px solid #ccc;
-	border-radius: 0 5px 0 0;
-	-webkit-border-radius: 0 5px 0 0;
-	-moz-border-radius: 0 5px 0 0;
-}
-.tree li:first-child::after{
-	border-radius: 5px 0 0 0;
-	-webkit-border-radius: 5px 0 0 0;
-	-moz-border-radius: 5px 0 0 0;
-}
-
-/*Time to add downward connectors from parents*/
-.tree ul ul::before{
-	content: '';
-	position: absolute; top: 0; left: 50%;
-	border-left: 1px solid #ccc;
-	width: 0; height: 20px;
-}
-
-.tree li a{
-	border: 1px solid #ccc;
-	padding: 5px 10px;
-	text-decoration: none;
-	color: #666;
-	font-family: arial, verdana, tahoma;
-	font-size: 11px;
-	display: inline-block;
-	
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	
-	-transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-}
-
-/*Time for some hover effects*/
-/*We will apply the hover effect the the lineage of the element also*/
-.tree li a:hover, .tree li a:hover+ul li a {
-	background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
-}
-/*Connector styles on hover*/
-.tree li a:hover+ul li::after, 
-.tree li a:hover+ul li::before, 
-.tree li a:hover+ul::before, 
-.tree li a:hover+ul ul::before{
-	border-color:  #94a0b4;
-}
-
-/*Thats all. I hope yo*/
-</style>
+</script>
