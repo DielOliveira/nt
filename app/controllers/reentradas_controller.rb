@@ -11,7 +11,7 @@ class ReentradasController < ApplicationController
     cadastro = Cadastro.new
     cadastro.nomepessoa = user.cadastro.nomepessoa
     cadastro.masculino = user.cadastro.masculino
-    cadastro.email = user.cadastro.email + "-" + (@count.count + 1).to_s
+    cadastro.email = user.cadastro.email + "-" + (count.count + 1).to_s
     cadastro.telefone = user.cadastro.telefone
     cadastro.operadora_id = user.cadastro.operadora_id
     cadastro.whatsapp = user.cadastro.whatsapp
@@ -22,20 +22,46 @@ class ReentradasController < ApplicationController
     cadastro.flagreentrada = true
     cadastro.save
 
-:nometitular, :cpftitular, :banco_id, :agencia, :codigo, :operacao, :contabancariatipo_id, :observacao, :emailsuperconta, :datainclulsao, :cadastro_id)
     #Financeiro
     financeirocopiar = Dadosfinanceiro.find_by_cadastro_id(user.cadastro.id)
     financeiro = Dadosfinanceiro.new
-    #financeiro.
+    financeiro.nometitular = financeirocopiar.nometitular
+    financeiro.cpftitular = financeirocopiar.cpftitular
+    financeiro.banco_id = financeirocopiar.banco_id
+    financeiro.agencia = financeirocopiar.agencia
+    financeiro.codigo = financeirocopiar.codigo
+    financeiro.operacao = financeirocopiar.operacao
+    financeiro.contabancariatipo_id = financeirocopiar.contabancariatipo_id
+    financeiro.observacao = financeirocopiar.observacao
+    financeiro.emailsuperconta = financeirocopiar.emailsuperconta
+    financeiro.cadastro_id = financeirocopiar.cadastro_id
+    financeiro.save
 
+    #user
+    usuario = Usuario.new
+    usuario.email = cadastro.email
+    usuario.senha = user.senha
+    usuario.cadastro_id = user.cadastro_id
+    usuario.dataultimologin = user.dataultimologin
+    usuario.flagativo = user.flagativo
+    usuario.descconfirmasenha = user.senha
+    usuario.save
+
+    
+    #rede
+    rede = Rede.find_by_id(proximaentrada.to_i)
+    rede.cadastro_id = cadastro.id
+    rede.save
+
+
+    #reentrada
     reentrada = Reentrada.new
-
     reentrada.cadastro_1_id = user.cadastro.id
-    reentrada.cadastro_2_id = @cadastro.id
+    reentrada.cadastro_2_id = cadastro.id
+    if reentrada.save
+      redirect_to reentradas_path
+    end
 
-      if reentrada.save
-        redirect_to reentradas_path
-      end
   end
 
 

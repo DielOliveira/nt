@@ -33,29 +33,9 @@ class CadastrosController < ApplicationController
 
           session[:cadastro_id] = @cadastro.id
 
-
-          if @cadastro.cpfpadrinho != ""
-            padrinho = Cadastro.find_by_cpf(@cadastro.cpfpadrinho) rescue nil
-
-            if padrinho
-
-                redepadrinho = Rede.find_by_cadastro_id(padrinho.id) rescue nil
-
-            end
-
-            if redepadrinho 
-              padrinhoid = redepadrinho.id
-            else
-              padrinhoid = nil
-            end
-
-          else
-              padrinhoid = nil
-          end
-
-          #byebug
-
-          Rede.create("desc" => @cadastro.nomepessoa, "cadastro_id" => @cadastro.id, "parent_id" => padrinhoid)
+          rede = Rede.find_by_id(proximaentrada)
+          rede.cadastro_id = session[:cadastro_id]
+          rede.save
 
           format.html { redirect_to new_dadosfinanceiro_path, notice: 'Cadastro criado com sucesso.' }
 
