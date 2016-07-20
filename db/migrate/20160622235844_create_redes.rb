@@ -8,5 +8,8 @@ class CreateRedes < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    Rede.create(:linha => 1)
+
   end
 end
