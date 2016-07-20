@@ -36,3 +36,5 @@ Arrumar o convite do sistema por login e em etapas
 Fazer função que regulariza ciclos
 Arrumar a visualização da rede binária
 exibir ciclo na rede binária
+
+heroku pg:reset DATABASE

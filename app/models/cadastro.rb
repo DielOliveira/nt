@@ -17,7 +17,7 @@ class Cadastro < ActiveRecord::Base
 	has_many :secondary_mensagems, :class_name => "Doacao", :foreign_key => "cadastro_2_id"  	 
 
 
-	#validate :busca_email_existente
+	validate :busca_email_existente
 	validates_cpf :cpf
 	validates :email, email_format: { message: "não é válido." }
 
