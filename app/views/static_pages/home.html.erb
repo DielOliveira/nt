@@ -1,6 +1,6 @@
+<p id="notice"><%= notice %></p>
 <%= render 'shared/doacoesPagar' %>
 <%= render 'shared/doacoesReceber' %>
-
 <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
@@ -21,7 +21,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>R$ 1200,00</h3>
+              <h3>R$ <%=@doacoesrecebidas%></h3>
 
               <p>Doações Recebidas</p>
             </div>
@@ -47,7 +47,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>3</h3>
+              <h3><%=@indicados%></h3>
 
               <p>Indicados Direto</p>
             </div>
@@ -59,6 +59,7 @@
       </div>
       <!-- /.row -->
       <!-- Main row -->
+      <%# if not @mensagems.empty? %>
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-12 connectedSortable">
@@ -103,6 +104,7 @@
 
         <!-- right col -->
       </div>
+      <%#end%>
       <!-- /.row (main row) -->
 
     </section>

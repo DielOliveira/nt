@@ -20,11 +20,11 @@
                   <b>Doações</b> <a class="pull-right"><%=@doacoes1%> / 30</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Reentradas</b> <a class="pull-right">0 / 1</a>
+                  <b>Reentradas</b> <a class="pull-right"><%=@reentradas1%> / 1</a>
                 </li>                
               </ul>
 
-              <%if @doacoes1start == 0.0%>
+              <%if @doacoes1start == 0.0 && @redepermite != false%>
                 <a href="javascript:start();" class="btn btn-primary btn-block"><b>Start</b></a>
               <%else%>
                 <div class="icon" align="center">
@@ -55,18 +55,22 @@
                   <b>Doações</b> <a class="pull-right"><%=@doacoes2%> / 90</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Reentradas</b> <a class="pull-right">0 / 1</a>
+                  <b>Reentradas</b> <a class="pull-right"><%=@reentradas2%> / 1</a>
                 </li>
               </ul>
 
-              <%if user.cadastro.ciclo.numerociclo >= 2%>
-                <div class="icon" align="center">
-                  <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
-                </div>              
-              <% elsif user.cadastro.ciclo.numerociclo == 1%>
-                <a href="javascript:UpgradeCiclo(2);" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+              <%if @redepermite == false%>
+                  <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
               <%else%>
-                <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+                <%if user.cadastro.ciclo.numerociclo >= 2%>
+                  <div class="icon" align="center">
+                    <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
+                  </div>              
+                <% elsif user.cadastro.ciclo.numerociclo == 1%>
+                  <a href="javascript:UpgradeCiclo(2);" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+                <%else%>
+                  <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
+                <%end%>
               <%end%>
             </div>
             <!-- /.box-body -->
@@ -90,7 +94,7 @@
                   <b>Doações</b> <a class="pull-right"><%=@doacoes3%> / 300</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Reentradas</b> <a class="pull-right">0 / 3</a>
+                  <b>Reentradas</b> <a class="pull-right"><%=@reentradas3%> / 3</a>
                 </li>
               </ul>
 
@@ -99,7 +103,7 @@
                   <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
                 </div>              
               <% elsif user.cadastro.ciclo.numerociclo == 2%>
-                <a href="#" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+                <a href="javascript:UpgradeCiclo(3);" class="btn btn-primary btn-block"><b>Upgrade</b></a>
               <%else%>
                 <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
               <%end%>
@@ -125,7 +129,7 @@
                   <b>Doações</b> <a class="pull-right"><%=@doacoes4%> / 900</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Reentradas</b> <a class="pull-right">0 / 10</a>
+                  <b>Reentradas</b> <a class="pull-right"><%=@reentradas4%> / 10</a>
                 </li>
               </ul>
 
@@ -134,7 +138,7 @@
                   <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
                 </div>              
               <% elsif user.cadastro.ciclo.numerociclo == 3%>
-                <a href="#" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+                <a href="javascript:UpgradeCiclo(4);" class="btn btn-primary btn-block"><b>Upgrade</b></a>
               <%else%>
                 <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
               <%end%>
@@ -160,7 +164,7 @@
                   <b>Doações</b> <a class="pull-right"><%=@doacoes5%> / 1800</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Reentradas</b> <a class="pull-right">0 / 20</a>
+                  <b>Reentradas</b> <a class="pull-right"><%=@reentradas5%> / 20</a>
                 </li>
               </ul>
 
@@ -169,7 +173,7 @@
                   <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
                 </div>              
               <% elsif user.cadastro.ciclo.numerociclo == 4%>
-                <a href="#" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+                <a href="javascript:UpgradeCiclo(5);" class="btn btn-primary btn-block"><b>Upgrade</b></a>
               <%else%>
                 <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
               <%end%>
@@ -194,7 +198,7 @@
                   <b>Doações</b> <a class="pull-right"><%=@doacoes6%> / 3600</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Reentradas</b> <a class="pull-right">0 / 50</a>
+                  <b>Reentradas</b> <a class="pull-right"><%=@reentradas6%> / 50</a>
                 </li>
               </ul>
 
@@ -203,7 +207,7 @@
                   <i class="fa fa-check-square-o" style="font-size: 35px; color: green;"></i>
                 </div>              
               <% elsif user.cadastro.ciclo.numerociclo == 5%>
-                <a href="#" class="btn btn-primary btn-block"><b>Upgrade</b></a>
+                <a href="javascript:UpgradeCiclo(6);" class="btn btn-primary btn-block"><b>Upgrade</b></a>
               <%else%>
                 <a href="#" class="btn btn-default btn-block disabled"><b>Upgrade</b></a>
               <%end%>
@@ -266,6 +270,8 @@ function UpgradeCiclo(ciclo) {
 
           if (data == false){
             $('#mensagem').modal('show')
+          } else {
+            location.reload();
           }
 
     }

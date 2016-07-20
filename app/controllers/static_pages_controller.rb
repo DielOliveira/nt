@@ -7,15 +7,20 @@ before_action :requer_logon
 
 		@rede = Rede.find_by_cadastro_id(user.cadastro_id)
 		if @rede
-			@dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@rede.parent.parent.id) rescue nil
+			@dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@rede.parent.parent.cadastro.id) rescue nil
 		end
 
 		@mensagem = Mensagem.where("cadastro_1_id =" + user.cadastro.id.to_s + "and datarecebimento is null")
 
 		@mensagems = Mensagem.where(:cadastro_1_id => user.cadastro.id)
-
-
 		
+		@doacoesrecebidas = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_2_id = " + user.cadastro.id.to_s + "and dataconfirmacao is not null" ).sum('valorciclo')
+
+		@indicados = Indicado.where('cadastro_1_id = ' + user.cadastro.id.to_s).count
+
+
+
+		verdoacoes
 
 	end	
 

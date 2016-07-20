@@ -37,6 +37,17 @@ class CadastrosController < ApplicationController
           rede.cadastro_id = session[:cadastro_id]
           rede.save
 
+          padrinho = Usuario.find_by_email(@cadastro.cpfpadrinho)
+
+          if not padrinho == nil
+
+            indicado = Indicado.new
+            indicado.cadastro_1_id = padrinho.cadastro_id
+            indicado.cadastro_2_id = @cadastro.id
+            indicado.save
+
+          end
+
           format.html { redirect_to new_dadosfinanceiro_path, notice: 'Cadastro criado com sucesso.' }
 
       else

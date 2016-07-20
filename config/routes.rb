@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :indicados
   resources :reentradas
   resources :mensagems
   #resources :doacaos

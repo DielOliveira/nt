@@ -5,14 +5,59 @@ class CiclosController < ApplicationController
 
   def upgrade_ciclo
 
+      @reentradas = Reentrada.where("cadastro_1_id = " + user.cadastro.id.to_s).count    
 
-      @doacoes = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = " + params[:ciclo] + " and dataconfirmacao is not null" ).sum('valorciclo')
+      @doacoes = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = " + user.cadastro.ciclo.numerociclo.to_s + " and dataconfirmacao is not null" ).sum('valorciclo')
+
+      if user.cadastro.ciclo.numerociclo == 1
+          if @reentradas < 1
+            permite = false
+          end
+      end
+
+      if user.cadastro.ciclo.numerociclo == 2
+          if @reentradas < 2
+            permite = false
+          end
+      end
+
+      if user.cadastro.ciclo.numerociclo == 3
+          if @reentradas < 5
+            permite = false
+          end
+      end
+
+      if user.cadastro.ciclo.numerociclo == 4
+          if @reentradas < 15
+            permite = false
+          end
+      end 
+
+      if user.cadastro.ciclo.numerociclo == 5
+          if @reentradas < 35
+            permite = false
+          end
+      end
+
+      if user.cadastro.ciclo.numerociclo == 6
+          #if @reentradas < 35
+            permite = false
+          #end
+      end                                  
 
       if @doacoes == 0.0
-          render :json => false
+          permite = false
        else
-          render :json => true
+
+          cadastro = Cadastro.find_by_id(user.cadastro.id)
+          cadastro.cpfpadrinho = user.email
+          cadastro.ciclo_id = cadastro.ciclo_id + 1
+          cadastro.save
+
+          permite = false
       end
+
+       render :json => permite
 
   end
 
@@ -35,6 +80,14 @@ class CiclosController < ApplicationController
 
   def gerenciarciclos
 
+      rede = Rede.find_by_cadastro_id(user.cadastro.id)
+  
+      if rede.linha <= 2
+        @redepermite = false
+      else
+        @redepermite = true
+      end    
+
     #@doacoes1 = Doacaos.joins('inner join fd_itempedidos ip on ip.id = fd_itempedido_id inner join fd_itensadicionals ia on fd_itensadicional_id = ia.id').where('ip.fd_pedido_id = ?', params[:fd_pedido_id])
 
       @doacoes1start = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 1" ).sum('valorciclo')
@@ -44,6 +97,53 @@ class CiclosController < ApplicationController
       @doacoes4 = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 4 and dataconfirmacao is not null" ).sum('valorciclo')
       @doacoes5 = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 5 and dataconfirmacao is not null" ).sum('valorciclo')
       @doacoes6 = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 6 and dataconfirmacao is not null" ).sum('valorciclo')
+
+      @reentradas = Reentrada.where("cadastro_1_id = " + user.cadastro.id.to_s).count
+
+      if @reentradas >= 1
+        @reentradas1 = 1
+      else
+        @reentradas1 = 0
+      end
+
+      if @reentradas >= 2
+        @reentradas2 = 1
+      else
+        @reentradas2 = 0
+      end
+
+      if @reentradas >= 5
+        @reentradas3 = 3
+      elsif @reentradas > 2
+        @reentradas3 = (@reentradas -2)
+      elsif @reentradas <= 2
+        @reentradas3 = 0
+      end
+
+      if @reentradas >= 15
+        @reentradas4 = 10
+      elsif @reentradas > 5
+        @reentradas4 = (@reentradas -5)
+      elsif @reentradas <= 5
+        @reentradas4 = 0
+      end
+
+      if @reentradas >= 35
+        @reentradas5 = 20
+      elsif @reentradas > 15
+        @reentradas5 = (@reentradas -15)
+      elsif @reentradas <= 15
+        @reentradas5 = 0
+      end 
+
+      if @reentradas >= 85
+        @reentradas6 = 50
+      elsif @reentradas > 35
+        @reentradas6 = (@reentradas -35)
+      elsif @reentradas <= 35
+        @reentradas6 = 0
+      end                    
+
 
   end 
 

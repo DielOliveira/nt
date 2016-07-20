@@ -16,6 +16,8 @@ class Cadastro < ActiveRecord::Base
 	has_many :primary_mensagems, :class_name => "Doacao", :foreign_key => "cadastro_1_id"
 	has_many :secondary_mensagems, :class_name => "Doacao", :foreign_key => "cadastro_2_id"  	 
 
+
+	#validate :busca_email_existente
 	validates_cpf :cpf
 	validates :email, email_format: { message: "não é válido." }
 
@@ -24,6 +26,11 @@ class Cadastro < ActiveRecord::Base
 	#validates :cpf, :uniqueness => true
 	validates :telefone, :presence => { :message => 'é obrigatório.' }  
 	validates :operadora_id, :presence => { :message => 'é obrigatório.' } 
+
+	
+def busca_email_existente
+	errors.add(:cpfpadrinho, "não existe no sistema.") if not Usuario.find_by_email(self.cpfpadrinho)
+end		
 
 
 def cpfpadrinho
