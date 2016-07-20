@@ -1,5 +1,5 @@
 class RedesController < ApplicationController
-  before_action :requer_logon
+ # before_action :requer_logon
   before_action :set_rede, only: [:show, :edit, :update, :destroy]
 
   # GET /redes
