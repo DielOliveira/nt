@@ -7,7 +7,7 @@ class MensagemsController < ApplicationController
     @mensagems = Mensagem.where(:cadastro_1_id => user.cadastro.id)
     @mensagemsEnviadas = Mensagem.where(:cadastro_2_id => user.cadastro.id)
 
-    @pessoas = Cadastro.all
+    @pessoas = Cadastro.where(:flagreentrada => false)
 
     Mensagem.where("cadastro_1_id =" + user.cadastro.id.to_s + "and datarecebimento is null").update_all(datarecebimento: Time.now)
 

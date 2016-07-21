@@ -7,8 +7,7 @@ class CreateContabancariatipos < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    Contabancariatipo.create(:nometipo => "Corrente")
-    Contabancariatipo.create(:nometipo => "Poupança")
+
 
   end
 end

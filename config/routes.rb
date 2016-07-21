@@ -13,6 +13,13 @@ Rails.application.routes.draw do
   resources :bancos
   resources :operadoras
 
+  resources :reentradas do
+    member do
+      get :relogin   
+    end
+  end
+
+
 
   resources :doacaos do
     member do
@@ -33,6 +40,7 @@ Rails.application.routes.draw do
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
   match '/configu', to: 'static_pages#configu', via: 'get'
   get '/redeslist/:cadastro_id', to: 'static_pages#redeslist', as: 'redeslist'
+  get '/loginprincipal/:cadastro_id', to: 'static_pages#loginprincipal', as: 'loginprincipal'
   
   match '/novareentrada', to: 'reentradas#novareentrada', via: 'get'
 

@@ -18,30 +18,40 @@ class Cadastro < ActiveRecord::Base
 
 
 	validate :busca_email_existente
+	validate :validacpf
 	validates_cpf :cpf
 	validates :email, email_format: { message: "não é válido." }
 
 	validates :nomepessoa, :presence => { :message => 'é obrigatório.' }  
-	#validates :email, :presence => true, :uniqueness => true
-	#validates :cpf, :uniqueness => true
+	validates :email, :presence => true, :uniqueness => true
+	
+
+
 	validates :telefone, :presence => { :message => 'é obrigatório.' }  
 	validates :operadora_id, :presence => { :message => 'é obrigatório.' } 
 
-	
-def busca_email_existente
-	errors.add(:cpfpadrinho, "não existe no sistema.") if not Usuario.find_by_email(self.cpfpadrinho)
-end		
+	def validacpf
+		if self.flagreentrada == false
+			errors.add(:cpf, "já está sendo utilizado.") if Cadastro.find_by_cpf(self.cpf)
+		end
+	end	
+
+	def busca_email_existente
+		if not Cadastro.all.empty?
+			errors.add(:cpfpadrinho, "não existe no sistema.") if not Usuario.find_by_email(self.cpfpadrinho)
+		end
+	end		
 
 
-def cpfpadrinho
-  @cpfpadrinho
-end
+	def cpfpadrinho
+	  @cpfpadrinho
+	end
 
 
-# setter
-def cpfpadrinho=(val)
-  @cpfpadrinho = val
-end 
+	# setter
+	def cpfpadrinho=(val)
+	  @cpfpadrinho = val
+	end 
 
 
 end

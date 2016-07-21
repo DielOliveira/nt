@@ -1,6 +1,25 @@
 class StaticPagesController < ApplicationController
 before_action :requer_logon
 
+	def loginprincipal
+
+        reset_session
+
+        reentrada = Reentrada.find_by_cadastro_2_id(params[:cadastro_id])
+
+        #byebug
+
+        session[:ObjLogon] = Usuario.find_by_cadastro_id(reentrada.cadastro_1.id)
+
+
+        if usuario_logado == true
+          redirect_to root_path, notice: 'Usuario logado com sucesso.'
+        else
+           flash[:error] = "Usuario ou senha incorretos."
+        end 
+
+	end
+
 	def home
 		@doacaospendentesreceber = Doacao.where("cadastro_2_id =" + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
 		@doacaospendentespagar = Doacao.where("cadastro_1_id =" + user.cadastro.id.to_s + "and flagenviada = false and dataconfirmacao is null")

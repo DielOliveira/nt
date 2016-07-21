@@ -7,10 +7,5 @@ class CreateBancos < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    Banco.create(:nomebanco => "Bradesco")
-    Banco.create(:nomebanco => "Itaú")
-    Banco.create(:nomebanco => "Caixa Econômica")
-    Banco.create(:nomebanco => "Santander")
-
   end
 end

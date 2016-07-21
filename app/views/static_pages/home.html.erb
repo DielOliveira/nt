@@ -6,19 +6,22 @@
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
+          <a href="<%=reentradas_path%>">
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3><%=@doacaospendentesreceber.count%></h3>
+              <h3><%=Reentrada.where("cadastro_1_id = " + user.cadastro.id.to_s).count%></h3>
 
-              <p>Doações Pendentes</p>
+              <p>Reentradas</p>
             </div>
             <div class="icon">
             </div>
           </div>
+          </a>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
+          <a href="<%=doacoesrecebidas_path%>">
           <div class="small-box bg-green">
             <div class="inner">
               <h3>R$ <%=@doacoesrecebidas%></h3>
@@ -28,10 +31,12 @@
             <div class="icon">
             </div>
           </div>
+          </a>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
+          <a href="<%=redeslist_path(user.cadastro.id)%>">
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3>4</h3>
@@ -41,8 +46,10 @@
             <div class="icon">
             </div>
           </div>
+          </a>
         </div>
         <!-- ./col -->
+        <a href="<%=indicados_path%>">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-red">
@@ -55,6 +62,7 @@
             </div>
           </div>
         </div>
+        </a>
         <!-- ./col -->
       </div>
       <!-- /.row -->

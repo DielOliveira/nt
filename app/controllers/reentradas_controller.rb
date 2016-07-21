@@ -1,15 +1,33 @@
 class ReentradasController < ApplicationController
-  before_action :set_reentrada, only: [:show, :edit, :update, :destroy]
+  before_action :set_reentrada, only: [:show, :edit, :update, :destroy, :relogin]
 
   # GET /reentradas
   # GET /reentradas.json
+
+  def relogin
+
+        reset_session
+
+        reentrada = Reentrada.find_by_id(params[:id])
+
+        #byebug
+
+        session[:ObjLogon] = Usuario.find_by_cadastro_id(reentrada.cadastro_2.id)
+
+
+        if usuario_logado == true
+          redirect_to root_path, notice: 'Usuario logado com sucesso.'
+        else
+           flash[:error] = "Usuario ou senha incorretos."
+        end      
+  end  
 
   def novareentrada
 
     #Cadastro
     count = Reentrada.where("cadastro_1_id = " + user.cadastro.id.to_s)
     cadastro = Cadastro.new
-    cadastro.nomepessoa = user.cadastro.nomepessoa
+    cadastro.nomepessoa = user.cadastro.nomepessoa + "-" + (count.count + 1).to_s
     cadastro.masculino = user.cadastro.masculino
     cadastro.email = user.cadastro.email + "-" + (count.count + 1).to_s
     cadastro.telefone = user.cadastro.telefone
@@ -35,14 +53,14 @@ class ReentradasController < ApplicationController
     financeiro.contabancariatipo_id = financeirocopiar.contabancariatipo_id
     financeiro.observacao = financeirocopiar.observacao
     financeiro.emailsuperconta = financeirocopiar.emailsuperconta
-    financeiro.cadastro_id = financeirocopiar.cadastro_id
+    financeiro.cadastro_id = cadastro.id
     financeiro.save
 
     #user
     usuario = Usuario.new
     usuario.email = cadastro.email
     usuario.senha = user.senha
-    usuario.cadastro_id = user.cadastro_id
+    usuario.cadastro_id = cadastro.id
     usuario.dataultimologin = user.dataultimologin
     usuario.flagativo = user.flagativo
     usuario.descconfirmasenha = user.senha
