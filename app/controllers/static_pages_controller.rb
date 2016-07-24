@@ -24,20 +24,18 @@ before_action :requer_logon
 		@doacaospendentesreceber = Doacao.where("cadastro_2_id =" + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
 		@doacaospendentespagar = Doacao.where("cadastro_1_id =" + user.cadastro.id.to_s + "and flagenviada = false and dataconfirmacao is null")
 
-		@rede = Rede.find_by_cadastro_id(user.cadastro_id)
-		if @rede
-			@dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@rede.parent.parent.cadastro.id) rescue nil
-		end
+		@doacaospendentesreentradas = Doacao.joins("inner join reentradas re on re.cadastro_2_id = doacaos.cadastro_1_id").where("re.cadastro_1_id = " + user.cadastro.id.to_s + "and flagenviada = false and dataconfirmacao is null")
 
+
+		#Controle de mensagens
 		@mensagem = Mensagem.where("cadastro_1_id =" + user.cadastro.id.to_s + "and datarecebimento is null")
-
 		@mensagems = Mensagem.where(:cadastro_1_id => user.cadastro.id)
-		
+
+		#Contador de doações		
 		@doacoesrecebidas = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_2_id = " + user.cadastro.id.to_s + "and dataconfirmacao is not null" ).sum('valorciclo')
 
+		#Contador de indicados
 		@indicados = Indicado.where('cadastro_1_id = ' + user.cadastro.id.to_s).count
-
-
 
 		verdoacoes
 

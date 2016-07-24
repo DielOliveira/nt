@@ -1,7 +1,7 @@
 
 <script src="/assets/template/countdown/jquery.countdown.min.js"></script>
 
-      <%@doacaospendentespagar.each do |doacoes| %>
+      <%@doacaospendentesreentradas.each do |doacoes| %>
 
       <%@adjusted_datetime = (doacoes.created_at + 1.days).to_datetime %>
       <%@adjusted_datetime = @adjusted_datetime.strftime("%Y/%m/%d %H:%M") %>
@@ -12,9 +12,10 @@
         dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(rede.parent.parent.cadastro.id) rescue nil
       end      
       %>
+
           <div class="box box-warning">
               <div class="box-header with-border">
-                <h4 class="timeline-header"><a href="#">Seu login principal possui doações para realizar!</a></h4>
+                <h4 class="timeline-header"><a href="#">Sua reentrada possui doações para realizar!</a></h4>
 
                 <div class="box-tools pull-right">
                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -27,7 +28,7 @@
                 <p><%#= doacoes.created_at.blank? ? '' : doacoes.created_at.strftime("%d/%m/%Y - %H:%M")%></p>
                 <p><b>Doação de: </b><%=doacoes.cadastro_1.nomepessoa%></p>
                 <p><b>Doação para: </b><%=dadosfinanceiros.nometitular%></p>
-                <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock"></span></small></p>
+                <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock<%=doacoes.id%>"></span></small></p>
 
                 <div class="timeline-footer">
                   <%#= form_for @doacao, html: { multipart: true } do |f| %>
@@ -48,11 +49,11 @@
               </div>
               <!-- /.box-body -->
           </div>        
-      <%end%>
+           <script type="text/javascript">
+           $('#clock<%=doacoes.id%>').countdown("<%=@adjusted_datetime%>", function(event) {
+             var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+             $(this).html(event.strftime(totalHours + ' hr %M min %S sec'));
+           });   
+           </script>    
 
- <script type="text/javascript">
- $('#clock').countdown("<%=@adjusted_datetime%>", function(event) {
-   var totalHours = event.offset.totalDays * 24 + event.offset.hours;
-   $(this).html(event.strftime(totalHours + ' hr %M min %S sec'));
- });   
- </script>    
+      <%end%>

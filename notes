@@ -27,14 +27,15 @@ ok - Criar eskema de anexo
 ok - Criar efetivação da doação
 ok - Colocar contagem regressiva na doação
 ok - fazer o skema de reentradas
+ok - Arrumar o convite do sistema por login e em etapas
+ok - Arrumar a visualização da rede binária
 
 
 Domingo
 -------
+Exibir doações para logins principais
 Criar o layout incial
-Arrumar o convite do sistema por login e em etapas
 Fazer função que regulariza ciclos
-Arrumar a visualização da rede binária
 exibir ciclo na rede binária
 
 heroku pg:reset DATABASE
