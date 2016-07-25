@@ -29,11 +29,11 @@ ok - Colocar contagem regressiva na doação
 ok - fazer o skema de reentradas
 ok - Arrumar o convite do sistema por login e em etapas
 ok - Arrumar a visualização da rede binária
+ok - Exibir doações para logins principais
 
 
 Domingo
 -------
-Exibir doações para logins principais
 Criar o layout incial
 Fazer função que regulariza ciclos
 exibir ciclo na rede binária

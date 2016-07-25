@@ -37,7 +37,24 @@
                           <!-- <i class="menu-minus fa fa-times bg-gray"></i> -->
                     </td>
                   </tr>
-                <% end %>                
+                <% end %>
+
+                <% @doacaoreentradas.each do |doacao| %>
+                  <tr>
+                    <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_1.nomepessoa %><%end%></td>
+                    <td><%= doacao.cadastro_2.nomepessoa %></td>
+                    <td><%= doacao.ciclo.numerociclo %></td>
+                    <td><%= doacao.ciclo.valorciclo %></td>
+                    <td><%= doacao.created_at.blank? ? '' : doacao.created_at.strftime("%d/%m/%Y - %H:%M")%></td>
+                    <td><%= doacao.dataconfirmacao.blank? ? '' : doacao.dataconfirmacao.strftime("%d/%m/%Y - %H:%M")%></td>
+                    <td><%= doacao.observacao %></td>
+                      <%#if doacao.flagconfirmada%>
+                          <!-- <i class="menu-icon fa fa-check bg-green"></i> -->
+                      <%#else%>
+                          <!-- <i class="menu-minus fa fa-times bg-gray"></i> -->
+                    </td>
+                  </tr>
+                <% end %>                                  
                 
                 </tbody>
               </table>
