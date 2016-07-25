@@ -21,9 +21,11 @@ before_action :requer_logon
 	end
 
 	def home
-		@doacaospendentesreceber = Doacao.where("cadastro_2_id =" + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
-		@doacaospendentespagar = Doacao.where("cadastro_1_id =" + user.cadastro.id.to_s + "and flagenviada = false and dataconfirmacao is null")
 
+		@doacaospendentesreceber = Doacao.where("cadastro_2_id =" + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
+		@doacaospendentesreceberreentradas = Doacao.joins("inner join reentradas re on re.cadastro_2_id = doacaos.cadastro_2_id").where("re.cadastro_1_id = " + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
+		
+		@doacaospendentespagar = Doacao.where("cadastro_1_id =" + user.cadastro.id.to_s + "and flagenviada = false and dataconfirmacao is null")
 		@doacaospendentesreentradas = Doacao.joins("inner join reentradas re on re.cadastro_2_id = doacaos.cadastro_1_id").where("re.cadastro_1_id = " + user.cadastro.id.to_s + "and flagenviada = false and dataconfirmacao is null")
 
 

@@ -2,6 +2,7 @@
 <%= render 'shared/doacoesPagar' %>
 <%= render 'shared/doacoesPagarReentrada' %>
 <%= render 'shared/doacoesReceber' %>
+<%= render 'shared/doacoesReceberReentrada' %>
 <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
@@ -25,7 +26,7 @@
           <a href="<%=doacoesrecebidas_path%>">
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>R$ <%=@doacoesrecebidas%></h3>
+              <h3><%=number_to_currency(@doacoesrecebidas, unit: "R$", separator: ",", delimiter: ".")%></h3>
 
               <p>Doações Recebidas</p>
             </div>
