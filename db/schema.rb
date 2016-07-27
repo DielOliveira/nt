@@ -79,20 +79,20 @@ ActiveRecord::Schema.define(version: 20160720213706) do
   add_index "dadosfinanceiros", ["contabancariatipo_id"], name: "index_dadosfinanceiros_on_contabancariatipo_id", using: :btree
 
   create_table "doacaos", force: :cascade do |t|
-    t.integer  "ciclo_id"
     t.boolean  "flagconfirmada"
     t.boolean  "flagrejeitada"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "cadastro_1_id"
-    t.integer  "cadastro_2_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "cadastro_doador_id"
+    t.integer  "cadastro_recebedor_id"
+    t.integer  "cadastro_principal_id"
+    t.integer  "ciclo_doador_id"
+    t.integer  "ciclo_recebedor_id"
     t.datetime "dataconfirmacao"
     t.string   "observacao"
     t.boolean  "flagenviada"
     t.string   "avatar"
   end
-
-  add_index "doacaos", ["ciclo_id"], name: "index_doacaos_on_ciclo_id", using: :btree
 
   create_table "indicados", force: :cascade do |t|
     t.datetime "created_at",    null: false
@@ -138,11 +138,15 @@ ActiveRecord::Schema.define(version: 20160720213706) do
   end
 
   create_table "reentradas", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "cadastro_1_id"
-    t.integer  "cadastro_2_id"
+    t.integer  "ciclo_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "cadastro_reentrando_id"
+    t.integer  "cadastro_adicionado_id"
+    t.integer  "cadastro_principal_id"
   end
+
+  add_index "reentradas", ["ciclo_id"], name: "index_reentradas_on_ciclo_id", using: :btree
 
   create_table "usuarios", force: :cascade do |t|
     t.string   "email"
@@ -162,8 +166,8 @@ ActiveRecord::Schema.define(version: 20160720213706) do
   add_foreign_key "dadosfinanceiros", "bancos"
   add_foreign_key "dadosfinanceiros", "cadastros"
   add_foreign_key "dadosfinanceiros", "contabancariatipos"
-  add_foreign_key "doacaos", "ciclos"
   add_foreign_key "redes", "cadastros"
   add_foreign_key "redes", "redetipos"
+  add_foreign_key "reentradas", "ciclos"
   add_foreign_key "usuarios", "cadastros"
 end

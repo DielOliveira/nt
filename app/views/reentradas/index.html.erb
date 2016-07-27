@@ -2,6 +2,78 @@
 
 <div class="box box-warning">
     <div class="box-header with-border">
+      <h4 class="timeline-header"><a href="#">Login Principal</a></h4>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th >Login</th>
+            <th >Ciclo</th>
+            <th >Reentradas</th>
+            <th >Doacoes Recebidas</th>
+            <th ></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td><%=user.email%></td>
+              <td ><span class="badge bg-green"><%=user.cadastro.ciclo.numerociclo%></span></td>
+              <td ><span class="badge bg-green"><%=reentradasCicloAtual(user.cadastro.id)%></span></td>
+              <td ><span class="badge bg-green"><%=doacaoesRecebidasCicloAtualCount(user.cadastro.id)%></span></td>
+              <td align='right'>
+                  <% if reentrada(user.cadastro.id) == 'opcional' %>
+                    <div class="btn-group">
+                      <%= link_to novareentrada_path(user.cadastro.id), :class => "btn btn-success btn-sm" do %>
+                         Reentrada Opcional
+                      <% end %>   
+                    </div>               
+                  <% else %>   
+                    <div class="btn-group">
+                      <%= link_to novareentrada_path(user.cadastro.id), :class => "btn btn-danger btn-sm" do %>
+                         Reentrada Obrigatorio
+                      <% end %>   
+                    </div>               
+                  <% end %>                
+                  <% if upgrade(user.cadastro.id) == 'opcional' %>
+                    <div class="btn-group">
+                      <%= link_to upgrade_ciclo_path(user.cadastro.id), :class => "btn btn-success btn-sm" do %>
+                         Upgrade Opcional
+                      <% end %>   
+                    </div>               
+                  <% else %>   
+                    <div class="btn-group">
+                      <%= link_to upgrade_ciclo_path(user.cadastro.id), :class => "btn btn-danger btn-sm" do %>
+                         Upgrade Obrigatorio
+                      <% end %>   
+                    </div>               
+                  <% end %>      
+              </td>
+            </tr>
+        </tbody>
+      </table>
+
+      <div class="timeline-footer">
+      <br>
+        <div align="right">
+         
+        </div>
+
+      </div>              
+    </div>
+    <!-- /.box-body -->
+</div> 
+
+<div class="box box-warning">
+    <div class="box-header with-border">
       <h4 class="timeline-header"><a href="#">Reentradas</a></h4>
 
       <div class="box-tools pull-right">
@@ -18,25 +90,46 @@
           <tr>
             <th >Login</th>
             <th >Ciclo</th>
-            <th colspan="3"></th>
+            <th >Reentradas</th>
+            <th >Doacoes Recebidas</th>
+            <th ></th>
           </tr>
         </thead>
 
         <tbody>
           <% @reentradas.each do |reentrada| %>
             <tr>
-              <td>
-                <%=reentrada.cadastro_2.email%>
-              </td>
-              <td>
-                <%=reentrada.cadastro_2.ciclo.numerociclo%>
-              </td>
+              <td><%=reentrada.cadastro_adicionado.email%></td>
+              <td ><span class="badge bg-green"><%=reentrada.cadastro_adicionado.ciclo.numerociclo%></span></td>
+              <td ><span class="badge bg-green"><%=reentradasCicloAtual(reentrada.cadastro_adicionado.id)%></span></td>
+              <td ><span class="badge bg-green"><%=doacaoesRecebidasCicloAtualCount(reentrada.cadastro_adicionado.id)%></span></td>
               <td align='right'>
-                <div class="btn-group">
-                  <%= link_to relogin_reentrada_path(reentrada.id), :class => "btn btn-default btn-sm" do %>
-                    <span class="glyphicon glyphicon glyphicon-user"></span> Ver Perfil
-                  <% end %>   
-                </div>            
+                <% if reentrada(reentrada.cadastro_adicionado_id) == 'opcional' %>
+                  <div class="btn-group">
+                    <%= link_to novareentrada_path(reentrada.cadastro_adicionado_id), :class => "btn btn-success btn-sm" do %>
+                       Reentrada Opcional
+                    <% end %>   
+                  </div>               
+                <% else %>   
+                  <div class="btn-group">
+                    <%= link_to novareentrada_path(reentrada.cadastro_adicionado_id), :class => "btn btn-danger btn-sm" do %>
+                       Reentrada Obrigatorio
+                    <% end %>   
+                  </div>               
+                <% end %>                
+                <% if upgrade(reentrada.cadastro_adicionado_id) == 'opcional' %>
+                  <div class="btn-group">
+                    <%= link_to upgrade_ciclo_path(reentrada.cadastro_adicionado_id), :class => "btn btn-success btn-sm" do %>
+                       Upgrade Opcional
+                    <% end %>   
+                  </div>               
+                <% else %>   
+                  <div class="btn-group">
+                    <%= link_to upgrade_ciclo_path(reentrada.cadastro_adicionado_id), :class => "btn btn-danger btn-sm" do %>
+                       Upgrade Obrigatorio
+                    <% end %>   
+                  </div>               
+                <% end %>     
               </td>
             </tr>
           <% end %>
@@ -44,13 +137,6 @@
       </table>
 
       <div class="timeline-footer">
-      <br>
-        <div align="right">
-          <%= link_to novareentrada_path, :class => "btn btn-success btn-sm" do %>
-             Nova Reentrada
-          <% end %>          
-        </div>
-
       </div>              
     </div>
     <!-- /.box-body -->

@@ -42,7 +42,8 @@ Rails.application.routes.draw do
   get '/redeslist/:cadastro_id', to: 'static_pages#redeslist', as: 'redeslist'
   get '/loginprincipal/:cadastro_id', to: 'static_pages#loginprincipal', as: 'loginprincipal'
   
-  match '/novareentrada', to: 'reentradas#novareentrada', via: 'get'
+  get '/novareentrada/:cadastro_id', to: 'reentradas#novareentrada', as: 'novareentrada'
+  get '/upgrade_ciclo/:cadastro_id', to: 'ciclos#upgrade_ciclo', as: 'upgrade_ciclo'
 
 
   #get '/confirmadoacao/:doacao_id', to: 'doacaos#confirmadoacao', as: 'confirmadoacao'
@@ -59,7 +60,6 @@ Rails.application.routes.draw do
 
   match '/start_ciclo1', to: 'ciclos#start_ciclo1', via: 'get'
 
-  match '/upgrade_ciclo', to: 'ciclos#upgrade_ciclo', via: 'get'
 
 
   match '/grava_mensagem', to: 'mensagems#grava_mensagem', via: 'get'

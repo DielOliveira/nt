@@ -6,46 +6,7 @@ module Utilities
 
 	end	
 
-	def verdoacoes
-	    rede = Rede.find_by_cadastro_id(user.cadastro.id)
 	
-		if rede.linha > 2
-			doacoes = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = " + user.cadastro.ciclo.id.to_s )
-			if doacoes.empty?
-
-			    start = Doacao.new
-			    start.cadastro_1_id = user.cadastro.id
-			    start.cadastro_2_id = rede.parent.parent.cadastro.id
-			    start.ciclo_id = user.cadastro.ciclo.id
-			    start.flagenviada = false
-			    start.save			
-			    	
-			end			
-		end
-
-	    redes = Rede.joins('inner join reentradas ree on cadastro_id = ree.cadastro_2_id').where('cadastro_1_id = ' + user.cadastro.id.to_s)
-	
-		
-		redes.each do |rede|
-		#byebug
-
-			if rede.linha > 2
-				doacoes = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + rede.cadastro_id.to_s + "and ciclo_id = " + rede.cadastro.ciclo.id.to_s )
-				if doacoes.empty?
-
-				    start = Doacao.new
-				    start.cadastro_1_id = rede.cadastro_id
-				    start.cadastro_2_id = rede.parent.parent.cadastro.id
-				    start.ciclo_id = rede.cadastro.ciclo.id
-				    start.flagenviada = false
-				    start.save			
-				    	
-				end			
-			end
-		end		
-
-	end
-
 	def proximaentrada
 
 	    linha1 = Rede.where("linha = 1")

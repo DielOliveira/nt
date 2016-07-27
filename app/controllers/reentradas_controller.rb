@@ -25,24 +25,28 @@ class ReentradasController < ApplicationController
   def novareentrada
 
     #Cadastro
-    count = Reentrada.where("cadastro_1_id = " + user.cadastro.id.to_s)
+    principal = Cadastro.find(user.cadastro_id)
+
+    count = Reentrada.where("cadastro_principal_id = " + principal.id.to_s)
+    reentrando = Usuario.find_by_cadastro_id(params[:cadastro_id])
+    
     cadastro = Cadastro.new
-    cadastro.nomepessoa = user.cadastro.nomepessoa + "-" + (count.count + 1).to_s
-    cadastro.masculino = user.cadastro.masculino
-    cadastro.email = user.cadastro.email + "-" + (count.count + 1).to_s
-    cadastro.telefone = user.cadastro.telefone
-    cadastro.operadora_id = user.cadastro.operadora_id
-    cadastro.whatsapp = user.cadastro.whatsapp
-    cadastro.skype = user.cadastro.skype
-    cadastro.facebook = user.cadastro.facebook
-    cadastro.cpf = user.cadastro.cpf
-    cadastro.ciclo_id = user.cadastro.ciclo_id =  1
+    cadastro.nomepessoa = principal.nomepessoa + "-" + (count.count + 1).to_s
+    cadastro.masculino = reentrando.cadastro.masculino
+    cadastro.email = principal.email + "-" + (count.count + 1).to_s
+    cadastro.telefone = reentrando.cadastro.telefone
+    cadastro.operadora_id = reentrando.cadastro.operadora_id
+    cadastro.whatsapp = reentrando.cadastro.whatsapp
+    cadastro.skype = reentrando.cadastro.skype
+    cadastro.facebook = reentrando.cadastro.facebook
+    cadastro.cpf = reentrando.cadastro.cpf
+    cadastro.ciclo_id = reentrando.cadastro.ciclo_id =  1
     cadastro.flagreentrada = true
-    cadastro.cpfpadrinho = user.email
+    cadastro.cpfpadrinho = reentrando.email
     cadastro.save
 
     #Financeiro
-    financeirocopiar = Dadosfinanceiro.find_by_cadastro_id(user.cadastro.id)
+    financeirocopiar = Dadosfinanceiro.find_by_cadastro_id(params[:cadastro_id].to_s)
     financeiro = Dadosfinanceiro.new
     financeiro.nometitular = financeirocopiar.nometitular
     financeiro.cpftitular = financeirocopiar.cpftitular
@@ -59,14 +63,13 @@ class ReentradasController < ApplicationController
     #user
     usuario = Usuario.new
     usuario.email = cadastro.email
-    usuario.senha = user.senha
+    usuario.senha = reentrando.senha
     usuario.cadastro_id = cadastro.id
-    usuario.dataultimologin = user.dataultimologin
-    usuario.flagativo = user.flagativo
-    usuario.descconfirmasenha = user.senha
+    usuario.dataultimologin = reentrando.dataultimologin
+    usuario.flagativo = reentrando.flagativo
+    usuario.descconfirmasenha = reentrando.senha
     usuario.save
 
-    
     #rede
     rede = Rede.find_by_id(proximaentrada.to_i)
     rede.cadastro_id = cadastro.id
@@ -75,8 +78,12 @@ class ReentradasController < ApplicationController
 
     #reentrada
     reentrada = Reentrada.new
-    reentrada.cadastro_1_id = user.cadastro.id
-    reentrada.cadastro_2_id = cadastro.id
+    reentrada.cadastro_reentrando_id = reentrando.cadastro.id
+    reentrada.cadastro_adicionado_id = cadastro.id
+    reentrada.cadastro_principal_id = user.cadastro.id
+    reentrada.ciclo_id = cadastro.ciclo.id
+
+    
     if reentrada.save
       redirect_to reentradas_path
     end
@@ -86,7 +93,7 @@ class ReentradasController < ApplicationController
 
 
   def index
-    @reentradas = Reentrada.where("cadastro_1_id = " + user.cadastro.id.to_s)
+    @reentradas = Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s)
   end
 
   # GET /reentradas/1

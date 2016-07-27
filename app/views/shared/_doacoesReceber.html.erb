@@ -1,7 +1,7 @@
 <%@doacaospendentesreceber.each do |doacoes| %>
     <div class="box box-warning">
         <div class="box-header with-border">
-          <h4 class="timeline-header"><a href="#"><%=doacoes.cadastro_2.nomepessoa%> possui uma doação para confirmar!</a></h4>
+          <h4 class="timeline-header"><a href="#"><%=doacoes.cadastro_recebedor.nomepessoa%> possui uma doação para confirmar!</a></h4>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -11,8 +11,8 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <p><b>Doação de: </b><%=doacoes.cadastro_1.nomepessoa%></p>
-          <p><b>Valor: </b><%=number_to_currency( doacoes.ciclo.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
+          <p><b>Doação de: </b><%=doacoes.cadastro_doador.nomepessoa%></p>
+          <p><b>Valor: </b><%=number_to_currency( doacoes.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
           <div class="timeline-footer">
             <div align="right">
               <%= link_to doacoes.avatar_url , :class => "btn btn-info btn-sm", :target => "_blank" do %>

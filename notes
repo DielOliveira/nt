@@ -38,4 +38,11 @@ Criar o layout incial
 Fazer função que regulariza ciclos
 exibir ciclo na rede binária
 
+Quadro verde no início mudar para doações a receber
+Melhorar informações do ciclo (Doações recebidas, reentradas obrigatorias)
+Não mostrar na rede binária quem não fez a doação ainda
+questão de diminuir a rede binária
+Não mostrar perfil.. reentradas são todas do mesmo perfil
+
+
 heroku pg:reset DATABASE

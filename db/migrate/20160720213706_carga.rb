@@ -13,11 +13,11 @@ class Carga < ActiveRecord::Migration
 
 
 	Ciclo.create(:nomeciclo => "1", :numerociclo => 1, :valorciclo => 30.0, :qtdreentradas => 1)    
-	Ciclo.create(:nomeciclo => "2", :numerociclo => 2, :valorciclo => 60.0, :qtdreentradas => 1)    
-	Ciclo.create(:nomeciclo => "3", :numerociclo => 3, :valorciclo => 90.0, :qtdreentradas => 3)    
-	Ciclo.create(:nomeciclo => "4", :numerociclo => 4, :valorciclo => 300.0, :qtdreentradas => 10)    
-	Ciclo.create(:nomeciclo => "5", :numerociclo => 5, :valorciclo => 600.0, :qtdreentradas => 20)    
-	Ciclo.create(:nomeciclo => "6", :numerociclo => 6, :valorciclo => 1500.0, :qtdreentradas => 50)
+	Ciclo.create(:nomeciclo => "2", :numerociclo => 2, :valorciclo => 90.0, :qtdreentradas => 1)    
+	Ciclo.create(:nomeciclo => "3", :numerociclo => 3, :valorciclo => 300.0, :qtdreentradas => 3)    
+	Ciclo.create(:nomeciclo => "4", :numerociclo => 4, :valorciclo => 900.0, :qtdreentradas => 10)    
+	Ciclo.create(:nomeciclo => "5", :numerociclo => 5, :valorciclo => 1800.0, :qtdreentradas => 20)    
+	Ciclo.create(:nomeciclo => "6", :numerociclo => 6, :valorciclo => 3600.0, :qtdreentradas => 50)
 
     Contabancariatipo.create(:nometipo => "Corrente")
 
@@ -40,6 +40,180 @@ class Carga < ActiveRecord::Migration
 	Rede.create(:linha => 2, :cadastro_id => cadastro3.id, :parent_id => rede.id)
 	Usuario.create(:email => "eliando@eliando.com", :senha => "123", :descconfirmasenha => "123", :cadastro_id => cadastro3.id, :flagativo => true)
 	Indicado.create(:cadastro_1_id => cadastro1.id, :cadastro_2_id => cadastro3.id)
+
+    linhas = Rede.where("linha = " + (2).to_s)
+
+    linhas.each do |line|
+
+      lineno = Rede.where("parent_id = " + line.id.to_s)
+
+      if lineno.count == 0
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 3
+        novarede.save
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 3
+        novarede.save
+
+      elsif lineno.count == 1
+        
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 3
+        novarede.save
+
+      end 
+
+    end
+
+    linhas = Rede.where("linha = " + (3).to_s)
+
+    linhas.each do |line|
+
+      lineno = Rede.where("parent_id = " + line.id.to_s)
+
+      if lineno.count == 0
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 4
+        novarede.save
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 4
+        novarede.save
+
+      elsif lineno.count == 1
+        
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 4
+        novarede.save
+
+      end 
+
+    end        
+
+    linhas = Rede.where("linha = " + (4).to_s)
+
+    linhas.each do |line|
+
+      lineno = Rede.where("parent_id = " + line.id.to_s)
+
+      if lineno.count == 0
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 5
+        novarede.save
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 5
+        novarede.save
+
+      elsif lineno.count == 1
+        
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 5
+        novarede.save
+
+      end 
+
+    end 
+
+    linhas = Rede.where("linha = " + (5).to_s)
+
+    linhas.each do |line|
+
+      lineno = Rede.where("parent_id = " + line.id.to_s)
+
+      if lineno.count == 0
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 6
+        novarede.save
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 6
+        novarede.save
+
+      elsif lineno.count == 1
+        
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 6
+        novarede.save
+
+      end 
+
+    end   
+
+    linhas = Rede.where("linha = " + (6).to_s)
+
+    linhas.each do |line|
+
+      lineno = Rede.where("parent_id = " + line.id.to_s)
+
+      if lineno.count == 0
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 7
+        novarede.save
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 7
+        novarede.save
+
+      elsif lineno.count == 1
+        
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 7
+        novarede.save
+
+      end 
+
+    end 
+
+    linhas = Rede.where("linha = " + (7).to_s)
+
+    linhas.each do |line|
+
+      lineno = Rede.where("parent_id = " + line.id.to_s)
+
+      if lineno.count == 0
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 8
+        novarede.save
+
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 8
+        novarede.save
+
+      elsif lineno.count == 1
+        
+        novarede = Rede.new
+        novarede.parent_id = line.id
+        novarede.linha = 8
+        novarede.save
+
+      end 
+
+    end                       
 
   end
 end

@@ -19,7 +19,7 @@
   
   
 <%
-      @dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@doacao.cadastro_2.id) rescue nil
+      @dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@doacao.cadastro_recebedor.id) rescue nil
 %>
 
 <%@adjusted_datetime = (@doacao.created_at + 1.days).to_datetime %>
@@ -28,10 +28,10 @@
 <div class="box box-warning">
     <div class="box-header with-border">
 
-    <% if user.cadastro.id == @doacao.cadastro_1.id%>
-      <h4 class="timeline-header"><a href="#">Doação para: <%=@doacao.cadastro_2.nomepessoa%>!</a></h4>
+    <% if user.cadastro.id == @doacao.cadastro_doador.id%>
+      <h4 class="timeline-header"><a href="#">Doação para: <%=@doacao.cadastro_recebedor.nomepessoa%>!</a></h4>
     <%else%>
-      <h4 class="timeline-header"><a href="#">Doação de: <%=@doacao.cadastro_1.nomepessoa%>!</a></h4>
+      <h4 class="timeline-header"><a href="#">Doação de: <%=@doacao.cadastro_doador.nomepessoa%>!</a></h4>
     <%end%>
 
       <div class="box-tools pull-right">

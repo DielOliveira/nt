@@ -11,7 +11,7 @@
           <a href="<%=reentradas_path%>">
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3><%=Reentrada.where("cadastro_1_id = " + user.cadastro.id.to_s).count%></h3>
+              <h3><%=Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s).count%></h3>
 
               <p>Reentradas</p>
             </div>
@@ -23,12 +23,12 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <a href="<%=doacoesrecebidas_path%>">
+          <a href="#">
           <div class="small-box bg-green">
             <div class="inner">
               <h3><%=number_to_currency(@doacoesrecebidas, unit: "R$", separator: ",", delimiter: ".")%></h3>
 
-              <p>Doações Recebidas</p>
+              <p>Doações a Receber</p>
             </div>
             <div class="icon">
             </div>

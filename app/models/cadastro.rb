@@ -1,7 +1,7 @@
 #encoding: utf-8
 class Cadastro < ActiveRecord::Base
 
-	mount_uploader :avatar, AvatarUploader
+	#mount_uploader :avatar, AvatarUploader
 	
 	belongs_to :operadora
 	belongs_to :ciclo
@@ -10,20 +10,25 @@ class Cadastro < ActiveRecord::Base
 	has_many :usuarios, dependent: :destroy
 	has_many :redes, dependent: :destroy
 
-	has_many :primary_doacaos, :class_name => "Doacao", :foreign_key => "cadastro_1_id"
-	has_many :secondary_doacaos, :class_name => "Doacao", :foreign_key => "cadastro_2_id" 
+	has_many :primary_doacaos, :class_name => "Doacao", :foreign_key => "cadastro_doador_id"
+	has_many :secondary_doacaos, :class_name => "Doacao", :foreign_key => "cadastro_recebedor_id" 
+	has_many :tertiary_doacaos, :class_name => "Doacao", :foreign_key => "cadastro_principal_id" 
+
+	has_many :primary_reentradas, :class_name => "Reentrada", :foreign_key => "cadastro_reentrando_id"
+	has_many :secondary_reentradas, :class_name => "Reentrada", :foreign_key => "cadastro_adicionado_id" 
+	has_many :tertiary_reentradas, :class_name => "Reentrada", :foreign_key => "cadastro_principal_id" 	
 
 	has_many :primary_mensagems, :class_name => "Doacao", :foreign_key => "cadastro_1_id"
 	has_many :secondary_mensagems, :class_name => "Doacao", :foreign_key => "cadastro_2_id"  	 
 
 
-	validate :busca_email_existente
-	validate :validacpf
-	validates_cpf :cpf
+	validate :busca_email_existente, :on => :create
+	validate :validacpf, :on => :create
+	validates_cpf :cpf, :on => :create
 	validates :email, email_format: { message: "não é válido." }
 
 	validates :nomepessoa, :presence => { :message => 'é obrigatório.' }  
-	validates :email, :presence => true, :uniqueness => true
+	validates :email, :presence => true, :uniqueness => true, :on => :create
 	
 
 

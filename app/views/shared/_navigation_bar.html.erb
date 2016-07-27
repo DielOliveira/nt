@@ -148,28 +148,15 @@ desired effect
 
                 <p>
                   <%=user.cadastro.nomepessoa%>
-                  <small>Member since Nov. 2012</small>
                 </p>
               </li>
               <!-- Menu Body -->
               <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Filiados</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="<%=redes_path%>">Reentradas</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Convites</a>
-                  </div>
-                </div>
-                <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                  <a href="<%=edit_cadastro_path(user.cadastro_id)%>" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
                   <a href="<%= logoff_path%>" class="btn btn-default btn-flat">Sair</a>
@@ -231,6 +218,7 @@ desired effect
         <%end%>
 
         <li><a href="<%=root_path%>"><i class="fa fa-home"></i> Início</a></li>
+        <li><a href="<%=reentradas_path%>"><i class="fa fa-user"></i> Meus Logins</a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-money"></i> <span>Doações</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
@@ -244,7 +232,6 @@ desired effect
           <ul class="treeview-menu">
             <li><a href="<%=redeslist_path(user.cadastro.id)%>">Rede Binária</a></li>
             <li><a href="<%=redes_path%>">Listagem de Linha</a></li>
-            <li><a href="<%=gerenciarciclos_path%>">Ciclos</a></li>
             <li><a href="<%=indicados_path%>">Indicados Direto</a></li>
           </ul>
         </li>
@@ -256,8 +243,8 @@ desired effect
             <li><a href="<%=edit_usuario_path(user.id)%>">Alterar Senha</a></li>
           </ul>
         </li>       
-        <li><a href="<%=reentradas_path%>"><i class="fa fa-retweet"></i> Reentradas</a></li>        
         <li><a href="<%=mensagems_path%>"><i class="fa fa-envelope-o"></i> Mensagens</a></li>          
+        <li><a href="<%= logoff_path%>"><i class="fa fa-sign-out"></i> Sair</a></li>          
       </ul>
       <!-- /.sidebar-menu -->
     </section>

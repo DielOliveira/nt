@@ -5,59 +5,27 @@ class CiclosController < ApplicationController
 
   def upgrade_ciclo
 
-      @reentradas = Reentrada.where("cadastro_1_id = " + user.cadastro.id.to_s).count    
+      cadastro = Cadastro.find(params[:cadastro_id])
 
-      @doacoes = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = " + user.cadastro.ciclo.numerociclo.to_s + " and dataconfirmacao is not null" ).sum('valorciclo')
+      @reentradas = Reentrada.where("cadastro_reentrando_id = " + params[:cadastro_id].to_s + ' and ciclo_id = ' + cadastro.ciclo.id.to_s).count
 
-      if user.cadastro.ciclo.numerociclo == 1
-          if @reentradas < 1
-            permite = false
-          end
+      if cadastro.ciclo.qtdreentradas < @reentradas
+        respond_to do |format|
+            format.html { redirect_to reentradas_path, notice: 'Ainda não é possível realizar o Upgrade. Você não possui reentradas suficientes' }
+        end
       end
 
-      if user.cadastro.ciclo.numerociclo == 2
-          if @reentradas < 2
-            permite = false
-          end
+      cadastro = Cadastro.find_by_id(cadastro.id)
+      cadastro.cpfpadrinho = cadastro.email
+      cadastro.ciclo_id = cadastro.ciclo_id + 1
+
+      respond_to do |format|
+        if cadastro.save
+            format.html { redirect_to reentradas_path, notice: 'Upgrade realizado com sucesso.' }
+        else
+            format.html { redirect_to reentradas_path, notice: 'Erro ao realizar o Upgrade.' }
+        end
       end
-
-      if user.cadastro.ciclo.numerociclo == 3
-          if @reentradas < 5
-            permite = false
-          end
-      end
-
-      if user.cadastro.ciclo.numerociclo == 4
-          if @reentradas < 15
-            permite = false
-          end
-      end 
-
-      if user.cadastro.ciclo.numerociclo == 5
-          if @reentradas < 35
-            permite = false
-          end
-      end
-
-      if user.cadastro.ciclo.numerociclo == 6
-          #if @reentradas < 35
-            permite = false
-          #end
-      end                                  
-
-      if @doacoes == 0.0
-          permite = false
-       else
-
-          cadastro = Cadastro.find_by_id(user.cadastro.id)
-          cadastro.cpfpadrinho = user.email
-          cadastro.ciclo_id = cadastro.ciclo_id + 1
-          cadastro.save
-
-          permite = false
-      end
-
-       render :json => permite
 
   end
 

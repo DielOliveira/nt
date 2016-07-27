@@ -7,7 +7,7 @@
       <%@adjusted_datetime = @adjusted_datetime.strftime("%Y/%m/%d %H:%M") %>
 
       <%
-      rede = Rede.find_by_cadastro_id(doacoes.cadastro_1_id)
+      rede = Rede.find_by_cadastro_id(doacoes.cadastro_doador_id)
       if rede
         dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(rede.parent.parent.cadastro.id) rescue nil
       end      
@@ -15,7 +15,7 @@
 
           <div class="box box-warning">
               <div class="box-header with-border">
-                <h4 class="timeline-header"><a href="#"><%=doacoes.cadastro_1.nomepessoa%> possui doações para realizar!</a></h4>
+                <h4 class="timeline-header"><a href="#"><%=doacoes.cadastro_doador.nomepessoa%> possui doações para realizar!</a></h4>
 
                 <div class="box-tools pull-right">
                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -26,9 +26,9 @@
               <!-- /.box-header -->
               <div class="box-body">
                 <p><%#= doacoes.created_at.blank? ? '' : doacoes.created_at.strftime("%d/%m/%Y - %H:%M")%></p>
-                <p><b>Doação de: </b><%=doacoes.cadastro_1.nomepessoa%></p>
+                <p><b>Doação de: </b><%=doacoes.cadastro_doador.nomepessoa%></p>
                 <p><b>Doação para: </b><%=dadosfinanceiros.nometitular%></p>
-                <p><b>Valor: </b><%=number_to_currency(doacoes.ciclo.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
+                <p><b>Valor: </b><%=number_to_currency(doacoes.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
                 <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock<%=doacoes.id%>"></span></small></p>
 
                 <div class="timeline-footer">
