@@ -81,7 +81,7 @@ class ReentradasController < ApplicationController
     reentrada.cadastro_reentrando_id = reentrando.cadastro.id
     reentrada.cadastro_adicionado_id = cadastro.id
     reentrada.cadastro_principal_id = user.cadastro.id
-    reentrada.ciclo_id = cadastro.ciclo.id
+    reentrada.ciclo_id = user.cadastro.ciclo.id
 
     
     if reentrada.save

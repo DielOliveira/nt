@@ -30,19 +30,32 @@ ok - fazer o skema de reentradas
 ok - Arrumar o convite do sistema por login e em etapas
 ok - Arrumar a visualização da rede binária
 ok - Exibir doações para logins principais
+ok - Não mostrar perfil.. reentradas são todas do mesmo perfil
 
 
 Domingo
 -------
 Criar o layout incial
-Fazer função que regulariza ciclos
 exibir ciclo na rede binária
 
 Quadro verde no início mudar para doações a receber
-Melhorar informações do ciclo (Doações recebidas, reentradas obrigatorias)
-Não mostrar na rede binária quem não fez a doação ainda
 questão de diminuir a rede binária
-Não mostrar perfil.. reentradas são todas do mesmo perfil
+Não mostrar na rede binária quem não fez a doação ainda
+Rede binária exibindo aleatório
 
+
+
+
+Reentrada Obrigatória
+---------------------
+- Realizou 1 Doação
+- Recebeu 4 Doações
+
+
+Upgrade Obrigatório
+--------------------
+- Realizou 1 Doação
+- Recebeu 4 Doações
+- Realizou 1 reentrada
 
 heroku pg:reset DATABASE

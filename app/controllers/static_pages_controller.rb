@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
 before_action :requer_logon
 
 	def verdoacoes
+
 		    rede = Rede.find_by_cadastro_id(user.cadastro.id)
 		
 			if rede.linha > 2

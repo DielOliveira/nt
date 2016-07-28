@@ -10,9 +10,7 @@ class CiclosController < ApplicationController
       @reentradas = Reentrada.where("cadastro_reentrando_id = " + params[:cadastro_id].to_s + ' and ciclo_id = ' + cadastro.ciclo.id.to_s).count
 
       if cadastro.ciclo.qtdreentradas < @reentradas
-        respond_to do |format|
-            format.html { redirect_to reentradas_path, notice: 'Ainda não é possível realizar o Upgrade. Você não possui reentradas suficientes' }
-        end
+            return
       end
 
       cadastro = Cadastro.find_by_id(cadastro.id)

@@ -28,7 +28,7 @@ module ReentradasHelper
 
 			doacoesRecebidas = Doacao.where('cadastro_recebedor_id =' + cadastro_id.to_s + 'and ciclo_recebedor_id = ' + ciclo.to_s + 'and dataconfirmacao is not null')
 			
-			if doacoesRecebidas.count >= 3
+			if doacoesRecebidas.count >= 4
 				return 'obrigatoria'
 			else
 				return 'opcional'

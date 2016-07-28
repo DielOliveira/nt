@@ -11,6 +11,7 @@ class CreateCadastros < ActiveRecord::Migration
       t.string :facebook
       t.references :dadosfinanceiro, index: true, foreign_key: true
       t.datetime :dadatainclusao
+      t.boolean :flagativo
 
       t.timestamps null: false
     end

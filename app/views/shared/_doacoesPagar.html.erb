@@ -1,55 +1,60 @@
 
 <script src="/assets/template/countdown/jquery.countdown.min.js"></script>
 
-      <%@doacaospendentespagar.each do |doacoes| %>
+<%@doacaospendentespagar.each do |doacoes| %>
 
-      <%@adjusted_datetime = (doacoes.created_at + 1.days).to_datetime %>
-      <%@adjusted_datetime = @adjusted_datetime.strftime("%Y/%m/%d %H:%M") %>
+  <%@adjusted_datetime = (doacoes.created_at + 1.days).to_datetime %>
+  <%@adjusted_datetime = @adjusted_datetime.strftime("%Y/%m/%d %H:%M") %>
 
-      <%
-      rede = Rede.find_by_cadastro_id(doacoes.cadastro_1_id)
-      if rede
-        dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(rede.parent.parent.cadastro.id) rescue nil
-      end      
-      %>
-          <div class="box box-warning">
-              <div class="box-header with-border">
-                <h4 class="timeline-header"><a href="#">Seu login principal possui doações para realizar!</a></h4>
+  <%
+  rede = Rede.find_by_cadastro_id(doacoes.cadastro_doador_id)
+  if rede
+    dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(rede.parent.parent.cadastro.id) rescue nil
+  end
 
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.box-tools -->
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body">
-                <p><%#= doacoes.created_at.blank? ? '' : doacoes.created_at.strftime("%d/%m/%Y - %H:%M")%></p>
-                <p><b>Doação de: </b><%=doacoes.cadastro_1.nomepessoa%></p>
-                <p><b>Doação para: </b><%=dadosfinanceiros.nometitular%></p>
-                <p><b>Valor: </b><%=number_to_currency(doacoes.ciclo.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
-                <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock"></span></small></p>
 
-                <div class="timeline-footer">
-                  <%#= form_for @doacao, html: { multipart: true } do |f| %>
-                    <%#if not doacoes.avatar? %>
-                    <!-- <input id="doacao_avatar" name="doacao[avatar]" size="30" type="file" /> -->
-                    <%#end%>
-                    <%#= image_tag(doacoes.avatar_url) if doacoes.avatar? %>
-                    <%#= f.file_field :avatar, :class => 'btn btn-success btn-sm', :title => 'lol' %>
-                  <%# end %>
+  if doacaoBloqueada(doacoes.cadastro_recebedor_id.to_s,doacoes.cadastro_recebedor.ciclo_id.to_s) == false
 
-                  <div align="right">
-                    <%= link_to edit_doacao_path(doacoes.id) , :class => "btn btn-success btn-sm" do %>
-                       Realizar Doação
-                    <% end %>
-                  </div>
+  %>
+    <div class="box box-warning">
+        <div class="box-header with-border">
+          <h4 class="timeline-header"><a href="#">Seu login principal possui doações para realizar!</a></h4>
 
-                </div>              
-              </div>
-              <!-- /.box-body -->
-          </div>        
-      <%end%>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+          </div>
+          <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <p><%#= doacoes.created_at.blank? ? '' : doacoes.created_at.strftime("%d/%m/%Y - %H:%M")%></p>
+          <p><b>Doação de: </b><%=doacoes.cadastro_doador.nomepessoa%></p>
+          <p><b>Doação para: </b><%=dadosfinanceiros.nometitular%></p>
+          <p><b>Valor: </b><%=number_to_currency(doacoes.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
+          <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock"></span></small></p>
+
+          <div class="timeline-footer">
+            <%#= form_for @doacao, html: { multipart: true } do |f| %>
+              <%#if not doacoes.avatar? %>
+              <!-- <input id="doacao_avatar" name="doacao[avatar]" size="30" type="file" /> -->
+              <%#end%>
+              <%#= image_tag(doacoes.avatar_url) if doacoes.avatar? %>
+              <%#= f.file_field :avatar, :class => 'btn btn-success btn-sm', :title => 'lol' %>
+            <%# end %>
+
+            <div align="right">
+              <%= link_to edit_doacao_path(doacoes.id) , :class => "btn btn-success btn-sm" do %>
+                 Realizar Doação
+              <% end %>
+            </div>
+
+          </div>              
+        </div>
+        <!-- /.box-body -->
+    </div>        
+  <%end%>
+<%end%>
 
  <script type="text/javascript">
  $('#clock').countdown("<%=@adjusted_datetime%>", function(event) {

@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160720213706) do
     t.string   "skype"
     t.string   "facebook"
     t.datetime "dadatainclusao"
+    t.boolean  "flagativo"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "cpf"

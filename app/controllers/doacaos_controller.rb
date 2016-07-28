@@ -9,13 +9,13 @@ class DoacaosController < ApplicationController
   end
 
   def doacoesrealizadas  
-    @doacaos = Doacao.where("cadastro_1_id =" + user.cadastro.id.to_s + "and flagenviada = true")
-    @doacaoreentradas = Doacao.joins("inner join reentradas re on re.cadastro_2_id = doacaos.cadastro_1_id").where("re.cadastro_1_id = " + user.cadastro.id.to_s + "and flagenviada = true")
+    @doacaos = Doacao.where("cadastro_doador_id =" + user.cadastro.id.to_s + "and flagenviada = true")
+    @doacaoreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_doador_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = true")
   end
 
   def doacoesrecebidas  
-    @doacaos = Doacao.where("cadastro_2_id =" + user.cadastro.id.to_s + "and cadastro_1_id is not null and dataconfirmacao is not null")
-    @doacaosrecebidasreentradas = Doacao.joins("inner join reentradas re on re.cadastro_2_id = doacaos.cadastro_2_id").where("re.cadastro_1_id = " + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is not null")
+    @doacaos = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + "and cadastro_doador_id is not null and dataconfirmacao is not null")
+    @doacaosrecebidasreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is not null")
   end
 
   def doacoesareceber  
@@ -24,12 +24,13 @@ class DoacaosController < ApplicationController
 
   def confirmadoacao
 
-    #teste = Doacao.update(@doacao.id, :flagconfirmada => true, :dataconfirmacao => Time.now)
+    doacao = Doacao.find_by_id(@doacao.id)
+    doacao.flagconfirmada = true
+    doacao.dataconfirmacao = Time.now
+    doacao.save
 
-    teste = Doacao.find_by_id(@doacao.id)
-    teste.flagconfirmada = true
-    teste.dataconfirmacao = Time.now
-    teste.save
+    cadastro = Cadastro.find(doacao.cadastro_doador_id)
+    cadastro.flagativo = true
 
     redirect_to  root_path
 

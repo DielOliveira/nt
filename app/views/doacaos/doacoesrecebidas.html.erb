@@ -24,10 +24,10 @@
 
                 <% @doacaos.each do |doacao| %>
                   <tr>
-                    <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_1.nomepessoa %><%end%></td>
-                    <td><%= doacao.cadastro_2.nomepessoa %></td>
-                    <td><%= doacao.ciclo.numerociclo %></td>
-                    <td><%= doacao.ciclo.valorciclo %></td>
+                    <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_doador.nomepessoa %><%end%></td>
+                    <td><%= doacao.cadastro_recebedor.nomepessoa %></td>
+                    <td><%= doacao.ciclo_doador.numerociclo %></td>
+                    <td><%= doacao.ciclo_doador.valorciclo %></td>
                     <td><%= doacao.created_at.blank? ? '' : doacao.created_at.strftime("%d/%m/%Y - %H:%M")%></td>
                     <td><%= doacao.dataconfirmacao.blank? ? '' : doacao.dataconfirmacao.strftime("%d/%m/%Y - %H:%M")%></td>
                     <td><%= doacao.observacao %></td>
@@ -40,10 +40,10 @@
                 <% end %>   
                 <% @doacaosrecebidasreentradas.each do |doacao| %>
                   <tr>
-                    <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_1.nomepessoa %><%end%></td>
-                    <td><%= doacao.cadastro_2.nomepessoa %></td>
-                    <td><%= doacao.ciclo.numerociclo %></td>
-                    <td><%= doacao.ciclo.valorciclo %></td>
+                    <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_doador.nomepessoa %><%end%></td>
+                    <td><%= doacao.cadastro_recebedor.nomepessoa %></td>
+                    <td><%= doacao.ciclo_doador.numerociclo %></td>
+                    <td><%= doacao.ciclo_doador.valorciclo %></td>
                     <td><%= doacao.created_at.blank? ? '' : doacao.created_at.strftime("%d/%m/%Y - %H:%M")%></td>
                     <td><%= doacao.dataconfirmacao.blank? ? '' : doacao.dataconfirmacao.strftime("%d/%m/%Y - %H:%M")%></td>
                     <td><%= doacao.observacao %></td>
