@@ -26,7 +26,11 @@
     <% if @cadastro == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @cadastro.flagativo %>
+        <%=@cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     <div style="height:20px;">
         <a href="<%= @cadastro == nil ? "#" : redeslist_path(@cadastro.id)%>" class="name">
@@ -48,7 +52,11 @@
     <% if @filho_primeiro.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@filho_primeiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @filho_primeiro.cadastro.flagativo %>
+        <%=@filho_primeiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@filho_primeiro.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     <div style="height:20px;">
         <a href="<%= @filho_primeiro.cadastro_id == nil ? "#" : redeslist_path(@filho_primeiro.cadastro.id)%>" class="name">
@@ -65,7 +73,11 @@
     <% if @filho_segundo.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@filho_segundo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @filho_segundo.cadastro.flagativo %>
+        <%=@filho_segundo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@filho_segundo.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     </div>
     <div style="height:20px; width:370px;" align="right">
@@ -91,7 +103,11 @@
     <% if @neto_primeiro.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@neto_primeiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @neto_primeiro.cadastro.flagativo %>
+        <%=@neto_primeiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@neto_primeiro.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     <div style="height:20px;">
         <a href="<%= @neto_primeiro.cadastro_id == nil ? "#" : redeslist_path(@neto_primeiro.cadastro.id)%>" class="name">
@@ -108,7 +124,11 @@
     <% if @neto_segundo.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@neto_segundo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @neto_segundo.cadastro.flagativo %>
+        <%=@neto_segundo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@neto_segundo.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     </div>
     <div style="height:20px; width:210px;" align="right">
@@ -129,7 +149,11 @@
     <% if @neto_terceiro.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@neto_terceiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @neto_terceiro.cadastro.flagativo %>
+        <%=@neto_terceiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@neto_terceiro.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     </div>
     <div style="height:20px; width:300px;" align="right">
@@ -151,7 +175,11 @@
     <% if @neto_quarto.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@neto_quarto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @neto_quarto.cadastro.flagativo %>
+        <%=@neto_quarto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@neto_quarto.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     </div>
     <div style="height:20px; width:260px;" align="right">
@@ -176,7 +204,11 @@
     <% if @bisneto_primeiro.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@bisneto_primeiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @bisneto_primeiro.cadastro.flagativo %>
+        <%=@bisneto_primeiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@bisneto_primeiro.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     <div style="height:30px; width:37px;" align="right">
       <div style="height:30px; width:37px;" align="center">
@@ -192,7 +224,11 @@
     <% if @bisneto_segundo.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@bisneto_segundo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @bisneto_segundo.cadastro.flagativo %>
+        <%=@bisneto_segundo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@bisneto_segundo.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     </div>
     <div style="height:20px; width:137px;" align="right">
@@ -209,7 +245,11 @@
     <% if @bisneto_terceiro.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@bisneto_terceiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @bisneto_terceiro.cadastro.flagativo %>
+        <%=@bisneto_terceiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@bisneto_terceiro.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     </div>
     <div style="height:20px; width:75px;" align="right">
@@ -226,7 +266,11 @@
     <% if @bisneto_quarto.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@bisneto_quarto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @bisneto_quarto.cadastro.flagativo %>
+        <%=@bisneto_quarto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@bisneto_quarto.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     </div>
     <div style="height:20px; width:130px;" align="right">
@@ -242,7 +286,11 @@
     <% if @bisneto_quinto.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@bisneto_quinto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @bisneto_quinto.cadastro.flagativo %>
+        <%=@bisneto_quinto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@bisneto_quinto.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     <div style="height:30px; width:40px;" align="center">
         <a href="<%= @bisneto_quinto.cadastro_id == nil ? "#" : redeslist_path(@bisneto_quinto.cadastro.id)%>" class="name">
@@ -256,7 +304,11 @@
     <% if @bisneto_sexto.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@bisneto_sexto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @bisneto_sexto.cadastro.flagativo %>
+        <%=@bisneto_sexto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@bisneto_sexto.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     </div>
     <div style="height:20px; width:150px;" align="right">
@@ -273,7 +325,11 @@
     <% if @bisneto_setimo.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@bisneto_setimo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @bisneto_setimo.cadastro.flagativo %>
+        <%=@bisneto_setimo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@bisneto_setimo.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     </div>
     <div style="height:20px; width:75px;" align="right">
@@ -290,7 +346,11 @@
     <% if @bisneto_oitavo.cadastro_id == nil %>
       <%=image_tag("nobody.png")%>
     <%else%>
-      <%=@bisneto_oitavo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <% if @bisneto_oitavo.cadastro.flagativo %>
+        <%=@bisneto_oitavo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
+      <%else%>
+        <%=@bisneto_oitavo.cadastro.masculino == true ? image_tag("man1_d.png") : image_tag("woman1_d.png")%>
+      <%end%>
     <%end%>
     </div>
     <div style="height:20px; width:100px;" align="right">

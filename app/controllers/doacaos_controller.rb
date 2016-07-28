@@ -31,6 +31,7 @@ class DoacaosController < ApplicationController
 
     cadastro = Cadastro.find(doacao.cadastro_doador_id)
     cadastro.flagativo = true
+    cadastro.save
 
     redirect_to  root_path
 

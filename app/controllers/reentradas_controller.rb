@@ -43,6 +43,7 @@ class ReentradasController < ApplicationController
     cadastro.ciclo_id = reentrando.cadastro.ciclo_id =  1
     cadastro.flagreentrada = true
     cadastro.cpfpadrinho = reentrando.email
+    cadastro.flagativo = false
     cadastro.save
 
     #Financeiro
