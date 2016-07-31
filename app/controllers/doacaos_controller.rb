@@ -19,7 +19,8 @@ class DoacaosController < ApplicationController
   end
 
   def doacoesareceber  
-    @doacaos = Doacao.where("cadastro_2_id =" + user.cadastro.id.to_s + "and cadastro_1_id is not null and dataconfirmacao is null")
+    @doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
+    @doacaospendentesreceberreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
   end    
 
   def confirmadoacao

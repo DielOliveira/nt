@@ -113,9 +113,18 @@
           </div>
           <br>
           <div align="right">
+      
+          <%if not usuario_logado%>
+
+              <%= link_to root_path, :class => "btn btn-info btn-bg" do %>
+                <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+              <% end %>      
+
+          <%end%>
             <button type="submit" class="btn btn-success btn-bg">
               <span class="glyphicon glyphicon-arrow-right"></span> Salvar
             </button>
+
           </div>
 
           <%#= image_tag(@cadastro.avatar_url) if @cadastro.avatar? %>

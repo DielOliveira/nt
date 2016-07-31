@@ -1,8 +1,18 @@
 <p id="notice"><%= notice %></p>
+
+<% if reentrada(user.cadastro.id) == 'obrigatoria'%>
+  <%= render 'shared/obrigacoes' %>
+<%end%>
+<% if not apareceobrigacaoreentrada %>
+  <%= render 'shared/obrigacoesreentradas' %>
+<%end%>
+
 <%= render 'shared/doacoesPagar' %>
 <%= render 'shared/doacoesPagarReentrada' %>
 <%= render 'shared/doacoesReceber' %>
 <%= render 'shared/doacoesReceberReentrada' %>
+
+
 <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
@@ -23,7 +33,7 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <a href="#">
+          <a href="<%=doacoesareceber_path%>">
           <div class="small-box bg-green">
             <div class="inner">
               <h3><%=number_to_currency(@doacoesrecebidas, unit: "R$", separator: ",", delimiter: ".")%></h3>

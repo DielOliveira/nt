@@ -17,7 +17,7 @@ class NtAutenticationController < ApplicationController
 				session[:ObjLogon] = session[:ObjLogon].first
 
 				if usuario_logado == true
-					redirect_to root_path, notice: 'Usuario logado com sucesso.'
+					redirect_to home_path, notice: 'Usuario logado com sucesso.'
 				else
 					 flash[:error] = "Usuario ou senha incorretos."
 				end

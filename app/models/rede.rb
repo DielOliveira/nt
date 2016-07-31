@@ -9,5 +9,10 @@ class Rede < ActiveRecord::Base
 	  belongs_to :cadastro
 	  
 
+def self.find_by_order(cadastro_id)      
+	Rede.where('cadastro_id = ? ', cadastro_id).order('created_at')
+end
+
+
 
 end

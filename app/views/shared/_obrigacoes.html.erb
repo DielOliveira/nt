@@ -1,0 +1,72 @@
+<div class="box box-warning">
+    <div class="box-header with-border">
+      <h4 class="timeline-header"><a href="#">Login Principal</a></h4>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th >Login</th>
+            <th >Ciclo</th>
+            <th >Reentradas</th>
+            <th >Doacoes Recebidas</th>
+            <th ></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td><%=user.email%></td>
+              <td ><span class="badge bg-green"><%=user.cadastro.ciclo.numerociclo%></span></td>
+              <td ><span class="badge bg-green"><%=reentradasCicloAtual(user.cadastro.id)%></span></td>
+              <td ><span class="badge bg-green"><%=doacaoesRecebidasCicloAtualCount(user.cadastro.id)%></span></td>
+              <td align='right'>
+                  <% if reentrada(user.cadastro.id) == 'opcional' %>
+                    <!-- <div class="btn-group">
+                      <%#= link_to novareentrada_path(user.cadastro.id), :class => "btn btn-success btn-sm" do %>
+                         Reentrada Opcional
+                      <%# end %>   
+                    </div>                -->
+                  <% else %>   
+                    <div class="btn-group">
+                      <%= link_to novareentrada_path(user.cadastro.id), :class => "btn btn-danger btn-sm" do %>
+                         Reentrada Obrigatorio
+                      <% end %>   
+                    </div>               
+                  <% end %>                
+                  <% if upgrade(user.cadastro.id) == 'opcional' %>
+                    <!-- <div class="btn-group">
+                      <%#= link_to upgrade_ciclo_path(user.cadastro.id), :class => "btn btn-success btn-sm" do %>
+                         Upgrade Opcional
+                      <%# end %>   
+                    </div>   -->             
+                  <% else %>   
+                    <div class="btn-group">
+                      <%= link_to upgrade_ciclo_path(user.cadastro.id), :class => "btn btn-danger btn-sm" do %>
+                         Upgrade Obrigatorio
+                      <% end %>   
+                    </div>               
+                  <% end %>      
+              </td>
+            </tr>
+        </tbody>
+      </table>
+
+      <div class="timeline-footer">
+      <br>
+        <div align="right">
+         
+        </div>
+
+      </div>              
+    </div>
+    <!-- /.box-body -->
+</div> 
+

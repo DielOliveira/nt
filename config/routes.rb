@@ -35,7 +35,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
-  root  'static_pages#home'
+  root  'static_pages#index'
+
+  match '/home', to: 'static_pages#home', via: 'get'
   match '/faq', to: 'static_pages#faq', via: 'get'
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
   match '/configu', to: 'static_pages#configu', via: 'get'

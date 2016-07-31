@@ -20,4 +20,23 @@ module StaticPagesHelper
 			return false
 		end
 	end
+
+  def obrigacoes
+    return Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s)
+  end
+
+  def apareceobrigacaoreentrada
+	obrigacoes.each do |reentrada|
+
+		if reentrada(reentrada.cadastro_adicionado_id) == 'opcional'
+		
+		else
+			return true
+		end
+
+	end
+
+  end 
+
+
 end

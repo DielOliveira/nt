@@ -31,16 +31,14 @@ ok - Arrumar o convite do sistema por login e em etapas
 ok - Arrumar a visualização da rede binária
 ok - Exibir doações para logins principais
 ok - Não mostrar perfil.. reentradas são todas do mesmo perfil
+ok - Quadro verde no início mudar para doações a receber
+ok - Não mostrar na rede binária quem não fez a doação ainda
 
 
 Domingo
 -------
 Criar o layout incial
 exibir ciclo na rede binária
-
-Quadro verde no início mudar para doações a receber
-questão de diminuir a rede binária
-Não mostrar na rede binária quem não fez a doação ainda
 Rede binária exibindo aleatório
 
 
