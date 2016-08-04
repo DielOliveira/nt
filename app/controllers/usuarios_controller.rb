@@ -32,7 +32,7 @@ class UsuariosController < ApplicationController
 
 
         Doacao.create(:ciclo_id => 1, :flagconfirmada => false, :flagrejeitada => false, :cadastro_1_id => @usuario.cadastro_id, :cadastro_2_id => @usuario.father.father.id) rescue nil
-        format.html { redirect_to wellcome_path, notice: 'Usuário criado com sucesso.' }
+        format.html { redirect_to login_path, notice: 'Usuário criado com sucesso.' }
         format.json { render :show, status: :created, location: @usuario }
       else
         format.html { render :new }

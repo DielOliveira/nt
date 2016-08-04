@@ -57,9 +57,12 @@
   <div class="col-lg-4">
 
     <div class="form-group">
-      <label>E-mail</label>
-      <%@cadastro = Cadastro.find_by_id(session[:cadastro_id])%>
-      <%= f.email_field :email, :class => 'form-control', :value => @cadastro == nil ? user.cadastro.email : @cadastro.email, :readonly => true%>
+      <label>Login</label>
+        <%if usuario_logado%>
+          <%= f.text_field :email, :class => 'form-control', :readonly => true%>
+        <%else%>
+          <%= f.text_field :email, :class => 'form-control'%>
+        <%end%>
     </div>
 
   </div>

@@ -1,5 +1,25 @@
 module StaticPagesHelper
 
+
+	def contapessoas(rede_id)
+
+		if rede_id == nil
+			return 0
+		end
+
+		rede = Rede.find(rede_id)
+
+		rede.children.each do |d|
+
+			#byebug
+			return rede.children.count + contapessoas(d.id)
+
+		end
+
+		
+	end
+
+
 	def title(page_title)
 	  content_for :title, page_title.to_s
 	end

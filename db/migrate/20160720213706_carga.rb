@@ -1,10 +1,16 @@
+#encoding: utf-8
 class Carga < ActiveRecord::Migration
   def change
 
-   	Banco.create(:nomebanco => "Bradesco")
-    Banco.create(:nomebanco => "Itaú")
-    Banco.create(:nomebanco => "Caixa Econômica")
-    Banco.create(:nomebanco => "Santander")
+    banco = Banco.create(:nomebanco => "001 - Banco do Brasil")
+    Banco.create(:nomebanco => "033 - Santander")
+    Banco.create(:nomebanco => "104 - Caixa Federal")
+    Banco.create(:nomebanco => "237 - Bradesco")
+    Banco.create(:nomebanco => "341 - Itaú")
+    Banco.create(:nomebanco => "389 - Mercantil do Brasil")
+    Banco.create(:nomebanco => "399 - HSBC")
+    Banco.create(:nomebanco => "748 - Sicred")
+    Banco.create(:nomebanco => "756 - Sicoob")
 
     Operadora.create(:nomeoperadora => "Oi")
     Operadora.create(:nomeoperadora => "Claro")
@@ -20,25 +26,26 @@ class Carga < ActiveRecord::Migration
 	Ciclo.create(:nomeciclo => "6", :numerociclo => 6, :valorciclo => 3600.0, :qtdreentradas => 50)
 
     Contabancariatipo.create(:nometipo => "Corrente")
-
+    Contabancariatipo.create(:nometipo => "Poupança")
+    
     #User 1
-    cadastro1 = Cadastro.create(:nomepessoa => "Administrador", :masculino => true, :email => "adm@adm.com", :telefone => "9827", :operadora_id => 1, :cpf => "01188297180", :ciclo_id => 1, :flagreentrada => false, :flagativo => true)
-    Dadosfinanceiro.create(:nometitular => "Administrador", :cpftitular => "01188297180", :banco_id => 1, :agencia => "9827", :codigo => "1234", :operacao => "3424", :contabancariatipo_id => 1, :cadastro_id => cadastro1.id)
+    cadastro1 = Cadastro.create(:nomepessoa => "Administrador", :masculino => true, :email => "adm@adm.com", :descconfirmaemail => "adm@adm.com", :telefone => "9827", :operadora_id => 1, :cpf => "01188297180", :ciclo_id => 1, :flagreentrada => false, :flagativo => true, :contador => 1)
+    Dadosfinanceiro.create(:nometitular => "Administrador", :cpftitular => "01188297180", :banco_id => banco.id, :agencia => "9827", :codigo => "1234", :operacao => "3424", :contabancariatipo_id => 1, :cadastro_id => cadastro1.id)
 	rede = Rede.create(:linha => 1, :cadastro_id => cadastro1.id)
-	Usuario.create(:email => "adm@adm.com", :senha => "123", :descconfirmasenha => "123", :cadastro_id => cadastro1.id, :flagativo => true)
+	Usuario.create(:email => "adm", :senha => "123", :descconfirmasenha => "123", :cadastro_id => cadastro1.id, :flagativo => true)
 
 	#User 2
-    cadastro2 = Cadastro.create(:cpfpadrinho => "adm@adm.com", :nomepessoa => "Marcio Ribeiro", :masculino => true, :email => "marcio@marcio.com", :telefone => "9827", :operadora_id => 1, :cpf => "32114504751", :ciclo_id => 1, :flagreentrada => false, :flagativo => true)
-    Dadosfinanceiro.create(:nometitular => "Marcio Ribeiro", :cpftitular => "32114504751", :banco_id => 1, :agencia => "9827", :codigo => "1234", :operacao => "3424", :contabancariatipo_id => 1, :cadastro_id => cadastro2.id)
+    cadastro2 = Cadastro.create(:cpfpadrinho => "adm", :nomepessoa => "Marcio Ribeiro", :masculino => true, :email => "marcio@marcio.com", :descconfirmaemail => "marcio@marcio.com", :telefone => "9827", :operadora_id => 1, :cpf => "32114504751", :ciclo_id => 1, :flagreentrada => false, :flagativo => true, :contador => 2)
+    Dadosfinanceiro.create(:nometitular => "Marcio Ribeiro", :cpftitular => "32114504751", :banco_id => banco.id, :agencia => "9827", :codigo => "1234", :operacao => "3424", :contabancariatipo_id => 1, :cadastro_id => cadastro2.id)
 	Rede.create(:linha => 2, :cadastro_id => cadastro2.id, :parent_id => rede.id)
-	Usuario.create(:email => "marcio@marcio.com", :senha => "123", :descconfirmasenha => "123", :cadastro_id => cadastro2.id, :flagativo => true)
+	Usuario.create(:email => "marcio", :senha => "123", :descconfirmasenha => "123", :cadastro_id => cadastro2.id, :flagativo => true)
 	Indicado.create(:cadastro_1_id => cadastro1.id, :cadastro_2_id => cadastro2.id)
 
 	#User 3
-    cadastro3 = Cadastro.create(:cpfpadrinho => "adm@adm.com", :nomepessoa => "Eliando", :masculino => true, :email => "eliando@eliando.com", :telefone => "9827", :operadora_id => 1, :cpf => "87200468800", :ciclo_id => 1, :flagreentrada => false, :flagativo => true)
-    Dadosfinanceiro.create(:nometitular => "Eliando", :cpftitular => "87200468800", :banco_id => 1, :agencia => "9827", :codigo => "1234", :operacao => "3424", :contabancariatipo_id => 1, :cadastro_id => cadastro3.id)
+    cadastro3 = Cadastro.create(:cpfpadrinho => "adm", :nomepessoa => "Eliando", :masculino => true, :email => "eliando@eliando.com", :descconfirmaemail => "eliando@eliando.com", :telefone => "9827", :operadora_id => 1, :cpf => "87200468800", :ciclo_id => 1, :flagreentrada => false, :flagativo => true, :contador => 3)
+    Dadosfinanceiro.create(:nometitular => "Eliando", :cpftitular => "87200468800", :banco_id => banco.id, :agencia => "9827", :codigo => "1234", :operacao => "3424", :contabancariatipo_id => 1, :cadastro_id => cadastro3.id)
 	Rede.create(:linha => 2, :cadastro_id => cadastro3.id, :parent_id => rede.id)
-	Usuario.create(:email => "eliando@eliando.com", :senha => "123", :descconfirmasenha => "123", :cadastro_id => cadastro3.id, :flagativo => true)
+	Usuario.create(:email => "eliando", :senha => "123", :descconfirmasenha => "123", :cadastro_id => cadastro3.id, :flagativo => true)
 	Indicado.create(:cadastro_1_id => cadastro1.id, :cadastro_2_id => cadastro3.id)
 
     linhas = Rede.where("linha = " + (2).to_s)

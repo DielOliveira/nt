@@ -24,10 +24,10 @@
 
                 <% @doacaos.each do |doacao| %>
                   <tr>
-                    <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_doador.nomepessoa %><%end%></td>
-                    <td><%= doacao.cadastro_recebedor.nomepessoa %></td>
+                    <td><%= doacao.cadastro_doador.nomepessoa %></td>
+                    <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_recebedor.nomepessoa %><%end%></td>
                     <td><%= doacao.ciclo_doador.numerociclo %></td>
-                    <td><%= doacao.ciclo_doador.valorciclo %></td>
+                    <td><%=number_to_currency(doacao.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></td>
                     <td><%= doacao.created_at.blank? ? '' : doacao.created_at.strftime("%d/%m/%Y - %H:%M")%></td>
                     <td><%= doacao.dataconfirmacao.blank? ? '' : doacao.dataconfirmacao.strftime("%d/%m/%Y - %H:%M")%></td>
                     <td><%= doacao.observacao %></td>
@@ -44,7 +44,7 @@
                     <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_doador.nomepessoa %><%end%></td>
                     <td><%= doacao.cadastro_recebedor.nomepessoa %></td>
                     <td><%= doacao.ciclo_doador.numerociclo %></td>
-                    <td><%= doacao.ciclo_doador.valorciclo %></td>
+                    <td><%=number_to_currency(doacao.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></td>
                     <td><%= doacao.created_at.blank? ? '' : doacao.created_at.strftime("%d/%m/%Y - %H:%M")%></td>
                     <td><%= doacao.dataconfirmacao.blank? ? '' : doacao.dataconfirmacao.strftime("%d/%m/%Y - %H:%M")%></td>
                     <td><%= doacao.observacao %></td>
@@ -55,9 +55,9 @@
                     </td>
                   </tr>
                 <% end %>                                  
-                
                 </tbody>
               </table>
+
             </div>
             <!-- /.box-body -->
           </div>
@@ -69,15 +69,15 @@
     </section>
 
   <script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
+  // $(function () {
+  //   $("#example1").DataTable();
+  //   $('#example2').DataTable({
+  //     "paging": true,
+  //     "lengthChange": false,
+  //     "searching": false,
+  //     "ordering": true,
+  //     "info": true,
+  //     "autoWidth": false
+  //   });
+  // });
 </script>

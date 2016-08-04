@@ -26,10 +26,11 @@ class Cadastro < ActiveRecord::Base
 	validate :validacpf, :on => :create
 	validates_cpf :cpf, :on => :create
 	validates :email, email_format: { message: "não é válido." }
+	validates :descconfirmaemail, :presence => { :message => 'é obrigatório.' }
 
 	validates :nomepessoa, :presence => { :message => 'é obrigatório.' }  
 	validates :email, :presence => true, :uniqueness => true, :on => :create
-	
+	validate :check_email_and_confirmation
 
 
 	validates :telefone, :presence => { :message => 'é obrigatório.' }  
@@ -58,5 +59,18 @@ class Cadastro < ActiveRecord::Base
 	  @cpfpadrinho = val
 	end 
 
+	def descconfirmaemail
+	  @descconfirmaemail
+	end
+
+
+	# setter
+	def descconfirmaemail=(val)
+	  @descconfirmaemail = val
+	end 
+
+	def check_email_and_confirmation
+	  	errors.add(:descconfirmaemail, "não foi digitado corretamente.") if self.email != self.descconfirmaemail
+	end	
 
 end

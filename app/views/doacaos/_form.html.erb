@@ -40,11 +40,15 @@
       </div>
     </div>
     <div class="box-body">
+      <p><b>Valor: </b><%=number_to_currency(@doacao.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
       <p><b>Banco: </b><%=@dadosfinanceiros.banco.nomebanco%></p>
       <p><b>Agencia: </b><%=@dadosfinanceiros.agencia%></p>
       <p><b>Conta: </b><%=@dadosfinanceiros.codigo%></p>
+      <p><b>Operação: </b><%=@dadosfinanceiros.operacao%></p>
       <p><b>Titular: </b><%=@dadosfinanceiros.nometitular%></p>
       <p><b>CPF: </b><%=@dadosfinanceiros.cpftitular%></p>
+      <p><b>E-mail: </b><%=@doacao.cadastro_recebedor.email%></p>
+      <p><b>Telefone: </b><%=@doacao.cadastro_recebedor.telefone%></p>
       <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock"></span></small></p>
       <br>
       <% if not @doacao.avatar? %>

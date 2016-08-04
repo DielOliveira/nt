@@ -16,8 +16,6 @@
           <tr>
             <th >Login</th>
             <th >Ciclo</th>
-            <th >Reentradas</th>
-            <th >Doacoes Recebidas</th>
             <th ></th>
           </tr>
         </thead>
@@ -25,10 +23,8 @@
         <tbody>
           <% obrigacoes.each do |reentrada| %>
             <tr>
-              <td><%=reentrada.cadastro_adicionado.email%></td>
+              <td width="50%"><%=reentrada.cadastro_adicionado.email%></td>
               <td ><span class="badge bg-green"><%=reentrada.cadastro_adicionado.ciclo.numerociclo%></span></td>
-              <td ><span class="badge bg-green"><%=reentradasCicloAtual(reentrada.cadastro_adicionado.id)%></span></td>
-              <td ><span class="badge bg-green"><%=doacaoesRecebidasCicloAtualCount(reentrada.cadastro_adicionado.id)%></span></td>
               <td align='right'>
                 <% if reentrada(reentrada.cadastro_adicionado_id) == 'opcional' %>
                   <div class="btn-group">

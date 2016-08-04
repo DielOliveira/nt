@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     
   <link rel="stylesheet" href="/assets/template/dist/css/skins/skin-blue.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="/assets/template/plugins/datatables/dataTables.bootstrap.css">
+  <!-- <link rel="stylesheet" href="/assets/template/plugins/datatables/dataTables.bootstrap.css"> -->
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,12 +86,12 @@ desired effect
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <%if @mensagem.count > 0 %>
-                <span class="label label-success"><%=@mensagem.count%></span>
-              <%end%>
-            </a>
+            <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"> -->
+              <!-- <i class="fa fa-envelope-o"></i> -->
+              <%#if @mensagem.count > 0 %>
+                <!-- <span class="label label-success"><%#=@mensagem.count%></span> -->
+              <%#end%>
+            <!-- </a> -->
             <ul class="dropdown-menu">
               <li class="header">Você possui <%=@mensagem.count%> Mensagens</li>
               <li>
@@ -137,32 +137,11 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <%=image_tag("user2-160x160.jpg", class: "user-image")%>
+              <%#=image_tag("user2-160x160.jpg", class: "user-image")%>
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"><%=user.cadastro.nomepessoa%></span>
             </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-header">
-                <%=image_tag("user2-160x160.jpg", class: "img-circle")%>
 
-                <p>
-                  <%=user.cadastro.nomepessoa%>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="<%=edit_cadastro_path(user.cadastro_id)%>" class="btn btn-default btn-flat">Perfil</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<%= logoff_path%>" class="btn btn-default btn-flat">Sair</a>
-                </div>
-              </li>
-            </ul>
           </li>
           <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
@@ -178,20 +157,20 @@ desired effect
     <section class="sidebar">
 
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel">
+<!--       <div class="user-panel">
         <div class="pull-left image">
-          <%=image_tag("user2-160x160.jpg", class: "img-circle")%>
+          <%#=image_tag("user2-160x160.jpg", class: "img-circle")%>
         </div>
         <div class="pull-left info">
           <p><%=user.cadastro.nomepessoa%></p>
           <!-- Status -->
           <%if user.cadastro.flagreentrada%>
-            <a href="#"><i class="fa fa-circle text-danger"></i> Perfil Reentrada</a>
+            <!-- <a href="#"><i class="fa fa-circle text-danger"></i> Perfil Reentrada</a> -->
           <%else%>
-            <a href="#"><i class="fa fa-circle text-success"></i> Perfil Principal</a>
+            <!-- <a href="#"><i class="fa fa-circle text-success"></i> Perfil Principal</a> -->
           <%end%>
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div> --> 
 
       <!-- search form (Optional)
       <form action="#" method="get" class="sidebar-form">
@@ -207,7 +186,6 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-        <li class="header"></li>
         <!-- Optionally, you can add icons to the links -->
         <!-- <li class="active"><a href="<%=new_cadastro_path%>"><i class="fa fa-link"></i> <span>Novo Cadastro</span></a></li> -->
         <!-- <li><a href="<%=cadastros_path%>"><i class="fa fa-link"></i> <span>Listar Cadastros</span></a></li> -->
@@ -229,19 +207,21 @@ desired effect
           <a href="#"><i class="fa fa-sitemap"></i> <span>Rede</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
             <li><a href="<%=redeslist_path(user.cadastro.id)%>">Rede Binária</a></li>
-            <li><a href="<%=redes_path%>">Listagem de Linha</a></li>
+            <!-- <li><a href="<%#=redes_path%>">Listagem de Linha</a></li> -->
             <li><a href="<%=indicados_path%>">Indicados Direto</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#"><i class="fa fa-edit"></i> <span>Dados Cadastrais</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
+            <li><a href="<%=edit_cadastro_path(user.cadastro_id)%>">Dados Pessoais</a></li>
             <li><a href="<%=edit_dadosfinanceiro_path(userfinan.id)%>">Dados Bancários</a></li>
-            <li><a href="<%=edit_cadastro_path(user.cadastro_id)%>">Dados de Contato</a></li>
             <li><a href="<%=edit_usuario_path(user.id)%>">Alterar Senha</a></li>
           </ul>
         </li>       
         <li><a href="<%=mensagems_path%>"><i class="fa fa-envelope-o"></i> Mensagens</a></li>          
+        <li><a href="<%=faq_path%>"><i class="fa fa-question-circle"></i> Perguntas Frequentes</a></li>          
+        <li><a href="<%=new_contato_path%>"><i class="fa fa-phone"></i> Fale Conosco</a></li>          
         <li><a href="<%= logoff_path%>"><i class="fa fa-sign-out"></i> Sair</a></li>          
       </ul>
       <!-- /.sidebar-menu -->
@@ -308,6 +288,28 @@ desired effect
               </div>
             </a>
           </li>
+          <li>
+            <a href="<%=cadastros_path%>">
+              <i class="menu-icon fa fa-group bg-green"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Gerenciar Usuários</h4>
+
+                <p>Ver numeração</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="<%=redes_path%>">
+              <i class="menu-icon fa fa-list-ul bg-yellow"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Listagem de Linha</h4>
+
+                <p>Linhas e Ciclos</p>
+              </div>
+            </a>
+          </li>                    
         </ul>
         <!-- /.control-sidebar-menu -->
 
@@ -375,9 +377,9 @@ desired effect
 <script src="/assets/template/plugins/fastclick/fastclick.js"></script>
 
 
-<script src="/assets/template/plugins/datatables/jquery.dataTables.min.js"></script>    
+<!-- <script src="/assets/template/plugins/datatables/jquery.dataTables.min.js"></script>     -->
 
-<script src="/assets/template/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- <script src="/assets/template/plugins/datatables/dataTables.bootstrap.min.js"></script> -->
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

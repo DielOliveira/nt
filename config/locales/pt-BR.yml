@@ -218,6 +218,7 @@ pt-BR:
           email: "E-mail"
           telefone: "Telefone"
           operadora_id: "Operadora"
+          descconfirmaemail: "Confirmação de E-mail"
         dadosfinanceiro:
           nometitular: "Nome do Titular"
           cpftitular: "CPF"
@@ -227,6 +228,7 @@ pt-BR:
           contabancariatipo_id: "Tipo de Conta"
         usuario:
           descconfirmasenha: "Confirmação de Senha"
+          email: "Login"
         doacao:
           avatar: "Comprovante"
 

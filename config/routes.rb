@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :contatos
+  resources :assuntos
   resources :indicados
   resources :reentradas
   resources :mensagems
@@ -35,7 +37,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
-  root  'static_pages#index'
+  root  'static_pages#index', hello_id: 1
 
   match '/home', to: 'static_pages#home', via: 'get'
   match '/faq', to: 'static_pages#faq', via: 'get'

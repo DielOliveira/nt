@@ -12,6 +12,7 @@ class CreateCadastros < ActiveRecord::Migration
       t.references :dadosfinanceiro, index: true, foreign_key: true
       t.datetime :dadatainclusao
       t.boolean :flagativo
+      t.integer :contador
 
       t.timestamps null: false
     end

@@ -33,14 +33,17 @@ ok - Exibir doações para logins principais
 ok - Não mostrar perfil.. reentradas são todas do mesmo perfil
 ok - Quadro verde no início mudar para doações a receber
 ok - Não mostrar na rede binária quem não fez a doação ainda
+ok - Criar o layout incial
 
 
 Domingo
 -------
-Criar o layout incial
+retirar avatares
 exibir ciclo na rede binária
 Rede binária exibindo aleatório
-
+programar reentradas de reentradas
+validar uploads de arquivos
+fazer contagem de pessoas na rede
 
 
 
@@ -57,3 +60,31 @@ Upgrade Obrigatório
 - Realizou 1 reentrada
 
 heroku pg:reset DATABASE
+
+
+
+ok - Acrescentar "poupança" nos Tipos de Conta 
+ok - Retirar campo Skype
+ok - Tirar termos em ingles das págins de doações recebidas e realizadas
+ok - falta banco do brasil
+ok - retirar cartinha
+ok - Colocar Masculino e Feminino no cadastro
+ok - Padronizar e-mail com confirmação
+ok - Espelhar informações de banco igual ao da prime
+ok - corrigir nome "contabancariatipo"
+ok - login, cpf não pode mudar
+ok - retirar avatar
+ok - retirar configurações
+ok - operacao e contato para quem vai doar
+ok - Valor da doação não aparecendo
+ok - colocar total nas páginas de dação recebidas
+ok - tela de logins não está visualizando corretamente
+ok - Tirar informação de qtd. reentrada e qtd doacoes. Deixar somente (login, ciclo, e botão de upgrade/reentrada)
+ok - colocar informações de digito de conta no cadastro de financeiro
+ok - Criar a opção fale conosco 
+ok - exibir simbolo de ok quando o numero de indicações diretas der 2
+ok - Exibir número de pessoas de acordo com o cadastro
+acessar somente depois de ativo
+anexar em ingles
+Arrumar contador de pessoas na rede
+link para rede binaria 

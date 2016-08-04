@@ -51,7 +51,7 @@
           <a href="<%=redeslist_path(user.cadastro.id)%>">
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>4</h3>
+              <h3><%#=contapessoas(Rede.find_by_cadastro_id(user.cadastro_id))%></h3>
 
               <p>Pessoas Em Sua Rede</p>
             </div>
@@ -64,11 +64,15 @@
         <a href="<%=indicados_path%>">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-red">
+          <div class="small-box <%=@indicados >= 2 ? 'bg-green' : 'bg-red' %> ">
             <div class="inner">
               <h3><%=@indicados%></h3>
-
-              <p>Indicados Direto</p>
+              <%if @indicados >= 2%>
+                <p>Indicados Direto  <i class="fa fa-check-square"></i></p>
+              <%else%>  
+                <p>Indicados Direto  <i class="fa fa-close"></i></p>
+              <%end%>
+              
             </div>
             <div class="icon">
             </div>

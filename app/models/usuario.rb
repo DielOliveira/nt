@@ -6,7 +6,7 @@ validates :email, :presence => { :message => 'é obrigatório.' }
 validates :senha, :presence => { :message => 'é obrigatório.' }  
 validates :descconfirmasenha, :presence => { :message => 'é obrigatório.' }
 
-#validate :busca_email_existente
+validate :busca_email_existente, :on => :create
 validate :check_senha_and_confirmation
 
 

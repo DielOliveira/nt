@@ -54,55 +54,77 @@
 
 <div class="box-body">
 <div class="row mar-bot40">
-  <div class="col-lg-8">
-    <%= f.label :Nome_do_titular %><br>
+  <div class="col-lg-12">
+    <%= f.label :Nome_do_titular_da_conta %><br>
     <%= f.text_field :nometitular, :class => 'form-control' %>
   </div>
-  <div class="col-lg-4">
-    <%= f.label :CPF %><br>
+</div>
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-12">
+    <%= f.label :CPF_titular_da_conta %><br>
     <%= f.text_field :cpftitular, :class => 'form-control' %>
   </div>
 </div>
 <br>
 <div class="row mar-bot40">
-  <div class="col-lg-3">
+  <div class="col-lg-12">
     <%= f.label :banco_id %><br>
     <%= f.select :banco_id, options_from_collection_for_select(Banco.all, 'id', 'nomebanco',@dadosfinanceiro.banco_id), {}, {:class => 'form-control' } %>
   </div>
-  <div class="col-lg-2">
-    <%= f.label :Agencia %><br>
+</div>
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-12">
+    <%= f.label :Agencia_e_digito_quando_houver %><br>
     <%= f.text_field :agencia, :class => 'form-control' %>
   </div>
-  <div class="col-lg-2">
-    <%= f.label :Codigo %><br>
+</div>
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-12">
+    <label>Conta e digíto, em caso de dígito "X" informar "0" (zero)</label>
     <%= f.text_field :codigo, :class => 'form-control' %>
   </div>
-  <div class="col-lg-2">
-    <%= f.label :Operacao %><br>
+</div>
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-12">
+    <label>Operação/Variação (Banco do Brasil e Caixa Federal)</label>
     <%= f.text_field :operacao, :class => 'form-control' %>
   </div>
-  <div class="col-lg-3">
+</div>
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-12">
     <%= f.label :contabancariatipo_id %><br>
     <%= f.select :contabancariatipo_id, options_from_collection_for_select(Contabancariatipo.all, 'id', 'nometipo',@dadosfinanceiro.contabancariatipo_id), {}, {:class => 'form-control' } %>
   </div>
 </div>
 <br>
 <div class="row mar-bot40">
-  <div class="col-lg-9">
-    <%= f.label :observacao %><br>
-    <%= f.text_field :observacao, :class => 'form-control' %>
+  <div class="col-lg-12">
+    <%= f.label :Conta_Adicional %><br>
+    <textarea name="dadosfinanceiro[observacao]" id="dadosfinanceiro_observacao" class="form-control" value="<%=@dadosfinanceiro.observacao%>"><%=@dadosfinanceiro.observacao%></textarea>
   </div>
-  <div class="col-lg-3">
+</div>
+<br>
+<div class="row mar-bot40">
+  <div class="col-lg-12">
     <%= f.label :Email_superconta %><br>
     <%= f.text_field :emailsuperconta, :class => 'form-control' %>
   </div>
 </div>
-  <div class="field">
+
     <%= f.hidden_field :datainclulsao, :value => Time.now%>
-  </div>  
-  <div class="field">
-    <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
-  </div>
+
+        <%if usuario_logado%>
+          <%= f.hidden_field :cadastro_id, :value => user.cadastro_id%>
+        <%else%>
+          <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
+        <%end%>
+            
+
   <br>
   <div align="right">
     <button type="submit" class="btn btn-success btn-bg">

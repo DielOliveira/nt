@@ -53,14 +53,15 @@
 
       <div class="box-body">
 
-
-        <div class="row mar-bot40">
-          <div class="col-lg-4">
-            <%= f.label :Login_do_Patrocinador %><br>
-            <%= f.text_field :cpfpadrinho,:class => 'form-control' %>
-          </div>
-        </div>
-        <br>
+            <%if not usuario_logado%>
+                <div class="row mar-bot40">
+                  <div class="col-lg-4">
+                    <%= f.label :Login_do_Patrocinador %><br>
+                    <%= f.text_field :cpfpadrinho,:class => 'form-control' %>
+                  </div>
+                </div>
+                <br>
+            <%end%>  
         <div class="row mar-bot40">
           <div class="col-lg-6">
             <%= f.label :Nome %><br>
@@ -68,37 +69,58 @@
           </div>
           <div class="col-lg-4">
             <%= f.label :CPF %><br>
-            <%= f.text_field :cpf,:class => 'form-control' %>
+            <%if usuario_logado%>
+                <%= f.text_field :cpf,:class => 'form-control', :readonly => true %>
+            <%else%>
+                <%= f.text_field :cpf,:class => 'form-control' %>
+            <%end%>            
           </div>  
           <div class="col-lg-2">
-            <%= f.label :Masculino %><br>
-            <%= f.check_box :masculino %>
+
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="cadastro[masculino]" id="cadastro_masculino" value="1" <%= @cadastro.masculino == true ? 'checked = "checked"' : '' %>>
+                      Masculino
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="cadastro[masculino]" id="cadastro_masculino" value="0" <%= @cadastro.masculino == false ? 'checked = "checked"' : '' %>>
+                      Feminino
+                    </label>
+                  </div>          
+
           </div>
+
+
+
         </div>
         <br>
         <div class="row mar-bot40">
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <%= f.label :Email %><br>
             <%= f.text_field :email, :class => 'form-control' %>
           </div>
-          <div class="col-lg-3">
+
+          <div class="col-lg-4">
+            <%= f.label :Confirma_Email %><br>
+              <%= f.text_field :descconfirmaemail, :class => 'form-control' %>
+          </div>
+
+          <div class="col-lg-4">
             <%= f.label :Telefone %><br>
             <%= f.text_field :telefone, :class => 'form-control' %>
-          </div>
-          <div class="col-lg-3">
-            <%= f.label :Operadora %><br>
-            <%= f.select :operadora_id, options_from_collection_for_select(Operadora.all, 'id', 'nomeoperadora', @cadastro.operadora_id), {:include_blank => true}, {:class => 'form-control' } %>
           </div>
         </div>
         <br>
         <div class="row mar-bot40">
           <div class="col-lg-4">
-            <%= f.label :Whatsapp %><br>
-            <%= f.text_field :whatsapp, :class => 'form-control'%>
+            <%= f.label :Operadora %><br>
+            <%= f.select :operadora_id, options_from_collection_for_select(Operadora.all, 'id', 'nomeoperadora', @cadastro.operadora_id), {:include_blank => true}, {:class => 'form-control' } %>
           </div>
           <div class="col-lg-4">
-            <%= f.label :Skype %><br>
-            <%= f.text_field :skype, :class => 'form-control'  %>
+            <%= f.label :Whatsapp %><br>
+            <%= f.text_field :whatsapp, :class => 'form-control'%>
           </div>
           <div class="col-lg-4">
             <%= f.label :Facebook %><br>
@@ -110,6 +132,7 @@
             <%= f.hidden_field :ciclo_id, :value => 1%>
             <%= f.hidden_field :flagreentrada, :value => false%>
             <%= f.hidden_field :flagativo, :value => false%>
+            <%= f.hidden_field :contador, :value => Cadastro.where('flagreentrada = false').count + 1%>
           </div>
           <br>
           <div align="right">

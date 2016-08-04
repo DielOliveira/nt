@@ -15,18 +15,14 @@
           <tr>
             <th >Login</th>
             <th >Ciclo</th>
-            <th >Reentradas</th>
-            <th >Doacoes Recebidas</th>
             <th ></th>
           </tr>
         </thead>
 
         <tbody>
             <tr>
-              <td><%=user.email%></td>
+              <td width="50%"><%=user.email%></td>
               <td ><span class="badge bg-green"><%=user.cadastro.ciclo.numerociclo%></span></td>
-              <td ><span class="badge bg-green"><%=reentradasCicloAtual(user.cadastro.id)%></span></td>
-              <td ><span class="badge bg-green"><%=doacaoesRecebidasCicloAtualCount(user.cadastro.id)%></span></td>
               <td align='right'>
                   <% if reentrada(user.cadastro.id) == 'opcional' %>
                     <!-- <div class="btn-group">

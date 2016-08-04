@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720213706) do
+ActiveRecord::Schema.define(version: 20160804004817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assuntos", force: :cascade do |t|
+    t.string   "assunto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bancos", force: :cascade do |t|
     t.string   "nomebanco"
@@ -33,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160720213706) do
     t.string   "facebook"
     t.datetime "dadatainclusao"
     t.boolean  "flagativo"
+    t.integer  "contador"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "cpf"
@@ -58,6 +65,18 @@ ActiveRecord::Schema.define(version: 20160720213706) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "contatos", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "email"
+    t.integer  "assunto_id"
+    t.string   "mensagem"
+    t.boolean  "respondida"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contatos", ["assunto_id"], name: "index_contatos_on_assunto_id", using: :btree
 
   create_table "dadosfinanceiros", force: :cascade do |t|
     t.string   "nometitular"
@@ -164,6 +183,7 @@ ActiveRecord::Schema.define(version: 20160720213706) do
 
   add_foreign_key "cadastros", "ciclos"
   add_foreign_key "cadastros", "operadoras"
+  add_foreign_key "contatos", "assuntos"
   add_foreign_key "dadosfinanceiros", "bancos"
   add_foreign_key "dadosfinanceiros", "cadastros"
   add_foreign_key "dadosfinanceiros", "contabancariatipos"
