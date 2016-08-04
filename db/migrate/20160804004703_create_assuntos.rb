@@ -1,3 +1,4 @@
+#encoding: utf-8
 class CreateAssuntos < ActiveRecord::Migration
   def change
     create_table :assuntos do |t|
@@ -5,5 +6,9 @@ class CreateAssuntos < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+      Assunto.create(:assunto => "Diversos")
+      Assunto.create(:assunto => "Compra e Venda de Logins")
+      Assunto.create(:assunto => "Recuperar Senha e Dados")
   end
 end

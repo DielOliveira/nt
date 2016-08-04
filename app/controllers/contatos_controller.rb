@@ -1,4 +1,4 @@
-class ContatosController < ApplicationController
+  class ContatosController < ApplicationController
   before_action :set_contato, only: [:show, :edit, :update, :destroy]
 
   # GET /contatos
@@ -28,8 +28,11 @@ class ContatosController < ApplicationController
 
     respond_to do |format|
       if @contato.save
-        format.html { redirect_to home_path, notice: 'Mensagem enviada com sucesso.' }
-        format.json { render :show, status: :created, location: @contato }
+        if usuario_logado
+          format.html { redirect_to home_path, notice: 'Mensagem enviada com sucesso.' }
+        else
+          format.html { redirect_to root_path, notice: 'Mensagem enviada com sucesso.' }
+        end
       else
         format.html { render :new }
         format.json { render json: @contato.errors, status: :unprocessable_entity }
