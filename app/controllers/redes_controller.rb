@@ -2,11 +2,56 @@ class RedesController < ApplicationController
  # before_action :requer_logon
   before_action :set_rede, only: [:show, :edit, :update, :destroy]
 
+
+
+  def exibirlinhas
+
+    @redes = Rede.where(:ciclo_id => params[:ciclo_id])
+
+    @linha1 = Rede.where("linha = 1 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha1Preenchidos = Rede.where("linha = 1 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha2 = Rede.where("linha = 2 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha2Preenchidos = Rede.where("linha = 2 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha3 = Rede.where("linha = 3 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha3Preenchidos = Rede.where("linha = 3 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha4 = Rede.where("linha = 4 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha4Preenchidos = Rede.where("linha = 4 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha5 = Rede.where("linha = 5 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha5Preenchidos = Rede.where("linha = 5 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha6 = Rede.where("linha = 6 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha6Preenchidos = Rede.where("linha = 6 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha7 = Rede.where("linha = 7 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha7Preenchidos = Rede.where("linha = 7 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha8 = Rede.where("linha = 8 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha8Preenchidos = Rede.where("linha = 8 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha9 = Rede.where("linha = 9 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha9Preenchidos = Rede.where("linha = 9 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha10 = Rede.where("linha = 10 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha10Preenchidos = Rede.where("linha = 10 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+
+  end 
+
+
+
   # GET /redes
   # GET /redes.json
   def geralinha
 
-    linhas = Rede.where("linha = " + (params[:numero].to_i - 1).to_s)
+    if params[:numero].to_s == '1'
+
+      linha = Rede.where("linha = " + params[:numero].to_s + ' and ciclo_id = ' + params[:ciclo_id])
+
+      if linha.count == 0
+          novarede = Rede.new
+          #novarede.parent_id = nil
+          novarede.linha = params[:numero]
+          novarede.ciclo_id = params[:ciclo_id]
+          novarede.save
+      end
+
+    end
+    
+    linhas = Rede.where("linha = " + (params[:numero].to_i - 1).to_s + ' and ciclo_id = ' + params[:ciclo_id])
 
     linhas.each do |line|
 
@@ -17,11 +62,13 @@ class RedesController < ApplicationController
         novarede = Rede.new
         novarede.parent_id = line.id
         novarede.linha = params[:numero]
+        novarede.ciclo_id = params[:ciclo_id]
         novarede.save
 
         novarede = Rede.new
         novarede.parent_id = line.id
         novarede.linha = params[:numero]
+        novarede.ciclo_id = params[:ciclo_id]
         novarede.save
 
       elsif lineno.count == 1
@@ -29,6 +76,7 @@ class RedesController < ApplicationController
         novarede = Rede.new
         novarede.parent_id = line.id
         novarede.linha = params[:numero]
+        novarede.ciclo_id = params[:ciclo_id]
         novarede.save
 
       end 
@@ -42,28 +90,7 @@ class RedesController < ApplicationController
   end
 
   def index
-    @redes = Rede.all
-
-    @linha1 = Rede.where("linha = 1")
-    @linha1Preenchidos = Rede.where("linha = 1 and cadastro_id is not null")
-    @linha2 = Rede.where("linha = 2")
-    @linha2Preenchidos = Rede.where("linha = 2 and cadastro_id is not null") 
-    @linha3 = Rede.where("linha = 3")
-    @linha3Preenchidos = Rede.where("linha = 3 and cadastro_id is not null") 
-    @linha4 = Rede.where("linha = 4")
-    @linha4Preenchidos = Rede.where("linha = 4 and cadastro_id is not null") 
-    @linha5 = Rede.where("linha = 5")
-    @linha5Preenchidos = Rede.where("linha = 5 and cadastro_id is not null") 
-    @linha6 = Rede.where("linha = 6")
-    @linha6Preenchidos = Rede.where("linha = 6 and cadastro_id is not null") 
-    @linha7 = Rede.where("linha = 7")
-    @linha7Preenchidos = Rede.where("linha = 7 and cadastro_id is not null") 
-    @linha8 = Rede.where("linha = 8")
-    @linha8Preenchidos = Rede.where("linha = 8 and cadastro_id is not null") 
-    @linha9 = Rede.where("linha = 9")
-    @linha9Preenchidos = Rede.where("linha = 9 and cadastro_id is not null") 
-    @linha10 = Rede.where("linha = 10")
-    @linha10Preenchidos = Rede.where("linha = 10 and cadastro_id is not null") 
+    @ciclos = Ciclo.all
   end
 
   # GET /redes/1

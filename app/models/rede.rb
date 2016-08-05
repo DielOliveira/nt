@@ -7,10 +7,11 @@ class Rede < ActiveRecord::Base
 	
 	  belongs_to :redetipo
 	  belongs_to :cadastro
+	  belongs_to :ciclo
 	  
 
-def self.find_by_order(cadastro_id)      
-	Rede.where('cadastro_id = ? ', cadastro_id).order('created_at')
+def self.find_by_order(rede_id)      
+	Rede.where('id = ?', rede_id).order('created_at')
 end
 
 

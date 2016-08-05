@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<% if reentrada(user.cadastro.id) == 'obrigatoria'%>
+<% if upgrade(user.cadastro.id) == 'obrigatoria'%>
   <%= render 'shared/obrigacoes' %>
 <%end%>
 <% if not apareceobrigacaoreentrada %>

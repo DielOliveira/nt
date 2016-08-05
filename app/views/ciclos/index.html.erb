@@ -22,8 +22,8 @@
           <td align='right'>
             <div class="btn-group">
 
-              <%= link_to ciclo, :class => "btn btn-default btn-sm" do %>
-                <span class="glyphicon glyphicon-list-alt"></span> Exibir
+              <%= link_to exibirlinhas_path(ciclo.id), :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-list-alt"></span> Exibir Rede
               <% end %>                              
               <%= link_to edit_ciclo_path(ciclo), :class => "btn btn-default btn-sm" do %>
                 <span class="glyphicon glyphicon-pencil"></span> Editar

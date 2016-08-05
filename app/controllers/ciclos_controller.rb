@@ -9,16 +9,29 @@ class CiclosController < ApplicationController
 
       @reentradas = Reentrada.where("cadastro_reentrando_id = " + params[:cadastro_id].to_s + ' and ciclo_id = ' + cadastro.ciclo.id.to_s).count
 
-      if cadastro.ciclo.qtdreentradas < @reentradas
-            return
+      @permite = true
+
+      if  @reentradas < cadastro.ciclo.qtdreentradas
+          @permite = false
       end
 
-      cadastro = Cadastro.find_by_id(cadastro.id)
-      cadastro.cpfpadrinho = cadastro.email
-      cadastro.ciclo_id = cadastro.ciclo_id + 1
+      if @permite == true
+
+        cadastro = Cadastro.find_by_id(cadastro.id)
+        cadastro.cpfpadrinho = cadastro.email
+        cadastro.email = cadastro.email
+        cadastro.descconfirmaemail = cadastro.email
+        cadastro.ciclo_id = cadastro.ciclo_id + 1
+        cadastro.save
+
+        rede = Rede.find_by_id(proximaentrada(cadastro.ciclo_id).to_i)
+        rede.cadastro_id = cadastro.id
+        rede.save
+
+      end
 
       respond_to do |format|
-        if cadastro.save
+        if @permite == true
             format.html { redirect_to reentradas_path, notice: 'Upgrade realizado com sucesso.' }
         else
             format.html { redirect_to reentradas_path, notice: 'Erro ao realizar o Upgrade.' }

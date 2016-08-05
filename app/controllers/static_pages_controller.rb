@@ -12,7 +12,7 @@ class StaticPagesController < ApplicationController
 
 	def verdoacoes
 
-		    rede = Rede.find_by_cadastro_id(user.cadastro.id)
+		    rede = Rede.where('cadastro_id = ? and ciclo_id = ?',user.cadastro.id, user.cadastro.ciclo_id).first
 		
 			if rede.linha > 2
 				doacoes = Doacao.joins('inner join ciclos cl on cl.id = ciclo_doador_id').where("cadastro_doador_id = " + user.cadastro.id.to_s + "and ciclo_doador_id = " + user.cadastro.ciclo.id.to_s )
@@ -30,25 +30,26 @@ class StaticPagesController < ApplicationController
 				end			
 			end
 
-		    redes = Rede.joins('inner join reentradas ree on cadastro_id = ree.cadastro_adicionado_id').where('cadastro_principal_id = ' + user.cadastro.id.to_s)
+		    reentradas = Reentrada.where('cadastro_principal_id = ? ', user.cadastro.id.to_s)
 		
-			redes.each do |rede|
+			reentradas.each do |reentrada|
 			#byebug
 
-				if rede.linha > 2
-					doacoes = Doacao.joins('inner join ciclos cl on cl.id = ciclo_doador_id').where("cadastro_doador_id = " + rede.cadastro_id.to_s + "and ciclo_doador_id = " + rede.cadastro.ciclo.id.to_s )
-					if doacoes.empty?
+				rede = Rede.where('cadastro_id = ? and ciclo_id = ?', reentrada.cadastro_adicionado_id, reentrada.cadastro_adicionado.ciclo_id).first
 
-					    start = Doacao.new
-					    start.cadastro_doador_id = rede.cadastro_id
-					    start.cadastro_recebedor_id = rede.parent.parent.cadastro.id
-					    start.cadastro_principal_id = rede.cadastro_id
-					    start.ciclo_doador_id = rede.cadastro.ciclo.id
-					    start.ciclo_recebedor_id = rede.parent.parent.cadastro.ciclo.id
-					    start.flagenviada = false
-					    start.save			
+				doacoes = Doacao.joins('inner join ciclos cl on cl.id = ciclo_doador_id').where("cadastro_doador_id = " + reentrada.cadastro_adicionado_id.to_s + "and ciclo_doador_id = " + reentrada.cadastro_adicionado.ciclo_id.to_s )
+				if doacoes.empty?
+
+
+				    start = Doacao.new
+				    start.cadastro_doador_id = reentrada.cadastro_adicionado_id
+				    start.cadastro_recebedor_id = rede.parent.parent.cadastro_id
+				    start.cadastro_principal_id = user.cadastro_id
+				    start.ciclo_doador_id = reentrada.cadastro_adicionado.ciclo_id
+				    start.ciclo_recebedor_id = rede.parent.parent.cadastro.ciclo_id
+				    start.flagenviada = false
+				    start.save			
 					    	
-					end			
 				end
 			end		
 
@@ -113,10 +114,24 @@ class StaticPagesController < ApplicationController
 	def configu
 	end
 
+	def redeslistciclo
+
+		@reentradas =  Reentrada.where('cadastro_reentrando_id = ? ', user.cadastro_id)
+
+
+	end 
+	
 	def redeslist
-		@cadastro_id = params[:cadastro_id]
+
+		@rede = Rede.find_by_order(params[:rede_id]) rescue nil
+
+		@redePrincipal = Rede.where('cadastro_id = ? and ciclo_id = ?', user.cadastro_id, @rede.first.ciclo_id ).first.id
+
+		@ciclo = @rede.first.ciclo_id
+		
+		@cadastro_id = @rede.first.cadastro_id
+
 		@cadastro = Cadastro.find_by_id(@cadastro_id)
-		@rede = Rede.find_by_order(@cadastro_id) rescue nil
 
 		#Filhos
 		@filho_primeiro = @rede.first.children.order(:id).first rescue nil

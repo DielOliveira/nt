@@ -1,0 +1,52 @@
+<link href="/assets/template/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Principal</th>
+        </tr>
+      </thead>
+      <tbody>
+		<tr>
+			<td>
+				<div class="btn-group">
+
+					  <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><%=user.cadastro.nomepessoa%> <span class="caret"></span></button>
+					  <ul class="dropdown-menu">
+					  	<%redes =  Rede.where('cadastro_id = ?',user.cadastro_id )%>
+					  	<% redes.each do |rede|%>
+					    	<li><a href="<%=redeslist_path(rede.id)%>">Ciclo <%=rede.ciclo.numerociclo%></a></li>
+					  	<%end%>
+					  </ul>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>  
+
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Reentradas</th>
+        </tr>
+      </thead>
+      <tbody>    
+	<% @reentradas.each do |reentrada| %>
+		<tr>
+			<td>
+				<div class="btn-group">
+
+					  <button class="btn btn-success dropdown-toggle" data-toggle="dropdown"><%=reentrada.cadastro_adicionado.nomepessoa%> <span class="caret"></span></button>
+					  <ul class="dropdown-menu">
+					  	<%redes =  Rede.where('cadastro_id = ?',reentrada.cadastro_adicionado_id )%>
+					  	<% redes.each do |rede|%>
+					    	<li><a href="<%=redeslist_path(rede.id)%>">Ciclo <%=rede.ciclo.numerociclo%></a></li>
+					  	<%end%>
+					  </ul>
+				</div>
+			</td>
+		</tr>
+	<%end%>
+	</tbody>
+</table>

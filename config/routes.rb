@@ -43,9 +43,14 @@ Rails.application.routes.draw do
   match '/faq', to: 'static_pages#faq', via: 'get'
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
   match '/configu', to: 'static_pages#configu', via: 'get'
-  get '/redeslist/:cadastro_id', to: 'static_pages#redeslist', as: 'redeslist'
+
+  get '/redeslist/:rede_id', to: 'static_pages#redeslist', as: 'redeslist'
+  get '/redeslistciclo', to: 'static_pages#redeslistciclo', as: 'redeslistciclo'
+
   get '/loginprincipal/:cadastro_id', to: 'static_pages#loginprincipal', as: 'loginprincipal'
   
+  get '/exibirlinhas/:ciclo_id', to: 'redes#exibirlinhas', as: 'exibirlinhas'
+
   get '/novareentrada/:cadastro_id', to: 'reentradas#novareentrada', as: 'novareentrada'
   get '/upgrade_ciclo/:cadastro_id', to: 'ciclos#upgrade_ciclo', as: 'upgrade_ciclo'
 

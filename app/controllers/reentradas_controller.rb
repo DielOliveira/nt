@@ -34,6 +34,7 @@ class ReentradasController < ApplicationController
     cadastro.nomepessoa = principal.nomepessoa + "-" + (count.count + 1).to_s
     cadastro.masculino = reentrando.cadastro.masculino
     cadastro.email = principal.email + "-" + (count.count + 1).to_s
+    cadastro.descconfirmaemail = principal.email + "-" + (count.count + 1).to_s
     cadastro.telefone = reentrando.cadastro.telefone
     cadastro.operadora_id = reentrando.cadastro.operadora_id
     cadastro.whatsapp = reentrando.cadastro.whatsapp
@@ -44,6 +45,7 @@ class ReentradasController < ApplicationController
     cadastro.flagreentrada = true
     cadastro.cpfpadrinho = reentrando.email
     cadastro.flagativo = false
+
     cadastro.save
 
     #Financeiro
@@ -72,7 +74,7 @@ class ReentradasController < ApplicationController
     usuario.save
 
     #rede
-    rede = Rede.find_by_id(proximaentrada.to_i)
+    rede = Rede.find_by_id(proximaentrada(1).to_i)
     rede.cadastro_id = cadastro.id
     rede.save
 
@@ -163,4 +165,6 @@ class ReentradasController < ApplicationController
     def reentrada_params
       params.fetch(:reentrada, {})
     end
+
+     
 end
