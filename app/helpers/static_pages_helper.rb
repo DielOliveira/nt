@@ -15,6 +15,26 @@ module StaticPagesHelper
 
 	end
 
+	def contapessoas(rede_id)
+
+		dados = Rede.where('parent_id = ? and cadastro_id is not null ', rede_id)
+
+		if dados
+
+
+			dados.each do |dados_pessoas|
+
+				@html = (dados.count).to_s + contapessoas(dados_pessoas.id)
+
+			end
+
+		end
+			
+
+		return @html.to_s
+		
+	end
+
 
 	def title(page_title)
 	  content_for :title, page_title.to_s
