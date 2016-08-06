@@ -1,22 +1,18 @@
 module StaticPagesHelper
 
+	def somatudo(numeros)
+		count = 0
+		Rede.find_by_id(numeros).walk_tree do |page, level|
+		  #link_to "#{'---'*level}#{page.desc}", rede_path(page)
 
-	def contapessoas(rede_id)
+		  if page.cadastro_id != nil
+		  	count = count + 1
+	  	  end
 
-		if rede_id == nil
-			return 0
-		end
+		end 
 
-		rede = Rede.find(rede_id)
+		return count
 
-		rede.children.each do |d|
-
-			#byebug
-			return rede.children.count + contapessoas(d.id)
-
-		end
-
-		
 	end
 
 

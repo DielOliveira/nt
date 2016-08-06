@@ -51,8 +51,7 @@
           <a href="<%=redeslist_path(user.cadastro.id)%>">
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3><%#=contapessoas(Rede.find_by_cadastro_id(user.cadastro_id))%></h3>
-
+              <h3><%=somatudo(Rede.where('cadastro_id = ? and ciclo_id = ?', user.cadastro_id, user.cadastro.ciclo_id).first.id)%></h3>
               <p>Pessoas Em Sua Rede</p>
             </div>
             <div class="icon">
