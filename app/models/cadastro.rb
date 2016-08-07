@@ -29,7 +29,7 @@ class Cadastro < ActiveRecord::Base
 	validates :descconfirmaemail, :presence => { :message => 'é obrigatório.' }
 
 	validates :nomepessoa, :presence => { :message => 'é obrigatório.' }  
-	validates :email, :presence => true, :uniqueness => true, :on => :create
+	#validates :email, :presence => true, :uniqueness => true, :on => :create
 	validate :check_email_and_confirmation
 
 
