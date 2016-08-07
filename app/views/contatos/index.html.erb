@@ -1,35 +1,54 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Contatos</h1>
+<div class="box box-warning">
+    <div class="box-header with-border">
+      <h4 class="timeline-header"><a href="#">Mensagens</a></h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Assunto</th>
-      <th>Mensagem</th>
-      <th>Respondida</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
 
-  <tbody>
-    <% @contatos.each do |contato| %>
-      <tr>
-        <td><%= contato.nome %></td>
-        <td><%= contato.email %></td>
-        <td><%= contato.assunto %></td>
-        <td><%= contato.mensagem %></td>
-        <td><%= contato.respondida %></td>
-        <td><%= link_to 'Show', contato %></td>
-        <td><%= link_to 'Edit', edit_contato_path(contato) %></td>
-        <td><%= link_to 'Destroy', contato, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Assunto</th>
+          <th>Mensagem</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @contatos.each do |contato| %>
+          <tr>
+            <td><%= contato.nome %></td>
+            <td><%= contato.email %></td>
+            <td><%= contato.assunto.assunto %></td>
+            <td><%= contato.mensagem %></td>
+
+            <td align='right'>
+                <%= link_to contato, :class => "btn btn-default btn-sm" do %>
+                  <span class="glyphicon glyphicon-list-alt"></span> Exibir
+                <% end %>                              
+
+                <%= link_to contato , :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
+                  <span class="glyphicon glyphicon-trash"></span> Excluir
+                <% end %>            
+            </td>              
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    </div>
+  </div>
+
 
 <br>
 
-<%= link_to 'New Contato', new_contato_path %>

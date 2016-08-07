@@ -31,6 +31,7 @@ class DoacaosController < ApplicationController
     doacao.save
 
     cadastro = Cadastro.find(doacao.cadastro_doador_id)
+    cadastro.descconfirmaemail = cadastro.email
     cadastro.flagativo = true
     cadastro.save
 

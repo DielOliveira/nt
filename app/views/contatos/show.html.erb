@@ -1,29 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @contato.nome %>
-</p>
+<div class="box box-warning">
+    <div class="box-header with-border">
+      <h4 class="timeline-header"><a href="#">Mensagens</a></h4>
 
-<p>
-  <strong>Email:</strong>
-  <%= @contato.email %>
-</p>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
 
-<p>
-  <strong>Assunto:</strong>
-  <%= @contato.assunto %>
-</p>
 
-<p>
-  <strong>Mensagem:</strong>
-  <%= @contato.mensagem %>
-</p>
+    <p>
+      <strong>Nome:</strong>
+      <%= @contato.nome %>
+    </p>
 
-<p>
-  <strong>Respondida:</strong>
-  <%= @contato.respondida %>
-</p>
+    <p>
+      <strong>Email:</strong>
+      <%= @contato.email %>
+    </p>
 
-<%= link_to 'Edit', edit_contato_path(@contato) %> |
-<%= link_to 'Back', contatos_path %>
+    <p>
+      <strong>Assunto:</strong>
+      <%= @contato.assunto.assunto %>
+    </p>
+
+    <p>
+      <strong>Mensagem:</strong>
+      <%= @contato.mensagem %>
+    </p>
+
+    <div class="timeline-footer">
+      <div align="right">
+
+      <%= link_to contatos_path, :class => "btn btn-info btn-bg" do %>
+        <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+      <% end %> 
+
+      </div>
+    </div>
+  </div>
+</div>
