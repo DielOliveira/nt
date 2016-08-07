@@ -33,7 +33,7 @@ class CadastrosController < ApplicationController
 
           session[:cadastro_id] = @cadastro.id
 
-          rede = Rede.find_by_id(proximaentrada)
+          rede = Rede.find_by_id(proximaentrada(1))
           rede.cadastro_id = session[:cadastro_id]
           rede.save
 
