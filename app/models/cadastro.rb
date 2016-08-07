@@ -23,7 +23,7 @@ class Cadastro < ActiveRecord::Base
 
 
 	validate :busca_email_existente, :on => :create
-	validate :validacpf, :on => :create
+	#validate :validacpf, :on => :create
 	validates_cpf :cpf, :on => :create
 	validates :email, email_format: { message: "não é válido." }
 	validates :descconfirmaemail, :presence => { :message => 'é obrigatório.' }
