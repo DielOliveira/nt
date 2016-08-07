@@ -1,7 +1,7 @@
 <%@doacaospendentesreceber.each do |doacoes| %>
     <div class="box box-warning">
         <div class="box-header with-border">
-          <h4 class="timeline-header"><a href="#"><%=doacoes.cadastro_recebedor.nomepessoa%> possui uma doação para confirmar!</a></h4>
+          <h4 class="timeline-header"><a href="#"><%=doacoes.cadastro_recebedor.nomepessoa%> possui uma doação para confirmarrr!</a></h4>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -9,10 +9,21 @@
           </div>
           <!-- /.box-tools -->
         </div>
+        <%@dadosfinanceiros = Dadosfinanceiro.where('cadastro_id = ? ', doacoes.cadastro_doador.id).first %>
         <!-- /.box-header -->
         <div class="box-body">
           <p><b>Doação de: </b><%=doacoes.cadastro_doador.nomepessoa%></p>
           <p><b>Valor: </b><%=number_to_currency( doacoes.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
+
+          <p><b>Banco: </b><%=@dadosfinanceiros.banco.nomebanco%></p>
+          <p><b>Agencia: </b><%=@dadosfinanceiros.agencia%></p>
+          <p><b>Conta: </b><%=@dadosfinanceiros.codigo%></p>
+          <p><b>Operação: </b><%=@dadosfinanceiros.operacao%></p>
+          <p><b>Titular: </b><%=@dadosfinanceiros.nometitular%></p>
+          <p><b>CPF: </b><%=@dadosfinanceiros.cpftitular%></p>
+          <p><b>E-mail: </b><%=doacoes.cadastro_doador.email%></p>
+          <p><b>Telefone: </b><%=doacoes.cadastro_doador.telefone%></p>
+
           <div class="timeline-footer">
             <div align="right">
               <%= link_to doacoes.avatar_url , :class => "btn btn-info btn-sm", :target => "_blank" do %>
