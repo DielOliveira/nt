@@ -17,6 +17,9 @@
     </div>
   <% end %>  
   
+
+    <%= f.label :avatar %><br>
+    <%= f.text_field :avatar %>  
   
 <%
       @dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@doacao.cadastro_recebedor.id) rescue nil
@@ -71,11 +74,11 @@
           <% end %>   
         <% end %>   
 
-        <% if not @doacaoverifica.flagenviada? %>
+        <%# if not @doacaoverifica.flagenviada? %>
           <button type="submit" class="btn btn-success btn-bg">
             Realizar Doação
           </button>
-        <%end%>
+        <%#end%>
       </div>
 
       </div>              
