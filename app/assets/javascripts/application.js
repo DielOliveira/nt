@@ -14,3 +14,4 @@
 //= require bootstrap
 //= maske
 //= require maskedinput
+//= require cloudinary

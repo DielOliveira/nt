@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160804215726) do
   add_index "dadosfinanceiros", ["contabancariatipo_id"], name: "index_dadosfinanceiros_on_contabancariatipo_id", using: :btree
 
   create_table "doacaos", force: :cascade do |t|
+    t.string   "comprovante"
     t.boolean  "flagconfirmada"
     t.boolean  "flagrejeitada"
     t.datetime "created_at",            null: false

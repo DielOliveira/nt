@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dy6zx1ujk
+  api_key: '975222177415633'
+  api_secret: j-UC2quotu3hCi1obJUf08KKRXc
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dy6zx1ujk
+  api_key: '975222177415633'
+  api_secret: j-UC2quotu3hCi1obJUf08KKRXc
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dy6zx1ujk
+  api_key: '975222177415633'
+  api_secret: j-UC2quotu3hCi1obJUf08KKRXc
+  enhance_image_tag: true
+  static_image_support: false

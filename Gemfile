@@ -21,6 +21,7 @@ gem 'mini_magick'
 #gem 'ImageMagick'
 #gem 'rmagick'
 #gem 'GraphicsMagick'
+gem 'cloudinary'
 
 gem 'jquery-countdown-rails'
 
