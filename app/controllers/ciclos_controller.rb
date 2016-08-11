@@ -6,9 +6,7 @@ class CiclosController < ApplicationController
   def upgrade_ciclo
 
       cadastro = Cadastro.find(params[:cadastro_id])
-
       @reentradas = Reentrada.where("cadastro_reentrando_id = " + params[:cadastro_id].to_s + ' and ciclo_id = ' + cadastro.ciclo.id.to_s).count
-
       @permite = true
 
       if  @reentradas < cadastro.ciclo.qtdreentradas
@@ -27,7 +25,6 @@ class CiclosController < ApplicationController
         rede = Rede.find_by_id(proximaentrada(cadastro.ciclo_id).to_i)
         rede.cadastro_id = cadastro.id
         rede.save
-
       end
 
       respond_to do |format|

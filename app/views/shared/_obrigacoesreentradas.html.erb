@@ -28,9 +28,9 @@
               <td align='right'>
                 <% if reentrada(reentrada.cadastro_adicionado_id) == 'opcional' %>
                   <div class="btn-group">
-                    <%#= link_to novareentrada_path(reentrada.cadastro_adicionado_id), :class => "btn btn-success btn-sm" do %>
-                       <!-- Reentrada Opcional -->
-                    <%# end %>   
+                    <%= link_to novareentrada_path(reentrada.cadastro_adicionado_id), :class => "btn btn-success btn-sm" do %>
+                       Reentrada Opcional
+                    <% end %>   
                   </div>               
                 <% else %>   
                   <div class="btn-group">
