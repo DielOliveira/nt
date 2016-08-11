@@ -27,9 +27,11 @@
 
           <div class="timeline-footer">
             <div align="right">
-              <%= link_to doacoes.avatar_url , :class => "btn btn-info btn-sm", :target => "_blank" do %>
-                 Ver Comprovante
-              <% end %>            
+              <%if doacoes.comprovante %>
+                <a class="btn btn-info btn-sm" target="_blank" href="<%=Cloudinary::Utils.cloudinary_url(doacoes.comprovante)%>">
+                     Ver Comprovante
+                </a>
+              <%end%>          
               <%= link_to confirmadoacao_doacao_path(doacoes.id) , :class => "btn btn-success btn-sm" do %>
                  Confirmar Doação
               <% end %>
