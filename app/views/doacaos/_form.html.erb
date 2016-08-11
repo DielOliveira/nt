@@ -50,7 +50,7 @@
       <p><b>Telefone: </b><%=@doacao.cadastro_recebedor.telefone%></p>
       <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock"></span></small></p>
       <br>
-      <% if not @doacao.avatar? %>
+      <% if not @doacao.comprovante? %>
       <p><b>Comprovante </b></p>
         <%= f.file_field :avatar %>
       <%else%>
