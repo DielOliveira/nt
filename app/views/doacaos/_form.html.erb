@@ -48,7 +48,9 @@
       <p><b>CPF: </b><%=@dadosfinanceiros.cpftitular%></p>
       <p><b>E-mail: </b><%=@doacao.cadastro_recebedor.email%></p>
       <p><b>Telefone: </b><%=@doacao.cadastro_recebedor.telefone%></p>
-      <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock"></span></small></p>
+      <%if not @doacao.flagconfirmada %>
+        <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock"></span></small></p>
+      <%end%>
       <br>
       <% if not @doacao.comprovante? %>
       <p><b>Comprovante </b></p>
