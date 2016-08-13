@@ -51,8 +51,10 @@ Rails.application.routes.draw do
   
   get '/exibirlinhas/:ciclo_id', to: 'redes#exibirlinhas', as: 'exibirlinhas'
 
-  get '/novareentrada/:cadastro_id', to: 'reentradas#novareentrada', as: 'novareentrada'
+  get '/novareentrada/:cadastro_id/:flagdemanda', to: 'reentradas#novareentrada', as: 'novareentrada'
   get '/upgrade_ciclo/:cadastro_id', to: 'ciclos#upgrade_ciclo', as: 'upgrade_ciclo'
+  
+  get '/obrigareentrada/:cadastro_id', to: 'cadastros#obrigareentrada', as: 'obrigareentrada'
 
 
   #get '/confirmadoacao/:doacao_id', to: 'doacaos#confirmadoacao', as: 'confirmadoacao'

@@ -1,0 +1,47 @@
+<div class="box box-warning">
+    <div class="box-header with-border">
+      <h4 class="timeline-header"><a href="#">Login Principal</a></h4>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th >Login</th>
+            <th >Ciclo</th>
+            <th ></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td width="50%"><%=user.email%></td>
+              <td ><span class="badge bg-green"><%=user.cadastro.ciclo.numerociclo%></span></td>
+              <td align='right'>
+                    <div class="btn-group">
+                      <%= link_to novareentrada_path(user.cadastro.id,'true'), :class => "btn btn-danger btn-sm" do %>
+                         Reentrada Obrigatorio
+                      <% end %>   
+                    </div>               
+              </td>
+            </tr>
+        </tbody>
+      </table>
+
+      <div class="timeline-footer">
+      <br>
+        <div align="right">
+         
+        </div>
+
+      </div>              
+    </div>
+    <!-- /.box-body -->
+</div> 
+

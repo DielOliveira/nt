@@ -40,8 +40,9 @@ ActiveRecord::Schema.define(version: 20160804215726) do
     t.datetime "dadatainclusao"
     t.boolean  "flagativo"
     t.integer  "contador"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "flagreentradaobrigatoria"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.string   "cpf"
     t.integer  "ciclo_id"
     t.string   "avatar"

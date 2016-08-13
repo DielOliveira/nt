@@ -24,6 +24,7 @@ class ReentradasController < ApplicationController
 
   def novareentrada
 
+
     #Cadastro
     principal = Cadastro.find(user.cadastro_id)
 
@@ -87,6 +88,14 @@ class ReentradasController < ApplicationController
     reentrada.ciclo_id = user.cadastro.ciclo.id
 
     
+    if params[:flagdemanda] == 'true'
+      cadastroprincipal = Cadastro.find(user.cadastro_id)
+      cadastroprincipal.flagreentradaobrigatoria = false
+      cadastroprincipal.email = cadastroprincipal.email
+      cadastroprincipal.descconfirmaemail = cadastroprincipal.email
+      cadastroprincipal.save
+    end
+
     if reentrada.save
       redirect_to reentradas_path
     end

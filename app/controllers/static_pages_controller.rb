@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+	class StaticPagesController < ApplicationController
 #before_action :requer_logon
 
 
@@ -9,6 +9,39 @@ class StaticPagesController < ApplicationController
 		end
 		
 	end
+
+	def validacadastro
+		cadastros = Cadastro.where(:flagativo => false)
+
+		cadastros.each do |cadastro|
+
+			if (cadastro.created_at + 1.days) < Time.now
+				
+				rede = Rede.find_by_cadastro_id(cadastro.id)
+				if not rede.blank?
+					rede.cadastro_id = nil
+					rede.save
+				end
+
+				reentradas = Reentrada.where(:cadastro_adicionado_id => cadastro.id)
+
+				if not reentradas.blank?
+					reentradas.first.destroy
+				end
+
+				indicado = Indicado.where(:cadastro_2_id => cadastro.id)
+
+				if not indicado.blank?
+					indicado.first.destroy
+				end
+
+				cadastro.destroy
+
+			end
+
+		end
+
+	end	
 
 	def verdoacoes
 
@@ -100,6 +133,8 @@ class StaticPagesController < ApplicationController
 
 		#Contador de indicados
 		@indicados = Indicado.where('cadastro_1_id = ' + user.cadastro.id.to_s).count
+
+		validacadastro
 
 		verdoacoes
 

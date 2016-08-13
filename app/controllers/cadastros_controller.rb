@@ -2,10 +2,22 @@
 class CadastrosController < ApplicationController
   before_action :set_cadastro, only: [:show, :edit, :update, :destroy]
 
+
+  def obrigareentrada
+
+      cadastroprincipal = Cadastro.find(params[:cadastro_id])
+      cadastroprincipal.flagreentradaobrigatoria = true
+      cadastroprincipal.email = cadastroprincipal.email
+      cadastroprincipal.descconfirmaemail = cadastroprincipal.email
+      cadastroprincipal.save    
+
+      redirect_to cadastros_path
+
+  end
   # GET /cadastros
   # GET /cadastros.json
   def index
-    @cadastros = Cadastro.all
+    @cadastros = Cadastro.order(:created_at).all
   end
 
   # GET /cadastros/1
@@ -100,6 +112,6 @@ class CadastrosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cadastro_params
-      params.require(:cadastro).permit(:nomepessoa, :masculino, :email, :telefone, :operadora_id, :whatsapp, :skype, :facebook, :dadatainclusao, :cpf, :cpfpadrinho, :ciclo_id, :avatar, :flagreentrada, :flagativo, :descconfirmaemail, :contador)
+      params.require(:cadastro).permit(:nomepessoa, :masculino, :email, :telefone, :operadora_id, :whatsapp, :skype, :facebook, :dadatainclusao, :cpf, :cpfpadrinho, :ciclo_id, :avatar, :flagreentrada, :flagativo, :descconfirmaemail, :contador, :flagreentradaobrigatoria)
     end
 end

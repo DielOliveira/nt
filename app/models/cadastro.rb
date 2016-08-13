@@ -8,7 +8,7 @@ class Cadastro < ActiveRecord::Base
 	belongs_to :dadosfinanceiro
 	has_many :dadosfinanceiros, dependent: :destroy
 	has_many :usuarios, dependent: :destroy
-	has_many :redes, dependent: :destroy
+	has_many :redes
 
 	has_many :primary_doacaos, :class_name => "Doacao", :foreign_key => "cadastro_doador_id"
 	has_many :secondary_doacaos, :class_name => "Doacao", :foreign_key => "cadastro_recebedor_id" 

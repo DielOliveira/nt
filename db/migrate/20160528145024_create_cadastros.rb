@@ -13,6 +13,7 @@ class CreateCadastros < ActiveRecord::Migration
       t.datetime :dadatainclusao
       t.boolean :flagativo
       t.integer :contador
+      t.boolean :flagreentradaobrigatoria
 
       t.timestamps null: false
     end

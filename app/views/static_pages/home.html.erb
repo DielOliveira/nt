@@ -7,6 +7,11 @@
   <%= render 'shared/obrigacoesreentradas' %>
 <%end%>
 
+<%if user.cadastro.flagreentradaobrigatoria%>
+  <%= render 'shared/obrigacoesdemanda' %>
+<%end%>
+
+
 <%= render 'shared/doacoesPagar' %>
 <%= render 'shared/doacoesPagarReentrada' %>
 <%= render 'shared/doacoesReceber' %>

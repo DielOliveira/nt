@@ -38,12 +38,12 @@ ok - Criar o layout incial
 
 Domingo
 -------
-retirar avatares
-exibir ciclo na rede binária
-Rede binária exibindo aleatório
-programar reentradas de reentradas
+ok - retirar avatares
+ok - exibir ciclo na rede binária
+ok - Rede binária exibindo aleatório
+ok - programar reentradas de reentradas
 validar uploads de arquivos
-fazer contagem de pessoas na rede
+ok - fazer contagem de pessoas na rede
 
 
 
@@ -85,6 +85,6 @@ ok - Criar a opção fale conosco
 ok - exibir simbolo de ok quando o numero de indicações diretas der 2
 ok - Exibir número de pessoas de acordo com o cadastro
 ok - link para rede binaria 
+ok - vanexar em ingles
+ok - Arrumar contador de pessoas na rede
 acessar somente depois de ativo
-anexar em ingles
-Arrumar contador de pessoas na rede
