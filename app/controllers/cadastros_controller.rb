@@ -11,7 +11,7 @@ class CadastrosController < ApplicationController
       cadastroprincipal.descconfirmaemail = cadastroprincipal.email
       cadastroprincipal.save    
 
-      redirect_to home_path
+      redirect_to cadastros_path
 
   end
   # GET /cadastros
