@@ -6,7 +6,11 @@ class CadastrosController < ApplicationController
   def obrigareentrada
 
       cadastroprincipal = Cadastro.find(params[:cadastro_id])
-      cadastroprincipal.flagreentradaobrigatoria = true
+      if cadastroprincipal.flagreentradaobrigatoria == true
+        cadastroprincipal.flagreentradaobrigatoria = false
+      else
+        cadastroprincipal.flagreentradaobrigatoria = true
+      end
       cadastroprincipal.email = cadastroprincipal.email
       cadastroprincipal.descconfirmaemail = cadastroprincipal.email
       cadastroprincipal.save    
