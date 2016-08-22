@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Solicitacaos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Descricao</th>
+      <th>Situacaodemanda</th>
+      <th>Dataprevisao</th>
+      <th>Anexo</th>
+      <th>Resolucao</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @solicitacaos.each do |solicitacao| %>
+      <tr>
+        <td><%= solicitacao.titulo %></td>
+        <td><%= solicitacao.descricao %></td>
+        <td><%= solicitacao.situacaodemanda %></td>
+        <td><%= solicitacao.dataprevisao %></td>
+        <td><%= solicitacao.anexo %></td>
+        <td><%= solicitacao.resolucao %></td>
+        <td><%= link_to 'Show', solicitacao %></td>
+        <td><%= link_to 'Edit', edit_solicitacao_path(solicitacao) %></td>
+        <td><%= link_to 'Destroy', solicitacao, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Solicitacao', new_solicitacao_path %>

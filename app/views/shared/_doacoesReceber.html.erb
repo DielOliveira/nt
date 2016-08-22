@@ -35,6 +35,12 @@
               <%= link_to confirmadoacao_doacao_path(doacoes.id) , :class => "btn btn-success btn-sm" do %>
                  Confirmar Doação
               <% end %>
+              <%= link_to recusardoacao_doacao_path(doacoes.id) , :class => "btn btn-danger btn-sm" do %>
+                 Recusar
+              <% end %>
+              <%= link_to adiardoacao_doacao_path(doacoes.id) , :class => "btn btn-warning btn-sm" do %>
+                 Adiar
+              <% end %>                            
             </div>
 
           </div>              

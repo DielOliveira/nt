@@ -4,6 +4,7 @@ class CreateDoacaos < ActiveRecord::Migration
       t.string :comprovante
       t.boolean :flagconfirmada
       t.boolean :flagrejeitada
+      t.datetime :tempo
 
       t.timestamps null: false
     end

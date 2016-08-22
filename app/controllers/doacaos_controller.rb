@@ -1,6 +1,6 @@
 class DoacaosController < ApplicationController
   before_action :requer_logon
-  before_action :set_doacao, only: [:show, :edit, :update, :destroy, :confirmadoacao]
+  before_action :set_doacao, only: [:show, :edit, :update, :destroy, :confirmadoacao, :recusardoacao, :adiardoacao]
 
   # GET /doacaos
   # GET /doacaos.json
@@ -36,6 +36,33 @@ class DoacaosController < ApplicationController
     cadastro.save
 
     redirect_to  root_path
+
+  end
+
+  def recusardoacao
+
+    doacao = Doacao.find_by_id(@doacao.id)
+    doacao.flagenviada = false
+    doacao.dataconfirmacao = nil
+    doacao.comprovante = nil
+    doacao.avatar = nil
+    doacao.save
+
+    redirect_to  root_path
+
+  end  
+
+  def adiardoacao
+
+    doacao = Doacao.find_by_id(@doacao.id)
+    doacao.flagenviada = false
+    doacao.dataconfirmacao = nil
+    doacao.comprovante = nil
+    doacao.avatar = nil
+    doacao.tempo = (doacao.tempo + 1.days)
+    doacao.save
+
+    redirect_to  root_path    
 
   end
 
@@ -107,6 +134,6 @@ class DoacaosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doacao_params
-      params.require(:doacao).permit(:ciclo_id, :flagconfirmada, :flagrejeitada, :observacao, :dataconfirmacao, :flagenviada, :avatar, :comprovante)
+      params.require(:doacao).permit(:ciclo_id, :flagconfirmada, :flagrejeitada, :observacao, :dataconfirmacao, :flagenviada, :avatar, :comprovante, :tempo)
     end
 end

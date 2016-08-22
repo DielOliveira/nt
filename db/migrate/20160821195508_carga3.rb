@@ -1,6 +1,11 @@
-#encoding: utf-8
-class Carga1 < ActiveRecord::Migration
+class Carga3 < ActiveRecord::Migration
   def change
+
+Situacaodemanda.create(:descricao => "Aberto")
+  	Situacaodemanda.create(:descricao => "Em andamento")
+  	Situacaodemanda.create(:descricao => "Impedido")
+  	Situacaodemanda.create(:descricao => "Concluído")
+  	Situacaodemanda.create(:descricao => "Concluído com ressalvas")
 
     banco = Banco.create(:nomebanco => "001 - Banco do Brasil")
     Banco.create(:nomebanco => "033 - Santander")
@@ -239,7 +244,7 @@ class Carga1 < ActiveRecord::Migration
       end 
 
     end                  
-         
 
+  	
   end
 end

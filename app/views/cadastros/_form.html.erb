@@ -58,7 +58,11 @@
                 <div class="row mar-bot40">
                   <div class="col-lg-4">
                     <%= f.label :Login_do_Patrocinador %><br>
-                    <%= f.text_field :cpfpadrinho,:class => 'form-control' %>
+                    <%if session[:login]%>
+                      <%= f.text_field :cpfpadrinho,:class => 'form-control', :value => session[:login], :readonly => true %>
+                    <%else%>
+                      <%= f.text_field :cpfpadrinho,:class => 'form-control' %>
+                    <%end%>            
                   </div>
                 </div>
                 <br>

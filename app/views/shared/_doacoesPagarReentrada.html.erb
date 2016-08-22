@@ -2,7 +2,7 @@
 <script src="/assets/template/countdown/jquery.countdown.min.js"></script>
 <%@doacaospendentesreentradas.each do |doacoes| %>
 
-<%@adjusted_datetime = (doacoes.created_at + 1.days).to_datetime %>
+<%@adjusted_datetime = doacoes.tempo%>
 <%@adjusted_datetime = @adjusted_datetime.strftime("%Y/%m/%d %H:%M") %>
 
 <%

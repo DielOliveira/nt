@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804215726) do
+ActiveRecord::Schema.define(version: 20160821195508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20160804215726) do
     t.string   "comprovante"
     t.boolean  "flagconfirmada"
     t.boolean  "flagrejeitada"
+    t.datetime "tempo"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.integer  "cadastro_doador_id"
@@ -172,6 +173,25 @@ ActiveRecord::Schema.define(version: 20160804215726) do
 
   add_index "reentradas", ["ciclo_id"], name: "index_reentradas_on_ciclo_id", using: :btree
 
+  create_table "situacaodemandas", force: :cascade do |t|
+    t.string   "descricao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "solicitacaos", force: :cascade do |t|
+    t.string   "titulo"
+    t.string   "descricao"
+    t.integer  "situacaodemanda_id"
+    t.datetime "dataprevisao"
+    t.string   "anexo"
+    t.string   "resolucao"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "solicitacaos", ["situacaodemanda_id"], name: "index_solicitacaos_on_situacaodemanda_id", using: :btree
+
   create_table "usuarios", force: :cascade do |t|
     t.string   "email"
     t.string   "senha"
@@ -195,5 +215,6 @@ ActiveRecord::Schema.define(version: 20160804215726) do
   add_foreign_key "redes", "ciclos"
   add_foreign_key "redes", "redetipos"
   add_foreign_key "reentradas", "ciclos"
+  add_foreign_key "solicitacaos", "situacaodemandas"
   add_foreign_key "usuarios", "cadastros"
 end

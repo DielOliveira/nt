@@ -4,49 +4,6 @@ primesystens.com
 
 
 
-Quinta
-------
-ok - Acrescentar o ciclo na tabela cadastro ou user
-ok - Registrar todos os ciclos na tabela			
-ok - Criar doação ao registrar no sistema
-
-Sexta
------
-ok - Fazer validação de todos os dados cadastrais
-ok - Fazer o módulo de mensagens
-ok - Criar a notificação de doação na tela principal
-
-Sábado
-------
-ok - Ajustar as notificação do topo
-ok - Colocar máscara nos campos (telefone, cpf, etc.)
-ok - Puxar o e-mail do cadastro para sugestão no login
-ok - Criar skema de upgrade de ciclos
-ok - Criar exibição do ciclo
-ok - Criar eskema de anexo
-ok - Criar efetivação da doação
-ok - Colocar contagem regressiva na doação
-ok - fazer o skema de reentradas
-ok - Arrumar o convite do sistema por login e em etapas
-ok - Arrumar a visualização da rede binária
-ok - Exibir doações para logins principais
-ok - Não mostrar perfil.. reentradas são todas do mesmo perfil
-ok - Quadro verde no início mudar para doações a receber
-ok - Não mostrar na rede binária quem não fez a doação ainda
-ok - Criar o layout incial
-
-
-Domingo
--------
-ok - retirar avatares
-ok - exibir ciclo na rede binária
-ok - Rede binária exibindo aleatório
-ok - programar reentradas de reentradas
-validar uploads de arquivos
-ok - fazer contagem de pessoas na rede
-
-
-
 Reentrada Obrigatória
 ---------------------
 - Realizou 1 Doação
@@ -62,29 +19,11 @@ Upgrade Obrigatório
 heroku pg:reset DATABASE
 
 
-
-ok - Acrescentar "poupança" nos Tipos de Conta 
-ok - Retirar campo Skype
-ok - Tirar termos em ingles das págins de doações recebidas e realizadas
-ok - falta banco do brasil
-ok - retirar cartinha
-ok - Colocar Masculino e Feminino no cadastro
-ok - Padronizar e-mail com confirmação
-ok - Espelhar informações de banco igual ao da prime
-ok - corrigir nome "contabancariatipo"
-ok - login, cpf não pode mudar
-ok - retirar avatar
-ok - retirar configurações
-ok - operacao e contato para quem vai doar
-ok - Valor da doação não aparecendo
-ok - colocar total nas páginas de dação recebidas
-ok - tela de logins não está visualizando corretamente
-ok - Tirar informação de qtd. reentrada e qtd doacoes. Deixar somente (login, ciclo, e botão de upgrade/reentrada)
-ok - colocar informações de digito de conta no cadastro de financeiro
-ok - Criar a opção fale conosco 
-ok - exibir simbolo de ok quando o numero de indicações diretas der 2
-ok - Exibir número de pessoas de acordo com o cadastro
-ok - link para rede binaria 
-ok - vanexar em ingles
-ok - Arrumar contador de pessoas na rede
-acessar somente depois de ativo
+ok - Link de convite
+ok - Botão de recusa de doação
+ok - Botão de adiar doação
+ok - Trocar imagem
+ok - Colocar o nome do login na árvore
+trocar texto
+botão reentrada de reentradas
+Clicar na árvore e aparecer dados

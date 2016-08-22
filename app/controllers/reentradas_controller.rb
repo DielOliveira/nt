@@ -66,7 +66,7 @@ class ReentradasController < ApplicationController
 
     #user
     usuario = Usuario.new
-    usuario.email = cadastro.email
+    usuario.email = reentrando.email + "-" + (count.count + 1).to_s
     usuario.senha = reentrando.senha
     usuario.cadastro_id = cadastro.id
     usuario.dataultimologin = reentrando.dataultimologin

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :solicitacaos
+  resources :situacaodemandas
   resources :contatos
   resources :assuntos
   resources :indicados
@@ -26,6 +28,8 @@ Rails.application.routes.draw do
   resources :doacaos do
     member do
       get :confirmadoacao   
+      get :recusardoacao   
+      get :adiardoacao   
     end
   end
 
@@ -43,6 +47,8 @@ Rails.application.routes.draw do
   match '/faq', to: 'static_pages#faq', via: 'get'
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
   match '/configu', to: 'static_pages#configu', via: 'get'
+  match '/convite/:login', to: 'cadastros#convite', via: 'get'
+  match '/convite', to: 'cadastros#convite', via: 'get'
 
   get '/redeslist/:rede_id', to: 'static_pages#redeslist', as: 'redeslist'
   get '/redeslistciclo', to: 'static_pages#redeslistciclo', as: 'redeslistciclo'

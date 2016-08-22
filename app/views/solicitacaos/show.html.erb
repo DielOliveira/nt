@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @solicitacao.titulo %>
+</p>
+
+<p>
+  <strong>Descricao:</strong>
+  <%= @solicitacao.descricao %>
+</p>
+
+<p>
+  <strong>Situacaodemanda:</strong>
+  <%= @solicitacao.situacaodemanda %>
+</p>
+
+<p>
+  <strong>Dataprevisao:</strong>
+  <%= @solicitacao.dataprevisao %>
+</p>
+
+<p>
+  <strong>Anexo:</strong>
+  <%= @solicitacao.anexo %>
+</p>
+
+<p>
+  <strong>Resolucao:</strong>
+  <%= @solicitacao.resolucao %>
+</p>
+
+<%= link_to 'Edit', edit_solicitacao_path(@solicitacao) %> |
+<%= link_to 'Back', solicitacaos_path %>

@@ -1,6 +1,5 @@
 	class StaticPagesController < ApplicationController
-#before_action :requer_logon
-
+	#before_action :requer_logon
 
 	def index
 
@@ -11,11 +10,12 @@
 	end
 
 	def validacadastro
-		cadastros = Cadastro.where(:flagativo => false)
 
-		cadastros.each do |cadastro|
+		doacoes = Doacao.where('tempo < ? and flagconfirmada = false', Time.now)
 
-			if (cadastro.created_at + 1.days) < Time.now
+		doacoes.each do |doacao|
+
+				cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
 				
 				rede = Rede.find_by_cadastro_id(cadastro.id)
 				if not rede.blank?
@@ -35,9 +35,9 @@
 					indicado.first.destroy
 				end
 
-				cadastro.destroy
+				doacao.destroy
 
-			end
+				cadastro.destroy
 
 		end
 
@@ -58,6 +58,8 @@
 				    start.ciclo_doador_id = user.cadastro.ciclo.id
 				    start.ciclo_recebedor_id = rede.parent.parent.cadastro.ciclo.id
 				    start.flagenviada = false
+				    start.flagconfirmada = false
+				    start.tempo = (Time.now + 1.days)
 				    start.save			
 				    	
 				end			
@@ -81,6 +83,8 @@
 				    start.ciclo_doador_id = reentrada.cadastro_adicionado.ciclo_id
 				    start.ciclo_recebedor_id = rede.parent.parent.cadastro.ciclo_id
 				    start.flagenviada = false
+				    start.flagconfirmada = false
+				    start.tempo = (Time.now + 1.days)
 				    start.save			
 					    	
 				end
@@ -170,24 +174,49 @@
 
 		#Filhos
 		@filho_primeiro = @rede.first.children.order(:id).first rescue nil
+		@filho_primeiro_usuario = Usuario.find_by_cadastro_id(@filho_primeiro.cadastro.id) rescue nil
+
 		@filho_segundo = @rede.first.children.order(:id).second rescue nil
+		@filho_segundo_usuario = Usuario.find_by_cadastro_id(@filho_segundo.cadastro.id) rescue nil
 
 
 		#Netos
 		@neto_primeiro = @filho_primeiro.children.order(:id).first rescue nil
+		@neto_primeiro_usuario = Usuario.find_by_cadastro_id(@neto_primeiro.cadastro.id) rescue nil
+		
 		@neto_segundo = @filho_primeiro.children.order(:id).second rescue nil
+		@neto_segundo_usuario = Usuario.find_by_cadastro_id(@neto_segundo.cadastro.id) rescue nil
+		
 		@neto_terceiro = @filho_segundo.children.order(:id).first rescue nil
+		@neto_terceiro_usuario = Usuario.find_by_cadastro_id(@neto_terceiro.cadastro.id) rescue nil
+		
 		@neto_quarto = @filho_segundo.children.order(:id).second rescue nil
+		@neto_quarto_usuario = Usuario.find_by_cadastro_id(@neto_quarto.cadastro.id) rescue nil
 
 		#Bisnetos
 		@bisneto_primeiro = @neto_primeiro.children.order(:id).first rescue nil
+		@bisneto_primeiro_usuario = Usuario.find_by_cadastro_id(@bisneto_primeiro.cadastro.id) rescue nil
+		
 		@bisneto_segundo = @neto_primeiro.children.order(:id).second rescue nil
+		@bisneto_segundo_usuario = Usuario.find_by_cadastro_id(@bisneto_segundo.cadastro.id) rescue nil
+		
 		@bisneto_terceiro = @neto_segundo.children.order(:id).first rescue nil
+		@bisneto_terceiro_usuario = Usuario.find_by_cadastro_id(@bisneto_terceiro.cadastro.id) rescue nil
+		
 		@bisneto_quarto = @neto_segundo.children.order(:id).second rescue nil
+		@bisneto_quarto_usuario = Usuario.find_by_cadastro_id(@bisneto_quarto.cadastro.id) rescue nil
+		
 		@bisneto_quinto = @neto_terceiro.children.order(:id).first rescue nil
+		@bisneto_quinto_usuario = Usuario.find_by_cadastro_id(@bisneto_quinto.cadastro.id) rescue nil
+		
 		@bisneto_sexto = @neto_terceiro.children.order(:id).second rescue nil
+		@bisneto_sexto_usuario = Usuario.find_by_cadastro_id(@bisneto_sexto.cadastro.id) rescue nil
+		
 		@bisneto_setimo = @neto_quarto.children.order(:id).first rescue nil
+		@bisneto_setimo_usuario = Usuario.find_by_cadastro_id(@bisneto_setimo.cadastro.id) rescue nil
+		
 		@bisneto_oitavo = @neto_quarto.children.order(:id).second rescue nil
+		@bisneto_oitavo_usuario = Usuario.find_by_cadastro_id(@bisneto_oitavo.cadastro.id) rescue nil
 
 	end	
 	
