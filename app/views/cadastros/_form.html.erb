@@ -139,8 +139,6 @@
             
             <%if not @cadastro.id%>
               <%= f.hidden_field :flagativo, :value => false%>
-            <%else%>
-              <%= f.hidden_field :flagativo, :value => true%>
             <%end%>
 
             <%= f.hidden_field :contador, :value => Cadastro.where('flagreentrada = false').count + 1%>
