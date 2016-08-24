@@ -1,3 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>NewTIME | Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link href="/assets/template/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+
+  <link rel="stylesheet" href="/assets/template/font-awesome/font-awesome.min.css" rel="stylesheet">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="/assets/template/ionicons/ionicons.min.css" rel="stylesheet">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/assets/template/dist/css/AdminLTE.min.css" rel="stylesheet">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="/assets/template/plugins/iCheck/square/blue.css">
+
+
+</head>
+<br>
+<body class="hold-transition login-page">
+<div class="row">
+  <!-- left column -->
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8">
+    <!-- general form elements -->
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Nova Solicitação</h3>
+      </div>
+
+
 <%= form_for(@solicitacao) do |f| %>
   <% if @solicitacao.errors.any? %>
     <div id="error_explanation">
@@ -11,31 +47,44 @@
     </div>
   <% end %>
 
+  <div class="box-body">
   <div class="field">
-    <%= f.label :titulo %><br>
-    <%= f.text_field :titulo %>
+    <%= f.label :Título %><br>
+    <%= f.text_field :titulo, :class => 'form-control' %>
   </div>
   <div class="field">
     <%= f.label :descricao %><br>
-    <%= f.text_field :descricao %>
+    <%= f.text_field :descricao, :class => 'form-control'  %>
   </div>
-  <div class="field">
-    <%= f.label :situacaodemanda_id %><br>
-    <%= f.text_field :situacaodemanda_id %>
-  </div>
-  <div class="field">
-    <%= f.label :dataprevisao %><br>
-    <%= f.datetime_select :dataprevisao %>
-  </div>
-  <div class="field">
-    <%= f.label :anexo %><br>
-    <%= f.text_field :anexo %>
-  </div>
-  <div class="field">
-    <%= f.label :resolucao %><br>
-    <%= f.text_field :resolucao %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <% if not @solicitacao.id %>
+      <%= f.hidden_field :situacaodemanda_id, :value => 1 %>
+  <%else%>
+      <%= f.label :Situação %><br>
+      <%= f.select :situacaodemanda_id, options_from_collection_for_select(Situacaodemanda.all, 'id', 'descricao',@solicitacao.situacaodemanda_id), {}, {:class => 'form-control' } %>
+  <%end%>
+
+  <% if @solicitacao.id %>
+    <div class="field">
+      <%= f.label :dataprevisao %><br>
+      <%= f.date_select :dataprevisao, :class => 'form-control' %>
+    </div>
+      <%#= f.label :Anexo %>
+      <%#= f.text_field :anexo %>
+    <div class="field">
+      <%= f.label :resolucao %><br>
+      <%= f.text_field :resolucao,:class => 'form-control' %>
+    </div>
+  <%end%>
+    
+    <br>
+    <button type="submit" class="btn btn-success btn-bg">
+      Salvar
+    </button>
 <% end %>
+
+
+    </div>
+    <!-- /.box -->
+  </div>
+</div></div>
+</body>

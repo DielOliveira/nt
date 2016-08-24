@@ -136,7 +136,13 @@
             <%= f.hidden_field :dadatainclusao, :value => Time.now%>
             <%= f.hidden_field :ciclo_id, :value => 1%>
             <%= f.hidden_field :flagreentrada, :value => false%>
-            <%= f.hidden_field :flagativo, :value => false%>
+            
+            <%if not @cadastro.id%>
+              <%= f.hidden_field :flagativo, :value => false%>
+            <%else%>
+              <%= f.hidden_field :flagativo, :value => true%>
+            <%end%>
+
             <%= f.hidden_field :contador, :value => Cadastro.where('flagreentrada = false').count + 1%>
           </div>
           <br>

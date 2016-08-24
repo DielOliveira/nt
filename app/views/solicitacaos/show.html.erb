@@ -12,7 +12,7 @@
 
 <p>
   <strong>Situacaodemanda:</strong>
-  <%= @solicitacao.situacaodemanda %>
+  <%= @solicitacao.situacaodemanda.descricao %>
 </p>
 
 <p>
@@ -21,14 +21,17 @@
 </p>
 
 <p>
-  <strong>Anexo:</strong>
-  <%= @solicitacao.anexo %>
-</p>
-
-<p>
   <strong>Resolucao:</strong>
   <%= @solicitacao.resolucao %>
 </p>
 
-<%= link_to 'Edit', edit_solicitacao_path(@solicitacao) %> |
-<%= link_to 'Back', solicitacaos_path %>
+
+ </br>
+
+  <%= link_to edit_solicitacao_path(@solicitacao), :class => "btn btn-info btn-bg" do %>
+     <span class="glyphicon glyphicon-pencil"></span> Edit
+  <% end %>
+
+  <%= link_to solicitacaos_path, :class => "btn btn-success btn-bg" do %>
+     <span class="glyphicon glyphicon-arrow-left"></span> Voltar
+  <% end %> 
