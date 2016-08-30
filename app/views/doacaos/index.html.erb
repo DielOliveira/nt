@@ -17,8 +17,8 @@
   <tbody>
     <% @doacaos.each do |doacao| %>
       <tr>
-        <td><%= doacao.cadastro_doador.nomepessoa %></td>
-        <td><%= doacao.cadastro_recebedor.nomepessoa %></td>
+        <td><%= doacao.cadastro_doador.nomepessoa rescue nil%></td>
+        <td><%= doacao.cadastro_recebedor.nomepessoa rescue nil%></td>
         <td><%= doacao.created_at %></td>
         <td><%= doacao.dataconfirmacao %></td>
         <td><%= doacao.flagpause == true ? '<span class="glyphicon glyphicon-exclamation-sign"></span>'.html_safe : ''%></td>
