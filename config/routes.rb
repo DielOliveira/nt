@@ -27,9 +27,10 @@ Rails.application.routes.draw do
 
   resources :doacaos do
     member do
-      get :confirmadoacao   
-      get :recusardoacao   
-      get :adiardoacao   
+      get :confirmadoacao
+      get :recusardoacao
+      get :adiardoacao
+      get :pausardoacao
     end
   end
 

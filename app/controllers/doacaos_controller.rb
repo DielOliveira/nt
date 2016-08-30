@@ -1,6 +1,6 @@
 class DoacaosController < ApplicationController
   before_action :requer_logon
-  before_action :set_doacao, only: [:show, :edit, :update, :destroy, :confirmadoacao, :recusardoacao, :adiardoacao]
+  before_action :set_doacao, only: [:show, :edit, :update, :destroy, :confirmadoacao, :recusardoacao, :adiardoacao, :pausardoacao]
 
   # GET /doacaos
   # GET /doacaos.json
@@ -63,6 +63,17 @@ class DoacaosController < ApplicationController
     doacao.save
 
     redirect_to  root_path    
+
+  end
+
+
+  def pausardoacao
+
+    doacao = Doacao.find_by_id(@doacao.id)
+    doacao.flagpause = !doacao.flagpause
+    doacao.save
+
+    redirect_to  doacaos_path    
 
   end
 
@@ -134,6 +145,6 @@ class DoacaosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doacao_params
-      params.require(:doacao).permit(:ciclo_id, :flagconfirmada, :flagrejeitada, :observacao, :dataconfirmacao, :flagenviada, :avatar, :comprovante, :tempo)
+      params.require(:doacao).permit(:ciclo_id, :flagconfirmada, :flagrejeitada, :observacao, :dataconfirmacao, :flagenviada, :avatar, :comprovante, :tempo, :flagpause)
     end
 end

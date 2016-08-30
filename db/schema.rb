@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821195508) do
+ActiveRecord::Schema.define(version: 20160830024010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20160821195508) do
     t.string   "observacao"
     t.boolean  "flagenviada"
     t.string   "avatar"
+    t.boolean  "flagpause"
   end
 
   create_table "indicados", force: :cascade do |t|
