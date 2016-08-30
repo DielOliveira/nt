@@ -11,7 +11,7 @@
 
 	def validacadastro
 
-		doacoes = Doacao.where('tempo < ? and flagconfirmada = false and flagpause <> true', Time.now)
+		doacoes = Doacao.where('tempo < ? and flagconfirmada = false', Time.now)
 
 		doacoes.each do |doacao|
 
