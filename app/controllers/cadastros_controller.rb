@@ -110,6 +110,14 @@ class CadastrosController < ApplicationController
   # DELETE /cadastros/1
   # DELETE /cadastros/1.json
   def destroy
+
+    rede = Rede.find_by_cadastro_id(@cadastro.id)
+    rede.cadastro_id = nil
+    rede.save
+
+    reentradas = Reentrada.find_by_cadastro_adicionado_id(@cadastro.id)
+    reentradas.destroy
+
     @cadastro.destroy
     respond_to do |format|
       format.html { redirect_to cadastros_url, notice: 'Cadastro was successfully destroyed.' }

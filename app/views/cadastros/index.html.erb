@@ -33,7 +33,9 @@
                               <% end %>                              
                               <%= link_to edit_cadastro_path(cadastro), :class => "btn btn-default btn-sm" do %>
                                 <span class="glyphicon glyphicon-pencil"></span> Editar
-                              <% end %>                       
+                              <% end %>
+                              
+                              <%= button_to "delete", cadastro_path(:id => cadastro.id), :method => :delete %>
                           </td>                  
                       </tr>
                     <% end %>
