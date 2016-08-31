@@ -117,11 +117,9 @@
 </div>
 
     <%= f.hidden_field :datainclulsao, :value => Time.now%>
-
-          <%= f.text_field :cadastro_id%>
-        <%if not usuario_logado%>
-          <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
-        <%end%>
+    <%if not usuario_logado%>
+      <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
+    <%end%>
             
 
   <br>
