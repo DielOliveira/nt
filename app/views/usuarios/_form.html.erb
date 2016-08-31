@@ -93,7 +93,7 @@
 </div>
 
   <div class="field">
-    <%#= f.hidden_field :cadastro_id, :value => session[:cadastro_id] == nil ? user.cadastro_id : session[:cadastro_id] %>
+    <%= f.text_field :cadastro_id, :value => session[:cadastro_id] == nil ? user.cadastro_id : session[:cadastro_id] %>
   </div>
   <div class="field">
     <%= f.hidden_field :datainclusao, :value => Time.now%>
