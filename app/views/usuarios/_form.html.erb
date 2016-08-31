@@ -92,20 +92,12 @@
   </div>   
 </div>
 
-  <div class="field">
     <% if not usuario_logado %>
       <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
     <%end%>
-  </div>
-  <div class="field">
     <%= f.hidden_field :datainclusao, :value => Time.now%>
-  </div>
-  <div class="field">
     <%= f.hidden_field :dataultimologin %>
-  </div>
-  <div class="field">
     <%= f.hidden_field :flagativo, :value => true%>
-  </div>
   <br>
   <div align="center">
     <button type="submit" class="btn btn-success btn-bg">
