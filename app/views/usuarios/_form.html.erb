@@ -93,7 +93,7 @@
 </div>
 
   <div class="field">
-    <% if usuario_logado %>
+    <% if not usuario_logado %>
       <%= f.text_field :cadastro_id, :value => session[:cadastro_id]%>
     <%end%>
   </div>
