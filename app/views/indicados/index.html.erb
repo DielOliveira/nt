@@ -42,6 +42,9 @@
               <td>
                 <%=indicado.cadastro_2.email  rescue nil%>
               </td>              
+              <td>
+                <%= button_to "delete", indicado_path(:id => indicado.id), :method => :delete %>
+              </td>
             </tr>
           <% end %>
         </tbody>
