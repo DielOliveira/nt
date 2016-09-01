@@ -118,7 +118,9 @@ class CadastrosController < ApplicationController
     end
 
     reentradas = Reentrada.find_by_cadastro_adicionado_id(@cadastro.id)
-    reentradas.destroy
+    if reentradas
+      reentradas.destroy
+    end
 
     @cadastro.destroy
     respond_to do |format|
