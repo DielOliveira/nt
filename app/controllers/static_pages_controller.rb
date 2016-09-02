@@ -9,6 +9,36 @@
 		
 	end
 
+	def retiralixo
+
+		cadastros = Cadastro.joins('left join dadosfinanceiros df on df.cadastro_id = cadastros.id').where("df.id is null ")
+		cadastros.each do |cadastro|
+
+			redes = Rede.where(:cadastro_id => cadastro.id)
+			redes.each do |rede|
+				rede.cadastro_id = nil
+				rede.save
+			end
+			cadastro.destroy
+		end
+
+		cadastros = Cadastro.joins('left join usuarios us on us.cadastro_id = cadastros.id').where("us.id is null ")
+		cadastros.each do |cadastro|
+			cadastro.destroy
+		end		
+
+		dadosfinanceiros = Dadosfinanceiro.joins('left join cadastros cd on cd.id = cadastro_id').where("cadastro_id is null ")
+		dadosfinanceiros.each do |dado|
+			dado.destroy
+		end
+
+		usuarios = Usuario.joins('left join cadastros cd on cd.id = cadastro_id').where("cadastro_id is null")
+		usuarios.each do |usuario|
+			usuario.destroy
+		end
+
+	end
+
 	def validacadastro
 
 		doacoes = Doacao.where('tempo < ? and flagconfirmada = false and flagpause <> true', Time.now)
@@ -141,6 +171,8 @@
 		validacadastro
 
 		verdoacoes
+
+		retiralixo
 
 	end	
 
