@@ -37,6 +37,16 @@
 			usuario.destroy
 		end
 
+		doacoes = Doacao.joins('left join cadastros cd on cd.id = cadastro_doador_id').where("cd.id is null")
+		doacoes.each do |doacao|
+			doacao.destroy
+		end
+
+		doacoes = Doacao.joins('left join cadastros cd on cd.id = cadastro_recebedor_id').where("cd.id is null")
+		doacoes.each do |doacao|
+			doacao.destroy
+		end		
+
 	end
 
 	def validacadastro
@@ -143,8 +153,8 @@
 
 	def home
 
-		@doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
-		@doacaospendentesreceberreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
+		@doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + " and dataconfirmacao is null")
+		@doacaospendentesreceberreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + " and dataconfirmacao is null")
 		
 		@doacaospendentespagar = Doacao.where("cadastro_doador_id =" + user.cadastro.id.to_s + "and flagenviada = false and dataconfirmacao is null")
 		@doacaospendentesreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_doador_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = false and dataconfirmacao is null")
