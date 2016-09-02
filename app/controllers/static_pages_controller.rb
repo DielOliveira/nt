@@ -24,6 +24,12 @@
 
 		cadastros = Cadastro.joins('left join usuarios us on us.cadastro_id = cadastros.id').where("us.id is null ")
 		cadastros.each do |cadastro|
+
+			redes = Rede.where(:cadastro_id => cadastro.id)
+			redes.each do |rede|
+				rede.cadastro_id = nil
+				rede.save
+			end			
 			cadastro.destroy
 		end		
 
