@@ -51,7 +51,11 @@ module StaticPagesHelper
 		doacaorecebida = Doacao.where('cadastro_recebedor_id = ' + cadastro_id + ' and ciclo_recebedor_id = ' + ciclo_id + ' and dataconfirmacao is not null')
 
 		if doacaofeita.count == 0 && doacaorecebida.count == 3
-			return true
+			if cadastro_id != 1
+				return false
+			else
+				return true
+			end
 		else
 			return false
 		end

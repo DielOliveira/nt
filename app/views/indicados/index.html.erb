@@ -34,14 +34,17 @@
           <% @indicados.each do |indicado| %>
             <tr>
               <td>
-                <%=indicado.cadastro_2.nomepessoa%>
+                <%=indicado.cadastro_2.nomepessoa rescue nil%>
               </td>
               <td>
-                <%=indicado.cadastro_2.cpf%>
+                <%=indicado.cadastro_2.cpf  rescue nil%>
               </td>
               <td>
-                <%=indicado.cadastro_2.email%>
+                <%=indicado.cadastro_2.email  rescue nil%>
               </td>              
+              <td>
+                <%= button_to "delete", indicado_path(:id => indicado.id), :method => :delete %>
+              </td>
             </tr>
           <% end %>
         </tbody>

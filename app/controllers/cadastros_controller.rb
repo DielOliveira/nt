@@ -112,11 +112,15 @@ class CadastrosController < ApplicationController
   def destroy
 
     rede = Rede.find_by_cadastro_id(@cadastro.id)
-    rede.cadastro_id = nil
-    rede.save
+    if rede
+      rede.cadastro_id = nil
+      rede.save
+    end
 
     reentradas = Reentrada.find_by_cadastro_adicionado_id(@cadastro.id)
-    reentradas.destroy
+    if reentradas
+      reentradas.destroy
+    end
 
     @cadastro.destroy
     respond_to do |format|
