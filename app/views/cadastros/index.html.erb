@@ -35,7 +35,10 @@
                                 <span class="glyphicon glyphicon-pencil"></span> Editar
                               <% end %>
                               
-                              <%= button_to "delete", cadastro_path(:id => cadastro.id), :method => :delete %>
+
+                              <%= link_to 'delete', cadastro_path(:id => cadastro.id), data: {confirm: "Are you sure!"}%>
+
+                              <%= link_to "title", "#", data: {confirm: "Are you sure!"} %>
                           </td>                  
                       </tr>
                     <% end %>
@@ -44,6 +47,7 @@
         
 <br>
 
+<a href="#" data-confirm="Are you sure?" data-method="delete">lol</a>
   <script>
   // $(function () {
   //   $("#example1").DataTable();
