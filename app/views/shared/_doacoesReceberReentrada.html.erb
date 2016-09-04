@@ -1,7 +1,12 @@
 <%@doacaospendentesreceberreentradas.each do |doacoes| %>
     <div class="box box-warning">
         <div class="box-header with-border">
+        
+        <%if doacoes.flagenviada%>
           <h4 class="timeline-header"><a href="#"><%=doacoes.cadastro_recebedor.nomepessoa%> possui uma doação para confirmar!</a></h4>
+        <%else%>
+          <h4 class="timeline-header"><a href="#"><%=doacoes.cadastro_recebedor.nomepessoa%> em breve receberá esta doação!</a></h4>
+        <%end%>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -23,6 +28,7 @@
           <p><b>CPF: </b><%=@dadosfinanceiros.cpftitular%></p>
           <p><b>E-mail: </b><%=doacoes.cadastro_doador.email%></p>
           <p><b>Telefone: </b><%=doacoes.cadastro_doador.telefone%></p>
+          <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock<%=doacoes.id%>rr"></span></small></p>
 
 
           <div class="timeline-footer">
@@ -47,4 +53,12 @@
         </div>
         <!-- /.box-body -->
     </div>        
+
+   <script type="text/javascript">
+   $('#clock'+ <%=doacoes.id%> + 'rr').countdown("<%=doacoes.tempo.strftime("%Y/%m/%d %H:%M")%>", function(event) {
+     var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+     $(this).html(event.strftime(totalHours + ' hr %M min %S sec'));
+   });   
+   </script>    
+
 <%end%>

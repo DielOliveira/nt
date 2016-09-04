@@ -3,9 +3,6 @@
 
 <%@doacaospendentespagar.each do |doacoes| %>
 
-  <%@adjusted_datetime = doacoes.tempo%>
-  <%@adjusted_datetime = @adjusted_datetime.strftime("%Y/%m/%d %H:%M") %>
-
   <%
   rede = Rede.find_by_cadastro_id(doacoes.cadastro_doador_id)
   if rede
@@ -32,7 +29,7 @@
           <p><b>Doação de: </b><%=doacoes.cadastro_doador.nomepessoa%></p>
           <p><b>Doação para: </b><%=dadosfinanceiros.cadastro.nomepessoa%></p>
           <p><b>Valor: </b><%=number_to_currency(doacoes.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
-          <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock"></span></small></p>
+          <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock<%=doacoes.id%>p"></span></small></p>
 
           <div class="timeline-footer">
             <%#= form_for @doacao, html: { multipart: true } do |f| %>
@@ -54,11 +51,10 @@
         <!-- /.box-body -->
     </div>        
   <%end%>
-<%end%>
-
  <script type="text/javascript">
- $('#clock').countdown("<%=@adjusted_datetime%>", function(event) {
+ $('#clock' + <%=doacaoes.id%> + 'p').countdown("<%=doacaoes.tempo.strftime("%Y/%m/%d %H:%M") %>", function(event) {
    var totalHours = event.offset.totalDays * 24 + event.offset.hours;
    $(this).html(event.strftime(totalHours + ' hr %M min %S sec'));
  });   
  </script>    
+<%end%>
