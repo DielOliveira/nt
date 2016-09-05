@@ -17,7 +17,6 @@
   <thead>
     <tr>
       <th>Titulo</th>
-      <th>Descricao</th>
       <th>Situacaodemanda</th>
       <th>Dataprevisao</th>
       <th colspan="3"></th>
@@ -28,9 +27,8 @@
     <% @solicitacaos.each do |solicitacao| %>
       <tr>
         <td><%= solicitacao.titulo %></td>
-        <td><%= solicitacao.descricao %></td>
         <td><%= solicitacao.situacaodemanda.descricao rescue nil %></td>
-        <td><%= solicitacao.dataprevisao %></td>
+        <td><%= solicitacao.dataprevisao.blank? ? '' : solicitacao.dataprevisao.strftime("%d/%m/%Y - %H:%M")%></td>
         <td align="right">
           <%= link_to solicitacao, :class => "btn btn-default btn-sm" do %>
             <span class="glyphicon glyphicon-list-alt"></span> Exibir
