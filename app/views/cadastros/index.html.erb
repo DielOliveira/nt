@@ -34,11 +34,9 @@
                               <%= link_to edit_cadastro_path(cadastro), :class => "btn btn-default btn-sm" do %>
                                 <span class="glyphicon glyphicon-pencil"></span> Editar
                               <% end %>
-                              
 
-                              <%= link_to 'delete', cadastro_path(:id => cadastro.id), data: {confirm: "Are you sure!"}%>
+                              <%#= link_to 'delete', cadastro_path(:id => cadastro.id), data: {confirm: "Are you sure!"}%>
 
-                              <%= link_to "title", "#", data: {confirm: "Are you sure!"} %>
                           </td>                  
                       </tr>
                     <% end %>
@@ -47,7 +45,6 @@
         
 <br>
 
-<a href="#" data-confirm="Are you sure?" data-method="delete">lol</a>
   <script>
   // $(function () {
   //   $("#example1").DataTable();
