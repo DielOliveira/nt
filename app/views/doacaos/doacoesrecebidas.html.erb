@@ -25,7 +25,7 @@
                 <% @doacaos.each do |doacao| %>
                 <% @total = @total + doacao.ciclo_doador.valorciclo%>
                   <tr>
-                    <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_doador.nomepessoa %><%end%></td>
+                    <td><%=link_to edit_doacao_path(doacao.id) do%><%= doacao.cadastro_doador.nomepessoa rescue nil%><%end%></td>
                     <td><%= doacao.cadastro_recebedor.nomepessoa %></td>
                     <td><%= doacao.ciclo_doador.numerociclo %></td>
                     <td><%=number_to_currency(doacao.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></td>

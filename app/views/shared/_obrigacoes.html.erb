@@ -1,3 +1,4 @@
+<script src="/assets/template/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <div class="box box-warning">
     <div class="box-header with-border">
       <h4 class="timeline-header"><a href="#">Login Principal</a></h4>
@@ -26,13 +27,13 @@
               <td align='right'>
                   <% if reentrada(user.cadastro.id) == 'opcional' %>
                     <div class="btn-group">
-                      <%= link_to novareentrada_path(user.cadastro.id,'false'), :class => "btn btn-success btn-sm" do %>
+                      <%= link_to novareentrada_path(user.cadastro.id,'false'), :data => {:confirm => 'Deseja realmente realizar uma reentrada?'}, :class => "btn btn-success btn-sm" do %>
                          Reentrada Opcional
                       <% end %>   
                     </div>               
                   <% else %>   
                     <div class="btn-group">
-                      <%= link_to novareentrada_path(user.cadastro.id,'false'), :class => "btn btn-danger btn-sm" do %>
+                      <%= link_to novareentrada_path(user.cadastro.id,'false'), :data => {:confirm => 'Deseja realmente realizar uma reentrada?'}, :class => "btn btn-danger btn-sm" do %>
                          Reentrada Obrigatorio
                       <% end %>   
                     </div>               
@@ -45,7 +46,7 @@
                     </div>   -->             
                   <% else %>   
                     <div class="btn-group">
-                      <%= link_to upgrade_ciclo_path(user.cadastro.id), :class => "btn btn-danger btn-sm" do %>
+                      <%= link_to upgrade_ciclo_path(user.cadastro.id), :data => {:confirm => 'Deseja realmente realizar um upgrade?'}, :class => "btn btn-danger btn-sm" do %>
                          Upgrade Obrigatorio
                       <% end %>   
                     </div>               
