@@ -59,12 +59,12 @@
     <div class="form-group">
       <label>Login</label>
         <%if usuario_logado%>
-          <%#= f.text_field :email, :class => 'form-control'%>
+          <%= f.text_field :email, :class => 'form-control'%>
         <%else%>
-          <%#= f.text_field :email, :class => 'form-control'%>
+          <%= f.text_field :email, :class => 'form-control'%>
         <%end%>
 
-        <input class="form-control" type="text" value="adm" name="usuario[email]" id="usuario_email" onblur="teste();" onkeypress="teste();" />
+        <!-- <input class="form-control" type="text" value="adm" name="usuario[email]" id="usuario_email" onblur="teste();" onkeypress="teste();" /> -->
     </div>
 
   </div>
@@ -77,8 +77,8 @@
   </div>
   <div class="col-lg-4">
     <%= f.label :Senha %><br>
-    <%#= f.password_field :senha, :class => 'form-control' %>
-    <input class="form-control" type="password" name="usuario[senha]" id="usuario_senha" onblur="teste();" onkeypress="teste();" />
+    <%= f.password_field :senha, :class => 'form-control' %>
+    <!-- <input class="form-control" type="password" name="usuario[senha]" id="usuario_senha" onblur="teste();" onkeypress="teste();" /> -->
   </div>
   <div class="col-lg-4">
   </div>  
@@ -89,8 +89,8 @@
   </div> 
   <div class="col-lg-4" >
     <%= f.label :Confirmação_Senha %><br>
-    <%#= f.password_field :descconfirmasenha, :class => 'form-control'  %>
-     <input class="form-control" type="password" name="usuario[descconfirmasenha]" id="usuario_descconfirmasenha" onblur="teste();" onkeypress="teste();"/>
+    <%= f.password_field :descconfirmasenha, :class => 'form-control'  %>
+     <!-- <input class="form-control" type="password" name="usuario[descconfirmasenha]" id="usuario_descconfirmasenha" onblur="teste();" onkeypress="teste();"/> -->
   </div>
   <div class="col-lg-4">
   </div>   
