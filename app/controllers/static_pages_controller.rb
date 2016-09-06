@@ -188,7 +188,7 @@
 
 		verdoacoes
 
-		retiralixo
+		#retiralixo
 
 	end	
 
