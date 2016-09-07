@@ -24,6 +24,7 @@ class ReentradasController < ApplicationController
 
   def novareentrada
 
+    #byebug
 
     #Cadastro
     principal = Cadastro.find(user.cadastro_id)
@@ -42,7 +43,7 @@ class ReentradasController < ApplicationController
     cadastro.skype = reentrando.cadastro.skype
     cadastro.facebook = reentrando.cadastro.facebook
     cadastro.cpf = reentrando.cadastro.cpf
-    cadastro.ciclo_id = reentrando.cadastro.ciclo_id =  1
+    cadastro.ciclo_id = 1
     cadastro.flagreentrada = true
     cadastro.cpfpadrinho = reentrando.email
     cadastro.flagativo = false
@@ -85,7 +86,7 @@ class ReentradasController < ApplicationController
     reentrada.cadastro_reentrando_id = reentrando.cadastro.id
     reentrada.cadastro_adicionado_id = cadastro.id
     reentrada.cadastro_principal_id = user.cadastro.id
-    reentrada.ciclo_id = user.cadastro.ciclo.id
+    reentrada.ciclo_id = reentrando.cadastro.ciclo.id
 
     
     if params[:flagdemanda] == 'true'
@@ -172,7 +173,9 @@ class ReentradasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reentrada_params
-      params.fetch(:reentrada, {})
+      #params.fetch(:reentrada, {})
+
+      params.require(:reentrada).permit(:ciclo_id, :cadastro_reentrando_id, :cadastro_adicionado_id, :cadastro_principal_id)
     end
 
      
