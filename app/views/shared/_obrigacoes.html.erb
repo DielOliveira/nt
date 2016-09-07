@@ -25,6 +25,7 @@
               <td width="50%"><%=user.email%></td>
               <td ><span class="badge bg-green"><%=user.cadastro.ciclo.numerociclo%></span></td>
               <td align='right'>
+                  <%#=reentrada(user.cadastro.id)%>
                   <% if reentrada(user.cadastro.id) == 'opcional' %>
                     <div class="btn-group">
                       <%= link_to novareentrada_path(user.cadastro.id,'false'), :data => {:confirm => 'Deseja realmente realizar uma reentrada?'}, :class => "btn btn-success btn-sm" do %>

@@ -1,149 +1,122 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>NewTIME | Log in</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link href="/assets/template/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NewTIME | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link href="/assets/template/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
 
-  <link rel="stylesheet" href="/assets/template/font-awesome/font-awesome.min.css" rel="stylesheet">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="/assets/template/ionicons/ionicons.min.css" rel="stylesheet">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/assets/template/dist/css/AdminLTE.min.css" rel="stylesheet">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="/assets/template/plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="/assets/template/font-awesome/font-awesome.min.css" rel="stylesheet">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/assets/template/ionicons/ionicons.min.css" rel="stylesheet">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/assets/template/dist/css/AdminLTE.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/assets/template/plugins/iCheck/square/blue.css">
 
 
-</head>
-<br>
-<br>
-<br>
-<br>
+  </head>
+  <br>
+  <br>
+  <br>
+  <br>
 
-<body class="hold-transition login-page">
-<div class="row">
-  <!-- left column -->
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-8">
-    <!-- general form elements -->
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">Dados Financeiros</h3>
+  <body class="hold-transition login-page">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8">
+        <!-- general form elements -->
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Dados Financeiros</h3>
+          </div>
+
+
+          <%= form_for(@dadosfinanceiro) do |f| %>
+          <% if @dadosfinanceiro.errors.any? %>
+          <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+            <% if @dadosfinanceiro.errors.any? %>
+
+            <% @dadosfinanceiro.errors.full_messages.each do |msg| %>
+            <%= msg %></br>
+            <% end %>
+            <% end %>
+          </div>
+          <% end %>    
+
+          <div class="box-body">
+            <div class="row mar-bot40">
+              <div class="col-lg-12">
+                <%= f.label :Nome_do_titular_da_conta %><br>
+                <%= f.text_field :nometitular, :class => 'form-control' %>
+              </div>
+            </div>
+            <br>
+            <div class="row mar-bot40">
+              <div class="col-lg-12">
+                <%= f.label :Conta_PicPay %>     <a href="javascript:$('#mensagem').modal('show');"><i class="icon fa fa-question-circle"></i><br></a>
+                <%= f.text_field :contapicpay, :class => 'form-control' %>
+              </div>
+            </div>
+            <br>
+            <div class="row mar-bot40">
+              <div class="col-lg-12">
+                <%= f.label :Conta_Adicional %><br>
+                <textarea name="dadosfinanceiro[observacao]" id="dadosfinanceiro_observacao" class="form-control" value="<%=@dadosfinanceiro.observacao%>"><%=@dadosfinanceiro.observacao%></textarea>
+              </div>
+            </div>
+            <br>
+            <%if not usuario_logado%>
+            <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
+            <%end%>
+
+
+            <br>
+            <div align="right">
+              <button type="submit" class="btn btn-success btn-bg">
+                <span class="glyphicon glyphicon-arrow-right"></span> Salvar
+              </button>
+            </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade bs-example-modal-sm" id="mensagem">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 id="h4Ingredientes" class="modal-title">O que é PicPay?</h4>
+          </div>
+          <div class="modal-body">
+            <b>PicPay é um aplicativo de pagamentos que te permite receber ou pagar qualquer pessoa, usando seu cartão de crédito ou boleto. (www.picpay.com)</b>
+          </div>
+          <div class="modal-footer">
+            <button type="button"  class="btn btn-danger" data-dismiss="modal">Sair</button>
+          </div>
+        </div><!-- /.modal-content -->
       </div>
 
-
-<%= form_for(@dadosfinanceiro) do |f| %>
-  <% if @dadosfinanceiro.errors.any? %>
-    <div class="alert alert-danger alert-dismissible fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  
-  <% if @dadosfinanceiro.errors.any? %>
-  
-    <% @dadosfinanceiro.errors.full_messages.each do |msg| %>
-        <%= msg %></br>
-      <% end %>
-     <% end %>
-    </div>
-  <% end %>    
-
-<div class="box-body">
-<div class="row mar-bot40">
-  <div class="col-lg-12">
-    <%= f.label :Nome_do_titular_da_conta %><br>
-    <%= f.text_field :nometitular, :class => 'form-control' %>
-  </div>
-</div>
-<br>
-<div class="row mar-bot40">
-  <div class="col-lg-12">
-    <%= f.label :CPF_titular_da_conta %><br>
-    <%= f.text_field :cpftitular, :class => 'form-control' %>
-  </div>
-</div>
-<br>
-<div class="row mar-bot40">
-  <div class="col-lg-12">
-    <%= f.label :banco_id %><br>
-    <%= f.select :banco_id, options_from_collection_for_select(Banco.all, 'id', 'nomebanco',@dadosfinanceiro.banco_id), {}, {:class => 'form-control' } %>
-  </div>
-</div>
-<br>
-<div class="row mar-bot40">
-  <div class="col-lg-12">
-    <%= f.label :Agencia_e_digito_quando_houver %><br>
-    <%= f.text_field :agencia, :class => 'form-control' %>
-  </div>
-</div>
-<br>
-<div class="row mar-bot40">
-  <div class="col-lg-12">
-    <label>Conta e digíto, em caso de dígito "X" informar "0" (zero)</label>
-    <%= f.text_field :codigo, :class => 'form-control' %>
-  </div>
-</div>
-<br>
-<div class="row mar-bot40">
-  <div class="col-lg-12">
-    <label>Operação/Variação (Banco do Brasil e Caixa Federal)</label>
-    <%= f.text_field :operacao, :class => 'form-control' %>
-  </div>
-</div>
-<br>
-<div class="row mar-bot40">
-  <div class="col-lg-12">
-    <%= f.label :Tipo_de_Conta %><br>
-    <%= f.select :contabancariatipo_id, options_from_collection_for_select(Contabancariatipo.all, 'id', 'nometipo',@dadosfinanceiro.contabancariatipo_id), {}, {:class => 'form-control' } %>
-  </div>
-</div>
-<br>
-<div class="row mar-bot40">
-  <div class="col-lg-12">
-    <%= f.label :Conta_Adicional %><br>
-    <textarea name="dadosfinanceiro[observacao]" id="dadosfinanceiro_observacao" class="form-control" value="<%=@dadosfinanceiro.observacao%>"><%=@dadosfinanceiro.observacao%></textarea>
-  </div>
-</div>
-<br>
-<div class="row mar-bot40">
-  <div class="col-lg-12">
-    <%= f.label :Email_superconta %><br>
-    <%= f.text_field :emailsuperconta, :class => 'form-control' %>
-  </div>
-</div>
-
-          <%#= f.text_field :cadastro_id%>
-        <%if not usuario_logado%>
-          <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
-        <%end%>
-            
-
-  <br>
-  <div align="right">
-    <button type="submit" class="btn btn-success btn-bg">
-      <span class="glyphicon glyphicon-arrow-right"></span> Salvar
-    </button>
-  </div>
-<% end %>
-
-<script>
-jQuery(function($){
-
-  //$("#dadosfinanceiro_cpftitular").mask("999.999.999.99");
+    </body>
 
 
-});
+    <script>
+      jQuery(function($){
+
+    //$("#dadosfinanceiro_cpftitular").mask("999.999.999.99");
+
+
+  });
 </script>
-
-
-    </div>
-    <!-- /.box -->
-  </div>
-</div>
-</div>
-</body>
-

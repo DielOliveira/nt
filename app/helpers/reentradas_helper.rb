@@ -47,7 +47,7 @@ module ReentradasHelper
 		doacaorealizada = Doacao.where('cadastro_doador_id = ' + cadastro_id.to_s + ' and ciclo_doador_id = ' + ciclo.to_s)
 		doacaorecebida = Doacao.where('cadastro_recebedor_id = ' + cadastro_id.to_s + ' and ciclo_recebedor_id = ' + ciclo.to_s)
 
-		if reentradas.count < cadastro.ciclo.qtdreentradas && doacaorealizada.count == 0 && doacaorecebida.count == 4
+		if reentradas.count < cadastro.ciclo.qtdreentradas && doacaorealizada.count == 1 && doacaorecebida.count == 4
 			return 'obrigatoria'
 		else
 			return 'opcional'

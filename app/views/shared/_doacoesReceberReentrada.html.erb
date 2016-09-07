@@ -20,12 +20,8 @@
           <p><b>Doação de: </b><%=doacoes.cadastro_doador.nomepessoa%></p>
           <p><b>Valor: </b><%=number_to_currency( doacoes.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
 
-          <p><b>Banco: </b><%=@dadosfinanceiros.banco.nomebanco%></p>
-          <p><b>Agencia: </b><%=@dadosfinanceiros.agencia%></p>
-          <p><b>Conta: </b><%=@dadosfinanceiros.codigo%></p>
-          <p><b>Operação: </b><%=@dadosfinanceiros.operacao%></p>
           <p><b>Titular: </b><%=@dadosfinanceiros.nometitular%></p>
-          <p><b>CPF: </b><%=@dadosfinanceiros.cpftitular%></p>
+          <p><b>Conta PicPay: </b><%=@dadosfinanceiros.contapicpay%></p>
           <p><b>E-mail: </b><%=doacoes.cadastro_doador.email%></p>
           <p><b>Telefone: </b><%=doacoes.cadastro_doador.telefone%></p>
           <p><b>Tempo Restante: </b><i class="fa fa-clock-o"></i> <span id="clock<%=doacoes.id%>rr"></span></small></p>

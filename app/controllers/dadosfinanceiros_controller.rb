@@ -73,6 +73,6 @@ class DadosfinanceirosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dadosfinanceiro_params
-      params.require(:dadosfinanceiro).permit(:nometitular, :cpftitular, :banco_id, :agencia, :codigo, :operacao, :contabancariatipo_id, :observacao, :emailsuperconta, :datainclulsao, :cadastro_id)
+      params.require(:dadosfinanceiro).permit(:nometitular, :cpftitular, :banco_id, :agencia, :codigo, :operacao, :contabancariatipo_id, :observacao, :emailsuperconta, :datainclulsao, :cadastro_id, :contapicpay)
     end
 end

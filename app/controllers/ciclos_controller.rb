@@ -29,9 +29,9 @@ class CiclosController < ApplicationController
 
       respond_to do |format|
         if @permite == true
-            format.html { redirect_to reentradas_path, notice: 'Upgrade realizado com sucesso.' }
+            format.html { redirect_to home_path, notice: 'Upgrade realizado com sucesso.' }
         else
-            format.html { redirect_to reentradas_path, notice: 'Erro ao realizar o Upgrade.' }
+            format.html { redirect_to home_path, notice: 'Erro ao realizar o Upgrade. Você não possui reentradas suficiente.' }
         end
       end
 
