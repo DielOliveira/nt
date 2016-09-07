@@ -33,6 +33,10 @@ class UsuariosController < ApplicationController
 
         Doacao.create(:ciclo_id => 1, :flagconfirmada => false, :flagrejeitada => false, :cadastro_1_id => @usuario.cadastro_id, :cadastro_2_id => @usuario.father.father.id) rescue nil
 
+        rede = Rede.find_by_id(proximaentrada(1))
+        rede.cadastro_id = @usuario.cadastro_id
+        rede.save
+
         session[:ObjLogon] = Usuario.where(:email => @usuario.email, :senha => @usuario.senha) rescue nil
 
         session[:ObjLogon] = session[:ObjLogon].first
