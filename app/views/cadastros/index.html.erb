@@ -35,7 +35,7 @@
                                 <span class="glyphicon glyphicon-pencil"></span> Editar
                               <% end %>
 
-                              <%= link_to 'delete', cadastro_path(:id => cadastro.id), data: {confirm: "Are you sure!"}%>
+                              <%= button_to "delete", cadastro_path(:id => cadastro.id), :method => :delete %>
 
                           </td>                  
                       </tr>
