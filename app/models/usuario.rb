@@ -5,6 +5,8 @@ class Usuario < ActiveRecord::Base
 validates :email, format: { with: /\A[a-z0-9]+\z/ , :message => 'aceita apenas letras minúsculas e números.'}
 validates :senha, format: { with: /\A[a-z0-9]+\z/ , :message => 'aceita apenas letras minúsculas e números.'}
 validates :descconfirmasenha, format: { with: /\A[a-z0-9]+\z/ , :message => 'aceita apenas letras minúsculas e números.'}
+
+
 validates :email, :presence => { :message => 'é obrigatório.' }  
 validates :senha, :presence => { :message => 'é obrigatório.' }  
 validates :descconfirmasenha, :presence => { :message => 'é obrigatório.' }

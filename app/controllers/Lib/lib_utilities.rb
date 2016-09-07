@@ -32,56 +32,56 @@ def proximaentrada(ciclo_id)
 
       if linha1.count > linha1Preenchidos.count
 
-        return  Rede.where("linha = 1 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id).first.id
+        return  Rede.where("linha = 1 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id, :id).first.id
          
       end 
 
       if linha2.count > linha2Preenchidos.count
 
-        return  Rede.where("linha = 2 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id).first.id
+        return  Rede.where("linha = 2 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id, :id).first.id
           
       end 
 
       if linha3.count > linha3Preenchidos.count
 
-        return  Rede.where("linha = 3 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id).first.id
+        return  Rede.where("linha = 3 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id, :id).first.id
           
       end 
 
       if linha4.count > linha4Preenchidos.count
 
-        return  Rede.where("linha = 4 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id).first.id
+        return  Rede.where("linha = 4 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id, :id).first.id
           
       end 
 
       if linha5.count > linha5Preenchidos.count
 
-        return  Rede.where("linha = 5 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id).first.id
+        return  Rede.where("linha = 5 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id, :id).first.id
           
       end 
 
       if linha6.count > linha6Preenchidos.count
 
-        return  Rede.where("linha = 6 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id).first.id
+        return  Rede.where("linha = 6 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id, :id).first.id
           
       end 
 
       if linha7.count > linha7Preenchidos.count
 
-        return  Rede.where("linha = 7 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id).first.id
+        return  Rede.where("linha = 7 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id, :id).first.id
           
       end                                     
 
       if linha8.count > linha8Preenchidos.count
 
-        return  Rede.where("linha = 8 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id).first.id
+        return  Rede.where("linha = 8 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id, :id).first.id
           
       end 
 
 
       if linha9.count > linha9Preenchidos.count
 
-        return  Rede.where("linha = 9 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id).first.id
+        return  Rede.where("linha = 9 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:parent_id, :id).first.id
           
       end 
 
