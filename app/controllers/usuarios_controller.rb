@@ -22,6 +22,22 @@ class UsuariosController < ApplicationController
   def edit
   end
 
+  def checksum(cadastro_id)
+
+    usuario = Usuario.find_by_cadastro_id(cadastro_id)
+
+    cadastro = Cadastro.find_by_id(cadastro_id)
+
+    dadosfinanceiros = dadosfinanceiro.find_by_cadastro_id(cadastro_id)
+
+    if !usuario && !cadastro && !dadosfinanceiro
+      return false
+    else
+      return true
+    end
+
+  end
+
   # POST /usuarios
   # POST /usuarios.json
   def create
