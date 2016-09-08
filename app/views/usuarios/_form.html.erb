@@ -96,8 +96,9 @@
   </div>   
 </div>
 
+      <%= f.text_field :cadastro_id%>
     <% if not usuario_logado %>
-      <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
+      <%#= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
       <%= f.hidden_field :datainclusao, :value => Time.now%>
       <%= f.hidden_field :dataultimologin %>
       <%= f.hidden_field :flagativo, :value => true%>
