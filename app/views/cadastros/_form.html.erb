@@ -68,18 +68,10 @@
                 <br>
             <%end%>  
         <div class="row mar-bot40">
-          <div class="col-lg-6">
+          <div class="col-lg-10">
             <%= f.label :Nome %><br>
             <%= f.text_field :nomepessoa,:class => 'form-control' %>
           </div>
-          <div class="col-lg-4">
-            <%= f.label :CPF %><br>
-            <%if usuario_logado%>
-                <%= f.text_field :cpf,:class => 'form-control'%>
-            <%else%>
-                <%= f.text_field :cpf,:class => 'form-control' %>
-            <%end%>            
-          </div>  
           <div class="col-lg-2">
 
                   <div class="radio">
