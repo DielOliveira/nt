@@ -30,9 +30,6 @@ class UsuariosController < ApplicationController
     respond_to do |format|
       if @usuario.save
 
-
-        Doacao.create(:ciclo_id => 1, :flagconfirmada => false, :flagrejeitada => false, :cadastro_1_id => @usuario.cadastro_id, :cadastro_2_id => @usuario.father.father.id) rescue nil
-
         rede = Rede.find_by_id(proximaentrada(1))
         rede.cadastro_id = @usuario.cadastro_id
         rede.save

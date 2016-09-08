@@ -97,6 +97,8 @@
 				doacoes = Doacao.joins('inner join ciclos cl on cl.id = ciclo_doador_id').where("cadastro_doador_id = " + user.cadastro.id.to_s + "and ciclo_doador_id = " + user.cadastro.ciclo.id.to_s )
 				if doacoes.empty?
 
+					tempo = (user.cadastro.ciclo.id  == 1 ? 3 : 1)
+
 				    start = Doacao.new
 				    start.cadastro_doador_id = user.cadastro.id
 				    start.cadastro_recebedor_id = rede.parent.parent.cadastro.id
@@ -105,7 +107,7 @@
 				    start.ciclo_recebedor_id = rede.parent.parent.cadastro.ciclo.id
 				    start.flagenviada = false
 				    start.flagconfirmada = false
-				    start.tempo = (Time.now + 1.days)
+				    start.tempo = (Time.now + tempo.days)
 				    start.save			
 				    	
 				end			
