@@ -94,24 +94,23 @@
         </div>
         <br>
         <div class="row mar-bot40">
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <%= f.label :Email %><br>
             <%= f.text_field :email, :class => 'form-control' %>
           </div>
 
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <%= f.label :Confirma_Email %><br>
               <%= f.text_field :descconfirmaemail, :class => 'form-control' %>
-          </div>
-
-          <div class="col-lg-4">
-            <label for="cadastro_telefone">Telefone/WhatsApp</label>
-            <%= f.text_field :telefone, :class => 'form-control' %>
           </div>
         </div>
         <br>
         <div class="row mar-bot40">
-          <div class="col-lg-4">
+          <div class="col-lg-6">
+            <label for="cadastro_telefone">Telefone/WhatsApp</label>
+            <%= f.text_field :telefone, :class => 'form-control' %>
+          </div>        
+          <div class="col-lg-6">
             <%= f.label :Operadora %><br>
             <%= f.select :operadora_id, options_from_collection_for_select(Operadora.all, 'id', 'nomeoperadora', @cadastro.operadora_id), {:include_blank => true}, {:class => 'form-control' } %>
           </div>
