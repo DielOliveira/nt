@@ -75,9 +75,8 @@
             </div>
             <br>
             <%if not usuario_logado%>
-            <%#= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
+            <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
             <%end%>
-            <%= f.text_field :cadastro_id, :value => session[:cadastro_id]%>
 
 
             <br>
