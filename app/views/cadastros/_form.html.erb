@@ -133,15 +133,16 @@
           </div>
         </div>
           <div class="field">
-            <%= f.hidden_field :dadatainclusao, :value => Time.now%>
-            <%= f.hidden_field :ciclo_id, :value => 1%>
-            <%= f.hidden_field :flagreentrada, :value => false%>
             
             <%if not @cadastro.id%>
               <%= f.hidden_field :flagativo, :value => false%>
+              <%= f.hidden_field :dadatainclusao, :value => Time.now%>
+              <%= f.hidden_field :ciclo_id, :value => 1%>
+              <%= f.hidden_field :flagreentrada, :value => false%>
+              <%= f.hidden_field :contador, :value => Cadastro.where('flagreentrada = false').count + 1%>
             <%end%>
+              <%= f.text_field :ciclo_id%>
 
-            <%= f.hidden_field :contador, :value => Cadastro.where('flagreentrada = false').count + 1%>
           </div>
           <br>
           <div align="right">
@@ -159,11 +160,6 @@
 
           </div>
 
-          <%#= image_tag(@cadastro.avatar_url) if @cadastro.avatar? %>
-          <%#= f.file_field :avatar %>
-          <%#Cloudinary::Uploader.upload('http://fontefm.redefonte.com/files/2013/01/Megan-Fox.jpg')%>
-          <%#=cl_image_tag("avr4lp02s2jd3vzawgac.jpg", :alt => "Sample Image")%>
-          <%#=cl_image_tag("io6k6epwysesnu4vljmm.jpg", :width => 100, :height => 150, :crop => :fill)%>
         <% end %>
 
     </div>
