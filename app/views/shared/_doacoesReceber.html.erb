@@ -20,7 +20,7 @@
           <p><b>Doação de: </b><%=doacoes.cadastro_doador.nomepessoa%></p>
           <p><b>Valor: </b><%=number_to_currency( doacoes.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
 
-          <p><b>Titular: </b><%=@dadosfinanceiros.nometitular%></p>
+          <p><b>Titular: </b><%=@dadosfinanceiros.nometitular rescue nil%></p>
           <p><b>Conta PicPay: </b><%=@dadosfinanceiros.contapicpay%></p>
           <p><b>E-mail: </b><%=doacoes.cadastro_doador.email%></p>
           <p><b>Telefone: </b><%=doacoes.cadastro_doador.telefone%></p>
