@@ -20,7 +20,7 @@
       <tr>
         <td><%= usuario.email %></td>
         <td><%= usuario.senha %></td>
-        <td><%= usuario.cadastro.nomepessoa %></td>
+        <td><%= usuario.cadastro.nomepessoa rescue nil%></td>
         <td><%= usuario.datainclusao %></td>
         <td><%= usuario.dataultimologin %></td>
         <td><%= usuario.flagativo %></td>
