@@ -21,8 +21,7 @@
 @dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@doacao.cadastro_recebedor.id) rescue nil
 %>
 
-<%@adjusted_datetime = (@doacao.created_at + 1.days).to_datetime %>
-<%@adjusted_datetime = @adjusted_datetime.strftime("%Y/%m/%d %H:%M") %>
+<%@adjusted_datetime = @doacao.tempo%>
 
 <div class="box box-warning">
   <div class="box-header with-border">
