@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   match '/grava_mensagem', to: 'mensagems#grava_mensagem', via: 'get'
 
   match '/geralinha', to: 'redes#geralinha', via: 'get'
+  match '/deletalinha', to: 'redes#deletalinha', via: 'get'
 
 
   # Example of regular route:

@@ -16,6 +16,7 @@
           <th>Posições Total</th>
           <th>Posições Preenchidos</th>
           <th>Preenchimento Linhear</th>
+          <th>Destroy</th>
           <!-- <th style="width: 40px">Label</th> -->
         </tr>
         <%if not @linha1.empty? %>
@@ -24,6 +25,7 @@
             <td><span class="badge bg-red"><%=@linha1.count%></span></td>
             <td><span class="badge bg-green"><%=@linha1Preenchidos.count%></span></td>
             <td><i class="fa fa-check" aria-hidden="true"></i></td>
+            <td></td>
           </tr>
           <%if not @linha2.empty? %>
             <tr>
@@ -112,7 +114,10 @@
             <label for="cadastro_Nome">&nbsp;</label><br>
             <button type="submit" class="btn btn-success btn-sm" onclick="geralinha();">
               <span class="glyphicon glyphicon-floppy-disk"></span> Gerar Linha
-            </button>            
+            </button>       
+            <button type="submit" class="btn btn-warning btn-sm" onclick="deleta();">
+              <span class="glyphicon glyphicon-floppy-disk"></span> Deleta Linha
+            </button>                   
         </div>
         <input type="hidden" name="ciclo_id" id="ciclo_id" value="<%=params[:ciclo_id]%>">
       </div>              
@@ -131,6 +136,28 @@ function pesquisar() {
     data : 
     {
         ciclo_id : $('#ciclo_id').val()
+    },
+    success: function(data){
+
+          location.reload();
+
+    }
+  })  
+}
+
+function deleta() {
+
+  if ($('#numero').val() == "") {
+    alert('Preencha o número da linha a ser gerada');
+    return
+  }
+
+  $.ajax({
+    url: '<%=deletalinha_path %>',
+    data : 
+    {
+        numero : $('#numero').val()
+        ,ciclo_id : $('#ciclo_id').val()
     },
     success: function(data){
 

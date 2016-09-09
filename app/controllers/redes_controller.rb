@@ -3,6 +3,17 @@ class RedesController < ApplicationController
   before_action :set_rede, only: [:show, :edit, :update, :destroy]
 
 
+  def deletalinha
+     redes = Rede.where("linha = " + params[:numero].to_s + ' and ciclo_id = ' + params[:ciclo_id])
+
+    redes.each do |rede|
+      rede.destroy
+    end
+
+    render :json => redes
+
+  end
+
 
   def exibirlinhas
 
@@ -39,7 +50,7 @@ class RedesController < ApplicationController
 
     if params[:numero].to_s == '1'
 
-      linha = Rede.where("linha = " + params[:numero].to_s + ' and ciclo_id = ' + params[:ciclo_id])
+      linha = Rede.where("linha = " + params[:numero].to_s + ' and ciclo_id = ' + params[:ciclo_id]).order(:id)
 
       if linha.count == 0
           novarede = Rede.new
