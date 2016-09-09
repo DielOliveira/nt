@@ -57,9 +57,7 @@
     <%= f.hidden_field :avatar %>
     <% end %>
 
-    <%#= f.hidden_field :flagenviada, :value => true %>
-
-    <%= f.text_field :cadastro_recebedor_id%>
+    <%= f.hidden_field :flagenviada, :value => true %>
 
     <%#= f.hidden_field :whatsapp, :class => 'form-control'%>
 
@@ -72,11 +70,11 @@
        </a>
        <%end%>    
 
-       <%# if not @doacaoverifica.flagenviada? %>
+       <% if not @doacaoverifica.flagenviada? %>
        <button type="submit" class="btn btn-success btn-bg">
         Realizar Doação
       </button>
-      <%#end%>
+      <%end%>
     </div>
 
     </div>              
