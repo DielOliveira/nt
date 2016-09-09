@@ -114,9 +114,9 @@ class DoacaosController < ApplicationController
 
     respond_to do |format|
       if @doacao.update(doacao_params)
-        imagem = Cloudinary::Uploader.upload("public" + @doacao.avatar_url)
+        #imagem = Cloudinary::Uploader.upload("public" + @doacao.avatar_url)
 
-        @doacao.comprovante = imagem["public_id"] + "." + imagem["format"]
+        #@doacao.comprovante = imagem["public_id"] + "." + imagem["format"]
         @doacao.save
         format.html { redirect_to root_path, notice: 'Doacao was successfully updated.' }
         
@@ -145,6 +145,6 @@ class DoacaosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doacao_params
-      params.require(:doacao).permit(:ciclo_id, :flagconfirmada, :flagrejeitada, :observacao, :dataconfirmacao, :flagenviada, :avatar, :comprovante, :tempo, :flagpause)
+      params.require(:doacao).permit(:ciclo_id, :flagconfirmada, :flagrejeitada, :observacao, :dataconfirmacao, :flagenviada, :avatar, :comprovante, :tempo, :flagpause, :cadastro_recebedor_id)
     end
 end
