@@ -122,11 +122,26 @@ class CadastrosController < ApplicationController
       reentradas.destroy
     end
 
+    # doacaos = Doacao.where('cadastro_doador_id = ?',@cadastro.id)
+    # if doacaos
+    #   doacaos.each do |doacao|
+    #     doacao.destroy
+    #   end
+    # end
+
+    # doacaos = Doacao.where('cadastro_recebedor_id = ?',@cadastro.id)
+    # if doacaos
+    #   doacaos.each do |doacao|
+    #     doacao.destroy
+    #   end
+    # end
+
     @cadastro.destroy
     respond_to do |format|
-      format.html { redirect_to cadastros_url, notice: 'Cadastro was successfully destroyed.' }
+      format.html { redirect_to cadastros_url, notice: 'Cadastro excluído com sucesso.' }
       format.json { head :no_content }
     end
+
   end
 
   private
