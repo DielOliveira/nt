@@ -47,15 +47,6 @@ class UsuariosController < ApplicationController
       @usuario.cadastro_id = session[:cadastro_id]
       @usuario.datainclusao = Time.now
       @usuario.flagativo = false
-
-
-      if checksum(@usuario.cadastro_id)
-        session[:ObjLogon] = Usuario.where(:email => @usuario.email, :senha => @usuario.senha)
-        session[:ObjLogon] = session[:ObjLogon].first
-      else
-        flash[:danger] = "Não foi possível salvar as informações. Contate o administrador2"
-        return  redirect_to new_usuario_path 
-      end
       
     rescue
       flash[:danger] = "Não foi possível salvar as informações. Contate o administrador1"
@@ -68,6 +59,9 @@ class UsuariosController < ApplicationController
         rede = Rede.find_by_id(proximaentrada(1))
         rede.cadastro_id = @usuario.cadastro_id
         rede.save
+
+        session[:ObjLogon] = Usuario.where(:email => @usuario.email, :senha => @usuario.senha)
+        session[:ObjLogon] = session[:ObjLogon].first
 
         format.html { redirect_to home_path, notice: 'Usuário criado com sucesso.' }
         format.json { render :show, status: :created, location: @usuario }
