@@ -31,7 +31,7 @@ class ReentradasController < ApplicationController
       reentrando = Usuario.find_by_cadastro_id(params[:cadastro_id])
       
       cadastro = Cadastro.new
-      cadastro.nomepessoa = principal.nomepessoa + "-" + (count.count + 1).to_s
+      cadastro.nomepessoa = principal.nomepessoa.strip + "-" + (count.count + 1).to_s
       cadastro.masculino = reentrando.cadastro.masculino
       cadastro.email = principal.email.strip + "-" + (count.count + 1).to_s
       cadastro.descconfirmaemail = principal.email.strip + "-" + (count.count + 1).to_s
@@ -54,7 +54,7 @@ class ReentradasController < ApplicationController
 
       #user
       usuario = Usuario.new
-      usuario.email = user.email + "-" + (count.count + 1).to_s
+      usuario.email = user.email.strip + "-" + (count.count + 1).to_s
       usuario.senha = reentrando.senha
       usuario.cadastro_id = cadastro.id
       usuario.dataultimologin = reentrando.dataultimologin
