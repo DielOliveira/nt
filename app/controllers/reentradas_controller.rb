@@ -33,8 +33,8 @@ class ReentradasController < ApplicationController
       cadastro = Cadastro.new
       cadastro.nomepessoa = principal.nomepessoa + "-" + (count.count + 1).to_s
       cadastro.masculino = reentrando.cadastro.masculino
-      cadastro.email = principal.email + "-" + (count.count + 1).to_s
-      cadastro.descconfirmaemail = principal.email + "-" + (count.count + 1).to_s
+      cadastro.email = principal.email.strip + "-" + (count.count + 1).to_s
+      cadastro.descconfirmaemail = principal.email.strip + "-" + (count.count + 1).to_s
       cadastro.telefone = reentrando.cadastro.telefone
       cadastro.operadora_id = reentrando.cadastro.operadora_id
       cadastro.ciclo_id = 1
@@ -88,7 +88,7 @@ class ReentradasController < ApplicationController
 
     end
 
-      if cadastro.save && usuario.save(:validate => false) && financeiro.save && rede.save && reentrada.save
+      if cadastro.save(:validate => false) && usuario.save(:validate => false) && financeiro.save && rede.save && reentrada.save
         flash[:success] = "Reentrada realizada com sucesso."
         redirect_to reentradas_path
       else

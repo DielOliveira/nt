@@ -28,7 +28,7 @@
             <%= link_to pausardoacao_doacao_path(doacao), :class => "btn btn-default btn-sm" do %>
               <span class="glyphicon glyphicon-exclamation-sign"></span> Pausar
             <% end %>   
-            <%#= button_to "delete", doacao_path(:id => doacao.id), :method => :delete %>     
+            <%= button_to "delete", doacao_path(:id => doacao.id), :method => :delete %>     
         </td>
       </tr>
     <% end %>
