@@ -130,19 +130,19 @@ class CadastrosController < ApplicationController
       reentradas.destroy
     end
 
-    # doacaos = Doacao.where('cadastro_doador_id = ?',@cadastro.id)
-    # if doacaos
-    #   doacaos.each do |doacao|
-    #     doacao.destroy
-    #   end
-    # end
+     doacaos = Doacao.where('cadastro_doador_id = ?',@cadastro.id)
+     if doacaos
+       doacaos.each do |doacao|
+         doacao.destroy
+       end
+     end
 
-    # doacaos = Doacao.where('cadastro_recebedor_id = ?',@cadastro.id)
-    # if doacaos
-    #   doacaos.each do |doacao|
-    #     doacao.destroy
-    #   end
-    # end
+     doacaos = Doacao.where('cadastro_recebedor_id = ?',@cadastro.id)
+     if doacaos
+       doacaos.each do |doacao|
+         doacao.destroy
+       end
+     end
 
     @cadastro.destroy
     respond_to do |format|
