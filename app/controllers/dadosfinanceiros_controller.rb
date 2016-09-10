@@ -42,7 +42,6 @@ class DadosfinanceirosController < ApplicationController
   # PATCH/PUT /dadosfinanceiros/1.json
   def update
 
-    byebug
     respond_to do |format|
       if @dadosfinanceiro.update(dadosfinanceiro_params)
 
