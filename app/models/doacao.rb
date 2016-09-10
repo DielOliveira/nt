@@ -9,7 +9,7 @@ class Doacao < ActiveRecord::Base
   belongs_to :ciclo_recebedor, :class_name => "Ciclo"
 
 
-  #validates :avatar, :presence => { :message => 'é obrigatório.' }, on: :update 
+  validates :avatar, :presence => { :message => 'é obrigatório.' }, on: :update 
   
   mount_uploader :avatar, AvatarUploader
 

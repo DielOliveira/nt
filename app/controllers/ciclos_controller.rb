@@ -5,124 +5,48 @@ class CiclosController < ApplicationController
 
   def upgrade_ciclo
 
+    begin
       cadastro = Cadastro.find(params[:cadastro_id])
       @reentradas = Reentrada.where("cadastro_reentrando_id = " + params[:cadastro_id].to_s + ' and ciclo_id = ' + cadastro.ciclo.id.to_s).count
       @permite = true
 
       if  @reentradas < cadastro.ciclo.qtdreentradas
-          @permite = false
+          flash[:notice] = "Erro ao realizar o Upgrade. Verifique se possui reentradas suficiente."
+          return redirect_to reentradas_path
       end
 
-      if @permite == true
 
-        cadastro = Cadastro.find_by_id(cadastro.id)
-        cadastro.cpfpadrinho = cadastro.email
-        cadastro.email = cadastro.email
-        cadastro.descconfirmaemail = cadastro.email
-        cadastro.ciclo_id = cadastro.ciclo_id + 1
-        cadastro.save
+      cadastro = Cadastro.find_by_id(cadastro.id)
+      cadastro.ciclo_id = cadastro.ciclo_id + 1
+      cadastro.save(:validate => false)
 
-        rede = Rede.find_by_id(proximaentrada(cadastro.ciclo_id).to_i)
-        rede.cadastro_id = cadastro.id
+      rede = Rede.find_by_id(proximaentrada(cadastro.ciclo_id).to_i)
+      rede.cadastro_id = cadastro.id
+      rede.save
+
+    rescue
+
+      if cadastro
+        cadastro.ciclo_id = cadastro.ciclo_id - 1
+        cadastro.save(:validate => false)
+      end
+
+      if rede
+        rede.cadastro_id = nil
         rede.save
       end
 
-      respond_to do |format|
-        if @permite == true
-            format.html { redirect_to home_path, notice: 'Upgrade realizado com sucesso.' }
-        else
-            format.html { redirect_to home_path, notice: 'Erro ao realizar o Upgrade. Você não possui reentradas suficiente.' }
-        end
-      end
+      flash[:danger] = "Não foi possível salvar as informações. Contate o administrador"
+      return redirect_to reentradas_path
+    
+    ensure
+
+    end
+
+    flash[:success] = "Upgrade realizado com sucesso"
+    redirect_to reentradas_path
 
   end
-
-
-  def start_ciclo1
-
-    rede = Rede.find_by_cadastro_id(user.cadastro.id)
-
-    start = Doacao.new
-    start.cadastro_1_id = user.cadastro.id
-    start.cadastro_2_id = rede.parent.parent.id
-    start.ciclo_id = 1
-    start.flagenviada = false
-    start.save
-
-    render :json => start
-
-  end
-
-
-  def gerenciarciclos
-
-      rede = Rede.find_by_cadastro_id(user.cadastro.id)
-  
-      if rede.linha <= 2
-        @redepermite = false
-      else
-        @redepermite = true
-      end    
-
-    #@doacoes1 = Doacaos.joins('inner join fd_itempedidos ip on ip.id = fd_itempedido_id inner join fd_itensadicionals ia on fd_itensadicional_id = ia.id').where('ip.fd_pedido_id = ?', params[:fd_pedido_id])
-
-      @doacoes1start = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 1" ).sum('valorciclo')
-      @doacoes1 = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 1 and dataconfirmacao is not null" ).sum('valorciclo')
-      @doacoes2 = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 2 and dataconfirmacao is not null" ).sum('valorciclo')
-      @doacoes3 = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 3 and dataconfirmacao is not null" ).sum('valorciclo')
-      @doacoes4 = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 4 and dataconfirmacao is not null" ).sum('valorciclo')
-      @doacoes5 = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 5 and dataconfirmacao is not null" ).sum('valorciclo')
-      @doacoes6 = Doacao.joins('inner join ciclos cl on cl.id = ciclo_id').where("cadastro_1_id = " + user.cadastro.id.to_s + "and ciclo_id = 6 and dataconfirmacao is not null" ).sum('valorciclo')
-
-      @reentradas = Reentrada.where("cadastro_1_id = " + user.cadastro.id.to_s).count
-
-      if @reentradas >= 1
-        @reentradas1 = 1
-      else
-        @reentradas1 = 0
-      end
-
-      if @reentradas >= 2
-        @reentradas2 = 1
-      else
-        @reentradas2 = 0
-      end
-
-      if @reentradas >= 5
-        @reentradas3 = 3
-      elsif @reentradas > 2
-        @reentradas3 = (@reentradas -2)
-      elsif @reentradas <= 2
-        @reentradas3 = 0
-      end
-
-      if @reentradas >= 15
-        @reentradas4 = 10
-      elsif @reentradas > 5
-        @reentradas4 = (@reentradas -5)
-      elsif @reentradas <= 5
-        @reentradas4 = 0
-      end
-
-      if @reentradas >= 35
-        @reentradas5 = 20
-      elsif @reentradas > 15
-        @reentradas5 = (@reentradas -15)
-      elsif @reentradas <= 15
-        @reentradas5 = 0
-      end 
-
-      if @reentradas >= 85
-        @reentradas6 = 50
-      elsif @reentradas > 35
-        @reentradas6 = (@reentradas -35)
-      elsif @reentradas <= 35
-        @reentradas6 = 0
-      end                    
-
-
-  end 
-
   
   # GET /ciclos
   # GET /ciclos.json

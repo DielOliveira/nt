@@ -215,6 +215,7 @@ pt-BR:
     attributes:
         cadastro:
           nomepessoa: "Nome"
+          cpfpadrinho: "Patrocinador"
           email: "E-mail"
           telefone: "Telefone"
           operadora_id: "Operadora"

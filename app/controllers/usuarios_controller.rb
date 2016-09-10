@@ -24,16 +24,15 @@ class UsuariosController < ApplicationController
 
   def checksum(cadastro_id)
 
-    usuario = Usuario.find_by_cadastro_id(cadastro_id)
 
     cadastro = Cadastro.find_by_id(cadastro_id)
 
-    dadosfinanceiros = dadosfinanceiro.find_by_cadastro_id(cadastro_id)
-
-    if !usuario && !cadastro && !dadosfinanceiro
-      return false
-    else
+    dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(cadastro_id)
+    
+    if (cadastro && dadosfinanceiro)
       return true
+    else
+      return false
     end
 
   end
@@ -41,7 +40,21 @@ class UsuariosController < ApplicationController
   # POST /usuarios
   # POST /usuarios.json
   def create
+    
+    if checksum(@usuario.cadastro_id)
+      session[:ObjLogon] = Usuario.where(:email => @usuario.email, :senha => @usuario.senha)
+      session[:ObjLogon] = session[:ObjLogon].first
+    else
+      flash[:danger] = "Não foi possível salvar as informações. Contate o administrador"
+      return  redirect_to new_usuario_path 
+    end
+    
+
     @usuario = Usuario.new(usuario_params)
+    @usuario.cadastro_id = session[:cadastro_id]
+    @usuario.datainclusao = Time.now
+    @usuario.flagativo = false
+
 
     respond_to do |format|
       if @usuario.save
@@ -49,11 +62,6 @@ class UsuariosController < ApplicationController
         rede = Rede.find_by_id(proximaentrada(1))
         rede.cadastro_id = @usuario.cadastro_id
         rede.save
-
-        session[:ObjLogon] = Usuario.where(:email => @usuario.email, :senha => @usuario.senha) rescue nil
-
-        session[:ObjLogon] = session[:ObjLogon].first
-
 
         format.html { redirect_to home_path, notice: 'Usuário criado com sucesso.' }
         format.json { render :show, status: :created, location: @usuario }

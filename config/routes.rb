@@ -74,11 +74,8 @@ Rails.application.routes.draw do
   match '/login', to: 'nt_autentication#login', via: 'post'
   match '/logoff', to: 'nt_autentication#logoff', via: 'get'
 
-  match '/gerenciarciclos', to: 'ciclos#gerenciarciclos', via: 'get'
 
   match '/start_ciclo1', to: 'ciclos#start_ciclo1', via: 'get'
-
-
 
   match '/grava_mensagem', to: 'mensagems#grava_mensagem', via: 'get'
 

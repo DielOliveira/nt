@@ -52,15 +52,17 @@ class CadastrosController < ApplicationController
   # POST /cadastros.json
   def create
     @cadastro = Cadastro.new(cadastro_params)
+    
+    @cadastro.flagativo = false
+    @cadastro.dadatainclusao = Time.now
+    @cadastro.ciclo_id = 1
+    @cadastro.flagreentrada = false
+    @cadastro.contador = Cadastro.where('flagreentrada = false').count + 1
 
     respond_to do |format|
       if @cadastro.save
 
           session[:cadastro_id] = @cadastro.id
-
-          #rede = Rede.find_by_id(proximaentrada(1))
-          #rede.cadastro_id = session[:cadastro_id]
-          #rede.save
 
           padrinho = Usuario.find_by_email(@cadastro.cpfpadrinho)
 
@@ -76,7 +78,13 @@ class CadastrosController < ApplicationController
           format.html { redirect_to new_dadosfinanceiro_path, notice: 'Cadastro criado com sucesso.' }
 
       else
+
+        if padrinho
+          padrinho.destroy
+        end
+
         format.html { render :new }
+
       end
     end
   end

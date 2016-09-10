@@ -74,10 +74,6 @@
               </div>
             </div>
             <br>
-            <%if not usuario_logado%>
-            <%= f.hidden_field :cadastro_id, :value => session[:cadastro_id]%>
-            <%end%>
-
 
             <br>
             <div align="right">
@@ -110,13 +106,3 @@
       </div>
 
     </body>
-
-
-    <script>
-      jQuery(function($){
-
-    //$("#dadosfinanceiro_cpftitular").mask("999.999.999.99");
-
-
-  });
-</script>

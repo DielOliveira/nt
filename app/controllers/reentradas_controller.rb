@@ -24,82 +24,101 @@ class ReentradasController < ApplicationController
 
   def novareentrada
 
-    #byebug
+    begin 
 
-    #Cadastro
-    principal = Cadastro.find(user.cadastro_id)
+      principal = Cadastro.find(user.cadastro_id)
+      count = Reentrada.where("cadastro_principal_id = " + principal.id.to_s)
+      reentrando = Usuario.find_by_cadastro_id(params[:cadastro_id])
+      
+      cadastro = Cadastro.new
+      cadastro.nomepessoa = principal.nomepessoa + "-" + (count.count + 1).to_s
+      cadastro.masculino = reentrando.cadastro.masculino
+      cadastro.email = principal.email + "-" + (count.count + 1).to_s
+      cadastro.descconfirmaemail = principal.email + "-" + (count.count + 1).to_s
+      cadastro.telefone = reentrando.cadastro.telefone
+      cadastro.operadora_id = reentrando.cadastro.operadora_id
+      cadastro.ciclo_id = 1
+      cadastro.flagreentrada = true
+      cadastro.cpfpadrinho = reentrando.email
+      cadastro.flagativo = false
+      cadastro.save
 
-    count = Reentrada.where("cadastro_principal_id = " + principal.id.to_s)
-    reentrando = Usuario.find_by_cadastro_id(params[:cadastro_id])
-    
-    cadastro = Cadastro.new
-    cadastro.nomepessoa = principal.nomepessoa + "-" + (count.count + 1).to_s
-    cadastro.masculino = reentrando.cadastro.masculino
-    cadastro.email = principal.email + "-" + (count.count + 1).to_s
-    cadastro.descconfirmaemail = principal.email + "-" + (count.count + 1).to_s
-    cadastro.telefone = reentrando.cadastro.telefone
-    cadastro.operadora_id = reentrando.cadastro.operadora_id
-    cadastro.whatsapp = reentrando.cadastro.whatsapp
-    cadastro.skype = reentrando.cadastro.skype
-    cadastro.facebook = reentrando.cadastro.facebook
-    cadastro.cpf = reentrando.cadastro.cpf
-    cadastro.ciclo_id = 1
-    cadastro.flagreentrada = true
-    cadastro.cpfpadrinho = reentrando.email
-    cadastro.flagativo = false
+      #Financeiro
+      financeirocopiar = Dadosfinanceiro.find_by_cadastro_id(params[:cadastro_id].to_s)
+      financeiro = Dadosfinanceiro.new
+      financeiro.nometitular = financeirocopiar.nometitular
+      financeiro.observacao = financeirocopiar.observacao
+      financeiro.contapicpay = financeirocopiar.contapicpay
+      financeiro.cadastro_id = cadastro.id
+      financeiro.save
 
-    cadastro.save
+      #user
+      usuario = Usuario.new
+      usuario.email = user.email + "-" + (count.count + 1).to_s
+      usuario.senha = reentrando.senha
+      usuario.cadastro_id = cadastro.id
+      usuario.dataultimologin = reentrando.dataultimologin
+      usuario.flagativo = reentrando.flagativo
+      usuario.descconfirmasenha = reentrando.senha
+      usuario.save(:validate => false)
 
-    #Financeiro
-    financeirocopiar = Dadosfinanceiro.find_by_cadastro_id(params[:cadastro_id].to_s)
-    financeiro = Dadosfinanceiro.new
-    financeiro.nometitular = financeirocopiar.nometitular
-    financeiro.cpftitular = financeirocopiar.cpftitular
-    financeiro.banco_id = financeirocopiar.banco_id
-    financeiro.agencia = financeirocopiar.agencia
-    financeiro.codigo = financeirocopiar.codigo
-    financeiro.operacao = financeirocopiar.operacao
-    financeiro.contabancariatipo_id = financeirocopiar.contabancariatipo_id
-    financeiro.observacao = financeirocopiar.observacao
-    financeiro.emailsuperconta = financeirocopiar.emailsuperconta
-    financeiro.cadastro_id = cadastro.id
-    financeiro.save
+      #rede
+      rede = Rede.find_by_id(proximaentrada(1).to_i)
+      rede.cadastro_id = cadastro.id
+      rede.save
 
-    #user
-    usuario = Usuario.new
-    usuario.email = reentrando.email + "-" + (count.count + 1).to_s
-    usuario.senha = reentrando.senha
-    usuario.cadastro_id = cadastro.id
-    usuario.dataultimologin = reentrando.dataultimologin
-    usuario.flagativo = reentrando.flagativo
-    usuario.descconfirmasenha = reentrando.senha
-    usuario.save
+      #reentrada
+      reentrada = Reentrada.new
+      reentrada.cadastro_reentrando_id = reentrando.cadastro.id
+      reentrada.cadastro_adicionado_id = cadastro.id
+      reentrada.cadastro_principal_id = user.cadastro.id
+      reentrada.ciclo_id = reentrando.cadastro.ciclo.id
+      reentrada.save
+      
+      if params[:flagdemanda] == 'true'
+        cadastroprincipal = Cadastro.find(user.cadastro_id)
+        cadastroprincipal.flagreentradaobrigatoria = false
+        cadastroprincipal.save(:validate => false)
+      end
 
-    #rede
-    rede = Rede.find_by_id(proximaentrada(1).to_i)
-    rede.cadastro_id = cadastro.id
-    rede.save
+    rescue
 
+      flash[:error] = "Não foi possível salvar as informações. Contate o administrador"
+      return redirect_to reentradas_path
 
-    #reentrada
-    reentrada = Reentrada.new
-    reentrada.cadastro_reentrando_id = reentrando.cadastro.id
-    reentrada.cadastro_adicionado_id = cadastro.id
-    reentrada.cadastro_principal_id = user.cadastro.id
-    reentrada.ciclo_id = reentrando.cadastro.ciclo.id
-
-    
-    if params[:flagdemanda] == 'true'
-      cadastroprincipal = Cadastro.find(user.cadastro_id)
-      cadastroprincipal.flagreentradaobrigatoria = false
-      cadastroprincipal.email = cadastroprincipal.email
-      cadastroprincipal.descconfirmaemail = cadastroprincipal.email
-      cadastroprincipal.save
     end
 
-    if reentrada.save
-      redirect_to reentradas_path
-    end
+      if cadastro.save && usuario.save(:validate => false) && financeiro.save && rede.save && reentrada.save
+        flash[:success] = "Reentrada realizada com sucesso."
+        redirect_to reentradas_path
+      else
+
+        if rede
+          rede.cadastro_id = nil
+          rede.save
+        end
+
+        if financeiro
+          financeiro.destroy
+        end
+
+        if usuario
+          usuario.destroy
+        end
+
+        if cadastro
+          cadastro.destroy
+        end
+
+        if reentrada
+          reentrada.destroy
+        end
+
+        flash[:error] = "Não foi possível salvar as informações. Contate o administrador"
+        return redirect_to reentradas_path
+
+      end
+
 
   end
 

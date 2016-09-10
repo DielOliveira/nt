@@ -1,11 +1,6 @@
-
-<%if notice%>
-  <div class="alert alert-warning alert-dismissible">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <h4><i class="icon fa fa-warning"></i> Atenção</h4>
-      <p id="notice"><%= notice %></p>
-  </div>
-<%end%>
+<% flash.each do |key, value| %>
+<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 
 <% if upgrade(user.cadastro.id) == 'obrigatoria'%>
   <%= render 'shared/obrigacoes' %>
@@ -60,7 +55,7 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <a href="<%=redeslist_path(user.cadastro.id)%>">
+          <a href="<%=redeslist_path(Rede.where('cadastro_id = ? and ciclo_id = ?', user.cadastro_id, user.cadastro.ciclo_id).first.id)%>">
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3><%=somatudo(Rede.where('cadastro_id = ? and ciclo_id = ?', user.cadastro_id, user.cadastro.ciclo_id).first.id)%></h3>
