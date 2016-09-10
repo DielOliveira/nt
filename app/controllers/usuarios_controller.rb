@@ -41,6 +41,12 @@ class UsuariosController < ApplicationController
   # POST /usuarios.json
   def create
     
+    @usuario = Usuario.new(usuario_params)
+    @usuario.cadastro_id = session[:cadastro_id]
+    @usuario.datainclusao = Time.now
+    @usuario.flagativo = false
+
+    
     if checksum(@usuario.cadastro_id)
       session[:ObjLogon] = Usuario.where(:email => @usuario.email, :senha => @usuario.senha)
       session[:ObjLogon] = session[:ObjLogon].first
@@ -50,10 +56,6 @@ class UsuariosController < ApplicationController
     end
     
 
-    @usuario = Usuario.new(usuario_params)
-    @usuario.cadastro_id = session[:cadastro_id]
-    @usuario.datainclusao = Time.now
-    @usuario.flagativo = false
 
 
     respond_to do |format|
