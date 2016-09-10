@@ -4,7 +4,24 @@ class IndicadosController < ApplicationController
   # GET /indicados
   # GET /indicados.json
   def index
+
+    begin 
+
+      @indicados = Indicado.where(:cadastro_1_id => user.cadastro.id)
+
+      @indicados.each do |indicado|
+        if not indicado.cadastro_2
+          indicado.destroy
+        end
+      end
+
+    rescue
+      flash[:notice] = "Erro ao processar. Contate o administrador."
+      return redirect_to reentradas_path
+    end
+
     @indicados = Indicado.where(:cadastro_1_id => user.cadastro.id)
+
   end
 
   # GET /indicados/1

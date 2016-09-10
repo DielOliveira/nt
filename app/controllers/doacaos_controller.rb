@@ -5,7 +5,7 @@ class DoacaosController < ApplicationController
   # GET /doacaos
   # GET /doacaos.json
   def index
-    @doacaos = Doacao.all
+    @doacaos = Doacao.all.order(:id)
   end
 
   def doacoesrealizadas  
@@ -25,53 +25,89 @@ class DoacaosController < ApplicationController
 
   def confirmadoacao
 
-    doacao = Doacao.find_by_id(@doacao.id)
-    doacao.flagconfirmada = true
-    doacao.dataconfirmacao = Time.now
-    doacao.save
+    begin
+      doacao = Doacao.find_by_id(@doacao.id)
+      doacao.flagconfirmada = true
+      doacao.dataconfirmacao = Time.now
 
-    cadastro = Cadastro.find(doacao.cadastro_doador_id)
-    cadastro.descconfirmaemail = cadastro.email
-    cadastro.flagativo = true
-    cadastro.save
+      cadastro = Cadastro.find(doacao.cadastro_doador_id)
+      cadastro.descconfirmaemail = cadastro.email
+      cadastro.flagativo = true
+    rescue
+      flash[:danger] = "Não foi possível confirmar a doação. Contate o administrador."
+      return redirect_to home_path
+    end
 
-    redirect_to  root_path
+    if doacao.save(:validate => false) && cadastro.save(:validate => false)
+      flash[:success] = "Doação confirmada com sucesso."
+    else
+      flash[:danger] = "Não foi possível confirmar a doação. Contate o administrador."
+    end
+
+    redirect_to  home_path
+
+
 
   end
 
   def recusardoacao
 
-    doacao = Doacao.find_by_id(@doacao.id)
-    doacao.flagenviada = false
-    doacao.dataconfirmacao = nil
-    doacao.comprovante = nil
-    doacao.avatar = nil
-    doacao.save
+    begin
+      doacao = Doacao.find_by_id(@doacao.id)
+      doacao.flagenviada = false
+      doacao.dataconfirmacao = nil
+      doacao.comprovante = nil
+      doacao.avatar = nil
+    rescue
+      flash[:danger] = "Não foi possível recusar a doação. Contate o administrador."
+      return redirect_to  home_path
+    end
 
-    redirect_to  root_path
+    if doacao.save(:validate => false)
+      flash[:success] = "Doação recusada com sucesso."
+    else
+      flash[:danger] = "Não foi possível recusar a doação. Contate o administrador."
+    end
+
+    redirect_to  home_path
 
   end  
 
   def adiardoacao
 
-    doacao = Doacao.find_by_id(@doacao.id)
-    doacao.flagenviada = false
-    doacao.dataconfirmacao = nil
-    doacao.comprovante = nil
-    doacao.avatar = nil
-    doacao.tempo = (doacao.tempo + 1.days)
-    doacao.save
-
-    redirect_to  root_path    
+    begin
+      doacao = Doacao.find_by_id(@doacao.id)
+      doacao.tempo = (doacao.tempo + 1.days)
+    rescue
+      flash[:danger] = "Não foi possível adiar a doação. Contate o administrador."
+      return redirect_to home_path
+    end
+      
+    if doacao.save(:validate => false)
+      flash[:success] = "Doação adiada com sucesso."
+    else
+      flash[:danger] = "Não foi possível adiar a doação. Contate o administrador."
+    end
+      redirect_to  home_path 
 
   end
 
 
   def pausardoacao
 
-    doacao = Doacao.find_by_id(@doacao.id)
-    doacao.flagpause = !doacao.flagpause
-    doacao.save
+    begin
+      doacao = Doacao.find_by_id(@doacao.id)
+      doacao.flagpause = !doacao.flagpause
+    rescue
+      flash[:danger] = "Não foi possível pausar/liberar a doação. Contate o administrador."
+      redirect_to  doacaos_path    
+    end
+
+    if doacao.save(:validate => false)
+      flash[:success] = "Doação pausada/liberada com sucesso."
+    else
+      flash[:danger] = "Não foi possível pausar/liberar a doação. Contate o administrador."
+    end
 
     redirect_to  doacaos_path    
 

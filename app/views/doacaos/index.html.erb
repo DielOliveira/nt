@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% flash.each do |key, value| %>
+<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 
 <h1>Listing Doacaos</h1>
 
@@ -35,4 +37,3 @@
 
 <br>
 
-<%#= link_to 'New Doacao', new_doacao_path %>
