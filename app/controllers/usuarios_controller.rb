@@ -29,7 +29,7 @@ class UsuariosController < ApplicationController
 
     dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(cadastro_id)
     
-    if (cadastro && dadosfinanceiro)
+    if (cadastro && dadosfinanceiros)
       return true
     else
       return false
@@ -40,23 +40,27 @@ class UsuariosController < ApplicationController
   # POST /usuarios
   # POST /usuarios.json
   def create
-    
-    @usuario = Usuario.new(usuario_params)
-    @usuario.cadastro_id = session[:cadastro_id]
-    @usuario.datainclusao = Time.now
-    @usuario.flagativo = false
 
-    
-    if checksum(@usuario.cadastro_id)
-      session[:ObjLogon] = Usuario.where(:email => @usuario.email, :senha => @usuario.senha)
-      session[:ObjLogon] = session[:ObjLogon].first
-    else
-      flash[:danger] = "Não foi possível salvar as informações. Contate o administrador"
+    begin 
+
+      @usuario = Usuario.new(usuario_params)
+      @usuario.cadastro_id = session[:cadastro_id]
+      @usuario.datainclusao = Time.now
+      @usuario.flagativo = false
+
+
+      if checksum(@usuario.cadastro_id)
+        session[:ObjLogon] = Usuario.where(:email => @usuario.email, :senha => @usuario.senha)
+        session[:ObjLogon] = session[:ObjLogon].first
+      else
+        flash[:danger] = "Não foi possível salvar as informações. Contate o administrador2"
+        return  redirect_to new_usuario_path 
+      end
+      
+    rescue
+      flash[:danger] = "Não foi possível salvar as informações. Contate o administrador1"
       return  redirect_to new_usuario_path 
     end
-    
-
-
 
     respond_to do |format|
       if @usuario.save
