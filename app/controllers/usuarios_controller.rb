@@ -5,7 +5,12 @@ class UsuariosController < ApplicationController
   # GET /usuarios
   # GET /usuarios.json
   def index
-    @usuarios = Usuario.all
+    if usuario_logado && user.cadastro_id == 1
+        @usuarios = Usuario.all
+    else
+        redirect_to root_path
+    end
+
   end
 
   # GET /usuarios/1
