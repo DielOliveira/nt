@@ -53,7 +53,13 @@ class CadastrosController < ApplicationController
   # GET /cadastros
   # GET /cadastros.json
   def index
-    @cadastros = Cadastro.order(:created_at).all.paginate(:page => params[:page], :per_page => 10)
+
+    if usuario_logado && user.cadastro_id == 1
+        @cadastros = Cadastro.order(:created_at).all.paginate(:page => params[:page], :per_page => 10)
+    else
+        redirect_to root_path
+    end
+
   end
 
   # GET /cadastros/1
@@ -178,7 +184,15 @@ class CadastrosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cadastro
-      @cadastro = Cadastro.find(params[:id])
+      
+      if usuario_logado && user.cadastro_id == 1
+        @cadastro = Cadastro.find(params[:id])
+      else
+        params[:id] = user.cadastro_id
+        @cadastro = Cadastro.find(params[:id])
+      end
+
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

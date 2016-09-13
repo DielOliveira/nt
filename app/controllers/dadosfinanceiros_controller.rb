@@ -5,7 +5,13 @@ class DadosfinanceirosController < ApplicationController
   # GET /dadosfinanceiros
   # GET /dadosfinanceiros.json
   def index
-    @dadosfinanceiros = Dadosfinanceiro.all
+
+    if usuario_logado && user.cadastro_id == 1
+        @dadosfinanceiros = Dadosfinanceiro.all
+    else
+        redirect_to root_path
+    end
+    
   end
 
   # GET /dadosfinanceiros/1
@@ -71,7 +77,14 @@ class DadosfinanceirosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dadosfinanceiro
-      @dadosfinanceiro = Dadosfinanceiro.find(params[:id])
+
+      if usuario_logado && user.cadastro_id == 1
+        @dadosfinanceiro = Dadosfinanceiro.find(params[:id])
+      else
+        params[:id] = userfinan.id
+        @dadosfinanceiro = Dadosfinanceiro.find(params[:id])
+      end
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
