@@ -38,7 +38,7 @@
               <td><span class="badge bg-green"><%=@linha2Preenchidos.count%></span></td>
               <td><i class="fa fa-check" aria-hidden="true"></i></td>
               <td> 
-                <%=link_to redecontrole_path(@linha1.first.ciclo_id, 2), :class => "btn btn-default btn-sm" do %>
+                <%=link_to redecontrole_path(@linha2.first.ciclo_id, 2), :class => "btn btn-default btn-sm" do %>
                   <span class="glyphicon glyphicon-list-alt"></span> Exibir
                 <% end %>
               </td>              
@@ -50,7 +50,7 @@
                 <td><span class="badge bg-green"><%=@linha3Preenchidos.count%></span></td>
                 <td><i class="fa fa-check" aria-hidden="true"></i></td>
                 <td> 
-                  <%=link_to redecontrole_path(@linha1.first.ciclo_id, 3), :class => "btn btn-default btn-sm" do %>
+                  <%=link_to redecontrole_path(@linha3.first.ciclo_id, 3), :class => "btn btn-default btn-sm" do %>
                     <span class="glyphicon glyphicon-list-alt"></span> Exibir
                   <% end %>
                 </td>                
@@ -62,7 +62,7 @@
                   <td><span class="badge bg-green"><%=@linha4Preenchidos.count%></span></td>
                   <td><i class="fa fa-check" aria-hidden="true"></i></td>
                   <td> 
-                    <%=link_to redecontrole_path(@linha1.first.ciclo_id, 4), :class => "btn btn-default btn-sm" do %>
+                    <%=link_to redecontrole_path(@linha4.first.ciclo_id, 4), :class => "btn btn-default btn-sm" do %>
                       <span class="glyphicon glyphicon-list-alt"></span> Exibir
                     <% end %>
                   </td>                  
@@ -74,7 +74,7 @@
                     <td><span class="badge bg-green"><%=@linha5Preenchidos.count%></span></td>
                     <td><i class="fa fa-check" aria-hidden="true"></i></td>
                     <td> 
-                      <%=link_to redecontrole_path(@linha1.first.ciclo_id, 5), :class => "btn btn-default btn-sm" do %>
+                      <%=link_to redecontrole_path(@linha5.first.ciclo_id, 5), :class => "btn btn-default btn-sm" do %>
                         <span class="glyphicon glyphicon-list-alt"></span> Exibir
                       <% end %>
                     </td>                    
@@ -86,7 +86,7 @@
                       <td><span class="badge bg-green"><%=@linha6Preenchidos.count%></span></td>
                       <td><i class="fa fa-check" aria-hidden="true"></i></td>
                       <td> 
-                        <%=link_to redecontrole_path(@linha1.first.ciclo_id, 6), :class => "btn btn-default btn-sm" do %>
+                        <%=link_to redecontrole_path(@linha6.first.ciclo_id, 6), :class => "btn btn-default btn-sm" do %>
                           <span class="glyphicon glyphicon-list-alt"></span> Exibir
                         <% end %>
                       </td>                      
@@ -98,7 +98,7 @@
                         <td><span class="badge bg-green"><%=@linha7Preenchidos.count%></span></td>
                         <td><i class="fa fa-check" aria-hidden="true"></i></td>
                         <td> 
-                          <%=link_to redecontrole_path(@linha1.first.ciclo_id, 7), :class => "btn btn-default btn-sm" do %>
+                          <%=link_to redecontrole_path(@linha7.first.ciclo_id, 7), :class => "btn btn-default btn-sm" do %>
                             <span class="glyphicon glyphicon-list-alt"></span> Exibir
                           <% end %>
                         </td>                        
@@ -110,7 +110,7 @@
                           <td><span class="badge bg-green"><%=@linha8Preenchidos.count%></span></td>
                           <td><i class="fa fa-check" aria-hidden="true"></i></td>
                           <td> 
-                            <%=link_to redecontrole_path(@linha1.first.ciclo_id, 8), :class => "btn btn-default btn-sm" do %>
+                            <%=link_to redecontrole_path(@linha8.first.ciclo_id, 8), :class => "btn btn-default btn-sm" do %>
                               <span class="glyphicon glyphicon-list-alt"></span> Exibir
                             <% end %>
                           </td>                          
@@ -122,7 +122,7 @@
                             <td><span class="badge bg-green"><%=@linha9Preenchidos.count%></span></td>
                             <td><i class="fa fa-check" aria-hidden="true"></i></td>
                             <td> 
-                              <%=link_to redecontrole_path(@linha1.first.ciclo_id, 9), :class => "btn btn-default btn-sm" do %>
+                              <%=link_to redecontrole_path(@linha9.first.ciclo_id, 9), :class => "btn btn-default btn-sm" do %>
                                 <span class="glyphicon glyphicon-list-alt"></span> Exibir
                               <% end %>
                             </td>                            
@@ -131,10 +131,10 @@
                             <tr>
                               <td>10.</td>
                               <td><span class="badge bg-red"><%=@linha10.count%></span></td>
-                              <td><span class="badge bg-green"><%=@linha2Preenchidos.count%></span></td>
+                              <td><span class="badge bg-green"><%=@linha10Preenchidos.count%></span></td>
                               <td><i class="fa fa-check" aria-hidden="true"></i></td>
                               <td> 
-                                <%=link_to redecontrole_path(@linha1.first.ciclo_id, 10), :class => "btn btn-default btn-sm" do %>
+                                <%=link_to redecontrole_path(@linha10.first.ciclo_id, 10), :class => "btn btn-default btn-sm" do %>
                                   <span class="glyphicon glyphicon-list-alt"></span> Exibir
                                 <% end %>
                               </td>                              
