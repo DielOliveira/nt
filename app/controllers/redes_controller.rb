@@ -2,9 +2,14 @@ class RedesController < ApplicationController
  # before_action :requer_logon
   before_action :set_rede, only: [:show, :edit, :update, :destroy]
 
+  def redecontrole
+
+    @redes = Rede.where('linha = ? and ciclo_id = ?', params[:linha], params[:ciclo_id]).order(:id)
+
+  end
 
   def deletalinha
-     redes = Rede.where("linha = " + params[:numero].to_s + ' and ciclo_id = ' + params[:ciclo_id])
+     redes = Rede.where("linha = " + params[:numero].to_s + ' and ciclo_id = ' + params[:ciclo_id] + ' and cadastro_id is null' )
 
     redes.each do |rede|
       rede.destroy
@@ -42,8 +47,7 @@ class RedesController < ApplicationController
 
   end 
 
-
-
+  
   # GET /redes
   # GET /redes.json
   def geralinha
@@ -62,7 +66,7 @@ class RedesController < ApplicationController
 
     end
     
-    linhas = Rede.where("linha = " + (params[:numero].to_i - 1).to_s + ' and ciclo_id = ' + params[:ciclo_id])
+    linhas = Rede.where("linha = " + (params[:numero].to_i - 1).to_s + ' and ciclo_id = ' + params[:ciclo_id]).order(:id)
 
     linhas.each do |line|
 

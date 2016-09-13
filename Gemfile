@@ -33,6 +33,8 @@ gem 'acts_as_tree'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
+gem 'will_paginate', '~> 3.1.0'
+
 #gem 'autoprefixer-rails'
 
 # Use jquery as the JavaScript library

@@ -1,0 +1,30 @@
+<% title "Listando Cadastros por linha" %>
+
+
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Count</th>
+          <th>id_rede</th>
+          <th>parent_id</th>
+          <th>id_usuario</th>
+          <th>nome</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <%count = 0%>
+        <% @redes.each do |rede| %>
+
+          <tr>
+            <td><%= count = count + 1 %></td>
+            <td><%= rede.id %></td>
+            <td><%= rede.parent_id %></td>
+            <td><%= rede.cadastro.id rescue nil %></td>
+            <td><%= rede.cadastro.nomepessoa rescue nil %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+        
+<br>

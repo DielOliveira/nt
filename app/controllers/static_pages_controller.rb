@@ -11,6 +11,8 @@
 
 	def retiralixo
 
+		begin
+
 		cadastros = Cadastro.joins('left join dadosfinanceiros df on df.cadastro_id = cadastros.id').where("df.id is null ")
 		cadastros.each do |cadastro|
 
@@ -51,7 +53,14 @@
 		doacoes = Doacao.joins('left join cadastros cd on cd.id = cadastro_recebedor_id').where("cd.id is null")
 		doacoes.each do |doacao|
 			doacao.destroy
-		end		
+		end
+
+		rescue
+			flash[:notice] = "Erro ao realizar limpeza."
+		end
+
+		flash[:success] = "Limpeza efetuada com sucesso."
+		redirect_to home_path
 
 	end
 
@@ -183,14 +192,11 @@
 			@doacoesrecebidas = @doacoesrecebidas + d.ciclo_doador.valorciclo
 		end
 
-		#Contador de indicados
 		@indicados = Indicado.where('cadastro_1_id = ' + user.cadastro.id.to_s).count
 
 		validacadastro
 
 		verdoacoes
-
-		#retiralixo
 
 	end	
 

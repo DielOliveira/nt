@@ -24,13 +24,11 @@
 
               <%= link_to exibirlinhas_path(ciclo.id), :class => "btn btn-default btn-sm" do %>
                 <span class="glyphicon glyphicon-list-alt"></span> Exibir Rede
-              <% end %>                              
+              <% end %>
               <%= link_to edit_ciclo_path(ciclo), :class => "btn btn-default btn-sm" do %>
                 <span class="glyphicon glyphicon-pencil"></span> Editar
-              <% end %>             
-              <%= link_to ciclo , :method => :delete,  :confirm => 'Deseja excluir o registro?', :class => "btn btn-default btn-sm" do %>
-                <span class="glyphicon glyphicon-trash"></span> Excluir
-              <% end %>            
+              <% end %>
+
             </div>
           </td>
 

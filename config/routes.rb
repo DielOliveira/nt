@@ -50,9 +50,14 @@ Rails.application.routes.draw do
   match '/configu', to: 'static_pages#configu', via: 'get'
   match '/convite/:login', to: 'cadastros#convite', via: 'get'
   match '/convite', to: 'cadastros#convite', via: 'get'
+  match '/corrigenumeracao', to: 'cadastros#corrigenumeracao', via: 'get'
+  
+
+  match '/retiralixo', to: 'static_pages#retiralixo', via: 'get'
 
   get '/redeslist/:rede_id', to: 'static_pages#redeslist', as: 'redeslist'
   get '/redeslistciclo', to: 'static_pages#redeslistciclo', as: 'redeslistciclo'
+  get '/redecontrole/:ciclo_id/:linha', to: 'redes#redecontrole', as: 'redecontrole'
 
   get '/loginprincipal/:cadastro_id', to: 'static_pages#loginprincipal', as: 'loginprincipal'
   

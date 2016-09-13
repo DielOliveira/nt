@@ -105,9 +105,9 @@ desired effect
                       <div class="pull-left">
                         <!-- User Image -->
                         <%if mensagem.cadastro_2.masculino%>
-                          <%=image_tag("avatar04.png", class: "user image")%>
+                          <%#=image_tag("avatar04.png", class: "user image")%>
                         <%else%>
-                          <%=image_tag("avatar2.png", class: "user image")%>
+                          <%#=image_tag("avatar2.png", class: "user image")%>
                         <%end%>
 
                       </div>
@@ -345,7 +345,29 @@ desired effect
                 <p>Pausar Doação</p>
               </div>
             </a>
-          </li>                                         
+          </li>
+          <li>
+            <a href="<%=retiralixo_path%>">
+              <i class="menu-icon fa fa-trash bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Retirar Lixo</h4>
+
+                <p>Limpar Cadastros</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="<%=corrigenumeracao_path%>">
+              <i class="menu-icon fa fa-pencil bg-yellow"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Corrige Numeração</h4>
+
+                <p>Contagem</p>
+              </div>
+            </a>
+          </li>          
         </ul>
       </div>
 

@@ -12,6 +12,29 @@ class CadastrosController < ApplicationController
 
   end
 
+
+  def corrigenumeracao
+
+    begin
+
+      cadastros = Cadastro.where('flagreentrada = false').order(:created_at)
+      cont = 1
+
+      cadastros.each do |cadastro|
+        cadastro.contador  = cont
+        cadastro.save(:validate => false)
+        cont = cont + 1
+      end
+
+    rescue
+      flash[:notice] = "Erro ao realizar limpeza."      
+    end
+
+    #flash[:success] = "correção efetuada com sucesso."
+    redirect_to cadastros_path
+
+  end
+
   def obrigareentrada
 
       cadastroprincipal = Cadastro.find(params[:cadastro_id])
@@ -30,7 +53,7 @@ class CadastrosController < ApplicationController
   # GET /cadastros
   # GET /cadastros.json
   def index
-    @cadastros = Cadastro.order(:created_at).all
+    @cadastros = Cadastro.order(:created_at).all.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /cadastros/1
