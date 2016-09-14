@@ -68,9 +68,7 @@ module StaticPagesHelper
   def apareceobrigacaoreentrada
 	obrigacoes.each do |reentrada|
 
-		if reentrada(reentrada.cadastro_adicionado_id) == 'opcional'
-			return false
-		else
+		if reentrada(reentrada.cadastro_adicionado_id) == 'obrigatoria'
 			return true
 		end
 
