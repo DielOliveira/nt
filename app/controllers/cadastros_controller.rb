@@ -185,12 +185,12 @@ class CadastrosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_cadastro
       
-      if usuario_logado && user.cadastro_id == 1
+      #if usuario_logado && user.cadastro_id == 1
         @cadastro = Cadastro.find(params[:id])
-      else
-        params[:id] = user.cadastro_id
-        @cadastro = Cadastro.find(params[:id])
-      end
+      #else
+        #params[:id] = user.cadastro_id
+        #@cadastro = Cadastro.find(params[:id])
+      #end
 
 
     end
