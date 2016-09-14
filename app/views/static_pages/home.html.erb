@@ -2,9 +2,10 @@
 <div class="alert alert-<%= key %>"><%= value %></div>
 <% end %>
 
-<% if upgrade(user.cadastro.id) == 'obrigatoria'%>
+<% if upgrade(user.cadastro.id) == 'obrigatoria' or reentrada(user.cadastro.id) == 'obrigatoria' %>
   <%= render 'shared/obrigacoes' %>
 <%end%>
+
 <% if not apareceobrigacaoreentrada %>
   <%= render 'shared/obrigacoesreentradas' %>
 <%end%>

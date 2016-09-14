@@ -69,7 +69,7 @@ module StaticPagesHelper
 	obrigacoes.each do |reentrada|
 
 		if reentrada(reentrada.cadastro_adicionado_id) == 'opcional'
-		
+			return false
 		else
 			return true
 		end
