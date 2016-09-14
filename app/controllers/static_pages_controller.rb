@@ -194,7 +194,7 @@
 
 		@indicados = Indicado.where('cadastro_1_id = ' + user.cadastro.id.to_s).count
 
-		validacadastro
+		#validacadastro
 
 		verdoacoes
 

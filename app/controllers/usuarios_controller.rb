@@ -1,6 +1,7 @@
 #encoding: utf-8
 class UsuariosController < ApplicationController
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
+  #before_action :requer_logon, only: [:show, :edit, :update, :destroy]
 
   # GET /usuarios
   # GET /usuarios.json

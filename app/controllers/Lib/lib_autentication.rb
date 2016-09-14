@@ -9,6 +9,15 @@ module Auntentication
 		end
 	end
 
+	def requer_logon_admin
+		#debugger
+		if 	usuario_logado && && user.cadastro_id == 1
+			return true
+		else
+			redirect_to root_path
+		end
+	end
+
 	def requer_logon
 		#debugger
 		if 	usuario_logado == true
