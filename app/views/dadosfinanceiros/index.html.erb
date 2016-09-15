@@ -16,8 +16,8 @@
     <% @dadosfinanceiros.each do |dadosfinanceiro| %>
       <tr>
         <td><%= dadosfinanceiro.nometitular %></td>
-        <td><%= dadosfinanceiro.observacao %></td>
         <td><%= dadosfinanceiro.contapicpay %></td>
+        <td><%= dadosfinanceiro.observacao %></td>
         <td><%= link_to 'Edit', edit_dadosfinanceiro_path(dadosfinanceiro) %></td>
       </tr>
     <% end %>
