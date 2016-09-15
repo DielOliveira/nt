@@ -3,6 +3,9 @@ class CadastrosController < ApplicationController
   before_action :set_cadastro, only: [:show, :edit, :update, :destroy]
 
   def convite
+
+    encerra_sessao
+    
     usuario = Usuario.find_by_email(params[:login])
     if usuario
       session[:login] = usuario.email
