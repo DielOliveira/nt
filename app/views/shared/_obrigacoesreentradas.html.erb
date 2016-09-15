@@ -16,6 +16,7 @@
           <tr>
             <th >Login</th>
             <th >Ciclo</th>
+            <th >Reent.</th>
             <th ></th>
           </tr>
         </thead>
@@ -25,6 +26,14 @@
             <tr>
               <td width="50%"><%=reentrada.cadastro_adicionado.email%></td>
               <td ><span class="badge bg-green"><%=reentrada.cadastro_adicionado.ciclo.numerociclo%></span></td>
+
+              <%if reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count == reentrada.cadastro_adicionado.ciclo.qtdreentradas%>
+                <td ><span class="badge bg-green"><%=reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count%> / <%=reentrada.cadastro_adicionado.ciclo.qtdreentradas%></span></td>
+              <%else%>
+                <td ><span class="badge bg-red"><%=reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count%> / <%=reentrada.cadastro_adicionado.ciclo.qtdreentradas%></span></td>
+              <%end%>
+
+
               <td align='right'>
                 <% if reentrada(reentrada.cadastro_adicionado_id) == 'opcional' %>
                   <div class="btn-group">

@@ -61,6 +61,10 @@ module StaticPagesHelper
 		end
 	end
 
+  def reentradasCiclo(cadastro_id,ciclo_id)
+    return Reentrada.where("cadastro_reentrando_id = ? and ciclo_id = ?", cadastro_id, ciclo_id)
+  end
+
   def obrigacoes
     return Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s)
   end
@@ -72,7 +76,12 @@ module StaticPagesHelper
 			return true
 		end
 
+		if upgrade(reentrada.cadastro_adicionado_id) == 'obrigatoria'
+			return true
+		end		
+
 	end
+			return false
 
   end 
 

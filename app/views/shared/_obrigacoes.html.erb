@@ -1,4 +1,4 @@
-<script src="/assets/template/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+  <script src="/assets/template/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <div class="box box-warning">
     <div class="box-header with-border">
       <h4 class="timeline-header"><a href="#">Login Principal</a></h4>
@@ -16,6 +16,7 @@
           <tr>
             <th >Login</th>
             <th >Ciclo</th>
+            <th >Reent.</th>
             <th ></th>
           </tr>
         </thead>
@@ -24,6 +25,13 @@
             <tr>
               <td width="50%"><%=user.email%></td>
               <td ><span class="badge bg-green"><%=user.cadastro.ciclo.numerociclo%></span></td>
+
+              <%if reentradasCiclo(user.cadastro.id,user.cadastro.ciclo.id).count >= user.cadastro.ciclo.qtdreentradas%>
+                <td ><span class="badge bg-green"><%=reentradasCiclo(user.cadastro.id,user.cadastro.ciclo.id).count%> / <%=user.cadastro.ciclo.qtdreentradas%></span></td>
+              <%else%>
+                <td ><span class="badge bg-red"><%=reentradasCiclo(user.cadastro.id,user.cadastro.ciclo.id).count%> / <%=user.cadastro.ciclo.qtdreentradas%></span></td>
+              <%end%>
+
               <td align='right'>
                   <%#=reentrada(user.cadastro.id)%>
                   <% if reentrada(user.cadastro.id) == 'opcional' %>
@@ -35,7 +43,7 @@
                   <% else %>   
                     <div class="btn-group">
                       <%= link_to novareentrada_path(user.cadastro.id,'false'), :data => {:confirm => 'Deseja realmente realizar uma reentrada?'}, :class => "btn btn-danger btn-sm" do %>
-                         Reentrada Obrigatorio
+                         Reentrada Obrigatoria
                       <% end %>   
                     </div>               
                   <% end %>                
