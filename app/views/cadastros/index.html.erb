@@ -44,10 +44,12 @@
         <span class="glyphicon glyphicon-pencil"></span> Editar
         <% end %>
 
-        <%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>Excluir"), 
-          cadastro_path(:id => cadastro.id),
-          class: "btn btn-default btn-sm",
-          method: :delete %>
+        <%if not cadastro.flagativo%>
+          <%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>Excluir"), 
+            cadastro_path(:id => cadastro.id),
+            class: "btn btn-default btn-sm",
+            method: :delete %>
+        <%end%>
 
       </td>                  
     </tr>

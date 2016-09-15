@@ -1,6 +1,35 @@
 	class StaticPagesController < ApplicationController
 	#before_action :requer_logon
 
+	def corrigeFinanall
+
+		begin
+
+			reentradas = Reentrada.all
+
+			
+			reentradas.each do |reentrada|
+
+				finanPrincipal = Dadosfinanceiro.find_by_cadastro_id(reentrada.cadastro_principal.id)
+				finanReentrada = Dadosfinanceiro.find_by_cadastro_id(reentrada.cadastro_adicionado.id)
+
+				if finanReentrada
+					finanReentrada.nometitular = finanPrincipal.nometitular
+					finanReentrada.contapicpay = finanPrincipal.contapicpay
+					finanReentrada.observacao = finanPrincipal.observacao
+					finanReentrada.save(:validate => true)
+				end
+
+			end
+		rescue
+			flash[:danger] = "Erro ao carregar página."
+		end
+
+		redirect_to home_path
+
+	end
+
+
 	def index
 
 		if usuario_logado
@@ -197,6 +226,8 @@
 		#validacadastro
 
 		verdoacoes
+
+		corrigeFinan
 
 	end	
 

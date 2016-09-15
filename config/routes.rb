@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   match '/convite/:login', to: 'cadastros#convite', via: 'get'
   match '/convite', to: 'cadastros#convite', via: 'get'
   match '/corrigenumeracao', to: 'cadastros#corrigenumeracao', via: 'get'
+  match '/corrigeFinanall', to: 'static_pages#corrigeFinanall', via: 'get'
   
 
   match '/retiralixo', to: 'static_pages#retiralixo', via: 'get'

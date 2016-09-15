@@ -1,5 +1,28 @@
 module Utilities
 
+  def corrigeFinan
+
+    begin
+
+      reentradas = Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s)
+      reentradas.each do |reentrada|
+
+        finanReentrada = Dadosfinanceiro.find_by_cadastro_id(reentrada.cadastro_adicionado.id)
+
+        if finanReentrada
+          finanReentrada.nometitular = userfinan.nometitular
+          finanReentrada.contapicpay = userfinan.contapicpay
+          finanReentrada.observacao = userfinan.observacao
+          finanReentrada.save(:validate => true)
+        end
+
+      end
+    rescue
+      flash[:danger] = "Erro ao carregar página."
+    end
+
+  end
+  
 	def rede
 
       rede = Rede.find_by_cadastro_id(user.cadastro.id)

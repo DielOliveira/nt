@@ -53,6 +53,8 @@ class DadosfinanceirosController < ApplicationController
 
         @usuario = Usuario.find_by_cadastro_id(@dadosfinanceiro.cadastro_id)
 
+        corrigeFinan
+        
         if @usuario == nil
           format.html { redirect_to new_usuario_path, notice: 'Dados financeiros alterados com sucesso.' }
         else
