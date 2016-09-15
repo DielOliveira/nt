@@ -73,6 +73,7 @@ class CadastrosController < ApplicationController
 
   # GET /cadastros/new
   def new
+    reset_session
     @cadastro = Cadastro.new
   end
 
