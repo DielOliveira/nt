@@ -4,8 +4,8 @@ class CadastrosController < ApplicationController
 
   def convite
 
-    encerra_sessao
-    
+    reset_session
+
     usuario = Usuario.find_by_email(params[:login])
     if usuario
       session[:login] = usuario.email
