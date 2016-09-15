@@ -2,6 +2,25 @@ class RedesController < ApplicationController
  # before_action :requer_logon
   before_action :set_rede, only: [:show, :edit, :update, :destroy]
 
+  def salvaOrdem
+    rede = Rede.find_by_id(params[:id])
+
+    rede.ordem = params[:ordem]
+    rede.save
+
+    render :json => rede
+
+  end
+
+  def buscaDadosRedes
+
+    redes = Rede.where('id = ?', params[:id])
+
+    redes_json = redes.map {|item| {:id => item.id, :cadastro_id => item.cadastro_id, :parent_id => item.parent_id, :linha => item.linha, :ordem => item.ordem}}
+    render :json => redes_json
+
+  end
+
   def redecontrole
 
     @redes = Rede.where('linha = ? and ciclo_id = ?', params[:linha], params[:ciclo_id]).order(:id)
@@ -170,6 +189,6 @@ class RedesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rede_params
-      params.require(:rede).permit(:desc, :redetipo_id, :cadastro_id, :parent_id, :linha)
+      params.require(:rede).permit(:desc, :redetipo_id, :cadastro_id, :parent_id, :linha, :ordem)
     end
 end

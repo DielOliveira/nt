@@ -84,6 +84,8 @@ Rails.application.routes.draw do
   match '/start_ciclo1', to: 'ciclos#start_ciclo1', via: 'get'
 
   match '/grava_mensagem', to: 'mensagems#grava_mensagem', via: 'get'
+  match '/buscaDadosRedes', to: 'redes#buscaDadosRedes', via: 'get'
+  match '/salvaOrdem', to: 'redes#salvaOrdem', via: 'get'
 
   match '/geralinha', to: 'redes#geralinha', via: 'get'
   match '/deletalinha', to: 'redes#deletalinha', via: 'get'
