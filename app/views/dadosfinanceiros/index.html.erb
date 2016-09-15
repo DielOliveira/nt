@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Cadastro</th>
       <th>Nometitular</th>
       <th>contapicpay</th>
       <th>Observacao</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @dadosfinanceiros.each do |dadosfinanceiro| %>
       <tr>
+        <td><%= dadosfinanceiro.cadastro.nomepessoa %></td>
         <td><%= dadosfinanceiro.nometitular %></td>
         <td><%= dadosfinanceiro.contapicpay %></td>
         <td><%= dadosfinanceiro.observacao %></td>
