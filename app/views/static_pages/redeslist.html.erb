@@ -399,8 +399,12 @@
         <h4 id="h4Ingredientes" class="modal-title">Conta secundária</h4>
       </div>
       <div class="modal-body">
-        <input id="id" name="id" type="text">
-        <input id="ordem" name="ordem" type="text">
+        <label for="id">id</label>
+        <input id="id" name="id" type="text"><br>
+        <label for="linha">linha</label>
+        <input id="linha" name="linha" type="text"><br>
+        <label>ordem</label>
+        <input id="ordem" name="ordem" type="text"><br>
       </div>
       <div class="modal-footer">
         <button type="button"  class="btn btn-success" onclick="salvaOrdem()" data-dismiss="modal">Alterar</button>
@@ -435,6 +439,7 @@
 
           $('#id').val(item.id);
           $('#ordem').val(item.ordem);
+          $('#linha').val(item.linha);
 
         };
       }
