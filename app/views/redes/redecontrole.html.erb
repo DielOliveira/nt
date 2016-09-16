@@ -8,6 +8,7 @@
           <th>id_rede</th>
           <th>parent_id</th>
           <th>id_usuario</th>
+          <th>ordem</th>
           <th>nome</th>
         </tr>
       </thead>
@@ -21,6 +22,7 @@
             <td><%= rede.id %></td>
             <td><%= rede.parent_id %></td>
             <td><%= rede.cadastro.id rescue nil %></td>
+            <td><%= rede.ordem rescue nil %></td>
             <td><%= rede.cadastro.nomepessoa rescue nil %></td>
           </tr>
         <% end %>
