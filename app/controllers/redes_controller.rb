@@ -3,6 +3,19 @@ class RedesController < ApplicationController
   before_action :set_rede, only: [:show, :edit, :update, :destroy]
 
   def salvaOrdem
+
+    redes = Rede.where('ciclo_id = ? and linha = and ordem >= ', 1, 9, 120).order(:ordem)
+
+    if redes
+
+      cont = 121
+      redes.each do |rede|
+        rede.ordem = cont
+        rede.save
+        cont = cont + 1
+      end
+    end
+
     rede = Rede.find_by_id(params[:id])
 
     rede.ordem = params[:ordem]
