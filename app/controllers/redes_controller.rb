@@ -86,49 +86,73 @@ class RedesController < ApplicationController
 
     if params[:numero].to_s == '1'
 
-      linha = Rede.where("linha = " + params[:numero].to_s + ' and ciclo_id = ' + params[:ciclo_id]).order(:id)
+      linha = Rede.where("linha = " + params[:numero].to_s + ' and ciclo_id = ' + params[:ciclo_id]).order(:ordem)
 
       if linha.count == 0
           novarede = Rede.new
           #novarede.parent_id = nil
           novarede.linha = params[:numero]
           novarede.ciclo_id = params[:ciclo_id]
+          novarede.ordem = 1
           novarede.save
+      else
+          linha.first.ordem = 1
+          linha.first.save
       end
 
     end
     
-    linhas = Rede.where("linha = " + (params[:numero].to_i - 1).to_s + ' and ciclo_id = ' + params[:ciclo_id]).order(:id)
+    linhas = Rede.where("linha = " + (params[:numero].to_i - 1).to_s + ' and ciclo_id = ' + params[:ciclo_id]).order(:ordem)
+
+    count = 0
 
     linhas.each do |line|
 
-      lineno = Rede.where("parent_id = " + line.id.to_s)
+    lineno = Rede.where("parent_id = " + line.id.to_s).order(:created_at)
 
-      if lineno.count == 0
+    if lineno.count == 0
 
-        novarede = Rede.new
-        novarede.parent_id = line.id
-        novarede.linha = params[:numero]
-        novarede.ciclo_id = params[:ciclo_id]
-        novarede.save
+      count = count + 1
+      novarede = Rede.new
+      novarede.parent_id = line.id
+      novarede.linha = params[:numero]
+      novarede.ciclo_id = params[:ciclo_id]
+      novarede.ordem = count
+      novarede.save
 
-        novarede = Rede.new
-        novarede.parent_id = line.id
-        novarede.linha = params[:numero]
-        novarede.ciclo_id = params[:ciclo_id]
-        novarede.save
+      count = count + 1
+      novarede = Rede.new
+      novarede.parent_id = line.id
+      novarede.linha = params[:numero]
+      novarede.ciclo_id = params[:ciclo_id]
+      novarede.ordem = count
+      novarede.save
 
-      elsif lineno.count == 1
-        
-        novarede = Rede.new
-        novarede.parent_id = line.id
-        novarede.linha = params[:numero]
-        novarede.ciclo_id = params[:ciclo_id]
-        novarede.save
+    elsif lineno.count == 1
+      
+      count = count + 1
+      novarede = Rede.new
+      novarede.parent_id = line.id
+      novarede.linha = params[:numero]
+      novarede.ciclo_id = params[:ciclo_id]
+      novarede.ordem = count
+      novarede.save
 
-      end 
+      count = count + 1
+      lineno.first.ordem = count
+      lineno.save
 
+    elsif lineno.count == 2
+      count = count + 1
+      lineno.first.ordem = count
+      lineno.first.save
+      
+      count = count + 1
+      lineno.second.ordem = count
+      lineno.second.save
     end
+
+  end
 
 
 
