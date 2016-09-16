@@ -4,7 +4,7 @@ class RedesController < ApplicationController
 
   def salvaOrdem
 
-    redes = Rede.where('ciclo_id = ? and linha = and ordem >= ', 1, 9, 120).order(:ordem)
+    #redes = Rede.where('ciclo_id = ? and linha = and ordem >= ', 1, 9, 120).order(:ordem)
 
     if redes
 
