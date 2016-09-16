@@ -36,7 +36,7 @@ class RedesController < ApplicationController
 
   def redecontrole
 
-    @redes = Rede.where('linha = ? and ciclo_id = ?', params[:linha], params[:ciclo_id]).order(:id)
+    @redes = Rede.where('linha = ? and ciclo_id = ?', params[:linha], params[:ciclo_id]).order(:ordem)
 
   end
 
