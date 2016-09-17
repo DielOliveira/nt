@@ -254,7 +254,7 @@
 
 		verdoacoes
 
-		corrigeFinan
+		#corrigeFinan
 
 	end	
 
