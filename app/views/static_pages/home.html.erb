@@ -109,22 +109,7 @@
             <div class="box-body chat" id="chat-box">
               <!-- chat item -->
 
-              <% @mensagems.each do |mensagem| %>
-                <div class="item">
-                  <%if mensagem.cadastro_2.masculino%>
-                    <%=image_tag("avatar04.png", class: "user image")%>
-                  <%else%>
-                    <%=image_tag("avatar2.png", class: "user image")%>
-                  <%end%>
-                  <p class="message">
-                    <a href="#" class="name">
-                      <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> <%=mensagem.created_at.blank? ? '' : mensagem.created_at.strftime("%d/%m/%Y - %H:%M")%></small>
-                      De: <%= mensagem.cadastro_2.nomepessoa %>
-                    </a>
-                      <%= mensagem.mensagem %>
-                  </p>
-                </div>
-              <% end %>
+
               
             </div>
           </div>
