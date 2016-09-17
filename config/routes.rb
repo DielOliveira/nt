@@ -47,7 +47,9 @@ Rails.application.routes.draw do
   match '/home', to: 'static_pages#home', via: 'get'
   match '/faq', to: 'static_pages#faq', via: 'get'
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
-  match '/configu', to: 'static_pages#configu', via: 'get'
+  match '/configuracoes', to: 'static_pages#configuracoes', via: 'get'
+
+
   match '/convite/:login', to: 'cadastros#convite', via: 'get'
   match '/convite', to: 'cadastros#convite', via: 'get'
   match '/corrigenumeracao', to: 'cadastros#corrigenumeracao', via: 'get'
@@ -61,6 +63,7 @@ Rails.application.routes.draw do
   get '/redecontrole/:ciclo_id/:linha', to: 'redes#redecontrole', as: 'redecontrole'
 
   get '/loginprincipal/:cadastro_id', to: 'static_pages#loginprincipal', as: 'loginprincipal'
+  get '/validacadastro/:doacao_id', to: 'static_pages#validacadastro', as: 'validacadastro'
   
   get '/exibirlinhas/:ciclo_id', to: 'redes#exibirlinhas', as: 'exibirlinhas'
 
@@ -75,6 +78,8 @@ Rails.application.routes.draw do
   match '/doacoesrealizadas', to: 'doacaos#doacoesrealizadas', via: 'get'
   match '/doacoesrecebidas', to: 'doacaos#doacoesrecebidas', via: 'get'
   match '/doacoesareceber', to: 'doacaos#doacoesareceber', via: 'get'
+  match '/doacoesVencendo', to: 'doacaos#doacoesVencendo', via: 'get'
+  match '/doacoesVencidas', to: 'doacaos#doacoesVencidas', via: 'get'
   
   match '/login', to: 'nt_autentication#login', via: 'get'
   match '/login', to: 'nt_autentication#login', via: 'post'

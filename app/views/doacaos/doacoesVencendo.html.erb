@@ -1,0 +1,56 @@
+<script src="/assets/template/countdown/jquery.countdown.min.js"></script>
+<div class="box box-warning">
+  <div class="box-header with-border">
+    <h4 class="timeline-header"><a href="#">Doações Vencendo</a></h4>
+
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+    </div>
+    <!-- /.box-tools -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>De</th>
+          <th>Para</th>
+          <th>Tempo</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @doacaosVencendo.each do |doacao| %>
+        <tr>
+          <td><%= doacao.cadastro_doador.nomepessoa%></td>
+          <td><%= doacao.cadastro_recebedor.nomepessoa%></td>
+          <td><i class="fa fa-clock-o"></i> <span id="clock<%=doacao.id%>p"></span></small></td>
+          <td align='right'>
+          </td>
+        </tr>
+
+         <script type="text/javascript">
+         $('#clock<%=doacao.id%>p').countdown("<%=doacao.tempo.strftime("%Y/%m/%d %H:%M") %>", function(event) {
+           var totalHours = event.offset.totalDays * 24 + event.offset.hours;
+           $(this).html(event.strftime(totalHours + ' hr %M min %S sec'));
+         });   
+         </script> 
+               
+        <% end %>
+      </tbody>
+    </table>
+
+  <div class="timeline-footer">
+
+    <br>
+    <br>
+    <div align="left">
+      <div class="col-lg-2">
+      </div>
+    </div>
+  </div>              
+</div>
+

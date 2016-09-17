@@ -4,6 +4,21 @@ class DoacaosController < ApplicationController
 
   # GET /doacaos
   # GET /doacaos.json
+
+
+  def doacoesVencidas
+
+    @doacaosVencendo = Doacao.where('tempo < ? and flagconfirmada = false', Time.now).order(:created_at)
+
+  end
+
+  def doacoesVencendo
+
+    @doacaosVencendo = Doacao.where('tempo > ? and flagconfirmada = false', Time.now).order(:created_at)
+
+  end
+
+
   def index
     @doacaos = Doacao.all.order(:id)
   end

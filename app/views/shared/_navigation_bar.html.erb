@@ -144,11 +144,6 @@ desired effect
             </a>
 
           </li>
-          <%if user.cadastro_id == 1%>
-            <li>
-              <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-            </li>
-          <%end%>
         </ul>
       </div>
     </nav>
@@ -198,6 +193,11 @@ desired effect
 
         <li><a href="<%=home_path%>"><i class="fa fa-home"></i> Início</a></li>
         <li><a href="<%=reentradas_path%>"><i class="fa fa-user"></i> Meus Logins</a></li>
+        
+        <%if user.cadastro.id == 1%>
+          <li><a href="<%=configuracoes_path%>"><i class="fa fa-gear"></i> Configurações</a></li>
+        <%end%>
+
         <li class="treeview">
           <a href="#"><i class="fa fa-money"></i> <span>Doações</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
@@ -275,114 +275,6 @@ desired effect
         <!-- <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li> -->
       </ul>
     <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Configurações</h3>
-        <ul class="control-sidebar-menu">
-           <li>
-            <a href="<%=novareentrada_path(user.cadastro.id,'false')%>">
-              <i class="menu-icon fa fa-user-plus bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Inserir Cadastro</h4>
-
-                <p>Cadastro de Teste</p>
-              </div>
-            </a>
-          </li> 
-          <li>
-            <a href="<%=cadastros_path%>">
-              <i class="menu-icon fa fa-group bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Gerenciar Usuários</h4>
-
-                <p>Ver numeração</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="<%=ciclos_path%>">
-              <i class="menu-icon fa fa-list-ul bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Listagem de Linha</h4>
-
-                <p>Linhas e Ciclos</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="<%=solicitacaos_path%>">
-              <i class="menu-icon fa fa-tags bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Solicitações</h4>
-
-                <p>Alterações de sistema</p>
-              </div>
-            </a>
-          </li>          
-          <li>
-            <a href="<%=contatos_path%>">
-              <i class="menu-icon fa fa-phone bg-blue"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Contato</h4>
-
-                <p>Dúvidas de Usuários</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="<%=doacaos_path%>">
-              <i class="menu-icon fa fa-money bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Doacoes</h4>
-
-                <p>Pausar Doação</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="<%=retiralixo_path%>">
-              <i class="menu-icon fa fa-trash bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Retirar Lixo</h4>
-
-                <p>Limpar Cadastros</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="<%=corrigeFinanall_path%>">
-              <i class="menu-icon fa fa-pencil bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Corrige Financeiro</h4>
-
-                <p>Reentradas</p>
-              </div>
-            </a>
-          </li>          
-<!--           <li>
-            <a href="<%#=corrigenumeracao_path%>">
-              <i class="menu-icon fa fa-pencil bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Corrige Numeração</h4>
-
-                <p>Contagem</p>
-              </div>
-            </a>
-          </li> -->          
-        </ul>
-      </div>
-
-
       <!-- /.tab-pane -->
       <!-- Stats tab content -->
       <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>

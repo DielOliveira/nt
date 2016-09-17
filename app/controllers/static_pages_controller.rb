@@ -1,6 +1,10 @@
 	class StaticPagesController < ApplicationController
 	#before_action :requer_logon
 
+	def configuracoes
+
+	end
+
 	def corrigeFinanall
 
 		begin
@@ -95,37 +99,52 @@
 
 	def validacadastro
 
-		doacoes = Doacao.where('tempo < ? and flagconfirmada = false and flagpause <> true', Time.now)
+	begin
 
-		doacoes.each do |doacao|
+		doacao = Doacao.find(params[:doacao_id])
 
-				cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
-				
-				rede = Rede.find_by_cadastro_id(cadastro.id)
-				if not rede.blank?
-					rede.cadastro_id = nil
-					rede.save
-				end
+		if doacao.cadastro_doador.ciclo.id == 1
 
-				reentradas = Reentrada.where(:cadastro_adicionado_id => cadastro.id)
+			cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
+			
+			rede = Rede.find_by_cadastro_id(cadastro.id)
+			if not rede.blank?
+				rede.cadastro_id = nil
+				rede.save
+			end
 
-				if not reentradas.blank?
-					reentradas.first.destroy
-				end
+			reentradas = Reentrada.where(:cadastro_adicionado_id => cadastro.id)
 
-				indicado = Indicado.where(:cadastro_2_id => cadastro.id)
+			if not reentradas.blank?
+				reentradas.first.destroy
+			end
 
-				if not indicado.blank?
-					indicado.first.destroy
-				end
+			indicado = Indicado.where(:cadastro_2_id => cadastro.id)
 
-				doacao.destroy
+			if not indicado.blank?
+				indicado.first.destroy
+			end
 
-				cadastro.destroy
+			cadastro.destroy
+
+		else 
+
+			cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
+
+			cadastro.ciclo_id = cadastro.ciclo_id - 1
+			cadastro.save(:validate => false)
 
 		end
 
-	end	
+		doacao.destroy
+
+	rescue
+		flash[:danger] = "Erro ao realizar a exclusao."
+	end
+
+	redirect_to doacoesVencidas_path		
+
+	end
 
 	def verdoacoes
 
@@ -135,18 +154,22 @@
 				doacoes = Doacao.joins('inner join ciclos cl on cl.id = ciclo_doador_id').where("cadastro_doador_id = " + user.cadastro.id.to_s + "and ciclo_doador_id = " + user.cadastro.ciclo.id.to_s )
 				if doacoes.empty?
 
-					tempo = (user.cadastro.ciclo.id  == 1 ? 3 : 1)
+					if rede.parent.parent.cadastro.flagativo
 
-				    start = Doacao.new
-				    start.cadastro_doador_id = user.cadastro.id
-				    start.cadastro_recebedor_id = rede.parent.parent.cadastro.id
-				    start.cadastro_principal_id = user.cadastro.id
-				    start.ciclo_doador_id = user.cadastro.ciclo.id
-				    start.ciclo_recebedor_id = rede.parent.parent.cadastro.ciclo.id
-				    start.flagenviada = false
-				    start.flagconfirmada = false
-				    start.tempo = (Time.now + tempo.days)
-				    start.save			
+						tempo = (user.cadastro.ciclo.id  == 1 ? 3 : 1)
+
+					    start = Doacao.new
+					    start.cadastro_doador_id = user.cadastro.id
+					    start.cadastro_recebedor_id = rede.parent.parent.cadastro.id
+					    start.cadastro_principal_id = user.cadastro.id
+					    start.ciclo_doador_id = user.cadastro.ciclo.id
+					    start.ciclo_recebedor_id = rede.parent.parent.cadastro.ciclo.id
+					    start.flagenviada = false
+					    start.flagconfirmada = false
+					    start.tempo = (Time.now + tempo.days)
+					    start.save
+
+				    end
 				    	
 				end			
 			end
@@ -162,16 +185,20 @@
 				if doacoes.empty?
 
 
-				    start = Doacao.new
-				    start.cadastro_doador_id = reentrada.cadastro_adicionado_id
-				    start.cadastro_recebedor_id = rede.parent.parent.cadastro_id
-				    start.cadastro_principal_id = user.cadastro_id
-				    start.ciclo_doador_id = reentrada.cadastro_adicionado.ciclo_id
-				    start.ciclo_recebedor_id = rede.parent.parent.cadastro.ciclo_id
-				    start.flagenviada = false
-				    start.flagconfirmada = false
-				    start.tempo = (Time.now + 1.days)
-				    start.save			
+					if rede.parent.parent.cadastro.flagativo
+
+					    start = Doacao.new
+					    start.cadastro_doador_id = reentrada.cadastro_adicionado_id
+					    start.cadastro_recebedor_id = rede.parent.parent.cadastro_id
+					    start.cadastro_principal_id = user.cadastro_id
+					    start.ciclo_doador_id = reentrada.cadastro_adicionado.ciclo_id
+					    start.ciclo_recebedor_id = rede.parent.parent.cadastro.ciclo_id
+					    start.flagenviada = false
+					    start.flagconfirmada = false
+					    start.tempo = (Time.now + 1.days)
+					    start.save
+
+				    end
 					    	
 				end
 			end		
@@ -236,15 +263,11 @@
 
 	def wellcome
 	end	
-	
-	def configu
-	end
 
 	def redeslistciclo
 
 		@reentradas =  Reentrada.where('cadastro_reentrando_id = ? ', user.cadastro_id)
-
-
+		
 	end 
 	
 	def redeslist

@@ -1,0 +1,154 @@
+<% flash.each do |key, value| %>
+<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+
+<div class="box box-warning">
+  <div class="box-header with-border">
+    <h4 class="timeline-header"><a href="#">Configurações</a></h4>
+
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+    </div>
+    <!-- /.box-tools -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+
+
+    <ul class="control-sidebar-menu">
+<!--      <li>
+      <a href="<%=novareentrada_path(user.cadastro.id,'false')%>">
+        <i class="menu-icon fa fa-user-plus bg-red"></i>
+
+        <div class="menu-info">
+          <h4 class="control-sidebar-subheading">Inserir Cadastro</h4>
+
+          <p>Cadastro de Teste</p>
+        </div>
+      </a>
+    </li> -->
+    <li> 
+      <a href="<%=cadastros_path%>">
+        <i class="menu-icon fa fa-group bg-green"></i>
+
+        <div class="menu-info">
+          <h4 class="control-sidebar-subheading">Gerenciar Usuários</h4>
+
+          <p>Ver numeração</p>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="<%=ciclos_path%>">
+        <i class="menu-icon fa fa-list-ul bg-yellow"></i>
+
+        <div class="menu-info">
+          <h4 class="control-sidebar-subheading">Listagem de Linha</h4>
+
+          <p>Linhas e Ciclos</p>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="<%=solicitacaos_path%>">
+        <i class="menu-icon fa fa-tags bg-red"></i>
+
+        <div class="menu-info">
+          <h4 class="control-sidebar-subheading">Solicitações</h4>
+
+          <p>Alterações de sistema</p>
+        </div>
+      </a>
+    </li>          
+    <li>
+      <a href="<%=contatos_path%>">
+        <i class="menu-icon fa fa-phone bg-blue"></i>
+
+        <div class="menu-info">
+          <h4 class="control-sidebar-subheading">Contato</h4>
+
+          <p>Dúvidas de Usuários</p>
+        </div>
+      </a>
+    </li>
+<!--     <li>
+      <a href="<%=doacaos_path%>">
+        <i class="menu-icon fa fa-money bg-green"></i>
+
+        <div class="menu-info">
+          <h4 class="control-sidebar-subheading">Doacoes</h4>
+
+          <p>Pausar Doação</p>
+        </div>
+      </a>
+    </li> -->
+    <li>
+      <a href="<%=doacoesVencidas_path%>">
+        <i class="menu-icon fa fa-money bg-green"></i>
+
+        <div class="menu-info">
+          <h4 class="control-sidebar-subheading">Doacoes Vencidas</h4>
+
+          <p>Excluir Doações</p>
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="<%=doacoesVencendo_path%>">
+        <i class="menu-icon fa fa-money bg-green"></i>
+
+        <div class="menu-info">
+          <h4 class="control-sidebar-subheading">Doacoes Vencendo</h4>
+
+          <p>Monitorar</p>
+        </div>
+      </a>
+    </li>          
+<!--     <li>
+      <a href="<%=retiralixo_path%>">
+        <i class="menu-icon fa fa-trash bg-red"></i>
+
+        <div class="menu-info">
+          <h4 class="control-sidebar-subheading">Retirar Lixo</h4>
+
+          <p>Limpar Cadastros</p>
+        </div>
+      </a>
+    </li> -->
+<!--     <li>
+      <a href="<%=corrigeFinanall_path%>">
+        <i class="menu-icon fa fa-pencil bg-yellow"></i>
+
+        <div class="menu-info">
+          <h4 class="control-sidebar-subheading">Corrige Financeiro</h4>
+
+          <p>Reentradas</p>
+        </div>
+      </a>
+    </li>  -->         
+     <li>
+        <a href="<%#=corrigenumeracao_path%>">
+          <i class="menu-icon fa fa-pencil bg-blue"></i>
+
+          <div class="menu-info">
+            <h4 class="control-sidebar-subheading">Corrige Numeração</h4>
+
+            <p>Contagem</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+  <div class="timeline-footer">
+
+    <br>
+    <br>
+    <div align="left">
+      <div class="col-lg-2">
+      </div>
+    </div>
+  </div>              
+</div>
+

@@ -1,0 +1,61 @@
+<% flash.each do |key, value| %>
+<div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
+
+<div class="box box-warning">
+  <div class="box-header with-border">
+    <h4 class="timeline-header"><a href="#">Doações Vencidas</a></h4>
+
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+    </div>
+    <!-- /.box-tools -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>De</th>
+          <th>Ciclo</th>
+          <th>Recebeu</th>
+          <th>Para</th>
+          <th>Tempo Limite</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @doacaosVencendo.each do |doacao| %>
+        <tr>
+          <td><%= doacao.cadastro_doador.nomepessoa%></td>
+          <td><%= doacao.cadastro_doador.ciclo.id%></td>
+          <td><%= recebeuDoacao(doacao.cadastro_doador.id,doacao.cadastro_doador.ciclo.id)%></td>
+          <td><%= doacao.cadastro_recebedor.nomepessoa%></td>
+          <td><%= doacao.tempo.blank? ? '' : doacao.tempo.strftime("%d/%m/%Y - %H:%M")%></td>
+          <td align='right'>
+
+            <%= link_to validacadastro_path(doacao.id), :class => "btn btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-trash"></span> Banir
+            <% end %>
+
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <div class="timeline-footer">
+
+    <br>
+    <br>
+    <div align="left">
+      <div class="col-lg-2">
+      </div>
+    </div>
+  </div>              
+</div>
+

@@ -24,12 +24,18 @@ class ReentradasController < ApplicationController
 
   def novareentrada
 
-    begin 
+    begin
+
 
       principal = Cadastro.find(user.cadastro_id)
       count = Reentrada.where("cadastro_principal_id = " + principal.id.to_s)
       reentrando = Usuario.find_by_cadastro_id(params[:cadastro_id])
-      
+
+      if reentrando.cadastro.flagativo == false
+        flash[:error] = "Este usuário ainda não está ativo no sistema, e não pode realizar reentradas."
+        return redirect_to reentradas_path
+      end
+
       cadastro = Cadastro.new
       cadastro.nomepessoa = principal.nomepessoa.strip + "-" + (count.count + 1).to_s
       cadastro.masculino = reentrando.cadastro.masculino
