@@ -169,7 +169,7 @@ class DoacaosController < ApplicationController
 
         @doacao.comprovante = imagem["public_id"] + "." + imagem["format"]
         @doacao.save
-        format.html { redirect_to root_path, notice: 'Doacao was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Doação salva com sucesso.' }
         
       else
         format.html { render :edit }

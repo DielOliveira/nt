@@ -1,6 +1,9 @@
-<% flash.each do |key, value| %>
-<div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
+<% flash.each do |name, msg| -%>
+  <div class="alert alert-warning alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <%= msg%>
+  </div>      
+<% end -%>
 
 <% if upgrade(user.cadastro.id) == 'obrigatoria' or reentrada(user.cadastro.id) == 'obrigatoria' %>
   <%= render 'shared/obrigacoes' %>
@@ -15,11 +18,17 @@
 <%end%>
 
 
-<%= render 'shared/doacoesPagar' %>
-<%= render 'shared/doacoesPagarReentrada' %>
+<%#= render 'shared/doacoesPagar' %>
+<%#= render 'shared/doacoesPagarReentrada' %>
 <%= render 'shared/doacoesReceber' %>
 <%= render 'shared/doacoesReceberReentrada' %>
 
+<%@doacaos.each do |doacao|%>
+
+  <%@doacao = doacao%>
+  <%= render 'doacaos/form' %>
+
+<%end%>
 
 <section class="content">
       <!-- Small boxes (Stat box) -->
