@@ -10,5 +10,11 @@
   <%= @mensagem.mensagem %>
 </p>
 
+
+<%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>Excluir"), 
+mensagem_path(:id => @mensagem.id),
+class: "btn btn-default btn-sm",
+method: :delete %>
+
 <%= link_to 'Edit', edit_mensagem_path(@mensagem) %> |
 <%= link_to 'Back', mensagems_path %>
