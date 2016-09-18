@@ -99,50 +99,55 @@
 
 	def validacadastro
 
-	begin
+		begin
 
-		doacao = Doacao.find(params[:doacao_id])
+			doacaosVencendo = Doacao.where('tempo < ? and flagconfirmada = false', Time.now).order(:created_at)
 
-		if doacao.cadastro_doador.ciclo.id == 1
 
-			cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
-			
-			rede = Rede.find_by_cadastro_id(cadastro.id)
-			if not rede.blank?
-				rede.cadastro_id = nil
-				rede.save
+			doacaosVencendo.each do |doacao|
+
+				if doacao.cadastro_doador.ciclo.id == 1
+
+					cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
+					
+					rede = Rede.find_by_cadastro_id(cadastro.id)
+					if not rede.blank?
+						rede.cadastro_id = nil
+						rede.save
+					end
+
+					reentradas = Reentrada.where(:cadastro_adicionado_id => cadastro.id)
+
+					if not reentradas.blank?
+						reentradas.first.destroy
+					end
+
+					indicado = Indicado.where(:cadastro_2_id => cadastro.id)
+
+					if not indicado.blank?
+						indicado.first.destroy
+					end
+
+					cadastro.destroy
+
+				else 
+
+					cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
+
+					cadastro.ciclo_id = cadastro.ciclo_id - 1
+					cadastro.save(:validate => false)
+
+				end
+
+				doacao.destroy
+
 			end
 
-			reentradas = Reentrada.where(:cadastro_adicionado_id => cadastro.id)
-
-			if not reentradas.blank?
-				reentradas.first.destroy
-			end
-
-			indicado = Indicado.where(:cadastro_2_id => cadastro.id)
-
-			if not indicado.blank?
-				indicado.first.destroy
-			end
-
-			cadastro.destroy
-
-		else 
-
-			cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
-
-			cadastro.ciclo_id = cadastro.ciclo_id - 1
-			cadastro.save(:validate => false)
-
+		rescue
+			flash[:danger] = "Erro ao realizar a exclusao."
 		end
 
-		doacao.destroy
-
-	rescue
-		flash[:danger] = "Erro ao realizar a exclusao."
-	end
-
-	redirect_to doacoesVencidas_path		
+		#redirect_to doacoesVencidas_path		
 
 	end
 
@@ -226,6 +231,8 @@
 
 	def home
 
+		validacadastro
+
 		verdoacoes
 
 
@@ -253,10 +260,6 @@
 		end
 
 		@indicados = Indicado.where('cadastro_1_id = ' + user.cadastro.id.to_s).count
-
-		#validacadastro
-
-		#corrigeFinan
 
 	end	
 
