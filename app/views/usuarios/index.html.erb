@@ -27,12 +27,13 @@
         <!-- <td><%#= link_to 'Show', usuario %></td> -->
         <!-- <td><%#= link_to 'Edit', edit_usuario_path(usuario) %></td> -->
 
+        <td>
           <%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>Excluir"), 
-            cadastro_path(:id => usuario.id),
+            usuario_path(:id => usuario.id),
             class: "btn btn-default btn-sm",
             method: :delete %>
 
-                    
+        </td>
       </tr>
     <% end %>
   </tbody>
