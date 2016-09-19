@@ -25,7 +25,7 @@
             <td><%= rede.cadastro.id rescue nil %></td>
             <td><%= rede.ordem rescue nil %></td>
             <td><%= rede.cadastro.nomepessoa rescue nil %></td>
-            <%if not rede.cadastro.flagativo%>
+            <%if not rede.cadastro.flagativo rescue false%>
               <%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>Excluir"), 
                 cadastro_path(:id => rede.cadastro.id),
                 class: "btn btn-default btn-sm",
