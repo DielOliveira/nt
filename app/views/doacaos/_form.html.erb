@@ -57,6 +57,8 @@
     <%= f.hidden_field :avatar %>
     <% end %>
 
+    <%= f.hidden_field :tempo, :value => (Time.now + 1.days) %>
+
     <%= f.hidden_field :flagenviada, :value => true %>
 
     <%#= f.hidden_field :whatsapp, :class => 'form-control'%>

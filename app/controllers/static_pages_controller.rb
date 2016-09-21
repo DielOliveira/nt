@@ -97,26 +97,26 @@
 
 	end
 
-	# def validadoacoes
+	def ConfirmaDoacoes
 
-	# 	begin
+		begin
 
-	# 		doacaosVencendo = Doacao.where('tempo < ? and flagenviada = true', Time.now).order(:created_at)
+			doacaosVencendo = Doacao.where('tempo < ? and flagenviada = true', Time.now).order(:created_at)
 
-	# 		doacaosVencendo.each do |doacao|
+			doacaosVencendo.each do |doacao|
 
-	# 			doacao.flagconfirmada = true
-	# 			doacao.dataconfirmacao = Time.now
-	# 			doacao.save(:validate => false)
+				doacao.flagconfirmada = true
+				doacao.dataconfirmacao = Time.now
+				doacao.save(:validate => false)
 
-	# 		end
+			end
 
 
-	# 	rescue
-	# 		flash[:danger] = "Erro no sistema. Contate o administrador."
-	# 	end
+		rescue
+			flash[:danger] = "Erro no sistema. Contate o administrador."
+		end
 
-	# end
+	end
 
 	def validacadastro
 
@@ -172,7 +172,7 @@
 
 	end
 
-	def verdoacoes
+	def AdicionaDoacoes
 
 		    rede = Rede.where('cadastro_id = ? and ciclo_id = ?',user.cadastro.id, user.cadastro.ciclo_id).first
 		
@@ -203,7 +203,6 @@
 		    reentradas = Reentrada.where('cadastro_principal_id = ? ', user.cadastro.id.to_s)
 		
 			reentradas.each do |reentrada|
-			#byebug
 
 				rede = Rede.where('cadastro_id = ? and ciclo_id = ?', reentrada.cadastro_adicionado_id, reentrada.cadastro_adicionado.ciclo_id).first
 
@@ -237,8 +236,6 @@
 
         reentrada = Reentrada.find_by_cadastro_2_id(params[:cadastro_id])
 
-        #byebug
-
         session[:ObjLogon] = Usuario.find_by_cadastro_id(reentrada.cadastro_1.id)
 
 
@@ -265,7 +262,9 @@
 
 		validacadastro
 
-		verdoacoes
+	    ConfirmaDoacoes
+
+		AdicionaDoacoes
 
 
 		@doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + " and dataconfirmacao is null")
