@@ -260,11 +260,11 @@
 
 	    end
 
-		validacadastro
+		#validacadastro
 
 	    #ConfirmaDoacoes
 
-		AdicionaDoacoes
+		#AdicionaDoacoes
 
 
 		@doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + " and dataconfirmacao is null")
