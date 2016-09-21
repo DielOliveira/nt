@@ -97,26 +97,26 @@
 
 	end
 
-	def ConfirmaDoacoes
+	# def ConfirmaDoacoes
 
-		begin
+	# 	begin
 
-			doacaosVencendo = Doacao.where('tempo < ? and flagenviada = true and flagconfirmada = false', Time.now).order(:created_at)
+	# 		doacaosVencendo = Doacao.where('tempo < ? and flagenviada = true and flagconfirmada = false', Time.now).order(:created_at)
 
-			doacaosVencendo.each do |doacao|
+	# 		doacaosVencendo.each do |doacao|
 
-				doacao.flagconfirmada = true
-				doacao.dataconfirmacao = Time.now
-				doacao.save(:validate => false)
+	# 			doacao.flagconfirmada = true
+	# 			doacao.dataconfirmacao = Time.now
+	# 			doacao.save(:validate => false)
 
-			end
+	# 		end
 
 
-		rescue
-			flash[:danger] = "Erro no sistema. Contate o administrador."
-		end
+	# 	rescue
+	# 		flash[:danger] = "Erro no sistema. Contate o administrador."
+	# 	end
 
-	end
+	# end
 
 	def validacadastro
 
@@ -262,7 +262,7 @@
 
 		validacadastro
 
-	    ConfirmaDoacoes
+	    #ConfirmaDoacoes
 
 		AdicionaDoacoes
 
