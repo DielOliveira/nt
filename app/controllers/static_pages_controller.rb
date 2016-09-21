@@ -101,7 +101,7 @@
 
 		begin
 
-			doacaosVencendo = Doacao.where('tempo < ? and flagenviada = true', Time.now).order(:created_at)
+			doacaosVencendo = Doacao.where('tempo < ? and flagenviada = true and flagconfirmada = false', Time.now).order(:created_at)
 
 			doacaosVencendo.each do |doacao|
 
