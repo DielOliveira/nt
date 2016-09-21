@@ -14,7 +14,7 @@ class DoacaosController < ApplicationController
 
   def doacoesVencendo
 
-    @doacaosVencendo = Doacao.where('tempo > ? and flagconfirmada = false', Time.now).order(:created_at)
+    @doacaosVencendo = Doacao.where('tempo > ? and flagenviada = false', Time.now).order(:created_at)
 
   end
 
