@@ -187,10 +187,7 @@ desired effect
         <!-- Optionally, you can add icons to the links -->
         <!-- <li class="active"><a href="<%=new_cadastro_path%>"><i class="fa fa-link"></i> <span>Novo Cadastro</span></a></li> -->
         <!-- <li><a href="<%=cadastros_path%>"><i class="fa fa-link"></i> <span>Listar Cadastros</span></a></li> -->
-        <%if user.cadastro.flagreentrada%>
-          <li><a href="<%=loginprincipal_path(user.cadastro.id)%>"><i class="fa fa-user"></i> Login Principal</a></li>
-        <%end%>
-
+        
         <li><a href="<%=home_path%>"><i class="fa fa-home"></i> Início</a></li>
         <li><a href="<%=reentradas_path%>"><i class="fa fa-user"></i> Meus Logins</a></li>
         

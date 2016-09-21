@@ -230,27 +230,10 @@
 
 		end
 
-	def loginprincipal
-
-        reset_session
-
-        reentrada = Reentrada.find_by_cadastro_2_id(params[:cadastro_id])
-
-        session[:ObjLogon] = Usuario.find_by_cadastro_id(reentrada.cadastro_1.id)
-
-
-        if usuario_logado == true
-          redirect_to root_path, notice: 'Usuario logado com sucesso.'
-        else
-           flash[:error] = "Usuario ou senha incorretos."
-        end 
-
-	end
-
 	def home
 
+		#Posicionando na rede
 		redeatual = Rede.find_by_cadastro_id(user.cadastro.id)
-
 		if redeatual.blank?
 
 		
@@ -260,38 +243,43 @@
 
 	    end
 
+	    #Valida cadastros (doações vencidas)
 		validacadastro
 
+		#Confirmando doações com prazo finalizado
 	    confirmaDoacoes
 
+	    #Adicionando doações necessárias
 		adicionaDoacoes
 
+		#Exibindo doações a receber
+		doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + " and flagconfirmada = false")
+		doacaospendentesreceberreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + " and flagconfirmada = false")
+		@doacaospendentesreceber = doacaospendentesreceber + doacaospendentesreceberreentradas
 
-		@doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + " and dataconfirmacao is null")
-		@doacaospendentesreceberreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + " and dataconfirmacao is null")
-		
-		doacaospendentespagar = Doacao.where("cadastro_doador_id =" + user.cadastro.id.to_s + "and flagenviada = false and dataconfirmacao is null")
-		doacaospendentesreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_doador_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = false and dataconfirmacao is null")
-
+		#Exibindo doações a pagar
+		doacaospendentespagar = Doacao.where("cadastro_doador_id =" + user.cadastro.id.to_s + "and flagenviada = false and flagconfirmada = false")
+		doacaospendentesreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_doador_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = false and flagconfirmada = false")
 		@doacaos = doacaospendentespagar + doacaospendentesreentradas
 
-		#Controle de mensagens
-		@mensagem = Mensagem.where("cadastro_1_id =" + user.cadastro.id.to_s + "and datarecebimento is null")
-		@mensagems = Mensagem.where(:cadastro_1_id => user.cadastro.id)
-
-		#Contador de doações	
-		@doacoesrecebidas = 0
-		
-		@doacaospendentesreceber.each do |d|	
+		#Calculando valor pra exibição em box
+		@doacoesrecebidas = 0		
+		doacaospendentesreceber.each do |d|	
 			@doacoesrecebidas = @doacoesrecebidas + d.ciclo_doador.valorciclo
 		end
 
-		@doacaospendentesreceberreentradas.each do |d|	
+		#Calculando valor pra exibição em box
+		doacaospendentesreceberreentradas.each do |d|	
 			@doacoesrecebidas = @doacoesrecebidas + d.ciclo_doador.valorciclo
 		end
 
+		#Indicados direto pra exibição em box
 		@indicados = Indicado.where('cadastro_1_id = ' + user.cadastro.id.to_s).count
 
+		#Exibindo doações que aguardam aprovações
+		doacoesAguardando = Doacao.where("cadastro_doador_id =" + user.cadastro.id.to_s + "and flagenviada = true and flagconfirmada = false")
+		doacoesAguardandoReentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_doador_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = true and flagconfirmada = false")
+		@doacoesAguardando = doacoesAguardando + doacoesAguardandoReentradas
 	end	
 
 	def faq

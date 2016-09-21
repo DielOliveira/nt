@@ -62,8 +62,6 @@ Rails.application.routes.draw do
   get '/redeslistciclo', to: 'static_pages#redeslistciclo', as: 'redeslistciclo'
   get '/redecontrole/:ciclo_id/:linha', to: 'redes#redecontrole', as: 'redecontrole'
 
-  get '/loginprincipal/:cadastro_id', to: 'static_pages#loginprincipal', as: 'loginprincipal'
-  
   get '/exibirlinhas/:ciclo_id', to: 'redes#exibirlinhas', as: 'exibirlinhas'
 
   get '/novareentrada/:cadastro_id/:flagdemanda', to: 'reentradas#novareentrada', as: 'novareentrada'

@@ -1,150 +1,107 @@
+<script src="/assets/template/countdown/jquery.countdown.min.js"></script>
+
 <% flash.each do |name, msg| -%>
-  <div class="alert alert-warning alert-dismissible fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <%= msg%>
-  </div>      
+<div class="alert alert-warning alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <%= msg%>
+</div>      
 <% end -%>
 
 <% if upgrade(user.cadastro.id) == 'obrigatoria' or reentrada(user.cadastro.id) == 'obrigatoria' %>
-  <%= render 'shared/obrigacoes' %>
+<%= render 'shared/obrigacoes' %>
 <%end%>
 
 <% if apareceobrigacaoreentrada %>
-  <%= render 'shared/obrigacoesreentradas' %>
+<%= render 'shared/obrigacoesreentradas' %>
 <%end%>
 
 <%if user.cadastro.flagreentradaobrigatoria%>
-  <%= render 'shared/obrigacoesdemanda' %>
+<%= render 'shared/obrigacoesdemanda' %>
 <%end%>
 
+<%if not  @doacoesAguardando.blank?%>
+  <%= render 'doacaos/doacoesPendentes' %>
+<%end%>
 
-<%#= render 'shared/doacoesPagar' %>
-<%#= render 'shared/doacoesPagarReentrada' %>
-<%= render 'shared/doacoesReceber' %>
-<%= render 'shared/doacoesReceberReentrada' %>
+<%= render 'doacaos/doacoesReceber' %>
+<%#= render 'doacaos/doacoesReceberReentrada' %>
 
 <%@doacaos.each do |doacao|%>
-
   <%@doacao = doacao%>
   <%= render 'doacaos/form' %>
-
 <%end%>
 
 <section class="content">
-      <!-- Small boxes (Stat box) -->
-      <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <a href="<%=reentradas_path%>">
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3><%=Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s).count%></h3>
+  <!-- Small boxes (Stat box) -->
+  <div class="row">
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <a href="<%=reentradas_path%>">
+        <div class="small-box bg-aqua">
+          <div class="inner">
+            <h3><%=Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s).count%></h3>
 
-              <p>Reentradas</p>
-            </div>
-            <div class="icon">
-            </div>
+            <p>Reentradas</p>
           </div>
-          </a>
+          <div class="icon">
+          </div>
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <a href="<%=doacoesareceber_path%>">
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><%=number_to_currency(@doacoesrecebidas, unit: "R$", separator: ",", delimiter: ".")%></h3>
+      </a>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <a href="<%=doacoesareceber_path%>">
+        <div class="small-box bg-green">
+          <div class="inner">
+            <h3><%=number_to_currency(@doacoesrecebidas, unit: "R$", separator: ",", delimiter: ".")%></h3>
 
-              <p>Doações a Receber</p>
-            </div>
-            <div class="icon">
-            </div>
+            <p>Doações a Receber</p>
           </div>
-          </a>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <a href="<%=redeslist_path(Rede.where('cadastro_id = ? and ciclo_id = ?', user.cadastro_id, user.cadastro.ciclo_id).first.id)%>">
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3><%=somatudo(Rede.where('cadastro_id = ? and ciclo_id = ?', user.cadastro_id, user.cadastro.ciclo_id).first.id)%></h3>
-              <p>Pessoas Em Sua Rede</p>
-            </div>
-            <div class="icon">
-            </div>
-          </div>
-          </a>
-        </div>
-        <!-- ./col -->
-        <a href="<%=indicados_path%>">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box <%=@indicados >= 2 ? 'bg-green' : 'bg-red' %> ">
-            <div class="inner">
-              <h3><%=@indicados%></h3>
-              <%if @indicados >= 2%>
-                <p>Indicados Direto  <i class="fa fa-check-square"></i></p>
-              <%else%>  
-                <p>Indicados Direto  <i class="fa fa-close"></i></p>
-              <%end%>
-              
-            </div>
-            <div class="icon">
-            </div>
+          <div class="icon">
           </div>
         </div>
-        </a>
-        <!-- ./col -->
+      </a>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <a href="<%=redeslist_path(Rede.where('cadastro_id = ? and ciclo_id = ?', user.cadastro_id, user.cadastro.ciclo_id).first.id)%>">
+        <div class="small-box bg-yellow">
+          <div class="inner">
+            <h3><%=somatudo(Rede.where('cadastro_id = ? and ciclo_id = ?', user.cadastro_id, user.cadastro.ciclo_id).first.id)%></h3>
+            <p>Pessoas Em Sua Rede</p>
+          </div>
+          <div class="icon">
+          </div>
+        </div>
+      </a>
+    </div>
+    <!-- ./col -->
+    <a href="<%=indicados_path%>">
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box <%=@indicados >= 2 ? 'bg-green' : 'bg-red' %> ">
+          <div class="inner">
+            <h3><%=@indicados%></h3>
+            <%if @indicados >= 2%>
+            <p>Indicados Direto  <i class="fa fa-check-square"></i></p>
+            <%else%>  
+            <p>Indicados Direto  <i class="fa fa-close"></i></p>
+            <%end%>
+
+          </div>
+          <div class="icon">
+          </div>
+        </div>
       </div>
-      <!-- /.row -->
-      <!-- Main row -->
-      <%# if not @mensagems.empty? %>
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-12 connectedSortable">
-          <!-- Chat box -->
-          <div class="box box-success">
-            <div class="box-header">
-              <i class="fa fa-comments-o"></i>
+    </a>
+    <!-- ./col -->
+  </div>
+  <!-- /.row -->
+  <!-- Main row -->
+  <%# if not @mensagems.empty? %>
+  <%#end%>
+  <!-- /.row (main row) -->
 
-              <h3 class="box-title">Mensagens Recebidas</h3>
-
-              <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                <div class="btn-group" data-toggle="btn-toggle">
-                </div>
-              </div>
-            </div>
-            <div class="box-body chat" id="chat-box">
-              <!-- chat item -->
-
-              <% @mensagems.each do |mensagem| %>
-                <div class="item">
-                  <%if mensagem.cadastro_2.masculino%>
-                    <%=image_tag("avatar04.png", class: "user image")%>
-                  <%else%>
-                    <%=image_tag("avatar2.png", class: "user image")%>
-                  <%end%>
-                  <p class="message">
-                    <a href="#" class="name">
-                      <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> <%=mensagem.created_at.blank? ? '' : mensagem.created_at.strftime("%d/%m/%Y - %H:%M")%></small>
-                      De: <%= mensagem.cadastro_2.nomepessoa %>
-                    </a>
-                      <%= mensagem.mensagem %>
-                  </p>
-                </div>
-              <% end %>
-              
-            </div>
-          </div>
-            <!-- /.chat -->
-        </section>
-        <!-- /.Left col -->
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-
-        <!-- right col -->
-      </div>
-      <%#end%>
-      <!-- /.row (main row) -->
-
-    </section>
+</section>
