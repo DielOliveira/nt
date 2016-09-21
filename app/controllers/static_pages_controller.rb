@@ -256,7 +256,7 @@
 
 		if redeatual.blank?
 
-			byebug
+		
 	        rede = Rede.find_by_id(proximaentrada(1))
 	        rede.cadastro_id = user.cadastro.id
 	        rede.save
