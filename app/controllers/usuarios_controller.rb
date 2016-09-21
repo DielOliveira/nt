@@ -62,10 +62,6 @@ class UsuariosController < ApplicationController
     respond_to do |format|
       if @usuario.save
 
-        rede = Rede.find_by_id(proximaentrada(1))
-        rede.cadastro_id = @usuario.cadastro_id
-        rede.save
-
         session[:ObjLogon] = Usuario.where(:email => @usuario.email, :senha => @usuario.senha)
         session[:ObjLogon] = session[:ObjLogon].first
 

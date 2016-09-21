@@ -97,11 +97,32 @@
 
 	end
 
+	# def validadoacoes
+
+	# 	begin
+
+	# 		doacaosVencendo = Doacao.where('tempo < ? and flagenviada = true', Time.now).order(:created_at)
+
+	# 		doacaosVencendo.each do |doacao|
+
+	# 			doacao.flagconfirmada = true
+	# 			doacao.dataconfirmacao = Time.now
+	# 			doacao.save(:validate => false)
+
+	# 		end
+
+
+	# 	rescue
+	# 		flash[:danger] = "Erro no sistema. Contate o administrador."
+	# 	end
+
+	# end
+
 	def validacadastro
 
 		begin
 
-			doacaosVencendo = Doacao.where('tempo < ? and flagconfirmada = false', Time.now).order(:created_at)
+			doacaosVencendo = Doacao.where('tempo < ? and flagenviada = false', Time.now).order(:created_at)
 
 
 			doacaosVencendo.each do |doacao|
@@ -144,7 +165,7 @@
 			end
 
 		rescue
-			flash[:danger] = "Erro ao realizar a exclusao."
+			flash[:danger] = "Erro no sistema. Contate o administrador."
 		end
 
 		#redirect_to doacoesVencidas_path		
@@ -230,6 +251,17 @@
 	end
 
 	def home
+
+		redeatual = Rede.find_by_cadastro_id(user.cadastro.id)
+
+		if redeatual.blank?
+
+			byebug
+	        rede = Rede.find_by_id(proximaentrada(1))
+	        rede.cadastro_id = user.cadastro.id
+	        rede.save
+
+	    end
 
 		validacadastro
 
