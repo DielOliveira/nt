@@ -34,8 +34,10 @@ class DoacaosController < ApplicationController
   end
 
   def doacoesareceber  
-    @doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
-    @doacaospendentesreceberreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is null")
+    #Exibindo doações a receber
+    doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + " and flagconfirmada = false")
+    doacaospendentesreceberreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + " and flagconfirmada = false")
+    @doacaospendentesreceber = doacaospendentesreceber + doacaospendentesreceberreentradas    
   end    
 
   def confirmadoacao
