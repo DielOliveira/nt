@@ -97,26 +97,26 @@
 
 	end
 
-	# def ConfirmaDoacoes
+	def confirmaDoacoes
 
-	# 	begin
+		begin
 
-	# 		doacaosVencendo = Doacao.where('tempo < ? and flagenviada = true and flagconfirmada = false', Time.now).order(:created_at)
+			doacaosVencendo = Doacao.where('tempo < ? and flagenviada = true and flagconfirmada = false', Time.now).order(:created_at)
 
-	# 		doacaosVencendo.each do |doacao|
+			doacaosVencendo.each do |doacao|
 
-	# 			doacao.flagconfirmada = true
-	# 			doacao.dataconfirmacao = Time.now
-	# 			doacao.save(:validate => false)
+				doacao.flagconfirmada = true
+				doacao.dataconfirmacao = Time.now
+				doacao.save(:validate => false)
 
-	# 		end
+			end
 
 
-	# 	rescue
-	# 		flash[:danger] = "Erro no sistema. Contate o administrador."
-	# 	end
+		rescue
+			flash[:danger] = "Erro no sistema. Contate o administrador."
+		end
 
-	# end
+	end
 
 	def validacadastro
 
@@ -172,7 +172,7 @@
 
 	end
 
-	def AdicionaDoacoes
+	def adicionaDoacoes
 
 		    rede = Rede.where('cadastro_id = ? and ciclo_id = ?',user.cadastro.id, user.cadastro.ciclo_id).first
 		
@@ -260,11 +260,11 @@
 
 	    end
 
-		#validacadastro
+		validacadastro
 
-	    #ConfirmaDoacoes
+	    confirmaDoacoes
 
-		#AdicionaDoacoes
+		adicionaDoacoes
 
 
 		@doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + " and dataconfirmacao is null")
