@@ -4,7 +4,13 @@ class SolicitacaosController < ApplicationController
   # GET /solicitacaos
   # GET /solicitacaos.json
   def index
-    @solicitacaos = Solicitacao.all
+
+    if usuario_logado && user.cadastro_id == 1
+        @solicitacaos = Solicitacao.all
+    else
+        redirect_to root_path
+    end
+
   end
 
   # GET /solicitacaos/1

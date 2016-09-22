@@ -5,7 +5,13 @@ class ContabancariatiposController < ApplicationController
   # GET /contabancariatipos
   # GET /contabancariatipos.json
   def index
-    @contabancariatipos = Contabancariatipo.all
+
+    if usuario_logado && user.cadastro_id == 1
+        @contabancariatipos = Contabancariatipo.all
+    else
+        redirect_to root_path
+    end
+
   end
 
   # GET /contabancariatipos/1

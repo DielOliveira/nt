@@ -76,7 +76,6 @@ Rails.application.routes.draw do
   match '/doacoesrecebidas', to: 'doacaos#doacoesrecebidas', via: 'get'
   match '/doacoesareceber', to: 'doacaos#doacoesareceber', via: 'get'
   match '/doacoesVencendo', to: 'doacaos#doacoesVencendo', via: 'get'
-  match '/doacoesVencidas', to: 'doacaos#doacoesVencidas', via: 'get'
   
   match '/login', to: 'nt_autentication#login', via: 'get'
   match '/login', to: 'nt_autentication#login', via: 'post'

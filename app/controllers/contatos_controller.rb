@@ -4,7 +4,12 @@
   # GET /contatos
   # GET /contatos.json
   def index
-    @contatos = Contato.all
+    if usuario_logado && user.cadastro_id == 1
+        @contatos = Contato.all
+    else
+        redirect_to root_path
+    end
+
   end
 
   # GET /contatos/1

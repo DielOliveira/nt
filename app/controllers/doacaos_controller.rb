@@ -5,22 +5,25 @@ class DoacaosController < ApplicationController
   # GET /doacaos
   # GET /doacaos.json
 
-
-  def doacoesVencidas
-
-    @doacaosVencendo = Doacao.where('tempo < ? and flagconfirmada = false', Time.now).order(:created_at)
-
-  end
-
   def doacoesVencendo
 
-    @doacaosVencendo = Doacao.where('tempo > ? and flagenviada = false', Time.now).order(:created_at)
+    if usuario_logado && user.cadastro_id == 1
+        @doacaosVencendo = Doacao.where('tempo > ? and flagenviada = false', Time.now).order(:created_at)
+    else
+        redirect_to root_path
+    end
 
   end
 
 
   def index
-    @doacaos = Doacao.all.order(:id)
+
+    if usuario_logado && user.cadastro_id == 1
+        @doacaos = Doacao.all.order(:id)
+    else
+        redirect_to root_path
+    end
+
   end
 
   def doacoesrealizadas  

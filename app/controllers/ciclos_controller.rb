@@ -51,7 +51,13 @@ class CiclosController < ApplicationController
   # GET /ciclos
   # GET /ciclos.json
   def index
-    @ciclos = Ciclo.all
+
+    if usuario_logado && user.cadastro_id == 1
+        @ciclos = Ciclo.all
+    else
+        redirect_to root_path
+    end
+
   end
 
   # GET /ciclos/1
