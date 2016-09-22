@@ -78,7 +78,7 @@ class IndicadosController < ApplicationController
   def destroy
     @indicado.destroy
     respond_to do |format|
-      format.html { redirect_to indicados_url, notice: 'Indicado was successfully destroyed.' }
+      format.html { redirect_to todos_path, notice: 'Indicado was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
