@@ -4,9 +4,9 @@ class IndicadosController < ApplicationController
   # GET /indicados
   # GET /indicados.json
 
-  def todosindicados
-    @indicados Indicado.all
-  end
+  #def todosindicados
+  #  @indicados Indicado.all
+  #end
 
   def index
 
