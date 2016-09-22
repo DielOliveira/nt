@@ -155,6 +155,12 @@
 
 					cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
 
+					rede = Rede.where('cadastro_id = ? and ciclo_id = ?', cadastro.id, cadastro.ciclo_id)
+					if not rede.first.blank?
+						rede.first.cadastro_id = nil
+						rede.first.save
+					end					
+
 					cadastro.ciclo_id = cadastro.ciclo_id - 1
 					cadastro.save(:validate => false)
 
