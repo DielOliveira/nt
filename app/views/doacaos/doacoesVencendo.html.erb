@@ -16,6 +16,7 @@
       <thead>
         <tr>
           <th>De</th>
+          <th>ciclo</th>
           <th>Para</th>
           <th>Tempo</th>
           <th colspan="3"></th>
@@ -26,6 +27,7 @@
         <% @doacaosVencendo.each do |doacao| %>
         <tr>
           <td><%= doacao.cadastro_doador.nomepessoa%></td>
+          <td><%= doacao.cadastro_doador.ciclo_id%></td>
           <td><%= doacao.cadastro_recebedor.nomepessoa%></td>
           <td><i class="fa fa-clock-o"></i> <span id="clock<%=doacao.id%>p"></span></small></td>
           <td align='right'>
