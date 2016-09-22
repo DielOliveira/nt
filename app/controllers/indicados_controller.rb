@@ -4,8 +4,8 @@ class IndicadosController < ApplicationController
   # GET /indicados
   # GET /indicados.json
 
-  def todos
-    @indicados = Indicado.all
+  def listarindicados
+    @indicados = Indicado.all.order(:cadastro_i_id)
   end
 
   def index
