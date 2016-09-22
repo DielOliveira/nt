@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<div class="box box-warning">
+    <div class="box-header with-border">
+      <h4 class="timeline-header"><a href="#">Indicados</a></h4>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th >Indicador</th>
+            <th >Indicado</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @indicados.each do |indicado| %>
+            <tr>
+              <td>
+                <%=indicado.cadastro_1.nomepessoa%>
+              </td>
+              <td>
+                <%=indicado.cadastro_2.nomepessoa%>
+              </td>              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="timeline-footer">
+      <br>
+
+
+      </div>              
+    </div>
+    <!-- /.box-body -->
+</div> 
+
+
+

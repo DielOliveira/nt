@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   match '/home', to: 'static_pages#home', via: 'get'
   match '/faq', to: 'static_pages#faq', via: 'get'
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
+  match '/todosindicados', to: 'indicados#todosindicados', via: 'get'
+
   match '/configuracoes', to: 'static_pages#configuracoes', via: 'get'
 
 
