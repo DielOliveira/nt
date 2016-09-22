@@ -16,8 +16,10 @@
       <table class="table table-hover">
         <thead>
           <tr>
+            <th >id</th>
             <th >Indicador</th>
             <th >Indicado</th>
+            <th ></th>
           </tr>
         </thead>
 
@@ -29,7 +31,13 @@
               </td>
               <td>
                 <%=indicado.cadastro_2.nomepessoa rescue nil%>
-              </td>              
+              </td>
+              <td>
+                  <%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>Excluir"), 
+                    indicado_path(:id => indicado.id),
+                    class: "btn btn-default btn-sm",
+                    method: :delete %>
+              </td>
             </tr>
           <% end %>
         </tbody>
