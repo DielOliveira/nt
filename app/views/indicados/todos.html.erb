@@ -25,10 +25,10 @@
           <% @indicados.each do |indicado| %>
             <tr>
               <td>
-                <%=indicado.cadastro_1.nomepessoa%>
+                <%=indicado.cadastro_1.nomepessoa rescue nil%>
               </td>
               <td>
-                <%=indicado.cadastro_2.nomepessoa%>
+                <%=indicado.cadastro_2.nomepessoa rescue nil%>
               </td>              
             </tr>
           <% end %>
