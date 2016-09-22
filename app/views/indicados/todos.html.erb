@@ -27,6 +27,9 @@
           <% @indicados.each do |indicado| %>
             <tr>
               <td>
+                <%=indicado.id rescue nil%>
+              </td>            
+              <td>
                 <%=indicado.cadastro_1.nomepessoa rescue nil%>
               </td>
               <td>
