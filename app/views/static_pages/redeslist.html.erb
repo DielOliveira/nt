@@ -225,11 +225,11 @@
 <div style="width:100%; height:122px;" align="left">
   <div style="height:122px; width:100px;  float:left;" align="left">
     <% if (@bisneto_primeiro.cadastro_id rescue nil) == nil %>
-      <a href="javascript:abremodal(<%=@bisneto_primeiro.id%>)">
+      <a href="javascript:abremodal(<%#=@bisneto_primeiro.id%>)">
         <%=image_tag("nobody.png")%>
       </a>
     <%else%>
-      <a href="javascript:abremodal(<%=@bisneto_primeiro.id%>)">
+      <a href="javascript:abremodal(<%#=@bisneto_primeiro.id%>)">
         <% if @bisneto_primeiro.cadastro.flagativo %>
           <%=@bisneto_primeiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
         <%else%>
@@ -247,12 +247,12 @@
   </div>
   <div style="height:122px; width:150px;  float:left;" align="left">
     <div style="height:62px; width:135px;" align="right">
-    <% if @bisneto_segundo.cadastro_id == nil %>
-      <a href="javascript:abremodal(<%=@bisneto_segundo.id%>)">
+    <% if (@bisneto_segundo.cadastro_id rescue nil) == nil %>
+      <a href="javascript:abremodal(<%#=@bisneto_segundo.id%>)">
         <%=image_tag("nobody.png")%>
       </a>
     <%else%>
-      <a href="javascript:abremodal(<%=@bisneto_segundo.id%>)">
+      <a href="javascript:abremodal(<%#=@bisneto_segundo.id%>)">
         <% if @bisneto_segundo.cadastro.flagativo %>
           <%=@bisneto_segundo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
         <%else%>
@@ -271,12 +271,12 @@
   </div>
   <div style="height:122px; width:150px;  float:left; " align="left">
     <div style="height:62px; width:70px;" align="right">
-    <% if @bisneto_terceiro.cadastro_id == nil %>
-      <a href="javascript:abremodal(<%=@bisneto_terceiro.id%>)">
+    <% if (@bisneto_terceiro.cadastro_id rescue nil) == nil %>
+      <a href="javascript:abremodal(<%#=@bisneto_terceiro.id%>)">
         <%=image_tag("nobody.png")%>
       </a>
     <%else%>
-      <a href="javascript:abremodal(<%=@bisneto_terceiro.id%>)">
+      <a href="javascript:abremodal(<%#=@bisneto_terceiro.id%>)">
         <% if @bisneto_terceiro.cadastro.flagativo %>
           <%=@bisneto_terceiro.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
         <%else%>
@@ -295,12 +295,12 @@
   </div>
   <div style="height:122px; width:175px;  float:left;" align="left">
     <div style="height:62px; width:100px;" align="right">
-    <% if @bisneto_quarto.cadastro_id == nil %>
-      <a href="javascript:abremodal(<%=@bisneto_quarto.id%>)">
+    <% if (@bisneto_quarto.cadastro_id rescue nil) == nil %>
+      <a href="javascript:abremodal(<%#=@bisneto_quarto.id%>)">
         <%=image_tag("nobody.png")%>
       </a>
     <%else%>
-      <a href="javascript:abremodal(<%=@bisneto_quarto.id%>)">
+      <a href="javascript:abremodal(<%#=@bisneto_quarto.id%>)">
         <% if @bisneto_quarto.cadastro.flagativo %>
           <%=@bisneto_quarto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
         <%else%>
@@ -318,12 +318,12 @@
     </div>   
   </div> 
   <div style="height:122px; width:100px;  float:left;" align="left">
-    <% if @bisneto_quinto.cadastro_id == nil %>
-      <a href="javascript:abremodal(<%=@bisneto_quinto.id%>)">
+    <% if (@bisneto_quinto.cadastro_id rescue nil) == nil %>
+      <a href="javascript:abremodal(<%#=@bisneto_quinto.id%>)">
         <%=image_tag("nobody.png")%>
       </a>
     <%else%>
-      <a href="javascript:abremodal(<%=@bisneto_quinto.id%>)">
+      <a href="javascript:abremodal(<%#=@bisneto_quinto.id%>)">
         <% if @bisneto_quinto.cadastro.flagativo %>
           <%=@bisneto_quinto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
         <%else%>
@@ -339,12 +339,12 @@
   </div>
   <div style="height:122px; width:150px;  float:left;" align="left">
     <div style="height:62px; width:135px;" align="right">
-    <% if @bisneto_sexto.cadastro_id == nil %>
-      <a href="javascript:abremodal(<%=@bisneto_sexto.id%>)">
+    <% if (@bisneto_sexto.cadastro_id rescue nil) == nil %>
+      <a href="javascript:abremodal(<%#=@bisneto_sexto.id%>)">
         <%=image_tag("nobody.png")%>
       </a>
     <%else%>
-      <a href="javascript:abremodal(<%=@bisneto_sexto.id%>)">
+      <a href="javascript:abremodal(<%#=@bisneto_sexto.id%>)">
         <% if @bisneto_sexto.cadastro.flagativo %>
           <%=@bisneto_sexto.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
         <%else%>
@@ -363,12 +363,12 @@
   </div>
   <div style="height:122px; width:150px;  float:left; " align="left">
     <div style="height:62px; width:70px;" align="right">
-    <% if @bisneto_setimo.cadastro_id == nil %>
-      <a href="javascript:abremodal(<%=@bisneto_setimo.id%>)">
+    <% if (@bisneto_setimo.cadastro_id rescue nil) == nil %>
+      <a href="javascript:abremodal(<%#=@bisneto_setimo.id%>)">
         <%=image_tag("nobody.png")%>
       </a>
     <%else%>
-      <a href="javascript:abremodal(<%=@bisneto_setimo.id%>)">
+      <a href="javascript:abremodal(<%#=@bisneto_setimo.id%>)">
         <% if @bisneto_setimo.cadastro.flagativo %>
           <%=@bisneto_setimo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
         <%else%>
@@ -387,12 +387,12 @@
   </div>
   <div style="height:122px; width:100px;  float:left;" align="left">
     <div style="height:62px; width:100px;" align="right">
-    <% if @bisneto_oitavo.cadastro_id == nil %>
-      <a href="javascript:abremodal(<%=@bisneto_oitavo.id%>)">
+    <% if (@bisneto_oitavo.cadastro_id rescue nil) == nil %>
+      <a href="javascript:abremodal(<%#=@bisneto_oitavo.id%>)">
         <%=image_tag("nobody.png")%>
       </a>
     <%else%>
-      <a href="javascript:abremodal(<%=@bisneto_oitavo.id%>)">
+      <a href="javascript:abremodal(<%#=@bisneto_oitavo.id%>)">
         <% if @bisneto_oitavo.cadastro.flagativo %>
           <%=@bisneto_oitavo.cadastro.masculino == true ? image_tag("man1.png") : image_tag("woman1.png")%>
         <%else%>
