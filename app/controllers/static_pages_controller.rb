@@ -109,6 +109,10 @@
 				doacao.dataconfirmacao = Time.now
 				doacao.save(:validate => false)
 
+			    cadastro = Cadastro.find(doacao.cadastro_doador_id)
+			    cadastro.flagativo = true				
+			    cadastro.save(:validate => false)
+
 			end
 
 
