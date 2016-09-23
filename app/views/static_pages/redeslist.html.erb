@@ -110,7 +110,7 @@
 <!-- Terceiro Nível -->
 <div style="width:100%; height:122px; " align="left">
   <div style="height:122px; width:235px;  float:left;" align="center">
-    <% if @neto_primeiro.cadastro_id == nil %>
+    <% if @neto_primeiro.cadastro_id == nil or @neto_primeiro.blank? %>
       <a href="javascript:abremodal(<%=@neto_primeiro.id%>)">
         <%=image_tag("nobody.png")%>
       </a>
