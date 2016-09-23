@@ -239,7 +239,7 @@
     <%end%>
     <div style="height:30px; width:37px;" align="right">
       <div style="height:30px; width:37px;" align="center">
-        <a href="<%= @bisneto_primeiro.cadastro_id == nil ? "#" : redeslist_path(@bisneto_primeiro.id)%>" class="name">
+        <a href="<%= (@bisneto_primeiro.cadastro_id rescue nil) == nil ? "#" : redeslist_path(@bisneto_primeiro.id)%>" class="name">
           <%=@bisneto_primeiro_usuario.email rescue nil%>
         </a>
       </div>
@@ -263,7 +263,7 @@
     </div>
     <div style="height:20px; width:137px;" align="right">
       <div style="height:20px; width:50px;" align="center">
-        <a href="<%= @bisneto_segundo.cadastro_id == nil ? "#" : redeslist_path(@bisneto_segundo.id)%>" class="name">
+        <a href="<%= (@bisneto_segundo.cadastro_id rescue nil) == nil ? "#" : redeslist_path(@bisneto_segundo.id)%>" class="name">
           <%=@bisneto_segundo_usuario.email rescue nil%>
         </a>
       </div>   
@@ -287,7 +287,7 @@
     </div>
     <div style="height:20px; width:75px;" align="right">
       <div style="height:20px; width:60px;" align="center">
-        <a href="<%= @bisneto_terceiro.cadastro_id == nil ? "#" : redeslist_path(@bisneto_terceiro.id)%>" class="name">
+        <a href="<%= (@bisneto_terceiro.cadastro_id rescue nil) == nil ? "#" : redeslist_path(@bisneto_terceiro.id)%>" class="name">
           <%=@bisneto_terceiro_usuario.email rescue nil%>
         </a>
       </div>   
@@ -311,7 +311,7 @@
     </div>
     <div style="height:20px; width:130px;" align="right">
       <div style="height:20px; width:100px;" align="center">
-        <a href="<%= @bisneto_quarto.cadastro_id == nil ? "#" : redeslist_path(@bisneto_quarto.id)%>" class="name">
+        <a href="<%= (@bisneto_quarto.cadastro_id rescue nil) == nil ? "#" : redeslist_path(@bisneto_quarto.id)%>" class="name">
           <%=@bisneto_quarto_usuario.email rescue nil%>
         </a>
       </div>   
@@ -332,7 +332,7 @@
       </a>
     <%end%>
     <div style="height:30px; width:40px;" align="center">
-        <a href="<%= @bisneto_quinto.cadastro_id == nil ? "#" : redeslist_path(@bisneto_quinto.id)%>" class="name">
+        <a href="<%= (@bisneto_quinto.cadastro_id rescue nil) == nil ? "#" : redeslist_path(@bisneto_quinto.id)%>" class="name">
           <%=@bisneto_quinto_usuario.email rescue nil%>
         </a>
     </div>
@@ -355,7 +355,7 @@
     </div>
     <div style="height:20px; width:150px;" align="right">
       <div style="height:20px; width:80px;" align="center">
-        <a href="<%= @bisneto_sexto.cadastro_id == nil ? "#" : redeslist_path(@bisneto_sexto.id)%>" class="name">
+        <a href="<%= (@bisneto_sexto.cadastro_id rescue nil) == nil ? "#" : redeslist_path(@bisneto_sexto.id)%>" class="name">
           <%=@bisneto_sexto_usuario.email rescue nil%>
         </a>
       </div>   
@@ -379,7 +379,7 @@
     </div>
     <div style="height:20px; width:75px;" align="right">
       <div style="height:20px; width:60px;" align="center">
-        <a href="<%= @bisneto_setimo.cadastro_id == nil ? "#" : redeslist_path(@bisneto_setimo.id)%>" class="name">
+        <a href="<%= (@bisneto_setimo.cadastro_id rescue nil) == nil ? "#" : redeslist_path(@bisneto_setimo.id)%>" class="name">
           <%=@bisneto_setimo_usuario.email rescue nil%>
         </a>
       </div>   
@@ -403,7 +403,7 @@
     </div>
     <div style="height:20px; width:100px;" align="right">
       <div style="height:20px; width:50px;" align="center">
-        <a href="<%= @bisneto_oitavo.cadastro_id == nil ? "#" : redeslist_path(@bisneto_oitavo.id)%>" class="name">
+        <a href="<%= (@bisneto_oitavo.cadastro_id rescue nil) == nil ? "#" : redeslist_path(@bisneto_oitavo.id)%>" class="name">
           <%=@bisneto_oitavo_usuario.email rescue nil%>
         </a>
       </div>   
