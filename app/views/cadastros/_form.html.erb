@@ -121,6 +121,8 @@
           <br>
           <div align="right">
 
+            <%= f.check_box  :flagativo%>
+            
             <%if not usuario_logado%>
 
               <%= link_to root_path, :class => "btn btn-info btn-bg" do %>
