@@ -47,22 +47,26 @@ Rails.application.routes.draw do
   match '/home', to: 'static_pages#home', via: 'get'
   match '/faq', to: 'static_pages#faq', via: 'get'
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
-
-  match '/todos', to: 'indicados#todos', via: 'get'
-
+  match '/corrigeFinanall', to: 'static_pages#corrigeFinanall', via: 'get'
+  match '/retiralixo', to: 'static_pages#retiralixo', via: 'get'
+  get '/redeslist/:rede_id', to: 'static_pages#redeslist', as: 'redeslist'
+  get '/redeslistciclo', to: 'static_pages#redeslistciclo', as: 'redeslistciclo'
   match '/configuracoes', to: 'static_pages#configuracoes', via: 'get'
+  
+  match '/relatorio/', to: 'static_pages#relatorio', via: 'get'
 
+  #match '/relMembros', to: 'sivic_discipulos#relMembros', via: 'get'
+
+
+
+  match '/listarindicados', to: 'indicados#listarindicados', via: 'get'
 
   match '/convite/:login', to: 'cadastros#convite', via: 'get'
   match '/convite', to: 'cadastros#convite', via: 'get'
   match '/corrigenumeracao', to: 'cadastros#corrigenumeracao', via: 'get'
-  match '/corrigeFinanall', to: 'static_pages#corrigeFinanall', via: 'get'
   
 
-  match '/retiralixo', to: 'static_pages#retiralixo', via: 'get'
 
-  get '/redeslist/:rede_id', to: 'static_pages#redeslist', as: 'redeslist'
-  get '/redeslistciclo', to: 'static_pages#redeslistciclo', as: 'redeslistciclo'
   get '/redecontrole/:ciclo_id/:linha', to: 'redes#redecontrole', as: 'redecontrole'
 
   get '/exibirlinhas/:ciclo_id', to: 'redes#exibirlinhas', as: 'exibirlinhas'

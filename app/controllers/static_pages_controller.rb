@@ -1,6 +1,39 @@
 	class StaticPagesController < ApplicationController
 	#before_action :requer_logon
 
+	def relatorio
+
+		 query = ' '
+		 query2 = ' '
+
+		if params["ciclo_id"].to_s != '0'
+			query = query + ' red.ciclo_id = ' + params["ciclo_id"].to_s + ' and '
+			#query2 = query2 + ' and cadastros.ciclo_id = red.ciclo_id '
+		end
+
+		if params["flagativo"].to_s == '2'
+			query = query + ' cadastros.flagativo = false' + ' and '
+		elsif params["flagativo"].to_s == '1'
+			query = query + ' cadastros.flagativo = true' + ' and '
+		end
+
+		if params["linha"].to_s != '0'
+			query = query + ' red.linha = ' + params["linha"].to_s + ' and '
+		end
+
+		if params["flagreentrada"].to_s == '1'
+			query = query + ' flagreentrada = false and '
+		elsif params["flagreentrada"].to_s == '2'
+			query = query + ' flagreentrada = true and '
+		end			
+
+		params["nomepessoa"] = params["nomepessoa"].downcase
+
+		query = query + ' 1 = 1 '
+
+		@cadastros = Cadastro.joins('inner join usuarios usu on usu.cadastro_id = cadastros.id inner join redes red on red.cadastro_id = cadastros.id ' + query2).where(query + 'and lower(nomepessoa) like ?', "%#{params["nomepessoa"]}%").order('cadastros.created_at asc').paginate(:page => params[:page], :per_page => 40)
+	end
+
 	def configuracoes
 
 	end
@@ -242,6 +275,7 @@
 
 	def home
 
+		#byebug
 		#Posicionando na rede
 		redeatual = Rede.find_by_cadastro_id(user.cadastro.id)
 		if redeatual.blank?
@@ -256,11 +290,13 @@
 	    #Valida cadastros (doações vencidas)
 		validacadastro
 
+
 		#Confirmando doações com prazo finalizado
 	    confirmaDoacoes
 
 	    #Adicionando doações necessárias
 		adicionaDoacoes
+
 
 		#Exibindo doações a receber
 		doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + " and flagconfirmada = false")

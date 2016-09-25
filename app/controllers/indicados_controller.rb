@@ -5,7 +5,7 @@ class IndicadosController < ApplicationController
   # GET /indicados.json
 
   def listarindicados
-    @indicados = Indicado.all.order(:cadastro_i_id)
+    @indicados = Indicado.all.order(:cadastro_1_id)
   end
 
   def index
