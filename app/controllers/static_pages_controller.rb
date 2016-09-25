@@ -6,7 +6,7 @@
 		 query = ' '
 		 query2 = ' '
 
-		if params["ciclo_id"].to_s != '0'
+		if params["ciclo_id"].to_s != '0' and params["ciclo_id"].to_s != ''
 			query = query + ' red.ciclo_id = ' + params["ciclo_id"].to_s + ' and '
 			#query2 = query2 + ' and cadastros.ciclo_id = red.ciclo_id '
 		end
@@ -17,7 +17,7 @@
 			query = query + ' cadastros.flagativo = true' + ' and '
 		end
 
-		if params["linha"].to_s != '0'
+		if params["linha"].to_s != '0' and params["linha"].to_s != ''
 			query = query + ' red.linha = ' + params["linha"].to_s + ' and '
 		end
 
@@ -27,11 +27,14 @@
 			query = query + ' flagreentrada = true and '
 		end			
 
-		params["nomepessoa"] = params["nomepessoa"].downcase
+		if params["nomepessoa"].to_s != ''
+			params["nomepessoa"] = params["nomepessoa"].downcase
+		end
 
 		query = query + ' 1 = 1 '
 
-		@cadastros = Cadastro.joins('inner join usuarios usu on usu.cadastro_id = cadastros.id inner join redes red on red.cadastro_id = cadastros.id ' + query2).where(query + 'and lower(nomepessoa) like ?', "%#{params["nomepessoa"]}%").order('cadastros.created_at asc').paginate(:page => params[:page], :per_page => 40)
+
+		@cadastros = Cadastro.joins('inner join usuarios usu on usu.cadastro_id = cadastros.id inner join redes red on red.cadastro_id = cadastros.id ' + query2).where(' lower(nomepessoa) like ? and ' + query, "%#{params["nomepessoa"]}%").order('cadastros.created_at asc').paginate(:page => params[:page], :per_page => 40)
 	end
 
 	def configuracoes
