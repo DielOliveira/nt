@@ -6,7 +6,7 @@ class SolicitacaosController < ApplicationController
   def index
 
     if usuario_logado && user.cadastro_id == 1
-        @solicitacaos = Solicitacao.all
+        @solicitacaos = Solicitacao.all.order(:situacaodemanda_id)
     else
         redirect_to root_path
     end
