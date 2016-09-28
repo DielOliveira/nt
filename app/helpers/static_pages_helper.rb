@@ -61,12 +61,8 @@ module StaticPagesHelper
 		end
 	end
 
-  def reentradasCiclo(cadastro_id,ciclo_id)
-    return Reentrada.where("cadastro_reentrando_id = ? and ciclo_id = ?", cadastro_id, ciclo_id)
-  end
-
   def obrigacoes
-    return Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s)
+    return Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s).order(:created_at)
   end
 
   def apareceobrigacaoreentrada

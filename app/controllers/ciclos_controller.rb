@@ -2,19 +2,43 @@ class CiclosController < ApplicationController
   before_action :requer_logon
   before_action :set_ciclo, only: [:show, :edit, :update, :destroy]
 
+  def buscaReentradaInativa(cadastro_id)
+    
+    begin
+      cadastro = Cadastro.find(cadastro_id)
+      reentradas = Reentrada.where('cadastro_reentrando_id = ? and ciclo_id = ? and flagopcional = false', cadastro.id, cadastro.ciclo.id).count
+
+      reentradas.each do |reentrada|
+        if reentrada.cadastro_adicionado.flagativo == false
+          return false      
+        end
+      end
+
+
+    rescue
+      return false
+    end
+      return true
+
+  end
+
+
 
   def upgrade_ciclo
 
     begin
       cadastro = Cadastro.find(params[:cadastro_id])
-      @reentradas = Reentrada.where("cadastro_reentrando_id = " + params[:cadastro_id].to_s + ' and ciclo_id = ' + cadastro.ciclo.id.to_s).count
-      @permite = true
+      reentradas = Reentrada.where('cadastro_reentrando_id = ? and ciclo_id = ? and flagopcional = false', cadastro.id, cadastro.ciclo.id).count
 
-      if  @reentradas < cadastro.ciclo.qtdreentradas
-          flash[:notice] = "Erro ao realizar o Upgrade. Verifique se possui reentradas suficiente."
+      if  reentradas < cadastro.ciclo.qtdreentradas
+          flash[:notice] = "Erro ao realizar o Upgrade. Você não possui reentradas suficiente."
           return redirect_to reentradas_path
       end
 
+      if buscaReentradaInativa(cadastro.id) == false
+          flash[:notice] = "Não é permitido o upgrade. Você possui reentradas inativas no sistema."
+          return redirect_to reentradas_path
+      end
 
       cadastro = Cadastro.find_by_id(cadastro.id)
       cadastro.ciclo_id = cadastro.ciclo_id + 1
@@ -26,20 +50,8 @@ class CiclosController < ApplicationController
 
     rescue
 
-      if cadastro
-        cadastro.ciclo_id = cadastro.ciclo_id - 1
-        cadastro.save(:validate => false)
-      end
-
-      if rede
-        rede.cadastro_id = nil
-        rede.save
-      end
-
       flash[:danger] = "Não foi possível salvar as informações. Contate o administrador"
       return redirect_to reentradas_path
-    
-    ensure
 
     end
 

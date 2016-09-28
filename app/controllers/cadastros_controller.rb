@@ -128,8 +128,6 @@ class CadastrosController < ApplicationController
     respond_to do |format|
       if @cadastro.update(cadastro_params)
 
-        #byebug
-
         session[:cadastro_id] = @cadastro.id
 
         @dadosfinanceiros = Dadosfinanceiro.find_by_cadastro_id(@cadastro.id)

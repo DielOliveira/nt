@@ -10,8 +10,6 @@ class ReentradasController < ApplicationController
 
         reentrada = Reentrada.find_by_id(params[:id])
 
-        #byebug
-
         session[:ObjLogon] = Usuario.find_by_cadastro_id(reentrada.cadastro_2.id)
 
 
@@ -25,6 +23,12 @@ class ReentradasController < ApplicationController
   def novareentrada
 
     begin
+
+      if params[:flagopcional] == 'true'
+        params[:flagopcional] = true
+      else
+        params[:flagopcional] = false
+      end
 
 
       principal = Cadastro.find(user.cadastro_id)
@@ -79,6 +83,7 @@ class ReentradasController < ApplicationController
       reentrada.cadastro_adicionado_id = cadastro.id
       reentrada.cadastro_principal_id = user.cadastro.id
       reentrada.ciclo_id = reentrando.cadastro.ciclo.id
+      reentrada.flagopcional = params[:flagopcional]
       reentrada.save
       
       if params[:flagdemanda] == 'true'
@@ -131,7 +136,7 @@ class ReentradasController < ApplicationController
 
 
   def index
-    @reentradas = Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s)
+    @reentradas = Reentrada.where("cadastro_principal_id = " + user.cadastro.id.to_s).order(:created_at)
   end
 
   # GET /reentradas/1
@@ -200,7 +205,7 @@ class ReentradasController < ApplicationController
     def reentrada_params
       #params.fetch(:reentrada, {})
 
-      params.require(:reentrada).permit(:ciclo_id, :cadastro_reentrando_id, :cadastro_adicionado_id, :cadastro_principal_id)
+      params.require(:reentrada).permit(:ciclo_id, :cadastro_reentrando_id, :cadastro_adicionado_id, :cadastro_principal_id, :flagopcional)
     end
 
      

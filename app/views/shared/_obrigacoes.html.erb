@@ -36,24 +36,18 @@
                   <%#=reentrada(user.cadastro.id)%>
                   <% if reentrada(user.cadastro.id) == 'opcional' %>
                     <div class="btn-group">
-                      <%= link_to novareentrada_path(user.cadastro.id,'false'), :data => {:confirm => 'Deseja realmente realizar uma reentrada?'}, :class => "btn btn-success btn-sm" do %>
+                      <%= link_to novareentrada_path(user.cadastro.id,'false','true'), :data => {:confirm => 'Deseja realmente realizar uma reentrada?'}, :class => "btn btn-success btn-sm" do %>
                          Reentrada Opcional
                       <% end %>   
                     </div>               
                   <% else %>   
                     <div class="btn-group">
-                      <%= link_to novareentrada_path(user.cadastro.id,'false'), :data => {:confirm => 'Deseja realmente realizar uma reentrada?'}, :class => "btn btn-danger btn-sm" do %>
+                      <%= link_to novareentrada_path(user.cadastro.id,'false','false'), :data => {:confirm => 'Deseja realmente realizar uma reentrada?'}, :class => "btn btn-danger btn-sm" do %>
                          Reentrada Obrigatoria
                       <% end %>   
                     </div>               
                   <% end %>                
-                  <% if upgrade(user.cadastro.id) == 'opcional' %>
-                    <!-- <div class="btn-group">
-                      <%#= link_to upgrade_ciclo_path(user.cadastro.id), :class => "btn btn-success btn-sm" do %>
-                         Upgrade Opcional
-                      <%# end %>   
-                    </div>   -->             
-                  <% else %>   
+                  <% if upgrade(user.cadastro.id) == 'obrigatoria' %>
                     <div class="btn-group">
                       <%= link_to upgrade_ciclo_path(user.cadastro.id), :data => {:confirm => 'Deseja realmente realizar um upgrade?'}, :class => "btn btn-danger btn-sm" do %>
                          Upgrade Obrigatorio

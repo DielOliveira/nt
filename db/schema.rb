@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915223731) do
+ActiveRecord::Schema.define(version: 20160928230019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20160915223731) do
     t.boolean  "flagenviada"
     t.string   "avatar"
     t.boolean  "flagpause"
+    t.boolean  "flagopcional"
   end
 
   create_table "indicados", force: :cascade do |t|
@@ -172,6 +173,7 @@ ActiveRecord::Schema.define(version: 20160915223731) do
     t.integer  "cadastro_reentrando_id"
     t.integer  "cadastro_adicionado_id"
     t.integer  "cadastro_principal_id"
+    t.boolean  "flagopcional"
   end
 
   add_index "reentradas", ["ciclo_id"], name: "index_reentradas_on_ciclo_id", using: :btree

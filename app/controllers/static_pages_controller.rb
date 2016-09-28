@@ -278,7 +278,6 @@
 
 	def home
 
-		#byebug
 		#Posicionando na rede
 		redeatual = Rede.find_by_cadastro_id(user.cadastro.id)
 		if redeatual.blank?
