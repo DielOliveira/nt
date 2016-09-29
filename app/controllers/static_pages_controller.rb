@@ -278,6 +278,16 @@
 
 	def home
 
+		reentradas = Reentrada.all
+
+		reentradas.each do |reentrada|
+
+			if reentrada.flagopcional == true
+			else
+				reentrada.flagopcional = false
+			end
+		end
+
 		#Posicionando na rede
 		redeatual = Rede.find_by_cadastro_id(user.cadastro.id)
 		if redeatual.blank?
