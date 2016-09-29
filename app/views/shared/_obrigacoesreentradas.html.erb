@@ -15,6 +15,7 @@
         <thead>
           <tr>
             <th >Login</th>
+            <th >Ativo</th>
             <th >Ciclo</th>
             <th >Reent.</th>
             <th ></th>
@@ -24,8 +25,15 @@
         <tbody>
           <% obrigacoes.each do |reentrada| %>
             <tr>
-              <td width="50%"><%=reentrada.cadastro_adicionado.email%></td>
-              <td ><span class="badge bg-green"><%=reentrada.cadastro_adicionado.ciclo.numerociclo%></span></td>
+              <td ><%=reentrada.cadastro_adicionado.nomepessoa%></td>
+              <td >
+                <%if reentrada.cadastro_adicionado.flagativo%>
+                  <span class="badge bg-green "><span class="glyphicon glyphicon-ok"></span></span>
+                <%else%>
+                  <span class="badge bg-red"><span class="glyphicon glyphicon-remove"></span></span>
+                <%end%>  
+              </td>
+              <td ><span class="badge bg-blue"><%=reentrada.cadastro_adicionado.ciclo.numerociclo%></span></td>
 
               <%if reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count == reentrada.cadastro_adicionado.ciclo.qtdreentradas%>
                 <td ><span class="badge bg-green"><%=reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count%> / <%=reentrada.cadastro_adicionado.ciclo.qtdreentradas%></span></td>
@@ -33,28 +41,15 @@
                 <td ><span class="badge bg-red"><%=reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count%> / <%=reentrada.cadastro_adicionado.ciclo.qtdreentradas%></span></td>
               <%end%>
 
-
               <td align='right'>
-                <% if reentrada(reentrada.cadastro_adicionado_id) == 'opcional' %>
-                  <div class="btn-group">
-                    <%= link_to novareentrada_path(reentrada.cadastro_adicionado_id,'false','true'), :data => {:confirm => 'Deseja realmente realizar uma reentrada?'}, :class => "btn btn-success btn-sm" do %>
-                       Reentrada Opcional
-                    <% end %>   
-                  </div>               
-                <% else %>   
+                <% if reentrada(reentrada.cadastro_adicionado_id) == 'obrigatoria' %> 
                   <div class="btn-group">
                     <%= link_to novareentrada_path(reentrada.cadastro_adicionado_id,'false','false'), :data => {:confirm => 'Deseja realmente realizar uma reentrada?'}, :class => "btn btn-danger btn-sm" do %>
                        Reentrada Obrigatorio
                     <% end %>   
                   </div>               
                 <% end %>                
-                <% if upgrade(reentrada.cadastro_adicionado_id) == 'opcional' %>
-                  <div class="btn-group">
-                    <%#= link_to upgrade_ciclo_path(reentrada.cadastro_adicionado_id), :class => "btn btn-success btn-sm" do %>
-                       <!-- Upgrade Opcional -->
-                    <%# end %>   
-                  </div>               
-                <% else %>   
+                <% if upgrade(reentrada.cadastro_adicionado_id) == 'obrigatoria' %>  
                   <div class="btn-group">
                     <%= link_to upgrade_ciclo_path(reentrada.cadastro_adicionado_id), :data => {:confirm => 'Deseja realmente realizar um upgrade?'}, :class => "btn btn-danger btn-sm" do %>
                        Upgrade Obrigatorio
