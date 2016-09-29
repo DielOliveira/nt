@@ -6,7 +6,7 @@ class CiclosController < ApplicationController
     
     begin
       cadastro = Cadastro.find(cadastro_id)
-      reentradas = Reentrada.where('cadastro_reentrando_id = ? and ciclo_id = ? and flagopcional = false', cadastro.id, cadastro.ciclo.id).count
+      reentradas = Reentrada.where('cadastro_reentrando_id = ? and ciclo_id = ? and flagopcional = false', cadastro.id, cadastro.ciclo.id)
 
       reentradas.each do |reentrada|
         if reentrada.cadastro_adicionado.flagativo == false
