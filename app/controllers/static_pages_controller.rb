@@ -285,6 +285,7 @@
 			if reentrada.flagopcional == true
 			else
 				reentrada.flagopcional = false
+				reentrada.save
 			end
 		end
 
