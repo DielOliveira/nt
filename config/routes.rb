@@ -47,7 +47,6 @@ Rails.application.routes.draw do
   match '/home', to: 'static_pages#home', via: 'get'
   match '/faq', to: 'static_pages#faq', via: 'get'
   match '/wellcome', to: 'static_pages#wellcome', via: 'get'
-  match '/corrigeFinanall', to: 'static_pages#corrigeFinanall', via: 'get'
   match '/retiralixo', to: 'static_pages#retiralixo', via: 'get'
   get '/redeslist/:rede_id', to: 'static_pages#redeslist', as: 'redeslist'
   get '/redeslistciclo', to: 'static_pages#redeslistciclo', as: 'redeslistciclo'
