@@ -116,7 +116,6 @@
           <% @cadastros.each do |cadastro| %>
 
           <tr>
-            <td><%= count %></td>
             <td><%= cadastro.nomepessoa %></td>
             <td><%= cadastro.contador %></td>
             <td><%= cadastro.created_at.blank? ? '' : cadastro.created_at.strftime("%d/%m/%Y - %H:%M")%></td>
