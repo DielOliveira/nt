@@ -31,10 +31,11 @@ class CadastrosController < ApplicationController
 
     rescue
       flash[:notice] = "Erro ao realizar limpeza."      
+      return redirect_to configuracoes_path
     end
 
-    #flash[:success] = "correção efetuada com sucesso."
-    redirect_to cadastros_path
+    flash[:success] = "correção efetuada com sucesso."
+    redirect_to configuracoes_path
 
   end
 

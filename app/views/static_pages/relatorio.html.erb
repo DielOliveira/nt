@@ -106,21 +106,24 @@
       <table class="table table-hover">
         <thead>
           <tr>
+            <th>count</th>
             <th>Nome</th>
             <th>Número</th>
             <th>Dadata de Inclusao</th>
             <th colspan="3"></th>
           </tr>
         </thead>
-
+        <%count = 1%>
         <tbody>
           <% @cadastros.each do |cadastro| %>
+
           <tr>
+            <td><%= count %></td>
             <td><%= cadastro.nomepessoa %></td>
             <td><%= cadastro.contador %></td>
             <td><%= cadastro.created_at.blank? ? '' : cadastro.created_at.strftime("%d/%m/%Y - %H:%M")%></td>
             <td align='right'>
-
+            <%count = count + 1%>
             </td>
 
           </tr>

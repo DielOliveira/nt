@@ -1,7 +1,9 @@
-<% flash.each do |key, value| %>
-<div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-
+<% flash.each do |name, msg| -%>
+<div class="alert alert-warning alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <%= msg%>
+</div>      
+<% end -%>
 
 <div class="box box-warning">
   <div class="box-header with-border">
