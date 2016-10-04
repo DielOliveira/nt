@@ -20,6 +20,8 @@ class Cadastro < ActiveRecord::Base
 
 	has_many :primary_mensagems, :class_name => "Mensagem", :foreign_key => "cadastro_1_id", dependent: :destroy
 	has_many :secondary_mensagems, :class_name => "Mensagem", :foreign_key => "cadastro_2_id", dependent: :destroy
+	
+	has_many :secondary_obrigacaos, :class_name => "Obrigacao", :foreign_key => "cadastro_adicionado_id", dependent: :destroy
 
 
 	validate :busca_email_existente, :on => :create

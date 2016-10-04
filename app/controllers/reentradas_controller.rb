@@ -87,9 +87,9 @@ class ReentradasController < ApplicationController
       reentrada.save
       
       if params[:flagdemanda] == 'true'
-        obrigacaos = Obrigacao.where('cadastro_id = ? ', reentrando.id)
+        obrigacaos = Obrigacao.where('cadastro_id = ? and flagrealizado = false', reentrando.id)
         obrigacaos.each do |obrigacao|                
-          obrigacao.flagrealizado = true
+          obrigacao.cadastro_adicionado_id = cadastro.id
           obrigacao.save
         end
 

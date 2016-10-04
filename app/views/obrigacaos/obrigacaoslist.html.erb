@@ -80,9 +80,11 @@
             <%#= link_to 'Edit', edit_obrigacao_path(obrigacao) %>
             <td align="right">
 
-              <%= link_to obrigacaodelete_path(obrigacao.id), :class => "btn btn-default btn-sm" do %>
-              <span class="glyphicon glyphicon-trash"></span> Excluir
-              <% end %>           
+              <% if obrigacao.cadastro_adicionado_id.blank?%>
+                <%= link_to obrigacaodelete_path(obrigacao.id), :class => "btn btn-default btn-sm" do %>
+                <span class="glyphicon glyphicon-trash"></span> Excluir
+                <% end %>           
+              <%end%>
               
             </td>
             

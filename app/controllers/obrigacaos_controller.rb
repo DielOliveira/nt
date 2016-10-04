@@ -113,6 +113,6 @@ class ObrigacaosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def obrigacao_params
-      params.require(:obrigacao).permit(:cadastro_id, :flagrealizado)
+      params.require(:obrigacao).permit(:cadastro_id, :flagrealizado, :cadastro_adicionado_id)
     end
 end

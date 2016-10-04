@@ -138,46 +138,51 @@
 
 			doacaosVencendo.each do |doacao|
 
-				if doacao.cadastro_doador.ciclo.id == 1
+				obrigacaos = Obrigacao.where('cadastro_adicionado_id = ? and flagrealizado =  false',doacao.cadastro_doador_id)
 
-					cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
-					
-					rede = Rede.find_by_cadastro_id(cadastro.id)
-					if not rede.blank?
-						rede.cadastro_id = nil
-						rede.save
+				if obrigacaos.blank?
+
+					if doacao.cadastro_doador.ciclo.id == 1
+
+						cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
+						
+						rede = Rede.find_by_cadastro_id(cadastro.id)
+						if not rede.blank?
+							rede.cadastro_id = nil
+							rede.save
+						end
+
+						reentradas = Reentrada.where(:cadastro_adicionado_id => cadastro.id)
+
+						if not reentradas.blank?
+							reentradas.first.destroy
+						end
+
+						indicado = Indicado.where(:cadastro_2_id => cadastro.id)
+
+						if not indicado.blank?
+							indicado.first.destroy
+						end
+
+						cadastro.destroy
+
+					else 
+
+						cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
+
+						rede = Rede.where('cadastro_id = ? and ciclo_id = ?', cadastro.id, cadastro.ciclo_id)
+						if not rede.first.blank?
+							rede.first.cadastro_id = nil
+							rede.first.save
+						end					
+
+						cadastro.ciclo_id = cadastro.ciclo_id - 1
+						cadastro.save(:validate => false)
+
 					end
 
-					reentradas = Reentrada.where(:cadastro_adicionado_id => cadastro.id)
-
-					if not reentradas.blank?
-						reentradas.first.destroy
-					end
-
-					indicado = Indicado.where(:cadastro_2_id => cadastro.id)
-
-					if not indicado.blank?
-						indicado.first.destroy
-					end
-
-					cadastro.destroy
-
-				else 
-
-					cadastro = Cadastro.find_by_id(doacao.cadastro_doador_id)
-
-					rede = Rede.where('cadastro_id = ? and ciclo_id = ?', cadastro.id, cadastro.ciclo_id)
-					if not rede.first.blank?
-						rede.first.cadastro_id = nil
-						rede.first.save
-					end					
-
-					cadastro.ciclo_id = cadastro.ciclo_id - 1
-					cadastro.save(:validate => false)
-
+					doacao.destroy
 				end
-
-				doacao.destroy
 
 			end
 

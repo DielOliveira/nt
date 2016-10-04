@@ -50,8 +50,13 @@ class DoacaosController < ApplicationController
       doacao.flagconfirmada = true
       doacao.dataconfirmacao = Time.now
 
+      obrigacaos = Obrigacao.where('cadastro_adicionado_id = ? and flagrealizado =  false',doacao.cadastro_doador_id)
+      if not obrigacaos.blank?
+        obrigacaos.first.flagrealizado = true
+        obrigacaos.first.save
+      end
+
       cadastro = Cadastro.find(doacao.cadastro_doador_id)
-      cadastro.descconfirmaemail = cadastro.email
       cadastro.flagativo = true
     rescue
       flash[:danger] = "Não foi possível confirmar a doação. Contate o administrador."
