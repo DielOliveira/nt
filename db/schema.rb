@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928230019) do
+ActiveRecord::Schema.define(version: 20161003221220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,7 +117,6 @@ ActiveRecord::Schema.define(version: 20160928230019) do
     t.boolean  "flagenviada"
     t.string   "avatar"
     t.boolean  "flagpause"
-    t.boolean  "flagopcional"
   end
 
   create_table "indicados", force: :cascade do |t|
@@ -135,6 +134,15 @@ ActiveRecord::Schema.define(version: 20160928230019) do
     t.integer  "cadastro_1_id"
     t.integer  "cadastro_2_id"
   end
+
+  create_table "obrigacaos", force: :cascade do |t|
+    t.integer  "cadastro_id"
+    t.boolean  "flagrealizado"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "obrigacaos", ["cadastro_id"], name: "index_obrigacaos_on_cadastro_id", using: :btree
 
   create_table "operadoras", force: :cascade do |t|
     t.string   "nomeoperadora"
@@ -216,6 +224,7 @@ ActiveRecord::Schema.define(version: 20160928230019) do
   add_foreign_key "dadosfinanceiros", "bancos"
   add_foreign_key "dadosfinanceiros", "cadastros"
   add_foreign_key "dadosfinanceiros", "contabancariatipos"
+  add_foreign_key "obrigacaos", "cadastros"
   add_foreign_key "redes", "cadastros"
   add_foreign_key "redes", "ciclos"
   add_foreign_key "redes", "redetipos"

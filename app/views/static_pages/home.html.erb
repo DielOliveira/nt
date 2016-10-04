@@ -15,7 +15,7 @@
 <%= render 'shared/obrigacoesreentradas' %>
 <%end%>
 
-<%if user.cadastro.flagreentradaobrigatoria%>
+<%if not  Obrigacao.where('cadastro_id = ? and flagrealizado =  false',user.cadastro.id).blank?%>
 <%= render 'shared/obrigacoesdemanda' %>
 <%end%>
 

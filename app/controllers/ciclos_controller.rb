@@ -2,6 +2,21 @@ class CiclosController < ApplicationController
   before_action :requer_logon
   before_action :set_ciclo, only: [:show, :edit, :update, :destroy]
 
+
+  def buscaReentradaDemanda(cadastro_id)
+    begin
+
+      obrigacaos = Obrigacao.where('cadastro_id = ? and flagrealizado =  false',user.cadastro.id)
+      if not obrigacaos.blank?
+        return true
+      end
+      
+    rescue
+      return false
+    end
+      return false
+  end
+
   def buscaReentradaInativa(cadastro_id)
     
     begin
@@ -39,6 +54,11 @@ class CiclosController < ApplicationController
           flash[:notice] = "Não é permitido o upgrade. Você possui reentradas inativas no sistema."
           return redirect_to reentradas_path
       end
+
+      if buscaReentradaDemanda(cadastro.id) == false
+          flash[:notice] = "Não é permitido o upgrade. Você possui reentradas obrigatórias a serem feitas."
+          return redirect_to reentradas_path
+      end      
 
       cadastro = Cadastro.find_by_id(cadastro.id)
       cadastro.ciclo_id = cadastro.ciclo_id + 1

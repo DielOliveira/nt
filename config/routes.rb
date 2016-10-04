@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :obrigacaos
   resources :solicitacaos
   resources :situacaodemandas
   resources :contatos
@@ -53,10 +54,8 @@ Rails.application.routes.draw do
   match '/configuracoes', to: 'static_pages#configuracoes', via: 'get'
   
   match '/relatorio/', to: 'static_pages#relatorio', via: 'get'
-
-  #match '/relMembros', to: 'sivic_discipulos#relMembros', via: 'get'
-
-
+  match '/obrigacaoslist/', to: 'obrigacaos#obrigacaoslist', via: 'get'
+  get '/obrigacaodelete/:id', to: 'obrigacaos#obrigacaodelete', as: 'obrigacaodelete'
 
   match '/listarindicados', to: 'indicados#listarindicados', via: 'get'
 

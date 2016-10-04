@@ -87,9 +87,12 @@ class ReentradasController < ApplicationController
       reentrada.save
       
       if params[:flagdemanda] == 'true'
-        cadastroprincipal = Cadastro.find(user.cadastro_id)
-        cadastroprincipal.flagreentradaobrigatoria = false
-        cadastroprincipal.save(:validate => false)
+        obrigacaos = Obrigacao.where('cadastro_id = ? ', reentrando.id)
+        obrigacaos.each do |obrigacao|                
+          obrigacao.flagrealizado = true
+          obrigacao.save
+        end
+
       end
 
     rescue

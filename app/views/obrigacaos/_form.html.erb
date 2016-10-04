@@ -1,0 +1,25 @@
+<%= form_for(@obrigacao) do |f| %>
+  <% if @obrigacao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@obrigacao.errors.count, "error") %> prohibited this obrigacao from being saved:</h2>
+
+      <ul>
+      <% @obrigacao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cadastro_id %><br>
+    <%= f.text_field :cadastro_id %>
+  </div>
+  <div class="field">
+    <%= f.label :flagrealizado %><br>
+    <%= f.check_box :flagrealizado %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
