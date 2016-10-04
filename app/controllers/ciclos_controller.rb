@@ -55,7 +55,7 @@ class CiclosController < ApplicationController
           return redirect_to reentradas_path
       end
 
-      if buscaReentradaDemanda(cadastro.id) == false
+      if buscaReentradaDemanda(cadastro.id) == true
           flash[:notice] = "Não é permitido o upgrade. Você possui reentradas obrigatórias a serem feitas."
           return redirect_to reentradas_path
       end      
