@@ -59,7 +59,7 @@ class CadastrosController < ApplicationController
   def index
 
     if usuario_logado && user.cadastro_id == 1
-        @cadastros = Cadastro.order(:created_at).all.paginate(:page => params[:page], :per_page => 10)
+        @cadastros = Cadastro.order(:created_at).all  #.paginate(:page => params[:page], :per_page => 10)
     else
         redirect_to root_path
     end
