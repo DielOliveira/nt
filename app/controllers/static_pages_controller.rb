@@ -122,8 +122,8 @@
 
 				obrigacao = Obrigacao.where('cadastro_adicionado_id = ? and flagrealizado = false',doacao.cadastro_doador_id)
 				if not obrigacao.blank?
-					obrigacao.flagrealizado = true
-					obrigacao.save
+					obrigacao.first.flagrealizado = true
+					obrigacao.first.save
 				end
 
 			end
