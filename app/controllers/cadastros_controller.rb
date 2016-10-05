@@ -176,6 +176,20 @@ class CadastrosController < ApplicationController
        end
      end
 
+     obrigacaos = Obrigacao.where('cadastro_adicionado_id = ?',@cadastro.id)
+     if obrigacaos
+        obrigacaos.each do |obrigacao|
+          obrigacao.destroy
+        end
+     end
+
+     obrigacaos = Obrigacao.where('cadastro_id = ?',@cadastro.id)
+     if obrigacaos
+        obrigacaos.each do |obrigacao|
+          obrigacao.destroy
+        end
+     end     
+
     @cadastro.destroy
     respond_to do |format|
       format.html { redirect_to cadastros_url, notice: 'Cadastro excluído com sucesso.' }

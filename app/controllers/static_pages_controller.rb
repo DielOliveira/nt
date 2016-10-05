@@ -120,6 +120,12 @@
 			    cadastro.flagativo = true				
 			    cadastro.save(:validate => false)
 
+				obrigacao = Obrigacao.where('cadastro_adicionado_id = ? and flagrealizado = false',doacao.cadastro_doador_id)
+				if not obrigacao.blank?
+					obrigacao.flagrealizado = true
+					obrigacao.save
+				end
+
 			end
 
 
