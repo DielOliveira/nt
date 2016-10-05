@@ -15,7 +15,7 @@
   <tbody>
     <% @obrigacaos.each do |obrigacao| %>
       <tr>
-        <td><%= obrigacao.cadastro %></td>
+        <td><%= obrigacao.cadastro.nomepessoa %></td>
         <td><%= obrigacao.flagrealizado %></td>
         <td><%= obrigacao.cadastro_adicionado_id %></td>
         <td><%= link_to 'Show', obrigacao %></td>
