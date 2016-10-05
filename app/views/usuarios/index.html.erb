@@ -8,6 +8,7 @@
       <th>id</th>
       <th>Email</th>
       <th>Senha</th>
+      <th>CadastroID</th>
       <th>Cadastro</th>
       <th>Datainclusao</th>
       <th>Flagativo</th>
@@ -21,6 +22,7 @@
         <td><%= usuario.id %></td>
         <td><%= usuario.email %></td>
         <td><%= usuario.senha %></td>
+        <td><%= usuario.cadastro.id rescue nil%></td>
         <td><%= usuario.cadastro.nomepessoa rescue nil%></td>
         <td><%= usuario.created_at %></td>
         <td><%= usuario.cadastro.flagativo rescue nil%></td>
