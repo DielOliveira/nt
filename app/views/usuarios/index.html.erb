@@ -23,7 +23,7 @@
         <td><%= usuario.senha %></td>
         <td><%= usuario.cadastro.nomepessoa rescue nil%></td>
         <td><%= usuario.created_at %></td>
-        <td><%= usuario.flagativo %></td>
+        <td><%= usuario.cadastro.flagativo rescue nil%></td>
         <!-- <td><%#= link_to 'Show', usuario %></td> -->
         <!-- <td><%#= link_to 'Edit', edit_usuario_path(usuario) %></td> -->
 
