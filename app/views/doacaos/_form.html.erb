@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="box-body">
-    <p><b>Nome: </b><%=@doacao.cadastro_recebedor.nomepessoa</p>
+    <p><b>Nome: </b><%=@doacao.cadastro_recebedor.nomepessoa%></p>
     <p><b>Valor: </b><%=number_to_currency(@doacao.ciclo_doador.valorciclo, unit: "R$", separator: ",", delimiter: ".")%></p>
     <p><b>Conta PicPay (principal): </b><%=@dadosfinanceiros.contapicpay%></p>
     <%if not @dadosfinanceiros.observacao.blank? %>
