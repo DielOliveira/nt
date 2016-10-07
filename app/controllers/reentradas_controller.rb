@@ -104,7 +104,7 @@ class ReentradasController < ApplicationController
 
       if cadastro.save(:validate => false) && usuario.save(:validate => false) && financeiro.save && rede.save && reentrada.save
         flash[:success] = "Reentrada realizada com sucesso."
-        redirect_to reentradas_path
+        redirect_to home_path
       else
 
         if rede

@@ -76,7 +76,7 @@ class CiclosController < ApplicationController
     end
 
     flash[:success] = "Upgrade realizado com sucesso"
-    redirect_to reentradas_path
+    redirect_to home_path
 
   end
   
