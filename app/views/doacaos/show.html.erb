@@ -2,7 +2,7 @@
 
 <p>
   <strong>Ciclo:</strong>
-  <%= @doacao.ciclo %>
+  <%= @doacao.ciclo.id %>
 </p>
 
 <p>
@@ -13,6 +13,49 @@
 <p>
   <strong>Flagrejeitada:</strong>
   <%= @doacao.flagrejeitada %>
+</p>
+
+<p>
+  <strong>observacao:</strong>
+  <%= @doacao.observacao %>
+</p>
+
+<p>
+  <strong>dataconfirmacao:</strong>
+  <%= @doacao.dataconfirmacao %>
+</p>
+
+<p>
+  <strong>flagenviada:</strong>
+  <%= @doacao.flagenviada %>
+</p>
+
+<p>
+  <strong>tempo:</strong>
+  <%= @doacao.tempo %>
+</p>
+
+<p>
+  <strong>flagpause:</strong>
+  <%= @doacao.flagpause %>
+</p>
+
+<p>
+  <strong>cadastro_doador:</strong>
+  <%= @doacao.cadastro_doador.id %>
+  <%= @doacao.cadastro_doador.nomepessoa %>
+</p>
+
+<p>
+  <strong>cadastro_recebedor:</strong>
+  <%= @doacao.cadastro_recebedor.id %>
+  <%= @doacao.cadastro_recebedor.nomepessoa %>
+</p>
+
+<p>
+  <strong>cadastro_principal:</strong>
+  <%= @doacao.cadastro_principal.id %>
+  <%= @doacao.cadastro_principal.nomepessoa %>
 </p>
 
 <%= link_to 'Edit', edit_doacao_path(@doacao) %> |
