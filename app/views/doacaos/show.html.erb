@@ -65,7 +65,7 @@
 </p>
 
   <%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>Excluir"), 
-    doacao_path(:id => cadastro.id),
+    doacao_path(:id => @doacao.id),
     class: "btn btn-default btn-sm",
     method: :delete %>
 
