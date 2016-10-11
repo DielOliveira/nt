@@ -64,5 +64,10 @@
   <%= @doacao.cadastro_principal.nomepessoa %>
 </p>
 
+  <%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>Excluir"), 
+    doacao_path(:id => cadastro.id),
+    class: "btn btn-default btn-sm",
+    method: :delete %>
+
 <%= link_to 'Edit', edit_doacao_path(@doacao) %> |
 <%= link_to 'Back', doacaos_path %>
