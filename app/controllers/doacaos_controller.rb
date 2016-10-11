@@ -206,6 +206,6 @@ class DoacaosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def doacao_params
-      params.require(:doacao).permit(:ciclo_id, :flagconfirmada, :flagrejeitada, :observacao, :dataconfirmacao, :flagenviada, :avatar, :comprovante, :tempo, :flagpause)
+      params.require(:doacao).permit(:ciclo_doador, :ciclo_recebedor, :cadastro_doador, :cadastro_recebedor, :flagconfirmada, :flagrejeitada, :observacao, :dataconfirmacao, :flagenviada, :avatar, :comprovante, :tempo, :flagpause)
     end
 end
