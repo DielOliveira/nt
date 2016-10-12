@@ -3,7 +3,7 @@ class ReentradasController < ApplicationController
 
   # GET /reentradas
   # GET /reentradas.json
-
+  
   def relogin
 
         reset_session

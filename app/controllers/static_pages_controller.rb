@@ -1,6 +1,29 @@
 	class StaticPagesController < ApplicationController
 	#before_action :requer_logon
 
+	def corrigereentradas
+
+	    begin
+
+	        reentradas = Reentrada.where('cadastro_principal_id = ?', user.cadastro.id).order(:created_at)
+
+	        count = 1
+	        reentradas.each do |reentrada|
+
+	          cadastroAtualizar = reentrada.cadastro_adicionado
+
+	          cadastroAtualizar.nomepessoa = user.cadastro.nomepessoa + "-" + count.to_s
+			  
+	          cadastroAtualizar.save(:validate => false)
+
+	          count = count + 1
+	        end
+
+	    rescue
+	        flash[:danger] = "Erro ao fazer correção de reentradas."
+	    end
+	end	
+
 	def relatorio
 
 		 query = ' '
@@ -274,12 +297,14 @@
 	    #Valida cadastros (doações vencidas)
 		validacadastro
 
-
 		#Confirmando doações com prazo finalizado
 	    confirmaDoacoes
 
 	    #Adicionando doações necessárias
 		adicionaDoacoes
+
+		#Corrige nome das reetradas
+		corrigereentradas
 
 
 		#Exibindo doações a receber
