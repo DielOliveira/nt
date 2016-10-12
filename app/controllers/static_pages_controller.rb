@@ -3,10 +3,10 @@
 
 	def corrigereentradas
 
-		if not (usuario_logado && user.cadastro_id) == 1
-			flash[:danger] = "Desculpe, você não possui permissão."
-			redirect_to root_path
-		end
+		#if not (usuario_logado && user.cadastro_id) == 1
+		#	flash[:danger] = "Desculpe, você não possui permissão."
+		#	redirect_to root_path
+		#end
 
 	    begin
 
