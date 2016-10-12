@@ -109,6 +109,7 @@
             <th>Nome</th>
             <th>Número</th>
             <th>Dadata de Inclusao</th>
+            <th colspan="3"></th>
           </tr>
         </thead>
         <tbody>
@@ -118,6 +119,20 @@
             <td><%= cadastro.nomepessoa %></td>
             <td><%= cadastro.contador %></td>
             <td><%= cadastro.created_at.blank? ? '' : cadastro.created_at.strftime("%d/%m/%Y - %H:%M")%></td>
+            <td align="right">
+              <%= link_to cadastro_path(cadastro.id), :class => "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-list-alt"></span> Dossiê
+              <% end %>
+              <%= link_to edit_cadastro_path(cadastro), :class => "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-pencil"></span> Editar
+              <% end %>
+              <%if not cadastro.flagativo%>
+                <%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span>Excluir"), 
+                  cadastro_path(:id => cadastro.id),
+                  class: "btn btn-default btn-sm",
+                  method: :delete %>
+              <%end%>              
+              
             </td>
 
           </tr>

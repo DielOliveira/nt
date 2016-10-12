@@ -1,105 +1,113 @@
-<% title "Exibindo cadastro de: " + @cadastro.nomepessoa %>
+<div class="box box-info">
+  <div class="box-header with-border">
+    <h3 class="box-title">Dossiê de <%=@cadastro.nomepessoa%></h3>
 
-<h3> Dados Pessoais </h3>
-<br>
-<p>
-  <strong>Nome da Pessoa:</strong>
-  <%= @cadastro.nomepessoa %>
-</p>
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <div class="table-responsive">
+    <h3> Dados Pessoais </h3>
+    <p>
+      <strong>Nome da Pessoa:</strong>
+      <%= @cadastro.nomepessoa %>
+    </p>
 
-<p>
-  <strong>Nome da Pessoa:</strong>
-  <%= @cadastro.cpf %>
-</p>
+    <p>
+      <strong>CPF:</strong>
+      <%= @cadastro.cpf %>
+    </p>
 
-<p>
-  <strong>Sexo:</strong>
-  <%=@cadastro.masculino == true ? 'Masculino' : 'Feminino'%>
-</p>
+    <p>
+      <strong>Sexo:</strong>
+      <%=@cadastro.masculino == true ? 'Masculino' : 'Feminino'%>
+    </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @cadastro.email %>
-</p>
+    <p>
+      <strong>Email:</strong>
+      <%= @cadastro.email %>
+    </p>
 
-<p>
-  <strong>Telefone:</strong>
-  <%= @cadastro.telefone %>
-</p>
+    <p>
+      <strong>Telefone:</strong>
+      <%= @cadastro.telefone %>
+    </p>
 
-<p>
-  <strong>Operadora:</strong>
-  <%= @cadastro.operadora.nomeoperadora %>
-</p>
+    <p>
+      <strong>Operadora:</strong>
+      <%= @cadastro.operadora.nomeoperadora %>
+    </p>
 
-<p>
-  <strong>Whatsapp:</strong>
-  <%= @cadastro.whatsapp %>
-</p>
+    <p>
+      <strong>Dadatainclusao:</strong>
+      <%= @cadastro.dadatainclusao.blank? ? '' : @cadastro.dadatainclusao.strftime("%d/%m/%Y - %H:%M")%>
+    </p>
 
-<p>
-  <strong>Skype:</strong>
-  <%= @cadastro.skype %>
-</p>
+    <h3>Dados Financeiros</h3>
 
-<p>
-  <strong>Facebook:</strong>
-  <%= @cadastro.facebook %>
-</p>
+    <p>
+      <strong>Nomedo Titular:</strong>
+      <%= @dadosfinanceiro.nometitular %>
+    </p>
 
-<p>
-  <strong>Dadatainclusao:</strong>
-  <%= @cadastro.dadatainclusao.blank? ? '' : @cadastro.dadatainclusao.strftime("%d/%m/%Y - %H:%M")%>
-</p>
+    <p>
+      <strong>PicPay:</strong>
+      <%= @dadosfinanceiro.contapicpay %>
+    </p>
 
-<h3>Dados Financeiros</h3>
+    <p>
+      <strong>Conta Secundaria:</strong>
+      <%= @dadosfinanceiro.observacao %>
+    </p>
 
-<p>
-  <strong>Nomedo Titular:</strong>
-  <%= @dadosfinanceiro.nometitular %>
-</p>
+    <h3>Informações de Login</h3>
 
-<p>
-  <strong>CPF:</strong>
-  <%= @dadosfinanceiro.cpftitular %>
-</p>
+    <p>
+      <strong>Usuario:</strong>
+      <%= @usuario.email %>
+    </p>
 
-<p>
-  <strong>Banco:</strong>
-  <%= @dadosfinanceiro.banco.nomebanco %>
-</p>
+    <p>
+      <strong>Senha:</strong>
+      <%= @usuario.senha %>
+    </p>
 
-<p>
-  <strong>Agência:</strong>
-  <%= @dadosfinanceiro.agencia %>
-</p>
+    <h3>Informações de Rede</h3>
 
-<p>
-  <strong>Código:</strong>
-  <%= @dadosfinanceiro.codigo %>
-</p>
+    <p>
+      <strong>Ciclo Atual:</strong>
+      <%= @cadastro.ciclo_id %>
+    </p>
 
-<p>
-  <strong>Operação:</strong>
-  <%= @dadosfinanceiro.operacao %>
-</p>
+    <p>
+      <strong>Qtd Reentradas:</strong>
+      <%= @reentradas.count %>
+    </p>
 
-<p>
-  <strong>Tipo de Conta:</strong>
-  <%= @dadosfinanceiro.contabancariatipo.nometipo %>
-</p>
+    <p>
+      <strong><%=link_to doacoesrecebidas_path(@cadastro.id) do%>Doações Recebidas:<%end%></strong>
+      <%= @doacoesrecebdiasQtd %>
+    </p>
 
-<p>
-  <strong>Observacao:</strong>
-  <%= @dadosfinanceiro.observacao %>
-</p>
+    <p>
+      <strong><%=link_to doacoesrealizadas_path(@cadastro.id) do%>Doações Realizadas:<%end%></strong>
+      <%= @doacoesrealizadasQtd %>
+    </p>    
 
-<p>
-  <strong>Emailsuperconta:</strong>
-  <%= @dadosfinanceiro.emailsuperconta %>
-</p>
+    <p>
+      <strong>Doações a Receber:</strong>
+      <%= @doacaospendentesreceber %>
+    </p>
 
-<p>
-  <strong>Datainclulsao:</strong>
-  <%= @dadosfinanceiro.datainclulsao.blank? ? '' : @dadosfinanceiro.datainclulsao.strftime("%d/%m/%Y - %H:%M")%>
-</p>
+    <p>
+      <strong>Doações a Pagar:</strong>
+      <%= @doacaospendentespagar %>
+    </p>             
+
+    </div>
+  </div>
+</div>

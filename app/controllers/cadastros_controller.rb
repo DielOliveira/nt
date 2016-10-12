@@ -69,7 +69,32 @@ class CadastrosController < ApplicationController
   # GET /cadastros/1
   # GET /cadastros/1.json
   def show
-    @dadosfinanceiro =  Dadosfinanceiro.find_by_cadastro_id(@cadastro.id)
+    if usuario_logado && user.cadastro_id == 1
+      @dadosfinanceiro =  Dadosfinanceiro.find_by_cadastro_id(@cadastro.id)
+      @usuario =  Usuario.find_by_cadastro_id(@cadastro.id)
+      @reentradas =  Reentrada.where('cadastro_principal_id = ?', @cadastro.id)
+
+      doacaosrecebidas = Doacao.where("cadastro_recebedor_id = ? and cadastro_doador_id is not null and dataconfirmacao is not null", @cadastro.id)
+      doacaosrecebidasreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = ? and flagenviada = true and dataconfirmacao is not null", @cadastro.id)
+
+      doacaosrealizadas = Doacao.where("cadastro_doador_id = ? and flagenviada = true", @cadastro.id)
+      doacaoreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_doador_id").where("re.cadastro_principal_id = ? and flagenviada = true", @cadastro.id)
+
+      #Exibindo doações a receber
+      doacaospendentesreceber = Doacao.where("cadastro_recebedor_id = ? and flagconfirmada = false", @cadastro.id)
+      doacaospendentesreceberreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = ? and flagconfirmada = false", @cadastro.id)
+
+      #Exibindo doações a pagar
+      doacaospendentespagar = Doacao.where("cadastro_doador_id = ? and flagenviada = false and flagconfirmada = false", @cadastro.id)
+      doacaospendentesreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_doador_id").where("re.cadastro_principal_id = ? and flagenviada = false and flagconfirmada = false", @cadastro.id)
+
+      @doacoesrecebdiasQtd = doacaosrecebidas.count + doacaosrecebidasreentradas.count rescue nil
+      @doacoesrealizadasQtd = doacaosrealizadas.count + doacaoreentradas.count rescue nil
+      @doacaospendentesreceber = doacaospendentesreceber.count + doacaospendentesreceberreentradas.count rescue nil
+      @doacaospendentespagar = doacaospendentespagar.count + doacaospendentesreentradas.count rescue nil
+    else
+        redirect_to root_path
+    end
   end
 
   # GET /cadastros/new
@@ -150,6 +175,11 @@ class CadastrosController < ApplicationController
   # DELETE /cadastros/1
   # DELETE /cadastros/1.json
   def destroy
+
+    if not (usuario_logado && user.cadastro_id) == 1
+      flash[:danger] = "Desculpe, você não possui permissão."
+      redirect_to root_path
+    end
 
     rede = Rede.find_by_cadastro_id(@cadastro.id)
     if rede

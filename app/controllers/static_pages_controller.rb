@@ -3,6 +3,11 @@
 
 	def corrigereentradas
 
+		if not (usuario_logado && user.cadastro_id) == 1
+			flash[:danger] = "Desculpe, você não possui permissão."
+			redirect_to root_path
+		end
+
 	    begin
 
 	        reentradas = Reentrada.where('cadastro_principal_id = ?', user.cadastro.id).order(:created_at)
@@ -25,6 +30,11 @@
 	end	
 
 	def relatorio
+
+		if not (usuario_logado && user.cadastro_id) == 1
+			flash[:danger] = "Desculpe, você não possui permissão."
+			redirect_to root_path
+		end
 
 		 query = ' '
 		 query2 = ' '
@@ -62,6 +72,11 @@
 
 	def configuracoes
 
+		if not (usuario_logado && user.cadastro_id) == 1
+			flash[:danger] = "Desculpe, você não possui permissão."
+			redirect_to root_path
+		end		
+
 	end
 
 	def index
@@ -73,6 +88,11 @@
 	end
 
 	def retiralixo
+
+		if not (usuario_logado && user.cadastro_id) == 1
+			flash[:danger] = "Desculpe, você não possui permissão."
+			redirect_to root_path
+		end		
 
 		begin
 

@@ -199,8 +199,8 @@ desired effect
           <a href="#"><i class="fa fa-money"></i> <span>Doações</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
             <!-- <li><a href="<%=doacoesareceber_path%>">Pendentes</a></li> -->
-            <li><a href="<%=doacoesrecebidas_path%>">Recebidas</a></li>
-            <li><a href="<%=doacoesrealizadas_path%>">Realizadas</a></li>
+            <li><a href="<%=doacoesrecebidas_path(user.cadastro.id)%>">Recebidas</a></li>
+            <li><a href="<%=doacoesrealizadas_path(user.cadastro.id)%>">Realizadas</a></li>
           </ul>
         </li>
         <li class="treeview">

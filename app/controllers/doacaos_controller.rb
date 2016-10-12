@@ -26,14 +26,23 @@ class DoacaosController < ApplicationController
 
   end
 
-  def doacoesrealizadas  
-    @doacaos = Doacao.where("cadastro_doador_id =" + user.cadastro.id.to_s + "and flagenviada = true")
-    @doacaoreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_doador_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = true")
+  def doacoesrealizadas
+    if user.cadastro_id != 1
+      params[:cadastro_id] = user.cadastro.id
+    end
+
+    @doacaos = Doacao.where("cadastro_doador_id = ? and flagenviada = true", params[:cadastro_id])
+    @doacaoreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_doador_id").where("re.cadastro_principal_id = ? and flagenviada = true", params[:cadastro_id])
   end
 
   def doacoesrecebidas  
-    @doacaos = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + "and cadastro_doador_id is not null and dataconfirmacao is not null")
-    @doacaosrecebidasreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + "and flagenviada = true and dataconfirmacao is not null")
+
+    if user.cadastro_id != 1
+      params[:cadastro_id] = user.cadastro.id
+    end
+
+    @doacaos = Doacao.where("cadastro_recebedor_id = ? and cadastro_doador_id is not null and dataconfirmacao is not null", params[:cadastro_id])
+    @doacaosrecebidasreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = ? and flagenviada = true and dataconfirmacao is not null", params[:cadastro_id])
   end
 
   def doacoesareceber  
@@ -120,6 +129,11 @@ class DoacaosController < ApplicationController
 
   def pausardoacao
 
+    if not (usuario_logado && user.cadastro_id) == 1
+      flash[:danger] = "Desculpe, você não possui permissão."
+      redirect_to root_path
+    end    
+
     begin
       doacao = Doacao.find_by_id(@doacao.id)
       doacao.flagpause = !doacao.flagpause
@@ -191,6 +205,12 @@ class DoacaosController < ApplicationController
   # DELETE /doacaos/1
   # DELETE /doacaos/1.json
   def destroy
+
+    if not (usuario_logado && user.cadastro_id) == 1
+      flash[:danger] = "Desculpe, você não possui permissão."
+      redirect_to root_path
+    end
+        
     @doacao.destroy
     respond_to do |format|
       format.html { redirect_to doacaos_url, notice: 'Doacao was successfully destroyed.' }

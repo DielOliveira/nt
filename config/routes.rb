@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   match '/convite/:login', to: 'cadastros#convite', via: 'get'
   match '/convite', to: 'cadastros#convite', via: 'get'
   match '/corrigenumeracao', to: 'cadastros#corrigenumeracao', via: 'get'
+  get '/obrigareentrada/:cadastro_id', to: 'cadastros#obrigareentrada', as: 'obrigareentrada'
   
 
 
@@ -73,13 +74,12 @@ Rails.application.routes.draw do
   
   get '/upgrade_ciclo/:cadastro_id', to: 'ciclos#upgrade_ciclo', as: 'upgrade_ciclo'
   
-  get '/obrigareentrada/:cadastro_id', to: 'cadastros#obrigareentrada', as: 'obrigareentrada'
 
 
   #get '/confirmadoacao/:doacao_id', to: 'doacaos#confirmadoacao', as: 'confirmadoacao'
 
-  match '/doacoesrealizadas', to: 'doacaos#doacoesrealizadas', via: 'get'
-  match '/doacoesrecebidas', to: 'doacaos#doacoesrecebidas', via: 'get'
+  get '/doacoesrealizadas/:cadastro_id', to: 'doacaos#doacoesrealizadas', as: 'doacoesrealizadas'
+  get '/doacoesrecebidas/:cadastro_id', to: 'doacaos#doacoesrecebidas', as: 'doacoesrecebidas'
   match '/doacoesareceber', to: 'doacaos#doacoesareceber', via: 'get'
   match '/doacoesVencendo', to: 'doacaos#doacoesVencendo', via: 'get'
   
