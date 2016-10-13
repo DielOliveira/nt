@@ -45,7 +45,7 @@ class DoacaosController < ApplicationController
     @doacaosrecebidasreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = ? and flagenviada = true and dataconfirmacao is not null", params[:cadastro_id])
   end
 
-  def doacoesareceber  
+  def doacoesareceber
     #Exibindo doações a receber
     doacaospendentesreceber = Doacao.where("cadastro_recebedor_id =" + user.cadastro.id.to_s + " and flagconfirmada = false")
     doacaospendentesreceberreentradas = Doacao.joins("inner join reentradas re on re.cadastro_adicionado_id = doacaos.cadastro_recebedor_id").where("re.cadastro_principal_id = " + user.cadastro.id.to_s + " and flagconfirmada = false")
@@ -129,7 +129,7 @@ class DoacaosController < ApplicationController
 
   def pausardoacao
 
-    if not (usuario_logado && user.cadastro_id) == 1
+    if not (usuario_logado && user.cadastro_id  == 1)
       flash[:danger] = "Desculpe, você não possui permissão."
       redirect_to root_path
     end    
@@ -206,7 +206,7 @@ class DoacaosController < ApplicationController
   # DELETE /doacaos/1.json
   def destroy
 
-    if not (usuario_logado && user.cadastro_id) == 1
+    if not (usuario_logado && user.cadastro_id == 1) 
       flash[:danger] = "Desculpe, você não possui permissão."
       redirect_to root_path
     end

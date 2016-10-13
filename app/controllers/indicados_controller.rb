@@ -5,6 +5,12 @@ class IndicadosController < ApplicationController
   # GET /indicados.json
 
   def listarindicados
+
+    if not (usuario_logado && user.cadastro_id == 1) 
+      flash[:danger] = "Desculpe, você não possui permissão."
+      redirect_to root_path
+    end
+
     @indicados = Indicado.all.order(:cadastro_1_id)
   end
 
