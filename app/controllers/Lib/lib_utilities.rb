@@ -115,6 +115,12 @@ def proximaentrada(ciclo_id)
         return  Rede.where("linha = 10 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:ordem).first.id
           
       end
+
+      if linha11.count > linha11Preenchidos.count
+
+        return  Rede.where("linha = 11 and cadastro_id is null and ciclo_id = ?", ciclo_id).order(:ordem).first.id
+          
+      end      
           
 
   end   	
