@@ -64,6 +64,8 @@ class RedesController < ApplicationController
     @linha9Preenchidos = Rede.where("linha = 9 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
     @linha10 = Rede.where("linha = 10 and ciclo_id = " + params[:ciclo_id].to_s)
     @linha10Preenchidos = Rede.where("linha = 10 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha11 = Rede.where("linha = 11 and ciclo_id = " + params[:ciclo_id].to_s)
+    @linha11Preenchidos = Rede.where("linha = 11 and cadastro_id is not null and ciclo_id = " + params[:ciclo_id].to_s)    
 
   end 
 

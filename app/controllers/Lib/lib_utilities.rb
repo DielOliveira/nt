@@ -51,6 +51,8 @@ def proximaentrada(ciclo_id)
       linha9Preenchidos = Rede.where("linha = 9 and cadastro_id is not null and ciclo_id = ?", ciclo_id)
       linha10 = Rede.where("linha = 10 and ciclo_id = ?", ciclo_id)
       linha10Preenchidos = Rede.where("linha = 10 and cadastro_id is not null and ciclo_id = ?", ciclo_id)
+      linha11 = Rede.where("linha = 11 and ciclo_id = ?", ciclo_id)
+      linha11Preenchidos = Rede.where("linha = 11 and cadastro_id is not null and ciclo_id = ?", ciclo_id)      
 
 
       if linha1.count > linha1Preenchidos.count

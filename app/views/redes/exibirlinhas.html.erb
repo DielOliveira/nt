@@ -138,7 +138,20 @@
                                   <span class="glyphicon glyphicon-list-alt"></span> Exibir
                                 <% end %>
                               </td>                              
-                            </tr>          
+                            </tr>
+                            <%if not @linha11.empty? %>
+                              <tr>
+                                <td>10.</td>
+                                <td><span class="badge bg-red"><%=@linha11.count%></span></td>
+                                <td><span class="badge bg-green"><%=@linha11Preenchidos.count%></span></td>
+                                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                <td> 
+                                  <%=link_to redecontrole_path(@linha11.first.ciclo_id, 11), :class => "btn btn-default btn-sm" do %>
+                                    <span class="glyphicon glyphicon-list-alt"></span> Exibir
+                                  <% end %>
+                                </td>                              
+                              </tr>          
+                            <%end%>                                       
                           <%end%>                                    
                         <%end%>                                  
                       <%end%>
