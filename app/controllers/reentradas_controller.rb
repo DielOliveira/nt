@@ -51,7 +51,8 @@ class ReentradasController < ApplicationController
       cadastro.flagreentrada = true
       cadastro.cpfpadrinho = reentrando.email
       cadastro.flagativo = false
-      cadastro.save
+      cadastro.cpf = principal.cpf
+      cadastro.save(:validate => false)
 
       #Financeiro
       financeirocopiar = Dadosfinanceiro.find_by_cadastro_id(params[:cadastro_id].to_s)
@@ -60,7 +61,7 @@ class ReentradasController < ApplicationController
       financeiro.observacao = financeirocopiar.observacao
       financeiro.contapicpay = financeirocopiar.contapicpay
       financeiro.cadastro_id = cadastro.id
-      financeiro.save
+      financeiro.save(:validate => false)
 
       #user
       usuario = Usuario.new
@@ -75,7 +76,7 @@ class ReentradasController < ApplicationController
       #rede
       rede = Rede.find_by_id(proximaentrada(1).to_i)
       rede.cadastro_id = cadastro.id
-      rede.save
+      rede.save(:validate => false)
 
       #reentrada
       reentrada = Reentrada.new
@@ -84,13 +85,13 @@ class ReentradasController < ApplicationController
       reentrada.cadastro_principal_id = user.cadastro.id
       reentrada.ciclo_id = reentrando.cadastro.ciclo.id
       reentrada.flagopcional = params[:flagopcional]
-      reentrada.save
+      reentrada.save(:validate => false)
       
       if params[:flagdemanda] == 'true'
         obrigacaos = Obrigacao.where('cadastro_id = ? and flagrealizado = false', reentrando.cadastro.id)
         obrigacaos.each do |obrigacao|                
           obrigacao.cadastro_adicionado_id = cadastro.id
-          obrigacao.save
+          obrigacao.save(:validate => false)
         end
 
       end

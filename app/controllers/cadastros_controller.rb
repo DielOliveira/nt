@@ -92,6 +92,9 @@ class CadastrosController < ApplicationController
       @doacoesrealizadasQtd = doacaosrealizadas.count + doacaoreentradas.count rescue nil
       @doacaospendentesreceber = doacaospendentesreceber.count + doacaospendentesreceberreentradas.count rescue nil
       @doacaospendentespagar = doacaospendentespagar.count + doacaospendentesreentradas.count rescue nil
+
+
+      @patrocinador = Indicado.where('cadastro_2_id = ?', @cadastro.id)
     else
         redirect_to root_path
     end

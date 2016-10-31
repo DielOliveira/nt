@@ -14,6 +14,7 @@
         <thead>
           <tr>
             <th >Login</th>
+            <th >N°</th>
             <th >Ciclo</th>
             <th >Reent.</th>
             <th ></th>
@@ -22,7 +23,8 @@
 
         <tbody>
             <tr>
-              <td width="50%"><%=user.email%></td>
+              <td><%=user.email%></td>
+              <td ><span><%=user.cadastro.contador rescue nil%></span></td>
               <td ><span class="badge bg-green"><%=user.cadastro.ciclo.numerociclo%></span></td>
 
               <%if reentradasCiclo(user.cadastro.id,user.cadastro.ciclo.id).count >= user.cadastro.ciclo.qtdreentradas%>
