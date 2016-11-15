@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004215908) do
+ActiveRecord::Schema.define(version: 20161115103623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(version: 20161004215908) do
     t.integer  "numerociclo"
     t.decimal  "valorciclo"
     t.integer  "qtdreentradas"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "qtdreentradasparareentradas"
   end
 
   create_table "contabancariatipos", force: :cascade do |t|

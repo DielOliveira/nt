@@ -36,9 +36,9 @@
               <td ><span class="badge bg-blue"><%=reentrada.cadastro_adicionado.ciclo.numerociclo%></span></td>
 
               <%if reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count == reentrada.cadastro_adicionado.ciclo.qtdreentradas%>
-                <td ><span class="badge bg-green"><%=reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count%> / <%=reentrada.cadastro_adicionado.ciclo.qtdreentradas%></span></td>
+                <td ><span class="badge bg-green"><%=reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count%> / <%=reentrada.cadastro_adicionado.ciclo.qtdreentradasparareentradas%></span></td>
               <%else%>
-                <td ><span class="badge bg-red"><%=reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count%> / <%=reentrada.cadastro_adicionado.ciclo.qtdreentradas%></span></td>
+                <td ><span class="badge bg-red"><%=reentradasCiclo(reentrada.cadastro_adicionado.id,reentrada.cadastro_adicionado.ciclo.id).count%> / <%=reentrada.cadastro_adicionado.ciclo.qtdreentradasparareentradas%></span></td>
               <%end%>
 
               <td align='right'>

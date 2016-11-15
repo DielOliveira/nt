@@ -23,6 +23,8 @@ module ReentradasHelper
 
 	def reentrada(cadastro_id)
 
+		#qtdreentradasparareentradas
+
 		cadastro = Cadastro.find_by_id(cadastro_id)
 
 		ciclo = cadastro.ciclo.numerociclo
@@ -32,10 +34,18 @@ module ReentradasHelper
 		doacaorealizada = Doacao.where('cadastro_doador_id = ' + cadastro_id.to_s + ' and ciclo_doador_id = ' + ciclo.to_s)
 		doacaorecebida = Doacao.where('cadastro_recebedor_id = ' + cadastro_id.to_s + ' and ciclo_recebedor_id = ' + ciclo.to_s)
 
-		if reentradas.count < cadastro.ciclo.qtdreentradas && doacaorecebida.count >= 1
-			return 'obrigatoria'
+		if cadastro.flagreentrada == true
+			if reentradas.count < cadastro.ciclo.qtdreentradasparareentradas && doacaorecebida.count >= 1
+				return 'obrigatoria'
+			else
+				return 'opcional'
+			end
 		else
-			return 'opcional'
+			if reentradas.count < cadastro.ciclo.qtdreentradas && doacaorecebida.count >= 1
+				return 'obrigatoria'
+			else
+				return 'opcional'
+			end
 		end
 
 	end

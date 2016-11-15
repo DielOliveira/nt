@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   match '/configuracoes', to: 'static_pages#configuracoes', via: 'get'
   
   match '/relatorio/', to: 'static_pages#relatorio', via: 'get'
+  match '/relatorioReentradasPendentes/', to: 'static_pages#relatorioreentradaspendentes', via: 'get'
   match '/obrigacaoslist/', to: 'obrigacaos#obrigacaoslist', via: 'get'
   get '/obrigacaodelete/:id', to: 'obrigacaos#obrigacaodelete', as: 'obrigacaodelete'
 

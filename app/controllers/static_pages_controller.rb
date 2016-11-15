@@ -1,6 +1,12 @@
 	class StaticPagesController < ApplicationController
 	#before_action :requer_logon
 
+	def relatorioreentradaspendentes
+
+		@cadastros = Cadastro.all.order(:created_at)#.paginate(:page => params[:page], :per_page => 40)
+
+	end
+
 	def corrigereentradas
 
 	    begin

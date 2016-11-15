@@ -85,7 +85,7 @@ class CiclosController < ApplicationController
   def index
 
     if usuario_logado && user.cadastro_id == 1
-        @ciclos = Ciclo.all
+        @ciclos = Ciclo.all.order(:numerociclo)
     else
         redirect_to root_path
     end
@@ -154,6 +154,6 @@ class CiclosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ciclo_params
-      params.require(:ciclo).permit(:nomeciclo, :numerociclo, :valorciclo, :qtdreentradas)
+      params.require(:ciclo).permit(:nomeciclo, :numerociclo, :valorciclo, :qtdreentradas, :qtdreentradasparareentradas)
     end
 end
