@@ -1,6 +1,27 @@
 class NtAutenticationController < ApplicationController
 
+	def forgot
 
+		if request.post?
+
+			cadastro = Cadastro.where('ltrim(rtrim(email)) = ?',params[:email].strip )
+			if not cadastro.first.blank? 
+			
+				usuario = Usuario.find_by_cadastro_id(cadastro.first.id)
+				parametro = {"name" => cadastro.first.nomepessoa,
+							 "email" => cadastro.first.email,
+							 "subject" => "Recuperação de Senha",
+							 "message" => "Login: " + usuario.email + " Senha: " + usuario.senha}
+
+				enviarEmail(parametro)
+			else
+				flash[:success] = 'E-mail não encontrado na base de dados. Certifique-se de que escreveu corretamente.'
+			end
+		end
+
+	end
+
+		
 	def login
 
 		#debugger

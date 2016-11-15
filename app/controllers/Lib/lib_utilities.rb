@@ -1,5 +1,10 @@
 module Utilities
 
+  def enviarEmail(parametro)
+      ContactMailer.contact_message(parametro).deliver
+      flash[:success] = 'Mensagem enviada com sucesso'
+  end  
+
   def corrigeFinan
 
     begin

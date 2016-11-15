@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contacts
   resources :obrigacaos
   resources :solicitacaos
   resources :situacaodemandas
@@ -44,6 +45,8 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   root  'static_pages#index', hello_id: 1
+  
+  match '/send_mail', to: 'static_pages#send_mail', via: 'post'
 
   match '/home', to: 'static_pages#home', via: 'get'
   match '/faq', to: 'static_pages#faq', via: 'get'
@@ -86,6 +89,8 @@ Rails.application.routes.draw do
   
   match '/login', to: 'nt_autentication#login', via: 'get'
   match '/login', to: 'nt_autentication#login', via: 'post'
+  match '/forgot', to: 'nt_autentication#forgot', via: 'get'
+  match '/forgot', to: 'nt_autentication#forgot', via: 'post'
   match '/logoff', to: 'nt_autentication#logoff', via: 'get'
 
 
