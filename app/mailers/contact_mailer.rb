@@ -1,6 +1,6 @@
 class ContactMailer < ApplicationMailer
 
-  default :from => 'daytrainingdiel@gmail.com'
+  default :from => 'redenewtimesac@gmail.com'
 
   def contact_message(contact)
     @contact = contact

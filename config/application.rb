@@ -26,8 +26,8 @@ module Nt
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :domain               => 'gmail.com',
-      :user_name            => 'daytrainingdiel@gmail.com',
-      :password             => 'leidof#!12',
+      :user_name            => 'redenewtimesac@gmail.com',
+      :password             => 'rederede',
       :authentication       => :plain,
       :enable_starttls_auto => true 
     }
