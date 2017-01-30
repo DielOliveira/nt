@@ -5,11 +5,9 @@
       <thead>
         <tr>
           <th>Count</th>
-          <th>id_rede</th>
-          <th>parent_id</th>
-          <th>id_usuario</th>
-          <th>ordem</th>
-          <th>nome</th>
+          <th>Ordem</th>
+          <th>Nome</th>
+          <th>Telefone</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -20,11 +18,9 @@
 
           <tr>
             <td><%= count = count + 1 %></td>
-            <td><%= rede.id %></td>
-            <td><%= rede.parent_id %></td>
-            <td><%= rede.cadastro.id rescue nil %></td>
             <td><%= rede.ordem rescue nil %></td>
             <td><%= rede.cadastro.nomepessoa rescue nil %></td>
+            <td><%= rede.cadastro.telefone rescue nil %></td>
             <td>
               <%if not rede.cadastro.blank? %>
                 <%if not rede.cadastro.flagativo%>
